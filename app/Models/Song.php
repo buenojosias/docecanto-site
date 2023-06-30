@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Song extends Model
 {
@@ -39,5 +41,15 @@ class Song extends Model
     public function favorites(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'favorites', 'user_id', 'song_id');
+    }
+
+    public function media(): HasMany
+    {
+        return $this->hasMany(Media::class);
+    }
+
+    public function music(): HasOne
+    {
+        return $this->hasOne(Media::class)->where('type', 'music');
     }
 }

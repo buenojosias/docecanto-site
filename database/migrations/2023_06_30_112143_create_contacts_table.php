@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('name');
-            $table->date('birth');
-            $table->date('registration_date')->nullable();
-            $table->enum('status', ['Ativo', 'Inativo', 'Afastado', 'Desistente'])->default('Ativo');
+            $table->morphs('contactable');
+            $table->string('field', 24);
+            $table->string('value');
+            $table->boolean('visible')->default(false); // Se a informação ficará visível para os outros integrantes
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('contacts');
     }
 };

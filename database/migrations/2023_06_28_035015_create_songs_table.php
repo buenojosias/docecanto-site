@@ -19,7 +19,6 @@ return new class extends Migration
             $table->longText('lyrics');
             $table->longText('fulltext');
             $table->boolean('detached')->default(false);
-            $table->string('audio_path')->nullable(); // CONSIDERAR SEPARAR EM OUTRA TABELA
             $table->timestamps();
         });
 

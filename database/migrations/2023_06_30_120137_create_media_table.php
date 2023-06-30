@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('members', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('name');
-            $table->date('birth');
-            $table->date('registration_date')->nullable();
-            $table->enum('status', ['Ativo', 'Inativo', 'Afastado', 'Desistente'])->default('Ativo');
+            $table->foreignId('song_id')->constrained();
+            $table->enum('type', ['Música', 'Playback', 'Guia', 'PB com guia']);
+            $table->string('path');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('members');
+        Schema::dropIfExists('media');
     }
 };
