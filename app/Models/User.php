@@ -48,6 +48,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
     public function favorites(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'favorites', 'user_id', 'song_id');

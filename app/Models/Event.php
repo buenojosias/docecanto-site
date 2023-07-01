@@ -16,12 +16,12 @@ class Event extends Model
         'date',
         'time',
         'description',
-        'is_presentation'
+        'is_presentation',
     ];
 
     protected $casts = [
         'date' => 'date',
-        'time' => 'time'
+        'time' => 'time',
     ];
 
     public function members(): BelongsToMany

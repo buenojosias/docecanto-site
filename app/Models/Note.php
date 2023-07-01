@@ -13,7 +13,7 @@ class Note extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function lowestNote(): HasMany

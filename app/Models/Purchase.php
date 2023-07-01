@@ -20,7 +20,7 @@ class Purchase extends Model
         'subtotal',
         'discount',
         'freight',
-        'amount'
+        'amount',
     ];
 
     protected $casts = [
@@ -29,8 +29,8 @@ class Purchase extends Model
         'deliver_date' => 'date',
         'subtotal' => 'integer',
         'discount' => 'integer',
-        'freight'=> 'integer',
-        'amount' => 'integer'
+        'freight' => 'integer',
+        'amount' => 'integer',
     ];
 
     public function items(): HasMany

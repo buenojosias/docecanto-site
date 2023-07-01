@@ -16,7 +16,7 @@ class Rating extends Model
         'tuning',
         'vocal_power',
         'lowest_note_id',
-        'highest_note_id'
+        'highest_note_id',
     ];
 
     public function member(): BelongsTo

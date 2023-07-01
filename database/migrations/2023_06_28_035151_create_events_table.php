@@ -25,7 +25,7 @@ return new class extends Migration
         Schema::create('event_member', function (Blueprint $table) {
             $table->foreignId('event_id')->constrained();
             $table->foreignId('member_id')->constrained();
-            $table->enum('answer', ['Sim','Não','Talvez']);
+            $table->enum('answer', ['Sim', 'Não', 'Talvez']);
             $table->timestamps();
         });
 

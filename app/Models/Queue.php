@@ -18,11 +18,11 @@ class Queue extends Model
         'parent_phone',
         'age',
         'church',
-        'status'
+        'status',
     ];
 
     protected $casts = [
-        'age' => 'integer'
+        'age' => 'integer',
     ];
 
     public function user(): BelongsTo

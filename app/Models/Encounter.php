@@ -12,11 +12,11 @@ class Encounter extends Model
 
     protected $fillable = [
         'date',
-        'description'
+        'description',
     ];
 
     protected $casts = [
-        'date' => 'date'
+        'date' => 'date',
     ];
 
     public function members(): BelongsToMany

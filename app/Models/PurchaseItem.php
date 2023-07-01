@@ -15,14 +15,14 @@ class PurchaseItem extends Model
         'product_id',
         'name',
         'quantity',
-        'amount'
+        'amount',
     ];
 
     public $timestamps = false;
 
     protected $casts = [
         'quantity' => 'integer',
-        'amount' => 'integer'
+        'amount' => 'integer',
     ];
 
     public function product(): BelongsTo

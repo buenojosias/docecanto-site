@@ -12,11 +12,11 @@ class Wallet extends Model
 
     protected $fillable = [
         'name',
-        'balance'
+        'balance',
     ];
 
     protected $casts = [
-        'balance' => 'integer'
+        'balance' => 'integer',
     ];
 
     public function transactions(): HasMany

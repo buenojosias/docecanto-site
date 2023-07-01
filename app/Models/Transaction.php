@@ -21,7 +21,7 @@ class Transaction extends Model
         'wallet_balance_before',
         'wallet_balance_after',
         'total_balance_before',
-        'total_balance_after'
+        'total_balance_after',
     ];
 
     protected $casts = [
@@ -30,7 +30,7 @@ class Transaction extends Model
         'wallet_balance_before' => 'integer',
         'wallet_balance_after' => 'integer',
         'total_balance_before' => 'integer',
-        'total_balance_after' => 'integer'
+        'total_balance_after' => 'integer',
     ];
 
     public function transactionable(): MorphTo

@@ -21,11 +21,11 @@ class Song extends Model
         'lyrics',
         'fulltext',
         'detached',
-        'audio_path'
+        'audio_path',
     ];
 
     protected $casts = [
-        'number' => 'integer'
+        'number' => 'integer',
     ];
 
     public function categories(): BelongsToMany

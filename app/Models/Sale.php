@@ -17,7 +17,7 @@ class Sale extends Model
         'amount',
         'request_date',
         'deliver_date',
-        'note'
+        'note',
     ];
 
     protected $casts = [

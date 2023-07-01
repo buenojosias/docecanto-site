@@ -12,7 +12,7 @@ class Profile extends Model
 
     protected $fillable = [
         'question',
-        'datatype'
+        'datatype',
     ];
 
     public $timestamps = false;

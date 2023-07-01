@@ -18,10 +18,11 @@ class Parent extends Model
     ];
 
     protected $casts = [
-        'birth' => 'date'
+        'birth' => 'date',
     ];
 
-    public function contacts(): MorphMany {
+    public function contacts(): MorphMany
+    {
         return $this->morphMany(Contact::class, 'contactable');
     }
 

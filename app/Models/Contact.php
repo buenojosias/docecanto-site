@@ -13,11 +13,11 @@ class Contact extends Model
     protected $fillable = [
         'field',
         'value',
-        'visible'
+        'visible',
     ];
 
     protected $casts = [
-        'visible' => 'boolean'
+        'visible' => 'boolean',
     ];
 
     public function transactionable(): MorphTo

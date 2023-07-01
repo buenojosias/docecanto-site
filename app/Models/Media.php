@@ -13,10 +13,11 @@ class Media extends Model
     protected $fillable = [
         'song_id',
         'type',
-        'path'
+        'path',
     ];
 
-    public function song(): BelongsTo {
+    public function song(): BelongsTo
+    {
         return $this->belongsTo(Song::class);
     }
 }

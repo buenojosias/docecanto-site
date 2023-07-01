@@ -12,11 +12,11 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'position'
+        'position',
     ];
 
     protected $casts = [
-        'position' => 'integer'
+        'position' => 'integer',
     ];
 
     public $timestamps = false;

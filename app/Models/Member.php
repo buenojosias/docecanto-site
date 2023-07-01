@@ -24,7 +24,7 @@ class Member extends Model
     ];
 
     protected $casts = [
-        'birth' => 'date'
+        'birth' => 'date',
     ];
 
     public function address(): HasOne
@@ -32,7 +32,8 @@ class Member extends Model
         return $this->hasOne(Address::class);
     }
 
-    public function contacts(): MorphMany {
+    public function contacts(): MorphMany
+    {
         return $this->morphMany(Contact::class, 'contactable');
     }
 

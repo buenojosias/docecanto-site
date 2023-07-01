@@ -14,12 +14,12 @@ class Product extends Model
         'name',
         'variation',
         'default_price',
-        'stock'
+        'stock',
     ];
 
     protected $casts = [
         'default_price' => 'integer',
-        'stock' => 'integer'
+        'stock' => 'integer',
     ];
 
     public function purchases(): HasMany
