@@ -95,6 +95,9 @@
 .table tbody td {
     @apply py-1.5 px-3 first:pl-5 last:pr-5;
 }
+.table tbody td a {
+    @apply font-semibold text-gray-800;
+}
 
 .table-responsive {
     @apply block w-full overflow-x-auto;

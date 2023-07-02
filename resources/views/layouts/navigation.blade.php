@@ -9,14 +9,11 @@
                 <ul class="space-y-2 pb-2">
                     <li>
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" icon="home">Dashboard</x-nav-link>
+                        <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')" icon="home">Membros</x-nav-link>
                     </li>
                 </ul>
                 <div class="space-y-2 pt-2">
-                    {{-- <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups.*')" icon="people-group">Grupos</x-nav-link>
-                    <x-nav-link :href="route('encounters.index')" :active="request()->routeIs('encounters.*')" icon="book">Encontros</x-nav-link> --}}
-                </div>
-                <div class="space-y-2 pt-2">
-                    {{-- <x-nav-link :href="route('pastorals.index')" :active="request()->routeIs('pastorals.*')" icon="circle-nodes">Movimentos e Pastorais</x-nav-link> --}}
+                    {{-- mais links --}}
                 </div>
             </div>
         </div>

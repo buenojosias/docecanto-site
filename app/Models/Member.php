@@ -20,7 +20,6 @@ class Member extends Model
         'birth',
         'registration_date',
         'status',
-        'whatsapp',
     ];
 
     protected $casts = [
