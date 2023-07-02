@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Membros</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Integrantes</h2>
     </x-slot>
     <div class="card">
         <div class="card-body table-responsive">
@@ -16,9 +16,8 @@
                     @forelse ($members as $member)
                         <tr>
                             <td>
-                                <a href="#" class="link">{{ $member->name }}</a>
+                                <a href="{{ route('members.show', $member) }}" class="link">{{ $member->name }}</a>
                             </td>
-                            {{-- <td><a href="'{{ route('members.show', $member) }}'">{{ $member->name }}</a></td> --}}
                             <td>{{ $member->age }}</td>
                             <td class="text-right">
                                 <x-button href="#" flat sm icon="key" />

@@ -16,12 +16,14 @@ class AdminAccess
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::user())
+        if (! Auth::user()) {
             return redirect()->route('login');
+        }
 
-        if(!Auth::user()->is_admin)
-            dd('Acesso negado! Não é administrador.' . Auth::user()->type);
-            // return redirect()->route('driver.index');
+        if (! Auth::user()->is_admin) {
+            dd('Acesso negado! Não é administrador.'.Auth::user()->type);
+        }
+        // return redirect()->route('driver.index');
 
         return $next($request);
     }

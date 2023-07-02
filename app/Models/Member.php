@@ -41,9 +41,9 @@ class Member extends Model
         return $this->belongsToMany(Encounter::class);
     }
 
-    public function parents(): BelongsToMany
+    public function kins(): BelongsToMany
     {
-        return $this->belongsToMany(Parent::class)->withPivot(['kinship']);
+        return $this->belongsToMany(Kin::class)->withPivot(['kinship']);
     }
 
     public function profiles(): BelongsToMany

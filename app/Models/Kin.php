@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class Parent extends Model
+class Kin extends Model
 {
     use HasFactory;
+
+    protected $table = 'kins';
 
     protected $fillable = [
         'name',

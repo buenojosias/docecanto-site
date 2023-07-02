@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parents', function (Blueprint $table) {
+        Schema::create('kins', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->date('birth')->nullable();
@@ -19,9 +19,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('member_parent', function (Blueprint $table) {
+        Schema::create('kin_member', function (Blueprint $table) {
+            $table->foreignId('kin_id')->constrained('kins');
             $table->foreignId('member_id')->constrained();
-            $table->foreignId('parent_id')->constrained();
             $table->string('kinship');
         });
     }
@@ -31,7 +31,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member_parent');
-        Schema::dropIfExists('parents');
+        Schema::dropIfExists('kin_member');
+        Schema::dropIfExists('kins');
     }
 };
