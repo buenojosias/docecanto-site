@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Admin\Member\MemberIndex;
+use App\Http\Admin\Member\{ MemberIndex };
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
