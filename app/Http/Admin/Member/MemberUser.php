@@ -13,9 +13,9 @@ class MemberUser extends Component
 
     public $member;
     public $user;
+    public $email, $username;
     public $showUser = false;
     public $showFormModal = false;
-    public $email, $username;
 
     public function mount($member)
     {
@@ -36,9 +36,9 @@ class MemberUser extends Component
 
     public function openFormModal()
     {
-        $this->showFormModal = true;
         $this->email = $this->user->email ?? '';
         $this->username = $this->user->username ?? '';
+        $this->showFormModal = true;
     }
 
     public function submit()
