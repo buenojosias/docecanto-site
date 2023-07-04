@@ -2,6 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Integrantes</h2>
     </x-slot>
+    <x-button href="{{ route('members.create') }}" label="Cadastrar novo" primary class="mb-3 w-full sm:w-auto" />
     <div class="card">
         <div class="card-body table-responsive">
             <table class="table table-hover whitespace-nowrap">

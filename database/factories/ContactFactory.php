@@ -17,18 +17,18 @@ class ContactFactory extends Factory
     public function definition(): array
     {
         $field = $this->faker->randomElement(['WhatsApp', 'E-mail', 'Instagram']);
-        if($field === 'WhatsApp') {
+        if ($field === 'WhatsApp') {
             $value = $this->faker->phoneNumber();
-        } else if($field === 'E-mail') {
+        } elseif ($field === 'E-mail') {
             $value = $this->faker->email();
-        } else if($field === 'Instagram') {
+        } elseif ($field === 'Instagram') {
             $value = $this->faker->userName();
         }
 
         return [
             'field' => $field,
             'value' => $value,
-            'visible' => rand(0,1),
+            'visible' => rand(0, 1),
         ];
     }
 }

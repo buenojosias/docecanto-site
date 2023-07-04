@@ -21,7 +21,7 @@ class AdminAccess
         }
 
         if (! Auth::user()->is_admin) {
-            dd('Acesso negado! Não é administrador.'.Auth::user()->type);
+            abort(403, 'Acesso restrito aos administradores.');
         }
         // return redirect()->route('driver.index');
 

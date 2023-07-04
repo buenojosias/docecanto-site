@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Admin\Member\{ MemberIndex, MemberShow };
+use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm };
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +14,7 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 Route::prefix('integrantes')->name('members.')->group(function () {
     Route::get('/', MemberIndex::class)->name('index');
+    Route::get('/cadastro', MemberForm::class)->name('create');
     Route::get('/{member}', MemberShow::class)->name('show');
+    Route::get('/{member}/editar', MemberForm::class)->name('edit');
 });

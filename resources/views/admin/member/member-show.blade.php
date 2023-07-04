@@ -19,51 +19,31 @@
                     <div class="sm:grid sm:grid-cols-2 space-y-3 sm:space-y-0 gap-4 my-4">
                         <div>
                             <h4>Data de nascimento</h4>
-                            <p>{{ $member->birth->format('d/m/Y') }}</p>
+                            <p>{{ $member->birth }}</p>
                         </div>
                         <div>
                             <h4>Idade</h4>
                             <p>{{ $member->age }}</p>
                         </div>
                         <div>
-                            <h4>Responsável</h4>
-                            <p>{ placeholder }</p>
+                            <h4>Data do cadastro</h4>
+                            <p>{{ $member->registration_date }}</p>
                         </div>
+                        <div>
+                            <h4>Status</h4>
+                            <p>{{ $member->status }}</p>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <x-button href="{{ route('members.edit', $member) }}" sm primary label="Editar" />
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-span-2">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h3 class="card-title">Contatos</h3>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        @foreach ($contacts as $contact)
-                            <ul class="py-2 px-4 border-b">
-                                <h4 class="text-sm font-medium text-gray-600">{{ $contact->field }}</h4>
-                                <p class="font-medium text-gray-900">{{ $contact->value }}</p>
-                            </ul>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h3 class="card-title">Familiares</h3>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        @foreach ($kins as $kin)
-                            <ul class="py-2 px-4 border-b">
-                                <p class="font-medium text-gray-900">{{ $kin->name }}</p>
-                                <h4 class="text-sm font-medium text-gray-600">{{ $kin->pivot->kinship }}</h4>
-                            </ul>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+            @livewire('member.member-contacts', ['member' => $member])
+            @livewire('member.member-kins', ['member' => $member])
+            @livewire('member.member-user', ['member' => $member])
         </div>
     </div>
 </div>

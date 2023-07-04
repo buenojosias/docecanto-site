@@ -12,23 +12,17 @@ class MemberShow extends Component
     use Actions;
 
     public $member;
-    public $contacts;
-    public $kins;
 
     public function mount(Member $member)
     {
         $this->member = $member;
         $this->member->age = Carbon::parse($member->birth)->age;
-        $this->contacts = $member->contacts;
-        $this->kins = $member->kins;
+        $this->member->birth = Carbon::parse($member->birth)->format('d/m/Y');
+        $this->member->registration_date = Carbon::parse($member->registration_date)->format('d/m/Y');
     }
 
     public function render()
     {
-        return view('admin.member.member-show', [
-            'member' => $this->member,
-            'contacts' => $this->contacts,
-            'kins' => $this->kins,
-        ]);
+        return view('admin.member.member-show');
     }
 }
