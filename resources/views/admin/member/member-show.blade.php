@@ -42,6 +42,7 @@
         </div>
         <div class="col-span-2">
             @livewire('member.member-contacts', ['member' => $member])
+            @livewire('member.member-address', ['member' => $member])
             @livewire('member.member-kins', ['member' => $member])
             @livewire('member.member-user', ['member' => $member])
         </div>
