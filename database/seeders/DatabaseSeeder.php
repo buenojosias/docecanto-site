@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             MemberSeeder::class,
             KinSeeder::class,
             ContactSeeder::class,
+            ProfileSeeder::class,
         ]);
     }
 }

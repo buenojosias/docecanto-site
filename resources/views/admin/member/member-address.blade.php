@@ -1,7 +1,6 @@
 <div>
     <x-notifications />
-    <x-dialog />
-    <div class="card mb-4">
+    <div class="card mb-2">
         <div class="card-header">
             <h3 class="card-title">Endereço</h3>
             <div class="card-tools">

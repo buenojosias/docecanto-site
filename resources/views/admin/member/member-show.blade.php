@@ -1,4 +1,5 @@
 <div>
+    <x-dialog />
     @if ($member->status != 'Ativo')
         <div class="alert warning">
             O status atual do integrante é <span class="font-semibold">{{ $member->status }}</span>.
@@ -39,6 +40,7 @@
                     </div>
                 </div>
             </div>
+            @livewire('member.member-profile', ['member' => $member])
         </div>
         <div class="col-span-2">
             @livewire('member.member-contacts', ['member' => $member])
