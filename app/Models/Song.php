@@ -12,8 +12,6 @@ class Song extends Model
 {
     use HasFactory;
 
-    // CONSIDERAR SEPARAR AUDIO_PATH EM OUTRA TABELA
-
     protected $fillable = [
         'number',
         'title',
@@ -21,7 +19,6 @@ class Song extends Model
         'lyrics',
         'fulltext',
         'detached',
-        'audio_path',
     ];
 
     protected $casts = [

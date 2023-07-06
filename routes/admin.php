@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm };
+use App\Http\Admin\Song\{ SongIndex, SongShow };
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,10 @@ Route::prefix('integrantes')->name('members.')->group(function () {
     Route::get('/cadastro', MemberForm::class)->name('create');
     Route::get('/{member}', MemberShow::class)->name('show');
     Route::get('/{member}/editar', MemberForm::class)->name('edit');
+});
+
+Route::prefix('musicas')->name('songs.')->group(function () {
+    Route::get('/', SongIndex::class)->name('index');
+    Route::get('/{song}', SongShow::class)->name('show');
+    Route::get('/categoria/{category}', SongIndex::class)->name('categories');
 });

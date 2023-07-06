@@ -9,7 +9,8 @@
                 <ul class="space-y-2 pb-2">
                     <li>
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" icon="home">Dashboard</x-nav-link>
-                        <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')" icon="home">Membros</x-nav-link>
+                        <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')" icon="children">Membros</x-nav-link>
+                        <x-nav-link :href="route('songs.index')" :active="request()->routeIs('songs.*')" icon="music">Músicas</x-nav-link>
                     </li>
                 </ul>
                 <div class="space-y-2 pt-2">
