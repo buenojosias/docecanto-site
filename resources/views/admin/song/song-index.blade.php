@@ -13,18 +13,30 @@
                     <ul>
                         @foreach ($categories as $category)
                             <li class="flex py-1.5 px-4 border-b">
-                                <div>
-                                    <a href="{{ route('songs.categories', $category) }}">{{ $category->name }}</a>
+                                <div wire:click="selectCategory({{ $category }})" class="cursor-pointer">
+                                    {{ $category->name }}
                                 </div>
                             </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
-            <x-button white label="ADICIONAR NOVA" class="w-full" />
         </div>
 
         <div class="sm:col-span-3">
+            @if ($filter)
+                <div class="card mb-4">
+                    <div class="card-body display flex justify-between text-sm">
+                        <div>
+                            Filtro de categoria: {{ $filter['name'] }}
+                        </div>
+                        <div>
+                            <x-button wire:click="selectCategory" xs flat icon="x" />
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <div class="card">
                 <div class="card-body table-responsive">
                     <table class="table table-hover whitespace-nowrap">
@@ -59,6 +71,11 @@
                         </tbody>
                     </table>
                 </div>
+                @if (!$filter)
+                    <div class="card-paginate">
+                        {{ $songs->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

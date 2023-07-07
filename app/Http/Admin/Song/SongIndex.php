@@ -14,21 +14,40 @@ class SongIndex extends Component
     use WithPagination;
 
     public $categories;
-    public $songs;
+    public $filter;
 
-    public function mount($category = null)
+    public function mount()
     {
         $this->categories = Category::orderBy('position')->get();
-        if($category) {
-            $category = Category::find($category);
-            $this->songs = $category->songs()->with('categories')->orderBy('number')->get();
-        } else {
-            $this->songs = Song::with('categories')->orderBy('number')->get();
-        }
+    }
+
+    public function selectCategory($category = null)
+    {
+        $this->filter = $category;
+        $this->resetPage();
     }
 
     public function render()
     {
-        return view('admin.song.song-index');
+        $songs = Song::query()
+            ->select(['id','number','title','detached'])
+            ->when($this->filter, function($query) {
+                $filter = $this->filter['id'];
+                $query->whereHas('categories', function ($query) use ($filter) {
+                    $query->where('id', $filter);
+                });
+            })
+            ->orderBy('number')
+            ->with('categories');
+
+            if ($this->filter) {
+                $songs = $songs->get();
+            } else {
+                $songs = $songs->paginate();
+            }
+
+        return view('admin.song.song-index', [
+            'songs' => $songs
+        ]);
     }
 }

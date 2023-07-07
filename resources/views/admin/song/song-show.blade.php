@@ -1,4 +1,5 @@
 <div>
+    <x-notifications />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Música</h2>
     </x-slot>
@@ -10,9 +11,6 @@
                     <div class="card-header bg-orange-400">
                         <x-icon name="flag" class="mt-1.5 w-6 h-6 mr-1 text-white" solid />
                         <h3 class="card-title">Destacada</h3>
-                        <div class="card-tools">
-                            <x-button outline secondary xs label="Remover destaque" />
-                        </div>
                     </div>
                 @endif
                 <div class="card-body p-4">
@@ -24,8 +22,11 @@
                 </div>
                 <div class="card-footer">
                     <x-button flat primary label="Editar" />
-                    <x-button flat primary label="Destacar" />
-                    <x-button flat label="Remover destaque" />
+                    @if ($song->detached)
+                        <x-button wire:click="removeDetach" flat label="Remover destaque" />
+                    @else
+                        <x-button wire:click="addDetach" flat primary label="Destacar" />
+                    @endif
                 </div>
             </div>
         </div>
