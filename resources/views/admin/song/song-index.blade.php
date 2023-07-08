@@ -4,8 +4,9 @@
     </x-slot>
 
     <div class="sm:grid sm:grid-cols-4 gap-4">
-        <div class="mb-4">
-            <div class="card mb-2">
+        <div>
+            <x-button href="{{ route('songs.create') }}" primary label="Adicionar nova" class="w-full" />
+            <div class="card my-4">
                 <div class="card-header">
                     <h3 class="card-title">Categorias</h3>
                 </div>
@@ -56,7 +57,7 @@
                                         @if ($song->detached)
                                             <x-icon name="flag" class="w-4 h-4 mr-1 text-orange-700" solid />
                                         @endif
-                                        <a href="{{ route('songs.show', $song) }}">{{ $song->title }}</a>
+                                        <a href="{{ route('songs.show', $song->number) }}">{{ $song->title }}</a>
                                     </td>
                                     <td>
                                         @foreach ($song->categories as $category)
@@ -64,7 +65,7 @@
                                         @endforeach
                                     </td>
                                     <td class="text-right">
-                                        <x-button href="#" flat sm icon="pencil-alt" />
+                                        <x-button href="{{ route('songs.edit', $song->number) }}" flat sm icon="pencil-alt" />
                                     </td>
                                 </tr>
                             @endforeach

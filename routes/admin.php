@@ -2,7 +2,7 @@
 
 use App\Http\Admin\Category\{ CategoryIndex };
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm };
-use App\Http\Admin\Song\{ SongIndex, SongShow };
+use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +23,9 @@ Route::prefix('integrantes')->name('members.')->group(function () {
 
 Route::prefix('musicas')->name('songs.')->group(function () {
     Route::get('/', SongIndex::class)->name('index');
-    Route::get('/{song}', SongShow::class)->name('show');
+    Route::get('/cadastro', SongForm::class)->name('create');
+    Route::get('/{number}', SongShow::class)->name('show');
+    Route::get('/{number}/editar', SongForm::class)->name('edit');
 });
 
 Route::prefix('categorias')->name('categories.')->group(function () {

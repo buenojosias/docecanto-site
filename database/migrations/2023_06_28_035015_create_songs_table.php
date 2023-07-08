@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
+            $table->integer('number')->index();
             $table->string('title');
             $table->string('resume');
             $table->longText('lyrics');

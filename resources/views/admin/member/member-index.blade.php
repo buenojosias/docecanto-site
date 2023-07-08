@@ -9,6 +9,7 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Aniversário</th>
                         <th>Idade</th>
                         <th></th>
                     </tr>
@@ -19,9 +20,10 @@
                             <td>
                                 <a href="{{ route('members.show', $member) }}" class="link">{{ $member->name }}</a>
                             </td>
+                            <td>{{ $member->birthday }}</td>
                             <td>{{ $member->age }}</td>
                             <td class="text-right">
-                                <x-button href="#" flat sm icon="key" />
+                                <x-button href="{{ route('members.edit', $member) }}" flat sm icon="pencil-alt" />
                                 <x-button href="#" flat sm icon="phone" />
                             </td>
                         </tr>

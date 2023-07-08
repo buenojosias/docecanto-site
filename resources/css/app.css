@@ -159,3 +159,8 @@ ul.focusable .focusable-focus .header {
 ul.focusable .focusable-focus .list-item {
     @apply sm:flex mx-4 py-1.5 border-b last:border-none;
 }
+
+.active\:bg-gray-50:active {
+    --tw-bg-opacity:1;
+    background-color: rgba(249,250,251,var(--tw-bg-opacity));
+}

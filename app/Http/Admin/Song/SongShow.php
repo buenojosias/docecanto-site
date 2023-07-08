@@ -15,10 +15,10 @@ class SongShow extends Component
     public $song;
     public $media;
 
-    public function mount(Song $song)
+    public function mount($number)
     {
-        $this->song = $song;
-        $this->media = $song->media;
+        $this->song = Song::query()->where('number', $number)->firstOrFail();
+        $this->media = $this->song->media;
     }
 
     public function addDetach()

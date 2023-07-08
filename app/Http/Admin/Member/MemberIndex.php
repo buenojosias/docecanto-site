@@ -20,6 +20,7 @@ class MemberIndex extends Component
             ->paginate();
 
         foreach ($members as $member) {
+            $member->birthday = Carbon::parse($member->birth)->format('d/m');
             $member->age = Carbon::parse($member->birth)->age;
         }
 

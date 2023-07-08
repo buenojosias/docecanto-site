@@ -4,8 +4,8 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Música</h2>
     </x-slot>
 
-    <div class="sm:grid sm:grid-cols-5 gap-6">
-        <div class="col-span-3">
+    <div class="sm:grid sm:grid-cols-6 gap-6">
+        <div class="col-span-4">
             <div class="card mb-4">
                 @if ($song->detached)
                     <div class="card-header bg-orange-400">
@@ -21,7 +21,7 @@
                     {!! $song->lyrics !!}
                 </div>
                 <div class="card-footer">
-                    <x-button flat primary label="Editar" />
+                    <x-button href="{{ route('songs.edit', $song->number) }}" flat primary label="Editar" />
                     @if ($song->detached)
                         <x-button wire:click="removeDetach" flat label="Remover destaque" />
                     @else
