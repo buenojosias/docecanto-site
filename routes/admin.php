@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Admin\Category\{ CategoryIndex };
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm };
 use App\Http\Admin\Song\{ SongIndex, SongShow };
 use App\Http\Controllers\ProfileController;
@@ -23,5 +24,8 @@ Route::prefix('integrantes')->name('members.')->group(function () {
 Route::prefix('musicas')->name('songs.')->group(function () {
     Route::get('/', SongIndex::class)->name('index');
     Route::get('/{song}', SongShow::class)->name('show');
-    Route::get('/categoria/{category}', SongIndex::class)->name('categories');
+});
+
+Route::prefix('categorias')->name('categories.')->group(function () {
+    Route::get('/', CategoryIndex::class)->name('index');
 });
