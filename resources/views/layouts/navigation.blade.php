@@ -16,6 +16,9 @@
                     <x-nav-link :href="route('songs.index')" :active="request()->routeIs('songs.*')" icon="music">Músicas</x-nav-link>
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')" icon="music">Categorias</x-nav-link>
                 </div>
+                <div class="space-y-2 pt-1.5">
+                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('songs.*')" icon="calendar">Eventos</x-nav-link>
+                </div>
             </div>
         </div>
     </div>

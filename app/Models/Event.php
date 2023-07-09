@@ -20,8 +20,7 @@ class Event extends Model
     ];
 
     protected $casts = [
-        'date' => 'date',
-        'time' => 'time',
+        'date' => 'date'
     ];
 
     public function members(): BelongsToMany

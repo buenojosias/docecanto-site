@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('local');
             $table->date('date');
-            $table->time('time');
+            $table->time('time')->nullable();
             $table->text('description');
             $table->boolean('is_presentation');
             $table->timestamps();

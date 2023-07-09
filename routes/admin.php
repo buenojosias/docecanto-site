@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Admin\Category\{ CategoryIndex };
+use App\Http\Admin\Event\{ EventIndex, EventShow, EventForm };
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm };
 use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
 use App\Http\Controllers\ProfileController;
@@ -14,6 +15,18 @@ Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+Route::prefix('categorias')->name('categories.')->group(function () {
+    Route::get('/', CategoryIndex::class)->name('index');
+});
+
+Route::prefix('eventos')->name('events.')->group(function () {
+    Route::get('/', EventIndex::class)->name('index');
+    Route::get('/cadastro', EventForm::class)->name('create');
+    Route::get('/{event}', EventShow::class)->name('show');
+    Route::get('/{event}/editar', EventForm::class)->name('edit');
+});
+
 Route::prefix('integrantes')->name('members.')->group(function () {
     Route::get('/', MemberIndex::class)->name('index');
     Route::get('/cadastro', MemberForm::class)->name('create');
@@ -26,8 +39,4 @@ Route::prefix('musicas')->name('songs.')->group(function () {
     Route::get('/cadastro', SongForm::class)->name('create');
     Route::get('/{number}', SongShow::class)->name('show');
     Route::get('/{number}/editar', SongForm::class)->name('edit');
-});
-
-Route::prefix('categorias')->name('categories.')->group(function () {
-    Route::get('/', CategoryIndex::class)->name('index');
 });
