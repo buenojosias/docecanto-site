@@ -4,7 +4,8 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Detalhes do evento</h2>
     </x-slot>
-    <div class="card mb-4">
+    <x-button href="{{ route('events.index', $event) }}" primary label="Editar" />
+    <div class="card my-4">
         <div class="card-body display">
             <div class="grid grid-cols-6 space-y-3 md:space-y-0 gap-4">
                 <div class="col-span-6 sm:col-span-3">
@@ -25,11 +26,11 @@
                 </div>
                 <div class="col-span-6">
                     <h4>Local</h4>
-                    <p>{{ $event->local }}</p>
+                    <p>{{ $event->local ?? 'Não informado' }}</p>
                 </div>
                 <div class="col-span-6">
                     <h4>Descrição</h4>
-                    <p>{{ $event->description }}</p>
+                    {!! $event->description !!}
                 </div>
             </div>
         </div>

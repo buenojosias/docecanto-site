@@ -18,6 +18,9 @@ class DatabaseSeeder extends Seeder
             KinSeeder::class,
             ContactSeeder::class,
             ProfileSeeder::class,
+            CategorySeeder::class,
+            SongSeeder::class,
+            EventSeeder::class,
         ]);
     }
 }

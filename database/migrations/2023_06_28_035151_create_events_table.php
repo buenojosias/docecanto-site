@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('local');
+            $table->string('local')->nullable();
             $table->date('date');
             $table->time('time')->nullable();
             $table->text('description');
@@ -23,15 +23,15 @@ return new class extends Migration
         });
 
         Schema::create('event_member', function (Blueprint $table) {
-            $table->foreignId('event_id')->constrained();
-            $table->foreignId('member_id')->constrained();
+            $table->foreignId('event_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('member_id')->constrained()->cascadeOnDelete();
             $table->enum('answer', ['Sim', 'Não', 'Talvez']);
             $table->timestamps();
         });
 
         Schema::create('event_song', function (Blueprint $table) {
-            $table->foreignId('event_id')->constrained();
-            $table->foreignId('song_id')->constrained();
+            $table->foreignId('event_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('song_id')->constrained()->cascadeOnDelete();
             $table->integer('position')->nullable();
         });
     }

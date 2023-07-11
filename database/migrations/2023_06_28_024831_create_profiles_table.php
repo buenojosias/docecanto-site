@@ -18,8 +18,8 @@ return new class extends Migration
         });
 
         Schema::create('member_profile', function (Blueprint $table) {
-            $table->foreignId('member_id')->constrained();
-            $table->foreignId('profile_id')->constrained();
+            $table->foreignId('member_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('profile_id')->constrained()->cascadeOnDelete();
             $table->string('answer');
             $table->timestamps();
         });

@@ -31,10 +31,11 @@ class ProfileSeeder extends Seeder
 
         Profile::insert($questions);
 
-        // foreach (Profile::all() as $question) {
-        //     $question->members()->syncWithoutDetaching([rand(1, 6) => ['answer' => 'Lorem']]);
-        //     $question->members()->syncWithoutDetaching([rand(1, 6) => ['answer' => 'Lorem']]);
-        //     $question->members()->syncWithoutDetaching([rand(1, 6) => ['answer' => 'Lorem']]);
-        // }
+        foreach (Profile::all() as $question) {
+            $question->members()->syncWithoutDetaching([rand(1, 10) => ['answer' => 'Lorem']]);
+            $question->members()->syncWithoutDetaching([rand(1, 10) => ['answer' => 'Ipsum']]);
+            $question->members()->syncWithoutDetaching([rand(1, 10) => ['answer' => 'Dollor']]);
+            $question->members()->syncWithoutDetaching([rand(1, 10) => ['answer' => 'Set']]);
+        }
     }
 }

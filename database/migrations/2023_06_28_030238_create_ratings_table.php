@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained();
+            $table->foreignId('member_id')->constrained()->cascadeOnDelete();
             $table->integer('height')->nullable(); // Altura em centímetros
             $table->integer('tuning')->nullable(); // Afinação (1-5)
             $table->integer('vocal_power')->nullable(); // Potência vocal (1-5)

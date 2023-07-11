@@ -10,6 +10,9 @@
                     <li>
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" icon="home">Dashboard</x-nav-link>
                         <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')" icon="children">Membros</x-nav-link>
+                        @if (request()->routeIs('members.*'))
+                            <x-nav-link :href="route('members.users')" :active="request()->routeIs('members.users')" icon="key">Usuários</x-nav-link>
+                        @endif
                     </li>
                 </ul>
                 <div class="space-y-2 pt-1.5">
@@ -17,7 +20,7 @@
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')" icon="music">Categorias</x-nav-link>
                 </div>
                 <div class="space-y-2 pt-1.5">
-                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('songs.*')" icon="calendar">Eventos</x-nav-link>
+                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.*')" icon="calendar">Eventos</x-nav-link>
                 </div>
             </div>
         </div>

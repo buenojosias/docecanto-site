@@ -21,7 +21,6 @@ class EventSongs extends Component
     public function mount($event)
     {
         $this->event = $event;
-        $this->openFormModal();
     }
 
     public function openFormModal()

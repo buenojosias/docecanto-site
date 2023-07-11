@@ -19,8 +19,8 @@ return new class extends Migration
         });
 
         Schema::create('encounter_member', function (Blueprint $table) {
-            $table->foreignId('encounter_id')->constrained();
-            $table->foreignId('member_id')->constrained();
+            $table->foreignId('encounter_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('member_id')->constrained()->cascadeOnDelete();
             $table->enum('attendance', ['P', 'F', 'J']);
             $table->tinyText('note')->nullable();
             $table->timestamps();

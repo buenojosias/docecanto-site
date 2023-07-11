@@ -2,7 +2,7 @@
 
 use App\Http\Admin\Category\{ CategoryIndex };
 use App\Http\Admin\Event\{ EventIndex, EventShow, EventForm };
-use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm };
+use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
 use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +30,7 @@ Route::prefix('eventos')->name('events.')->group(function () {
 Route::prefix('integrantes')->name('members.')->group(function () {
     Route::get('/', MemberIndex::class)->name('index');
     Route::get('/cadastro', MemberForm::class)->name('create');
+    Route::get('/usuarios', MemberUsers::class)->name('users');
     Route::get('/{member}', MemberShow::class)->name('show');
     Route::get('/{member}/editar', MemberForm::class)->name('edit');
 });

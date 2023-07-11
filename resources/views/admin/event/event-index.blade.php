@@ -52,7 +52,7 @@
                         @endfor
                     </div>
                     <!-- FIM DO CALENDÁRIO -->
-                    <x-button wire:click="openFormModal('create')" label="Adicionar evento"
+                    <x-button href="{{ route('events.create') }}" label="Adicionar evento"
                         class="w-full mt-6 font-semibold" md primary />
                 </div>
                 <div class="md:col-span-3 px-4 md:pr-6">
@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="flex items-center px-2">
                                     <x-dropdown>
-                                        <x-dropdown.item wire:click="openFormModal('edit', {{ $event }})"
+                                        <x-dropdown.item href="{{ route('events.edit', $event) }}"
                                             icon="pencil-alt" label="Editar" />
                                         <x-dropdown.item wire:click="removeEvent({{ $event }})" icon="trash"
                                             label="Remover" />

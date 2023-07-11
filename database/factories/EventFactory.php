@@ -18,9 +18,9 @@ class EventFactory extends Factory
     {
         return [
             'title' => $this->faker->text(36),
-            'local' => $this->faker->text(36),
+            'local' => $this->faker->randomElement([null, $this->faker->text(36)]),
             'date' => $this->faker->dateTimeBetween('-2 weeks', '+4 weeks'),
-            'time' => $this->faker->time('H:i:s'),
+            'time' => $this->faker->randomElement([$this->faker->time('H:i:s')]),
             'description' => $this->faker->realText(),
             'is_presentation' => $this->faker->boolean()
         ];

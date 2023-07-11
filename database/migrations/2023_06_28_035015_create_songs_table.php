@@ -23,13 +23,13 @@ return new class extends Migration
         });
 
         Schema::create('category_song', function (Blueprint $table) {
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('song_id')->constrained();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('song_id')->constrained()->cascadeOnDelete();
         });
 
         Schema::create('favorites', function (Blueprint $table) {
-            $table->foreignId('song_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('song_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });
     }
 

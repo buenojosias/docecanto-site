@@ -46,6 +46,7 @@ class SongForm extends Component
             try {
                 $this->song = Song::query()->create($data);
                 $this->songId = $this->song->id;
+                $this->action = 'edit';
                 $this->notification()->success($description = 'Música cadastrada com sucesso.');
             } catch (\Throwable $th) {
                 $this->notification()->error($description = 'Erro ao cadastrar música');
@@ -63,7 +64,7 @@ class SongForm extends Component
                 Song::query()->findOrFail($this->songId)->update($data);
                 $this->notification()->success($description = 'Alterações salvas com sucesso.');
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao salvar atualizações');
+                $this->notification()->error($description = 'Erro ao salvar alterações');
                 dd($th);
             }
         }

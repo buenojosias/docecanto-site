@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('member_id')->constrained();
+            $table->foreignId('member_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('product_id')->constrained();
             $table->integer('amount');
             $table->date('request_date');

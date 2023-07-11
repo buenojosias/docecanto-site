@@ -20,8 +20,8 @@ return new class extends Migration
         });
 
         Schema::create('kin_member', function (Blueprint $table) {
-            $table->foreignId('kin_id')->constrained('kins');
-            $table->foreignId('member_id')->constrained();
+            $table->foreignId('kin_id')->constrained('kins')->cascadeOnDelete();
+            $table->foreignId('member_id')->constrained()->cascadeOnDelete();
             $table->string('kinship');
         });
     }

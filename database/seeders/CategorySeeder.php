@@ -16,6 +16,8 @@ class CategorySeeder extends Seeder
             [ 'position' => 1, 'name' => 'Entrada' ],
             [ 'position' => 2, 'name' => 'Ato penitencial'],
             [ 'position' => 3, 'name' => 'Glória' ],
+            [ 'position' => 4, 'name' => 'Aclamação ao evangelho' ],
+            [ 'position' => 5, 'name' => 'Ofertório' ],
         ];
 
         \App\Models\Category::insert($categories);
