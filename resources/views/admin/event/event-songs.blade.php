@@ -9,15 +9,24 @@
         <div class="card-body">
             <ul>
                 @foreach ($songs as $song)
-                    <li class="flex items-center border-b">
-                        <div class="px-4 py-2 grow">
-                            <a href="{{ route('songs.show', $song->number) }}" target="_blank">
-                                {{ $song->number }}. {{ $song->title }}
-                            </a>
+                    <li class="border-b px-2">
+                        <div class="flex items-center">
+                            <div class="grow">
+                                <a href="{{ route('songs.show', $song->number) }}" target="_blank">
+                                    {{ $song->number }}. {{ $song->title }}
+                                </a>
+                            </div>
+                            <div class="p-2">
+                                <x-button wire:click="removeSong({{ $song->id }})" negative xs flat
+                                    icon="trash" />
+                            </div>
                         </div>
-                        <div class="p-2">
-                            <x-button wire:click="removeSong({{ $song->id }})" negative xs flat icon="trash" />
-                        </div>
+                        @if ($song->pivot->comment)
+                            <div class="-mt-1 pb-2 pl-1 flex space-x-2 text-gray-700">
+                                <x-icon name="annotation" class="w-3" />
+                                <small>{{ $song->pivot->comment ?? '' }}</small>
+                            </div>
+                        @endif
                     </li>
                 @endforeach
             </ul>
@@ -43,6 +52,7 @@
                                 <option value="{{ $song->id }}">{{ $song->number }}. {{ $song->title }}</option>
                             @endforeach
                         </x-native-select>
+                        <x-input wire:model.defer="dataComment" label="Comentário" />
                     @else
                         <x-native-select label="Música" disabled>
                             <option value="">Selecione uma categoria</option>
@@ -51,7 +61,7 @@
                 </div>
                 <div class="card-footer flex space-x-2">
                     {{-- @if ($dataCategory) --}}
-                        <x-button wire:click="submit" sm primary label="Salvar" />
+                    <x-button wire:click="submit" sm primary label="Salvar" />
                     {{-- @endif --}}
                     <x-button sm flat label="Cancelar" x-on:click="close" />
                 </div>

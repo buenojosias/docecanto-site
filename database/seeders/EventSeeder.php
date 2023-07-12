@@ -14,19 +14,19 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
-        // Event::factory(8)->create();
+        Event::factory(8)->create();
 
         $songsCount = \App\Models\Song::count();
         $membersCount = \App\Models\Member::count();
         $events = Event::all();
 
-        // foreach($events->where('is_presentation', true) as $event) {
-        //     $event->songs()->syncWithoutDetaching([
-        //         rand(1, $songsCount) => ['position' => rand(1, 5)],
-        //         rand(1, $songsCount) => ['position' => rand(1, 5)],
-        //         rand(1, $songsCount) => ['position' => rand(1, 5)],
-        //     ]);
-        // }
+        foreach($events->where('is_presentation', true) as $event) {
+            $event->songs()->syncWithoutDetaching([
+                rand(1, $songsCount) => ['comment' => 'Lorem ipsum'],
+                rand(1, $songsCount),
+                rand(1, $songsCount),
+            ]);
+        }
 
         foreach($events as $event) {
             $event->members()->syncWithoutDetaching([

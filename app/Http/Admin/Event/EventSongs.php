@@ -13,7 +13,7 @@ class EventSongs extends Component
 
     public $event;
     public $songs;
-    public $dataCategory, $dataSong;
+    public $dataCategory, $dataSong, $dataComment;
     public $inputCategories;
     public $inputSongs = [];
     public $showFormModal;
@@ -37,7 +37,7 @@ class EventSongs extends Component
         $availableSongs = $this->inputSongs->pluck('id')->toArray();
         if (is_numeric($this->dataSong) && in_array($this->dataSong, $availableSongs)) {
             try {
-                $this->event->songs()->syncWithoutDetaching([$this->dataSong, ['position' => 1]]);
+                $this->event->songs()->syncWithoutDetaching([$this->dataSong, ['comment' => $this->dataComment]]);
                 $this->notification()->success($description = 'Música adicionada com sucesso.');
             } catch (\Throwable $th) {
                 $this->notification()->error($description = 'Erro ao adicionar música.');

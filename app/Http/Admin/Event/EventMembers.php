@@ -14,6 +14,7 @@ class EventMembers extends Component
     public function mount($event)
     {
         $this->event = $event;
+
         $this->members = Member::query()
             ->select(['id','name'])
             ->with('events', function($query){
@@ -22,6 +23,10 @@ class EventMembers extends Component
             ->where('status', 'ativo')
             ->orderBy('name')
             ->get();
+
+        $this->noAnswer = Member::query()->whereDoesntHave('events', function ($query) {
+            $query->where('event_id', $this->event->id);
+        })->count();
     }
 
     public function render()
@@ -29,9 +34,3 @@ class EventMembers extends Component
         return view('admin.event.event-members');
     }
 }
-
-
-
-        // $this->noAnswer = Member::query()->whereDoesntHave('events', function ($query) {
-        //     $query->where('event_id', $this->event->id);
-        // })->count();

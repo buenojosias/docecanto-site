@@ -32,7 +32,7 @@ return new class extends Migration
         Schema::create('event_song', function (Blueprint $table) {
             $table->foreignId('event_id')->constrained()->cascadeOnDelete();
             $table->foreignId('song_id')->constrained()->cascadeOnDelete();
-            $table->integer('position')->nullable();
+            $table->string('comment')->nullable();
         });
     }
 

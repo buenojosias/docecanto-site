@@ -30,6 +30,6 @@ class Event extends Model
 
     public function songs(): BelongsToMany
     {
-        return $this->belongsToMany(Song::class)->withPivot(['position']);
+        return $this->belongsToMany(Song::class)->withPivot(['comment']);
     }
 }

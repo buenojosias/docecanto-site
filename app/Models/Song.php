@@ -32,7 +32,7 @@ class Song extends Model
 
     public function events(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class)->withPivot(['position']);
+        return $this->belongsToMany(Event::class)->withPivot(['comment']);
     }
 
     public function favorites(): BelongsToMany
