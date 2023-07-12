@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             SongSeeder::class,
             EventSeeder::class,
+            EncounterSeeder::class,
         ]);
     }
 }

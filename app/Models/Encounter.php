@@ -21,6 +21,6 @@ class Encounter extends Model
 
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(Member::class);
+        return $this->belongsToMany(Member::class)->withPivot(['attendance', 'note'])->withTimestamps();
     }
 }

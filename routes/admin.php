@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Admin\Category\{ CategoryIndex };
+use App\Http\Admin\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
 use App\Http\Admin\Event\{ EventIndex, EventShow, EventForm };
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
 use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
@@ -18,6 +19,13 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 Route::prefix('categorias')->name('categories.')->group(function () {
     Route::get('/', CategoryIndex::class)->name('index');
+});
+
+Route::prefix('ensaios')->name('encounters.')->group(function () {
+    Route::get('/cadastro', EncounterForm::class)->name('create');
+    Route::get('/{encounter}/ver', EncounterShow::class)->name('show');
+    Route::get('/{encounter}/editar', EncounterForm::class)->name('edit');
+    Route::get('/{period?}', EncounterIndex::class)->name('index');
 });
 
 Route::prefix('eventos')->name('events.')->group(function () {

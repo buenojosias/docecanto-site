@@ -36,7 +36,7 @@ class Member extends Model
 
     public function encounters(): BelongsToMany
     {
-        return $this->belongsToMany(Encounter::class);
+        return $this->belongsToMany(Encounter::class)->withPivot(['attendance', 'note'])->withTimestamps();
     }
 
     public function events(): BelongsToMany
