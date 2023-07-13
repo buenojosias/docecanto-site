@@ -47,6 +47,7 @@
             @livewire('member.member-address', ['member' => $member])
             @livewire('member.member-kins', ['member' => $member])
             @livewire('member.member-user', ['member' => $member])
+            @livewire('member.member-rating', ['member' => $member])
         </div>
     </div>
 </div>

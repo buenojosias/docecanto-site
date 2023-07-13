@@ -4,6 +4,7 @@ use App\Http\Admin\Category\{ CategoryIndex };
 use App\Http\Admin\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
 use App\Http\Admin\Event\{ EventIndex, EventShow, EventForm };
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
+use App\Http\Admin\Rating\{ RatingIndex };
 use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,10 @@ Route::prefix('integrantes')->name('members.')->group(function () {
     Route::get('/usuarios', MemberUsers::class)->name('users');
     Route::get('/{member}', MemberShow::class)->name('show');
     Route::get('/{member}/editar', MemberForm::class)->name('edit');
+});
+
+Route::prefix('fichas-tecnicas')->name('ratings.')->group(function () {
+    Route::get('/', RatingIndex::class)->name('index');
 });
 
 Route::prefix('musicas')->name('songs.')->group(function () {

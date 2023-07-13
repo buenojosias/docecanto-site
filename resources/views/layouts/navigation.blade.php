@@ -13,6 +13,7 @@
                         @if (request()->routeIs('members.*'))
                             <x-nav-link :href="route('members.users')" :active="request()->routeIs('members.users')" icon="key">Usuários</x-nav-link>
                         @endif
+                        <x-nav-link :href="route('ratings.index')" :active="request()->routeIs('ratings.*')" icon="clipboard-user">Fichas técnicas</x-nav-link>
                     </li>
                 </ul>
                 <div class="space-y-2 pt-1.5">

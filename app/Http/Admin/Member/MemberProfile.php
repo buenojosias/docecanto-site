@@ -12,13 +12,13 @@ class MemberProfile extends Component
 
     public $member;
     public $questions;
+    public $showProfile = false;
 
     public function mount($member) {
-        // $this->fake();
         $this->member = $member;
     }
 
-    public function render()
+    public function loadProfile()
     {
         $this->questions = Profile::query()
             ->with('members', function($query) {
@@ -26,12 +26,17 @@ class MemberProfile extends Component
             })
             ->get();
 
-        return view('admin.member.member-profile');
+            $this->showProfile = true;
     }
 
-    public function fake() {
-        $this->member->profiles()->syncWithoutDetaching([1 => ['answer' => 'Lorem']]);
-        $this->member->profiles()->syncWithoutDetaching([3 => ['answer' => 'Ipsum']]);
-        $this->member->profiles()->syncWithoutDetaching([7 => ['answer' => 'Dollor']]);
+    public function unloadProfile()
+    {
+        $this->showProfile = false;
+        $this->questions = [];
+    }
+
+    public function render()
+    {
+        return view('admin.member.member-profile');
     }
 }
