@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('queues', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->string('child_name');
             $table->string('child_phone', 15)->nullable();
             $table->string('parent_name');

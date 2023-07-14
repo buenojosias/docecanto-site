@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             EventSeeder::class,
             EncounterSeeder::class,
             NoteSeeder::class,
+            RatingSeeder::class,
+            QueueSeeder::class,
         ]);
     }
 }

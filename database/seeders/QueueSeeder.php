@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Member;
-use App\Models\User;
+use App\Models\Queue;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MemberSeeder extends Seeder
+class QueueSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Member::factory(5)->create();
+        Queue::factory(10)->create();
     }
 }

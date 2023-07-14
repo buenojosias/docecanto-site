@@ -5,6 +5,7 @@ use App\Http\Admin\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
 use App\Http\Admin\Event\{ EventIndex, EventShow, EventForm };
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
 use App\Http\Admin\Rating\{ RatingIndex };
+use App\Http\Admin\Queue\{ QueueIndex, QueueShow, QueueForm };
 use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -53,4 +54,11 @@ Route::prefix('musicas')->name('songs.')->group(function () {
     Route::get('/cadastro', SongForm::class)->name('create');
     Route::get('/{number}', SongShow::class)->name('show');
     Route::get('/{number}/editar', SongForm::class)->name('edit');
+});
+
+Route::prefix('fila')->name('queues.')->group(function () {
+    Route::get('/', QueueIndex::class)->name('index');
+    Route::get('/cadastro', QueueForm::class)->name('create');
+    Route::get('/{queue}', QueueShow::class)->name('show');
+    Route::get('/{queue}/editar', QueueForm::class)->name('edit');
 });
