@@ -32,23 +32,7 @@
         </div>
         <div class="col-span-2">
             @livewire('song.song-categories', ['song' => $song])
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Mídias</h3>
-                    <div class="card-tools">
-                        <x-button flat icon="plus" class="-mr-3" />
-                    </div>
-                </div>
-                <div class="card-body">
-                    <ul>
-                        @foreach ($media as $media)
-                            <li class="px-4 py-2 border-b">
-                                {{ $media->type }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+            @livewire('media.media-index', ['song' => $song])
         </div>
     </div>
 </div>

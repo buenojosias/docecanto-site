@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('song_id')->constrained();
             $table->enum('type', ['Música', 'Playback', 'Guia', 'PB com guia']);
-            $table->string('path');
+            $table->char('hash');
+            $table->char('path');
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,8 @@ class QueueFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->randomElement([null, rand(1, 6)]),
+            // 'user_id' => $this->faker->randomElement([null, rand(1, 6)]),
+            'user_id' => User::factory(),
             'child_name' => $this->faker->firstName().' '.$this->faker->lastName().' '.$this->faker->lastName(),
             'child_phone' => $this->faker->randomElement([null, $this->faker->phoneNumber()]),
             'parent_name' => $this->faker->firstName().' '.$this->faker->lastName().' '.$this->faker->lastName(),

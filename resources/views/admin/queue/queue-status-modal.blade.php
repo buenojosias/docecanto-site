@@ -16,7 +16,7 @@
                     <x-button type="submit" sm primary label="Salvar" />
                     <x-button x-on:click="close" sm flat label="Cancelar" />
                 </div>
+            </form>
         </div>
-        </form>
     </x-modal>
 </div>
