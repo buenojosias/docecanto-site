@@ -7,16 +7,17 @@
     <div class="sm:grid sm:grid-cols-6 gap-6">
         <div class="col-span-4">
             <div class="card mb-4">
-                @if ($song->detached)
-                    <div class="card-header bg-orange-400">
-                        <x-icon name="flag" class="mt-1.5 w-6 h-6 mr-1 text-white" solid />
-                        <h3 class="card-title">Destacada</h3>
-                    </div>
-                @endif
                 <div class="card-body p-4">
-                    <h2 class="pb-3 mb-3 border-b text-2xl font-semibold text-gray-700">
-                        <small>{{ $song->number }}.</small>
-                        {{ $song->title }}
+                    <h2 class="sm:flex sm:gap-1.5 pb-3 mb-3 border-b text-2xl font-semibold text-gray-700">
+                        <div class="grow">
+                            <small>{{ $song->number }}.</small>
+                            {{ $song->title }}
+                        </div>
+                        @if ($song->detached)
+                            <div>
+                                <x-badge md icon="flag" orange label="Destacada" />
+                            </div>
+                        @endif
                     </h2>
                     {!! $song->lyrics !!}
                 </div>

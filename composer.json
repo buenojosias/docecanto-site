@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "3.0",
         "livewire/livewire": "^2.12",
+        "minuteoflaravel/laravel-audio-video-validator": "^1.1",
         "wireui/wireui": "^1.17"
     },
     "require-dev": {

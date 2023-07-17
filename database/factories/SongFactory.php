@@ -18,7 +18,7 @@ class SongFactory extends Factory
     {
         return [
             'number' => rand(1, 100),
-            'title' => $this->faker->title(),
+            'title' => $this->faker->realText(26),
             'resume' => $this->faker->realText(200),
             'lyrics' => $this->faker->realText(1000),
             'fulltext' => 'blablabla',

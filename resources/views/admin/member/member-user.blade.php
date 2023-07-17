@@ -1,6 +1,6 @@
 <div>
     <x-notifications />
-    <div class="card mb-4">
+    <div class="card mb-2">
         <div class="card-header">
             <h3 class="card-title">Informações de login</h3>
             <div class="card-tools">
@@ -56,7 +56,7 @@
                     <x-errors class="mb-4 shadow" />
                     <div class="grid sm:grid-cols-4 gap-2">
                         <div class="sm:col-span-4">
-                            <x-input type="email" wire:model.defer="email" required />
+                            <x-input type="email" label="E-mail" wire:model.defer="email" required />
                         </div>
                         <div class="sm:col-span-4">
                             <x-input label="Username" wire:model.defer="username" required />

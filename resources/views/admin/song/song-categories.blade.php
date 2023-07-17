@@ -13,7 +13,7 @@
                     <li class="px-4 py-2 border-b flex">
                         <div class="grow">{{ $category->name }}</div>
                         <div>
-                            <x-button wire:click="removeCategory({{ $category }})" xs flat negative icon="trash" />
+                            <x-button wire:click="removeCategory({{ $category }})" xs flat negative icon="trash" class="-mr-1" />
                         </div>
                     </li>
                 @endforeach
