@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="{{ asset('icons/all.min.css') }}">
     <style>[x-cloak] { display: none !important; }</style>
     @wireUiScripts
-    {{-- <link rel="stylesheet" href="{{ asset('build/assets/app-e901d665.css') }}"> --}}
-    {{-- <script src="{{ asset('build/assets/?.js') }}" defer></script> --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('build/assets/app-b2c1aeb5.css') }}">
+    <script src="{{ asset('build/assets/app-6870bb4e.js') }}" defer></script>
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     @livewireStyles
     @livewireScripts
 </head>

@@ -33,7 +33,7 @@
         </div>
         <div class="col-span-2">
             @livewire('song.song-categories', ['song' => $song])
-            @livewire('media.media-index', ['song' => $song])
+            @livewire('audio.audio-index', ['song' => $song])
         </div>
     </div>
 </div>

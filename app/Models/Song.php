@@ -40,13 +40,13 @@ class Song extends Model
         return $this->belongsToMany(User::class, 'favorites', 'user_id', 'song_id');
     }
 
-    public function media(): HasMany
+    public function audios(): HasMany
     {
-        return $this->hasMany(Media::class);
+        return $this->hasMany(Audio::class);
     }
 
-    public function music(): HasOne
+    public function vocal(): HasOne
     {
-        return $this->hasOne(Media::class)->where('type', 'music');
+        return $this->hasOne(Audio::class)->where('type', 'Vocal');
     }
 }

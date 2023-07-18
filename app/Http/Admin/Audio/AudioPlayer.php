@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Admin\Media;
+namespace App\Http\Admin\Audio;
 
 use Livewire\Component;
 use WireUi\Traits\Actions;
 
-class MediaPlayer extends Component
+class AudioPlayer extends Component
 {
     use Actions;
 
@@ -20,6 +20,6 @@ class MediaPlayer extends Component
 
     public function render()
     {
-        return view('admin.media.media-player');
+        return view('admin.audio.audio-player');
     }
 }

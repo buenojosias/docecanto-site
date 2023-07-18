@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Media;
+use App\Models\Audio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class MediaController extends Controller
+class AudioController extends Controller
 {
     public function index()
     {
@@ -14,9 +14,10 @@ class MediaController extends Controller
         dd($files);
     }
 
-    public function show(Media $media)
+    public function show($filename)
     {
-        $path = $media->path;
+        $audio = Audio::where('filename', $filename)->firstOrFail();
+        $path = $audio->path;
         return Storage::response($path);
     }
 

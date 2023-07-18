@@ -8,10 +8,10 @@
         </div>
         <div class="card-body">
             <ul>
-                @foreach ($media as $media)
+                @foreach ($audios as $audio)
                     <li x-data="{ showPlayer: false }" class="px-4 py-2 border-b">
                         <div class="flex justify-between w-full">
-                            <div>{{ $media->type }}</div>
+                            <div>{{ $audio->type }}</div>
                             <div>
                                 <x-button x-show="!showPlayer" @click="showPlayer=true" flat sm icon="play"
                                     class="-mr-1.5" />
@@ -19,39 +19,49 @@
                                     class="-mr-1.5" />
                             </div>
                         </div>
-                        <div x-show="showPlayer">
-                            <audio controls preload="none" class="w-full">
-                                <source src="{{ route('media.show', $media->id) }}" type="audio/ogg">
-                                <source src="{{ route('media.show', $media->id) }}" type="audio/mpeg">
-                            </audio>
+                        <div x-show="showPlayer" class="flex items-center">
+                            <div class="grow">
+                                <audio controls preload="none" class="w-full">
+                                    <source src="{{ route('audios.show', $audio->filename) }}" type="audio/ogg">
+                                    <source src="{{ route('audios.show', $audio->filename) }}" type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div>
+                                <x-button wire:click="deleteAudio({{ $audio }})" xs flat negative icon="trash" />
+                            </div>
                         </div>
                     </li>
                 @endforeach
             </ul>
         </div>
     </div>
-    @if ($showPlayer)
+    {{-- @if ($showPlayer)
         @livewire('media.media-player', ['media' => $selectedMedia])
-    @endif
+    @endif --}}
 
     <x-modal wire:model.defer="showUploadModal" max-width="md">
         <div class="card w-full">
             <form wire:submit.prevent="submit">
-                @error('audio')
-                    <span class="error">{{ $message }}</span>
-                @enderror
                 <div class="card-header">
                     <h3 class="card-title">Adicionar mídia</h3>
                 </div>
+                <x-errors class="p-4" />
                 <div class="card-body display">
-                    @if (!$validAudio)
-                        {{-- <x-input type="file" accept="audio/mp3" wire:model="audio" label="Arquivo" /> --}}
+                    <x-native-select wire:model.defer="type" label="Tipo" class="mb-4" required>
+                        <option value="">Selecione</option>
+                        @foreach ($types as $type)
+                            <option>{{ $type }}</option>
+                        @endforeach
+                    </x-native-select>
+                    <x-label label="Arquivo" />
+                    @if (!$validFile)
+                        {{-- <x-input type="file" accept="audio/mp3" wire:model="file" label="Arquivo" /> --}}
                         <div class="col-span-4" x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
                             x-on:livewire-upload-finish="isUploading = false"
                             x-on:livewire-upload-error="isUploading = false"
                             x-on:livewire-upload-progress="progress = $event.detail.progress">
                             <div x-show="!isUploading" class="flex justify-center items-center w-full">
-                                <label for="audio"
+                                <label for="file"
                                     class="flex flex-col justify-center items-center w-full h-12 bg-gray-50 rounded border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                     <div class="flex flex-row justify-center items-center pt-5 pb-6">
                                         <svg aria-hidden="true" class="mt-1 w-8 h-8 text-gray-400" fill="none"
@@ -65,7 +75,7 @@
                                             <span class="font-semibold">Clique para selecionar o arquivo</span>
                                         </p>
                                     </div>
-                                    <input id="audio" type="file" wire:model.defer="audio" accept="audio/mp3"
+                                    <input id="file" type="file" wire:model.defer="file" accept="audio/mp3"
                                         class="hidden">
                                 </label>
                             </div>
@@ -75,15 +85,14 @@
                             </div>
                         </div>
                     @endif
-                    @if ($validAudio)
+                    @if ($validFile)
                         <audio width="100%" class="rounded" controls>
-                            <source src="{{ $validAudio->temporaryUrl() }}" type="audio/ogg">
-                            <source src="{{ $validAudio->temporaryUrl() }}" type="audio/mpeg">
+                            <source src="{{ $validFile->temporaryUrl() }}" type="audio/ogg">
+                            <source src="{{ $validFile->temporaryUrl() }}" type="audio/mpeg">
                             Não há suporte.
                         </audio>
                     @endif
                 </div>
-                <div wire:loading wire:target="audio">Carregando arquivo...</div>
                 <div class="card-footer gap-2">
                     <x-button type="submit" sm primary label="Enviar" />
                     <x-button x-on:click="close" sm flat label="Cancelar" />

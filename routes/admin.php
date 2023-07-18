@@ -7,7 +7,7 @@ use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
 use App\Http\Admin\Rating\{ RatingIndex };
 use App\Http\Admin\Queue\{ QueueIndex, QueueShow, QueueForm };
 use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
-use App\Http\Controllers\MediaController;
+use App\Http\Controllers\AudioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,11 +57,11 @@ Route::prefix('musicas')->name('songs.')->group(function () {
     Route::get('/{number}/editar', SongForm::class)->name('edit');
 });
 
-Route::prefix('midias')->name('media.')->group(function () {
-    Route::get('/{media}', [MediaController::class, 'show'])->name('show');
-    // Route::get('/', [MediaController::class, 'index'])->name('index');
-    // Route::get('/create', [MediaController::class, 'create'])->name('create');
-    // Route::post('/store', [MediaController::class, 'store'])->name('store');
+Route::prefix('audios')->name('audios.')->group(function () {
+    Route::get('/{filename}', [AudioController::class, 'show'])->name('show');
+    // Route::get('/', [AudioController::class, 'index'])->name('index');
+    // Route::get('/create', [AudioController::class, 'create'])->name('create');
+    // Route::post('/store', [AudioController::class, 'store'])->name('store');
 });
 
 Route::prefix('fila')->name('queues.')->group(function () {

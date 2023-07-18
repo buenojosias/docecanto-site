@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('audios', function (Blueprint $table) {
             $table->id();
             $table->foreignId('song_id')->constrained();
-            $table->enum('type', ['Música', 'Playback', 'Guia', 'PB com guia']);
-            $table->char('hash');
+            $table->enum('type', ['Vocal', 'Playback', 'Guia', 'PB com guia']);
+            $table->char('filename');
             $table->char('path');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('audios');
     }
 };

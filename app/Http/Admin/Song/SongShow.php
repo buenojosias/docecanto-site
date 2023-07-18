@@ -13,12 +13,12 @@ class SongShow extends Component
     use WithPagination;
 
     public $song;
-    public $media;
+    public $audio;
 
     public function mount($number)
     {
         $this->song = Song::query()->where('number', $number)->firstOrFail();
-        $this->media = $this->song->media;
+        $this->audio = $this->song->audio;
     }
 
     public function addDetach()
