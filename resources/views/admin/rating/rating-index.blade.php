@@ -11,15 +11,23 @@
                         <th>Altura</th>
                         <th>Segurança<br />vocal</th>
                         <th>Potência<br />vocal</th>
-                        <th>Menor<br />nota</th>
-                        <th>Maior<br />nota</th>
-                        <th></th>
+                        <th>Nota mais<br />grave</th>
+                        <th>Nota mais<br />aguda</th>
+                        {{-- <th></th> --}}
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($ratings as $rating)
                         <tr>
-                            @livewire('rating.rating-item', ['rating' => $rating], key($rating->id))
+                            <td>{{ $rating->member->name }}</td>
+                            <td>{{ $rating->height ?? '' }}</td>
+                            <td>{{ $rating->tuning ?? '' }}</td>
+                            <td>{{ $rating->vocal_power ?? '' }}</td>
+                            <td>{{ $rating->lowestNote->name ?? '' }}</td>
+                            <td>{{ $rating->highestNote->name ?? '' }}</td>
+                            {{-- <td class="text-right">
+                                <x-button wire:click="openFormModal" flat sm icon="pencil-alt" />
+                            </td> --}}
                         </tr>
                     @empty
                         <x-empty />

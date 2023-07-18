@@ -26,11 +26,11 @@
                         <td class="text-right">{{ $rating->vocal_power ?? '' }}</td>
                     </tr>
                     <tr>
-                        <td>Nota mais baixa</td>
+                        <td>Nota mais grave</td>
                         <td class="text-right">{{ $rating->lowestNote->name ?? '' }}</td>
                     </tr>
                     <tr>
-                        <td>Nota mais alta</td>
+                        <td>Nota mais aguda</td>
                         <td class="text-right">{{ $rating->highestNote->name ?? '' }}</td>
                     </tr>
                 </table>
