@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="card-body p-2">
-                    <x-textarea wire:model.defer="resume" label="Versão resumida" rows="2" />
+                    <x-input wire:model.defer="resume" label="Versão resumida" />
                 </div>
                 <div class="card-body p-2">
                     <div wire:ignore>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-button wire:click="submit" flat primary label="Salvar" />
+                    <x-button wire:click="submit" primary label="Salvar" />
                     @if ($song)
                         <x-button href="{{ route('songs.show', $song->number) }}" flat label="Ir para música" />
                     @endif

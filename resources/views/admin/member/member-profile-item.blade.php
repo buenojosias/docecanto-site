@@ -20,7 +20,7 @@
                 <x-input wire:model="answerInput" class="py-1 px-2 w-full" />
             </div>
             <div>
-                <x-button wire:click="submitAnswer" sm flat positive icon="check" />
+                <x-button wire:click="submitAnswer" sm flat primary icon="check" />
                 <x-button @click="expand=false" wire:click="resetInput" sm flat icon="x" />
             </div>
         </div>

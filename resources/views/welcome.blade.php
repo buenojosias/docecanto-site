@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('build/assets/landing-ad2fa5a7.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/landing-9f87b231.css') }}">
     {{-- @vite(['resources/css/landing.css', 'resources/js/app.js']) --}}
 </head>
 
@@ -36,9 +36,13 @@
                         <a href="#">Faça parte</a>
                     </li>
                     <li>
-                        <a href="https://material.coraldocecanto.com.br" class="nav-material"
+                        <a href="{{ route('dashboard') }}" class="nav-material"
                             class="sm:border sm:border-yellow-500 sm:rounded-lg px-4">Área do membro</a>
                     </li>
+                    {{-- <li>
+                        <a href="https://material.coraldocecanto.com.br" class="nav-material"
+                            class="sm:border sm:border-yellow-500 sm:rounded-lg px-4">Área do membro</a>
+                    </li> --}}
                 </ul>
             </div>
         </div>

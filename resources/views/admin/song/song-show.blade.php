@@ -8,7 +8,7 @@
         <div class="col-span-4">
             <div class="card mb-4">
                 <div class="card-body p-4">
-                    <h2 class="sm:flex sm:gap-1.5 pb-3 mb-3 border-b text-2xl font-semibold text-gray-700">
+                    <h2 class="sm:flex sm:gap-1.5 pb-3 border-b text-2xl font-semibold text-gray-700">
                         <div class="grow">
                             <small>{{ $song->number }}.</small>
                             {{ $song->title }}
@@ -19,7 +19,9 @@
                             </div>
                         @endif
                     </h2>
-                    {!! $song->lyrics !!}
+                    <div class="lyrics">
+                        {!! $song->lyrics !!}
+                    </div>
                 </div>
                 <div class="card-footer">
                     <x-button href="{{ route('songs.edit', $song->number) }}" flat primary label="Editar" />

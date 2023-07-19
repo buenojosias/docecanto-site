@@ -42,7 +42,7 @@
         <div class="card w-full">
             <form wire:submit.prevent="submit">
                 <div class="card-header">
-                    <h3 class="card-title">{{ $formContact ? 'Editar' : 'Cadastrar' }} contato</h3>
+                    <h3 class="card-title">{{ $formContact ? 'Editar' : 'Adicionar' }} contato</h3>
                 </div>
                 <div class="card-body display">
                     <x-errors class="mb-4 shadow" />
@@ -72,9 +72,9 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="flex justify-end gap-x-4">
-                        <x-button label="Cancelar" sm flat x-on:click="close" />
+                    <div class="flex justify-end gap-x-2">
                         <x-button type="submit" sm primary label="Salvar" />
+                        <x-button label="Cancelar" sm flat x-on:click="close" />
                     </div>
                 </div>
             </form>

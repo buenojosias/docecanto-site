@@ -41,8 +41,8 @@
                                 <div wire:click="selectDay({{ $day_events->count() > 0 ? $i : null }})"
                                     class="
                                         w-8 h-8 flex items-center justify-center rounded-full text-sm
-                                        {{ date($currentYear . '-' . substr("00{$currentMonth}", -2) . '-' . substr("00{$i}", -2)) == date('Y-m-d') && $day_events->count() == 0 ? 'text-sky-700 font-bold' : '' }}
-                                        {{ $day_events->count() > 0 ? 'bg-purple-600 text-white font-semibold cursor-pointer' : 'cursor-default' }}
+                                        {{ date($currentYear . '-' . substr("00{$currentMonth}", -2) . '-' . substr("00{$i}", -2)) == date('Y-m-d') && $day_events->count() == 0 ? 'text-cdc-800 font-bold' : '' }}
+                                        {{ $day_events->count() > 0 ? 'bg-cdc-700 text-white font-semibold cursor-pointer' : 'cursor-default' }}
                                     ">
                                     {{ $i }}</div>
                             </div>

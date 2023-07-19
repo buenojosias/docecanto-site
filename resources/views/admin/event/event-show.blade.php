@@ -4,7 +4,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Detalhes do evento</h2>
     </x-slot>
-    <x-button href="{{ route('events.index', $event) }}" primary label="Editar" />
+    <x-button href="{{ route('events.edit', $event) }}" primary label="Editar" />
     <div class="card my-4">
         <div class="card-body display">
             <div class="grid grid-cols-6 space-y-3 md:space-y-0 gap-4">

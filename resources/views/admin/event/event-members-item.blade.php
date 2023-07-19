@@ -9,7 +9,7 @@
             @elseif ($member->answer === 'Não')
                 <x-badge outline negative label="Não" />
             @else
-                <x-badge outline warning label="Talvez" />
+                <x-badge outline primary label="Talvez" />
             @endif
         </div>
         <x-dropdown>

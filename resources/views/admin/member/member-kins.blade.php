@@ -79,11 +79,11 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="flex justify-between gap-x-4">
-                        <x-button sm flat label="Cancelar" x-on:click="close" />
+                    <div class="flex justify-between gap-x-2">
                         @if ($action)
                             <x-button sm type="submit" primary label="Salvar" />
                         @endif
+                        <x-button sm flat label="Cancelar" x-on:click="close" />
                     </div>
                 </div>
             </div>

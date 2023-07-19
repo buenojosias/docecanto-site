@@ -28,10 +28,10 @@
                         <textarea wire:model.defer="description" class="min-h-fit h-48" name="description" id="description"></textarea>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <x-button wire:click="submit" flat primary label="Salvar" />
+                <div class="card-footer space-x-2">
+                    <x-button wire:click="submit" sm primary label="Salvar" />
                     @if ($event)
-                        <x-button href="{{ route('events.show', $event) }}" flat label="Ir para evento" />
+                        <x-button href="{{ route('events.show', $event) }}" sm flat label="Ir para evento" />
                     @endif
                 </div>
             </div>

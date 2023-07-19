@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="footer">
-                        <x-button href="{{ route('members.edit', $member) }}" sm primary label="Editar" />
+                        <x-button href="{{ route('members.edit', $member) }}" sm flat primary label="Editar" />
                     </div>
                 </div>
             </div>

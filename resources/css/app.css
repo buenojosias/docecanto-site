@@ -116,10 +116,10 @@
     @apply flex flex-nowrap space-x-2;
 }
 .tabs a {
-    @apply block sm:my-0 px-2 py-1.5 sm:py-2 border-b-[3px] border-transparent text-slate-700 hover:border-sky-700 hover:text-sky-800 text-base font-medium transition duration-75;
+    @apply block sm:my-0 px-2 py-1.5 sm:py-2 border-b-[3px] border-transparent text-gray-700 hover:border-cdc-700 hover:text-cdc-800 text-base font-medium transition duration-75;
 }
 .tabs a.active {
-    @apply border-sky-700 text-sky-800;
+    @apply border-cdc-700 text-cdc-800;
 }
 
 .form-card {
@@ -136,6 +136,9 @@
 }
 .form-card .body {
     @apply p-4 md:col-span-3 lg:col-span-2 md:mt-0;
+}
+.card-body .lyrics p {
+    @apply mt-5;
 }
 .form-card .footer {
     @apply col-span-full bg-gray-50 px-4 py-3 text-right rounded-b;

@@ -40,7 +40,7 @@
             </div>
 
             <div class="card-footer">
-                <x-button wire:click="submit" flat primary label="Salvar" />
+                <x-button wire:click="submit" primary label="Salvar" />
                 @if ($action === 'edit')
                     <x-button href="{{ route('queues.show', $data['id']) }}" flat label="Ir para ficha" />
                 @endif

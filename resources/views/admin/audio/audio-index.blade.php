@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Mídias</h3>
+            <h3 class="card-title">Áudios</h3>
             <div class="card-tools">
                 <x-button wire:click="openUploadModal" flat icon="plus" class="-mr-3" />
             </div>

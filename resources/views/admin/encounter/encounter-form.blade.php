@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-button wire:click="submit" flat primary label="Salvar" />
+                    <x-button wire:click="submit" sm primary label="Salvar" />
                     @if ($encounter)
                         <x-button href="{{ route('encounters.show', $encounter) }}" flat label="Ir para encontro" />
                     @endif

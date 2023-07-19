@@ -64,9 +64,9 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="flex justify-end gap-x-4">
-                        <x-button label="Cancelar" sm flat x-on:click="close" />
+                    <div class="flex justify-end gap-x-2">
                         <x-button type="submit" sm primary label="Salvar" />
+                        <x-button label="Cancelar" sm flat x-on:click="close" />
                     </div>
                 </div>
             </form>
