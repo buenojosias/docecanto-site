@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Admin\Category\{ CategoryIndex };
+use App\Http\Admin\Dashboard\DashboardIndex;
 use App\Http\Admin\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
 use App\Http\Admin\Event\{ EventIndex, EventShow, EventForm };
 use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
@@ -11,14 +12,11 @@ use App\Http\Controllers\AudioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['admin', 'verified'])->name('dashboard');
+Route::get('/', DashboardIndex::class)->name('dashboard');
 
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
 
 Route::prefix('categorias')->name('categories.')->group(function () {
     Route::get('/', CategoryIndex::class)->name('index');

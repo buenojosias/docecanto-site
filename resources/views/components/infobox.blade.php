@@ -6,7 +6,7 @@
 ])
 
 {{-- <div class="infobox bg-{{ $background ? $background.'-600' : 'white' }} {{ $background ? 'text-white' : '' }}"> --}}
-<div class="infobox bg-sky-600 text-white">
+<div class="infobox bg-violet-500 text-white">
     <div class="inner">
         <h3>{{ $value }}</h3>
         <p>{{ $label }}</p>

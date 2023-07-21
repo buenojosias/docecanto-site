@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('build/assets/landing-9f87b231.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/assets/landing-e5c0b073.css') }}">
     {{-- @vite(['resources/css/landing.css', 'resources/js/app.js']) --}}
 </head>
 

@@ -5,7 +5,7 @@
     </x-slot>
     <x-button wire:click="openFormModal" label="Adicionar" primary class="mb-3 w-full sm:w-auto" />
     <div class="card md:max-w-lg">
-        <div class="card-body table-resposive">
+        <div class="card-body table-responsive">
             <table class="table table-hover whitespace-nowrap">
                 <thead>
                     <tr>
