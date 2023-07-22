@@ -19,11 +19,12 @@ class SongForm extends Component
     {
         if ($number) {
             $this->song = Song::query()->where('number', $number)->firstOrFail();
+            $this->parseLoadLyrics();
             $this->songId = $this->song->id;
             $this->number = $this->song->number;
             $this->title = $this->song->title;
             $this->resume = $this->song->resume;
-            $this->lyrics = $this->song->lyrics;
+            // $this->lyrics = $this->song->lyrics;
             $this->fulltext = $this->song->fulltext;
             $this->detached = $this->song->detached;
             $this->action = 'edit';
@@ -34,6 +35,7 @@ class SongForm extends Component
 
     public function submit()
     {
+        $this->parseSaveLyrics();
         $this->generateFullText();
         if ($this->action === 'create') {
             $data = $this->validate([
@@ -68,6 +70,22 @@ class SongForm extends Component
                 dd($th);
             }
         }
+    }
+
+    public function parseLoadLyrics()
+    {
+        $removeDoubleP = str_replace("</p><p>", '</p><p></p><p>', $this->song->lyrics);
+        $convertBr2P = str_replace("<br>", '</p><p>', $removeDoubleP);
+        $this->lyrics = $convertBr2P;
+    }
+
+    public function parseSaveLyrics()
+    {
+        $remove_n = str_replace("</p>\n<p>", '<br>', $this->lyrics);
+        $remove_double_br = str_replace("<br>&nbsp;<br>", '</p><p></p><p>', $remove_n);
+        $convert_p_br = str_replace("</p><p>", '<br>', $remove_double_br);
+        $convert_double_br_to_p = str_replace("<br><br>", '</p><p>', $convert_p_br);
+        $this->lyrics = $convert_double_br_to_p;
     }
 
     public function generateFullText()

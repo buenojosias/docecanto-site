@@ -61,6 +61,7 @@
             menubar: false,
             statusbar: false,
             toolbar: 'undo redo | bold italic',
+            content_style: "p { margin: 0; }",
             setup: function(editor) {
                 editor.on('init change', function() {
                     editor.save();
