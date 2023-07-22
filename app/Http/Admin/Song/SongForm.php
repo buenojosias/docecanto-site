@@ -81,11 +81,12 @@ class SongForm extends Component
 
     public function parseSaveLyrics()
     {
-        $remove_n = str_replace("</p>\n<p>", '<br>', $this->lyrics);
-        $remove_double_br = str_replace("<br>&nbsp;<br>", '</p><p></p><p>', $remove_n);
-        $convert_p_br = str_replace("</p><p>", '<br>', $remove_double_br);
-        $convert_double_br_to_p = str_replace("<br><br>", '</p><p>', $convert_p_br);
-        $this->lyrics = $convert_double_br_to_p;
+        $removeClass = str_replace(array(' class="LetrasCxSpFirst"', ' class="LetrasCxSpMiddle"', ' class="LetrasCxSpLast"'), '', $this->lyrics);
+        $removeN = str_replace("</p>\n<p>", '<br>', $removeClass);
+        $removeDoubleBr = str_replace("<br>&nbsp;<br>", '</p><p></p><p>', $removeN);
+        $convertP2Br = str_replace("</p><p>", '<br>', $removeDoubleBr);
+        $convertDoubleBrToP = str_replace("<br><br>", '</p><p>', $convertP2Br);
+        $this->lyrics = $convertDoubleBrToP;
     }
 
     public function generateFullText()
