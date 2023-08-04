@@ -25,9 +25,9 @@ class SongShow extends Component
     {
         try {
             $this->song->update(['detached' => true]);
-            $this->notification()->success($description = 'Adicionado destaque à música.');
+            $this->notification()->success($description = 'Música fixada.');
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao adicionar destaque à música.');
+            $this->notification()->error($description = 'Erro ao fixar música.');
         }
     }
 
@@ -35,9 +35,9 @@ class SongShow extends Component
     {
         try {
             $this->song->update(['detached' => false]);
-            $this->notification()->success($description = 'Removido destaque da música.');
+            $this->notification()->success($description = 'Música desafixada.');
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao remover destaque da música.');
+            $this->notification()->error($description = 'Erro ao desafixar música.');
         }
     }
 

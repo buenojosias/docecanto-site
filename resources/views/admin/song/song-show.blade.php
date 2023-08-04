@@ -15,7 +15,7 @@
                         </div>
                         @if ($song->detached)
                             <div>
-                                <x-badge md icon="flag" orange label="Destacada" />
+                                <x-badge md icon="bookmark" orange label="Fixada" />
                             </div>
                         @endif
                     </h2>
@@ -26,9 +26,9 @@
                 <div class="card-footer">
                     <x-button href="{{ route('songs.edit', $song->number) }}" flat primary label="Editar" />
                     @if ($song->detached)
-                        <x-button wire:click="removeDetach" flat label="Remover destaque" />
+                        <x-button wire:click="removeDetach" flat label="Desafixar" />
                     @else
-                        <x-button wire:click="addDetach" flat primary label="Destacar" />
+                        <x-button wire:click="addDetach" flat primary label="Fixar" />
                     @endif
                 </div>
             </div>

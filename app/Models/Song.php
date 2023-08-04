@@ -37,7 +37,7 @@ class Song extends Model
 
     public function favorites(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'favorites', 'user_id', 'song_id');
+        return $this->belongsToMany(User::class, 'favorites', 'song_id', 'user_id');
     }
 
     public function audios(): HasMany

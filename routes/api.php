@@ -18,17 +18,22 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/events', [EventController::class, 'index']);
     Route::get('/events/{event}', [EventController::class, 'show']);
-    // songs
+    Route::get('/events/{event}/songs', [EventController::class, 'songs']);
     Route::post('/events/sync-answer', [EventController::class, 'syncAnswer']);
 
     Route::get('/songs', [SongController::class, 'index']);
     Route::get('/songs/category/{category}', [SongController::class, 'listByCategory']);
+    Route::get('/songs/favorite', [SongController::class, 'listFavorite']);
+    Route::post('/songs/favorite', [SongController::class, 'syncFavorite']);
+    Route::post('/songs/search', [SongController::class, 'search']);
     Route::get('/songs/{number}', [SongController::class, 'show']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/audio/{filename}', [SongController::class, 'audio']);
 
 Route::get('kins', function(Request $request){
     return \App\Models\Kin::query()

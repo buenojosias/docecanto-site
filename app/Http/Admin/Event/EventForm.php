@@ -29,7 +29,11 @@ class EventForm extends Component
             $this->title = $this->event->title;
             $this->local = $this->event->local;
             $this->date = $this->event->date;
-            $this->time = Carbon::createFromFormat('H:i:s', $this->event->time)->format('H:i');
+            if ($this->event->time) {
+                $this->time = Carbon::createFromFormat('H:i:s', $this->event->time)->format('H:i');
+            } else {
+                $this->time = null;
+            }
             $this->is_presentation = $this->event->is_presentation;
             $this->description = $this->event->description;
             $this->action = 'edit';

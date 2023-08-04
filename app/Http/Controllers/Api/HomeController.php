@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $birthday = Member::first();
+        $birthday = Member::query()->whereMonth('birth', date('m'))->whereDay('birth', date('d'))->first();
         $event = Event::query()->whereDate('date', '>', date('Y-m-d'))->orderBy('date', 'asc')->first();
         $songs = Song::query()->where('detached', true)->get();
 
@@ -25,6 +25,4 @@ class HomeController extends Controller
     # Usuário antenticado
     # Versão atual do aplicativo
     # Aniversariantes do mês
-    # Próximo evento
-    # Músicas em destaque
 }

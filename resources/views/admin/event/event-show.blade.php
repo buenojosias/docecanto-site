@@ -18,7 +18,9 @@
                 </div>
                 <div class="col-span-2 sm:col-span-1">
                     <h4>Horário</h4>
-                    <p>{{ Carbon\Carbon::createFromFormat('H:i:s', $event->time)->format('H:i') }}</p>
+                    <p>
+                        {{ $event->time ? Carbon\Carbon::createFromFormat('H:i:s', $event->time)->format('H:i') : '' }}
+                    </p>
                 </div>
                 <div class="col-span-2 sm:col-span-1">
                     <h4>É apresentação?</h4>

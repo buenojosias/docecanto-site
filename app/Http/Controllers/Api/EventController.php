@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -22,27 +21,36 @@ class EventController extends Controller
 
     public function show(Event $event)
     {
-        $songs = null;
-        $user = Auth::user();
+        $user = \Auth::user();
         $member = $user->member;
-        $answer = $event->members()->where('member_id', $member->id)->first();
-        $event->answer = $answer->pivot->answer ?? null;
+        if($member) {
+            $answer = $event->members()->where('member_id', $member->id)->first();
+            $event->answer = $answer->pivot->answer ?? null;
+            $event->is_member = true;
+        }
+        if($event->time) {
+            $event->time = \Carbon\Carbon::parse($event->time)->format('H\hi');
+        }
 
         return response()->json([
             'data' => $event,
         ]);
     }
 
+    public function songs(Event $event) {
+        $songs = $event->songs;
+
+        return response()->json($songs);
+    }
+
     public function syncAnswer(Request $request)
     {
-        $member = Auth::user()->member;
-        $event = $request->event['data']['id'];
+        $member = \Auth::user()->member;
+        // $event = $request->event['data']['id'];
         $answer = $request->answer;
-        if($member->events()->syncWithoutDetaching([$event => ['answer' => $answer]]))
+        if($member->events()->syncWithoutDetaching([$request->eventId => ['answer' => $answer]]))
             return response()->json(['success' => true]);
 
         return response()->json(['success' => false]);
     }
-
-    # músicas
 }

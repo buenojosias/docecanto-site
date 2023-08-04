@@ -29,8 +29,8 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <x-button wire:click="resetAttendance" flat sm label="Resetar" />
                     <x-button type="submit" primary sm label="Salvar" />
+                    <x-button wire:click="resetAttendance" flat sm label="Resetar" />
                 </div>
             </form>
         </div>

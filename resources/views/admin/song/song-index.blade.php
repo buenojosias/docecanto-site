@@ -55,7 +55,7 @@
                                     <td>{{ $song->number }}</td>
                                     <td class="flex items-center">
                                         @if ($song->detached)
-                                            <x-icon name="flag" class="w-4 h-4 mr-1 text-orange-700" solid />
+                                            <x-icon name="bookmark" class="w-4 h-4 mr-1 text-orange-700" solid />
                                         @endif
                                         <a href="{{ route('songs.show', $song->number) }}">{{ $song->title }}</a>
                                     </td>

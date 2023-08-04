@@ -91,15 +91,28 @@ class SongForm extends Component
 
     public function generateFullText()
     {
-        $temp_fulltext = preg_replace('#<[^>]+>#', ' ', $this->lyrics);
-        $temp_fulltext = preg_replace('#\s+#', ' ', $temp_fulltext);
-        $temp_fulltext = preg_replace(array("/(á|à|ã|â|ä|Á|À|Ã|Â|Ä)/","/(é|è|ê|ë|É|È|Ê|Ë)/","/(í|ì|î|ï|Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö|Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü|Ú|Ù|Û|Ü)/","/(ç|Ç)/","/(ñ|Ñ)/","/(1. |2. |3. |4. |5. |6. )/"),explode(" ","a e i o u c n "), $temp_fulltext);
-        $temp_fulltext = strtolower($temp_fulltext);
-        $this->fulltext = trim($temp_fulltext);
+        $removeTags = preg_replace('#<[^>]+>#', ' ', $this->lyrics);
+        $removeWhiteSpaces = preg_replace('#\s+#', ' ', $removeTags);
+        $removeSpecialCharacters = preg_replace(array("/(&aacute;|&agrave;|&atilde;|&acirc;|&auml;|&Aacute;|&Agrave;|&Atilde;|&Acirc;|&Auml;)/","/(&eacute;|&egrave;|&ecirc;|&euml;|&Eacute;|&Egrave;|&Ecirc;|&Euml;)/","/(&iacute;|&igrave;|&icirc;|&iuml;|&Iacute;|&Igrave;|&Icirc;|&Iuml;)/","/(&oacute;|&ograve;|&otilde;|&ocirc;|&ouml;|&Oacute;|&Ograve;|&Otilde;|&Ocirc;|&Ouml;)/","/(&uacute;|&ugrave;|&ucirc;|&uuml;|&Uacute;|&Ugrave;|&Ucirc;|&Uuml;)/","/(ç|Ç)/","/(&ntilde;|&Ntilde;)/","/(1. |2. |3. |4. |5. |6. |(2x)|(bis))/"),explode(" ","a e i o u c n "), $removeWhiteSpaces);
+        $trim = trim($removeSpecialCharacters);
+        $this->fulltext = \Str::slug($trim, ' ');
     }
 
     public function render()
     {
+        $this->correctFullText();
         return view('admin.song.song-form');
+    }
+
+    public function correctFullText()
+    {
+        foreach(Song::all() as $song) {
+            $removeTags = preg_replace('#<[^>]+>#', ' ', $song->lyrics);
+            $removeWhiteSpaces = preg_replace('#\s+#', ' ', $removeTags);
+            $removeSpecialCharacters = preg_replace(array("/(&aacute;|&agrave;|&atilde;|&acirc;|&auml;|&Aacute;|&Agrave;|&Atilde;|&Acirc;|&Auml;)/","/(&eacute;|&egrave;|&ecirc;|&euml;|&Eacute;|&Egrave;|&Ecirc;|&Euml;)/","/(&iacute;|&igrave;|&icirc;|&iuml;|&Iacute;|&Igrave;|&Icirc;|&Iuml;)/","/(&oacute;|&ograve;|&otilde;|&ocirc;|&ouml;|&Oacute;|&Ograve;|&Otilde;|&Ocirc;|&Ouml;)/","/(&uacute;|&ugrave;|&ucirc;|&uuml;|&Uacute;|&Ugrave;|&Ucirc;|&Uuml;)/","/(ç|Ç)/","/(&ntilde;|&Ntilde;)/","/(1. |2. |3. |4. |5. |6. |(2x)|(bis))/"),explode(" ","a e i o u c n "), $removeWhiteSpaces);
+            $trim = trim($removeSpecialCharacters);
+            $fulltext = \Str::slug($trim, ' ');
+            $song->update(['fulltext' => $fulltext]);
+        }
     }
 }

@@ -49,6 +49,7 @@ class MemberUser extends Component
                     'username'=> 'required|string|max:60|unique:users,username,'.$this->user->id,
                 ]);
                 try {
+                $data['name'] = $this->member->name;
                 $this->user->update($data);
                 $this->notification()->success($description = 'Usuário atualizado com sucesso.');
                 $this->showFormModal = false;

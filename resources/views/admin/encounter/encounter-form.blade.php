@@ -2,7 +2,7 @@
     <x-notifications />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $action === 'create' ? 'Cadastrar' : 'Editar' }} encontro
+            {{ $action === 'create' ? 'Cadastrar' : 'Editar' }} ensaio
         </h2>
     </x-slot>
     <div class="sm:max-w-md sm:mx-auto">
@@ -23,7 +23,7 @@
                 <div class="card-footer">
                     <x-button wire:click="submit" sm primary label="Salvar" />
                     @if ($encounter)
-                        <x-button href="{{ route('encounters.show', $encounter) }}" flat label="Ir para encontro" />
+                        <x-button href="{{ route('encounters.show', $encounter) }}" flat label="Ir para ensaio" />
                     @endif
                 </div>
             </div>
