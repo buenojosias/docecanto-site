@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BirthController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\SongController;
@@ -27,6 +28,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/songs/favorite', [SongController::class, 'syncFavorite']);
     Route::post('/songs/search', [SongController::class, 'search']);
     Route::get('/songs/{number}', [SongController::class, 'show']);
+
+    Route::get('/births/{period}', BirthController::class);
+
+    Route::post('/auth/password', [AuthController::class, 'changePassword']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

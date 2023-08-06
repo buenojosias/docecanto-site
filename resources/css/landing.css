@@ -38,3 +38,20 @@ nav .navbar a.nav-material {
 nav .navbar a.active {
     @apply block py-2 px-3 text-gray-100 bg-[#8C126B] rounded-r sm:bg-transparent sm:text-yellow-500 sm:py-1;
 }
+
+
+.policy {
+    @apply w-full sm:max-w-2xl px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg;
+}
+.policy h1 {
+    @apply mb-4 text-center text-xl font-bold;
+}
+.policy h2 {
+    @apply my-2 text-lg font-semibold;
+}
+.policy h3 {
+    @apply my-2 font-semibold;
+}
+.policy p {
+    @apply text-justify;
+}
