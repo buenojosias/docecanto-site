@@ -23,11 +23,14 @@ class HomeController extends Controller
             $birthday->short_name = strstr($birthday->name, ' ', true);
         }
 
-        if (Carbon::parse($event->date)->format('Y-m-d') == Carbon::parse(now())->format('Y-m-d')) {
-            $event->nearby = 'Hoje';
-        } else if (Carbon::parse($event->date)->format('Y-m-d') == Carbon::parse(now()->addDay())->format('Y-m-d')) {
-            $event->nearby = 'Amanhã';
+        if ($event) {
+            if (Carbon::parse($event->date)->format('Y-m-d') == Carbon::parse(now())->format('Y-m-d')) {
+                $event->nearby = 'Hoje';
+            } else if (Carbon::parse($event->date)->format('Y-m-d') == Carbon::parse(now()->addDay())->format('Y-m-d')) {
+                $event->nearby = 'Amanhã';
+            }
         }
+
 
         return response()->json([
             'message' => $message->message,
