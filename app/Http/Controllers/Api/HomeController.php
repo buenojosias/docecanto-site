@@ -19,7 +19,9 @@ class HomeController extends Controller
         $event = Event::query()->whereDate('date', '>=', date('Y-m-d'))->orderBy('date', 'asc')->first();
         $songs = Song::query()->where('detached', true)->get();
 
-        $birthday->short_name = strstr($birthday->name, ' ', true);
+        if ($birthday) {
+            $birthday->short_name = strstr($birthday->name, ' ', true);
+        }
 
         if (Carbon::parse($event->date)->format('Y-m-d') == Carbon::parse(now())->format('Y-m-d')) {
             $event->nearby = 'Hoje';
