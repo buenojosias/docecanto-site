@@ -18,22 +18,25 @@ class SongController extends Controller
             ->get();
 
         $songs = Song::query()
-            ->select(['id','number','title','resume','detached'])
+            ->select(['id', 'number', 'title', 'resume', 'detached'])
             ->where('detached', true)
             ->orderBy('number')
             ->get();
 
-        return response()->json(['data' => [
-            'categories' => $categories,
-            'songs' => $songs
-        ]]);
+        return response()->json([
+            'data' => [
+                'categories' => $categories,
+                'songs' => $songs
+            ]
+        ]);
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         $query = \Str::slug($request['query'], ' ');
         $songs = Song::query()
-            ->select(['id','number','title','resume'])
-            ->where('fulltext', 'like', '%'.$query.'%')
+            ->select(['id', 'number', 'title', 'resume'])
+            ->where('fulltext', 'like', '%' . $query . '%')
             ->get();
         return response()->json($songs);
     }
@@ -69,18 +72,24 @@ class SongController extends Controller
     public function audio($filename)
     {
         $audio = Audio::where('filename', $filename)->firstOrFail();
-        $path = $audio->path;
-        return Storage::response($path);
+        $filePath = $audio->path;
+        $headers = [
+            'Content-Type' => 'audio/mp3',
+            'Accept-Ranges' => 'bytes',
+            // 'Content-Length' => Storage::size($filePath),
+        ];
+
+        return Storage::response($filePath, 200, $headers);
     }
 
     public function syncFavorite(Request $request)
     {
         $user = \Auth::user();
-        if($request->action === 'attach') {
-            if($user->favorites()->syncWithoutDetaching($request->songId))
+        if ($request->action === 'attach') {
+            if ($user->favorites()->syncWithoutDetaching($request->songId))
                 return response()->json(['success' => true]);
-        } else if($request->action === 'detach') {
-            if($user->favorites()->detach($request->songId))
+        } else if ($request->action === 'detach') {
+            if ($user->favorites()->detach($request->songId))
                 return response()->json(['success' => true]);
         }
 
