@@ -24,6 +24,7 @@ class BirthController extends Controller
                 $query
                     ->whereMonth('birth', date('m'));
             })
+            ->orderByRaw('DAY(birth)')
             ->get();
 
         foreach ($births as $birth) {
