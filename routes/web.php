@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('app/privacidade', function () {
+Route::get('privacidade', function () {
     return view('app.policy');
 });
-Route::get('app/termos', function () {
+Route::get('termos', function () {
     return view('app.therms');
 });
 
