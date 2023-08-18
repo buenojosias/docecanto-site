@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BirthController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\LegalController;
 use App\Http\Controllers\Api\SongController;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -39,6 +40,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/audio/{filename}', [SongController::class, 'audio']);
+Route::get('/legal/{slug}/{lang?}', LegalController::class);
 
 Route::get('kins', function(Request $request){
     return \App\Models\Kin::query()
