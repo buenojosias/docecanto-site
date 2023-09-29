@@ -97,7 +97,6 @@ class EventIndex extends Component
             }])
             ->orderBy('date', 'asc')->orderBy('time', 'asc')
             ->get();
-            dump($events->toArray());
 
         foreach($events as $event) {
             $event['day'] = intval(Carbon::parse($event->date)->format('d'));
