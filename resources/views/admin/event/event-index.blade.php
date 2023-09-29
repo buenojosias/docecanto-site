@@ -81,6 +81,9 @@
                                         </p>
                                     </a>
                                 </div>
+                                <div class="flex items-center">
+                                    <x-badge outline secondary :label="$event->members_count . ' confirmados'" />
+                                </div>
                                 <div class="flex items-center px-2">
                                     <x-dropdown>
                                         <x-dropdown.item href="{{ route('events.edit', $event) }}"

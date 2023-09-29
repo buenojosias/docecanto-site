@@ -24,7 +24,9 @@ class EventMembers extends Component
             ->orderBy('name')
             ->get();
 
-        $this->noAnswer = Member::query()->whereDoesntHave('events', function ($query) {
+        $this->noAnswer = Member::query()
+            ->where('status', 'Ativo')
+            ->whereDoesntHave('events', function ($query) {
             $query->where('event_id', $this->event->id);
         })->count();
     }

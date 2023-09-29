@@ -4,6 +4,7 @@ namespace App\Http\Admin\Event;
 
 use App\Models\Event;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
 use WireUi\Traits\Actions;
@@ -91,8 +92,12 @@ class EventIndex extends Component
         $events = Event::query()
             ->whereMonth('date', $this->currentMonth)
             ->whereYear('date', $this->currentYear)
+            ->withCount(['members' => function (Builder $query)  {
+                $query->where('answer', 'Sim');
+            }])
             ->orderBy('date', 'asc')->orderBy('time', 'asc')
             ->get();
+            dump($events->toArray());
 
         foreach($events as $event) {
             $event['day'] = intval(Carbon::parse($event->date)->format('d'));
