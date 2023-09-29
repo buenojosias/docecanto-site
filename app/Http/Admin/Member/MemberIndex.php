@@ -13,10 +13,15 @@ class MemberIndex extends Component
     use Actions;
     use WithPagination;
 
+    public $status = 'Ativo';
+
     public function render()
     {
         $members = Member::query()
             ->orderBy('name')
+            ->when($this->status, function($query) {
+                return $query->where('status', $this->status);
+            })
             ->paginate();
 
         foreach ($members as $member) {

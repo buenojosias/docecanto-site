@@ -36,7 +36,7 @@
                         <a href="#">Faça parte</a>
                     </li>
                     <li>
-                        <a href="{{ route('dashboard') }}" class="nav-material"
+                        <a href="https://app.coraldocecanto.com.br" class="nav-material"
                             class="sm:border sm:border-yellow-500 sm:rounded-lg px-4">Área do membro</a>
                     </li>
                     {{-- <li>
