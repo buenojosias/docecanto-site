@@ -41,7 +41,7 @@ class Member extends Model
 
     public function events(): BelongsToMany
     {
-        return $this->belongsToMany(Event::class)->withPivot(['answer']);
+        return $this->belongsToMany(Event::class)->withPivot(['answer'])->withTimestamps();
     }
 
     public function kins(): BelongsToMany
