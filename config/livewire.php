@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'class_namespace' => 'App\\Http\\Admin',
+    'class_namespace' => 'App\\Http\\Livewire',
 
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ return [
     |
     */
 
-    'view_path' => resource_path('views/admin'),
+    'view_path' => resource_path('views/livewire'),
 
     /*
     |--------------------------------------------------------------------------

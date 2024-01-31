@@ -23,7 +23,7 @@ class AudioController extends Controller
 
     public function create()
     {
-        return view('admin.media.create');
+        return view('livewire.media.create');
     }
 
     public function store(Request $request)

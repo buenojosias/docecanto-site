@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Admin\Category\{ CategoryIndex };
-use App\Http\Admin\Dashboard\DashboardIndex;
-use App\Http\Admin\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
-use App\Http\Admin\Event\{ EventIndex, EventShow, EventForm };
-use App\Http\Admin\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
-use App\Http\Admin\Rating\{ RatingIndex };
-use App\Http\Admin\Queue\{ QueueIndex, QueueShow, QueueForm };
-use App\Http\Admin\Song\{ SongIndex, SongShow, SongForm };
+use App\Http\Livewire\Category\{ CategoryIndex };
+use App\Http\Livewire\Dashboard\DashboardIndex;
+use App\Http\Livewire\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
+use App\Http\Livewire\Event\{ EventIndex, EventShow, EventForm };
+use App\Http\Livewire\Member\{ MemberIndex, MemberShow, MemberForm, MemberUsers };
+use App\Http\Livewire\Rating\{ RatingIndex };
+use App\Http\Livewire\Queue\{ QueueIndex, QueueShow, QueueForm };
+use App\Http\Livewire\Song\{ SongIndex, SongShow, SongForm };
 use App\Http\Controllers\AudioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
