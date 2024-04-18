@@ -6,26 +6,26 @@
         </h2>
     </x-slot>
     <div class="sm:max-w-md sm:mx-auto">
-        <form wire:submit.prevent="submit">
+        <form wire:submit="submit">
             <div class="card mb-4">
                 <x-errors class="mb-4" />
                 <div class="card-body p-4 space-y-4">
-                    <x-input wire:model.defer="title" label="Título" required />
-                    <x-input wire:model.defer="local" label="Local" />
+                    <x-input wire:model="title" label="Título" required />
+                    <x-input wire:model="local" label="Local" />
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <x-datetime-picker wire:model.defer="date" label="Data" without-time
+                            <x-datetime-picker wire:model="date" label="Data" without-time
                                 :min="now()" />
                         </div>
                         <div>
-                            <x-time-picker wire:model.defer="time" label="Horário (opcional)" format="24"
+                            <x-time-picker wire:model="time" label="Horário (opcional)" format="24"
                                 interval="30" />
                         </div>
                     </div>
-                    <x-toggle wire:model.defer="is_presentation" md left-label="É apresentação" />
+                    <x-toggle wire:model="is_presentation" md left-label="É apresentação" />
                     <div wire:ignore>
                         <x-label label="Decrição" />
-                        <textarea wire:model.defer="description" class="min-h-fit h-48" name="description" id="description"></textarea>
+                        <textarea wire:model="description" class="min-h-fit h-48" name="description" id="description"></textarea>
                     </div>
                 </div>
                 <div class="card-footer space-x-2">

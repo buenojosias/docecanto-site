@@ -29,8 +29,8 @@
         @endif
     </div>
 
-    <x-modal wire:model.defer="showFormModal">
-        <form wire:submit.prevent="submit">
+    <x-modal wire:model="showFormModal">
+        <form wire:submit="submit">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Adicionar familiar</h3>
@@ -42,35 +42,35 @@
                     </span>
                     <div class="grid sm:grid-cols-4 gap-4 mt-4">
                         <div class="sm:col-span-2">
-                            <x-radio id="sync" label="Vincular familiar cadastrado" wire:model="action"
+                            <x-radio id="sync" label="Vincular familiar cadastrado" wire:model.live="action"
                                 value="sync" />
                         </div>
                         <div class="sm:col-span-2">
-                            <x-radio id="create" label="Cadastrar novo familiar" wire:model="action"
+                            <x-radio id="create" label="Cadastrar novo familiar" wire:model.live="action"
                                 value="create" />
                         </div>
                         @if ($action === 'sync')
                             <div class="sm:col-span-4">
-                                <x-select label="Buscar familiar" wire:model.defer="idk"
+                                <x-select label="Buscar familiar" wire:model="idk"
                                     placeholder="Comece a digitar" :async-data="route('api.kins')" option-label="name"
                                     option-value="id" />
                             </div>
                         @endif
                         @if ($action === 'create')
                             <div class="sm:col-span-4">
-                                <x-input wire:model.defer="name" label="Nome *" placeholder="Nome completo"
+                                <x-input wire:model="name" label="Nome *" placeholder="Nome completo"
                                     required />
                             </div>
                             <div class="sm:col-span-2">
-                                <x-input type="date" wire:model.defer="birth" label="Data de nascimento" />
+                                <x-input type="date" wire:model="birth" label="Data de nascimento" />
                             </div>
                             <div class="sm:col-span-4">
-                                <x-input wire:model.defer="profession" label="Profissão" placeholder="Profissão" />
+                                <x-input wire:model="profession" label="Profissão" placeholder="Profissão" />
                             </div>
                         @endif
                         @if ($action)
                             <div class="sm:col-span-4">
-                                <x-input wire:model.defer="kinship" label="Grau de parentesco" placeholder="Grau de parentesco" />
+                                <x-input wire:model="kinship" label="Grau de parentesco" placeholder="Grau de parentesco" />
                             </div>
                             @if ($action === 'sync')
                                 <div class="sm:col-span-2"></div>

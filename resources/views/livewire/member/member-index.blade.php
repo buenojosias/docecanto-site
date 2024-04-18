@@ -7,11 +7,11 @@
         <div class="card-header relative" x-data="{ filters: false }">
             <div></div>
             <div class="card-tools">
-                <x-button flat icon="filter" @click="filters = !filters" />
+                <x-button flat icon="funnel" @click="filters = !filters" />
             </div>
             <div x-show="filters" @click.outside="filters = false" class="filters">
                 <div>
-                    <x-native-select label="Status" wire:model="status">
+                    <x-native-select label="Status" wire:model.live="status">
                         <option value="">Todos</option>
                         <option value="Ativo">Ativos</option>
                         <option value="Inativo">Inativos</option>
@@ -46,7 +46,7 @@
                                 @endif
                             </td>
                             <td class="text-right">
-                                <x-button href="{{ route('members.edit', $member) }}" flat sm icon="pencil-alt" />
+                                <x-button href="{{ route('members.edit', $member) }}" flat sm icon="pencil" />
                                 <x-button href="#" flat sm icon="phone" />
                             </td>
                         </tr>

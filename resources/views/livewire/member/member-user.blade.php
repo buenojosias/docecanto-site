@@ -28,7 +28,7 @@
                                 <h4 class="text-sm font-medium text-gray-600">Senha</h4>
                             </div>
                             <div>
-                                <x-button wire:click="resetPassword" flat sm icon="refresh" />
+                                <x-button wire:click="resetPassword" flat sm icon="arrow-path" />
                             </div>
                         </li>
                     @else
@@ -46,9 +46,9 @@
         @endif
     </div>
 
-    <x-modal wire:model.defer="showFormModal" max-width="sm">
+    <x-modal wire:model="showFormModal" max-width="sm">
         <div class="card w-full">
-            <form wire:submit.prevent="submit">
+            <form wire:submit="submit">
                 <div class="card-header">
                     <h3 class="card-title">{{ $user ? 'Editar' : 'Cadastrar' }} informações de login</h3>
                 </div>
@@ -56,10 +56,10 @@
                     <x-errors class="mb-4 shadow" />
                     <div class="grid sm:grid-cols-4 gap-2">
                         <div class="sm:col-span-4">
-                            <x-input type="email" label="E-mail" wire:model.defer="email" required />
+                            <x-input type="email" label="E-mail" wire:model="email" required />
                         </div>
                         <div class="sm:col-span-4">
-                            <x-input label="Username" wire:model.defer="username" required />
+                            <x-input label="Username" wire:model="username" required />
                         </div>
                     </div>
                 </div>

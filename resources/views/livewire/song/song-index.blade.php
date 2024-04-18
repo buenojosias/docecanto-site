@@ -32,7 +32,7 @@
                             Filtro de categoria: {{ $filter['name'] }}
                         </div>
                         <div>
-                            <x-button wire:click="selectCategory" xs flat icon="x" />
+                            <x-button wire:click="selectCategory" xs flat icon="x-mark" />
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                                         @endforeach
                                     </td>
                                     <td class="text-right">
-                                        <x-button href="{{ route('songs.edit', $song->number) }}" flat sm icon="pencil-alt" />
+                                        <x-button href="{{ route('songs.edit', $song->number) }}" flat sm icon="pencil" />
                                     </td>
                                 </tr>
                             @endforeach

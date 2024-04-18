@@ -46,9 +46,9 @@
         @endif
     </div>
 
-    <x-modal wire:model.defer="showFormModal" max-width="md">
+    <x-modal wire:model="showFormModal" max-width="md">
         <div class="card w-full">
-            <form wire:submit.prevent="submit">
+            <form wire:submit="submit">
                 <div class="card-header">
                     <h3 class="card-title">{{ $addressData ? 'Editar' : 'Adicionar' }} endereço</h3>
                 </div>
@@ -56,16 +56,16 @@
                     <x-errors class="mb-4 shadow" />
                     <div class="grid sm:grid-cols-6 gap-2">
                         <div class="sm:col-span-4">
-                            <x-input label="Endereço" wire:model.defer="address" required />
+                            <x-input label="Endereço" wire:model="address" required />
                         </div>
                         <div class="sm:col-span-2">
-                            <x-input label="Complemento" wire:model.defer="complement" />
+                            <x-input label="Complemento" wire:model="complement" />
                         </div>
                         <div class="sm:col-span-3">
-                            <x-input label="Bairro" wire:model.defer="district" required />
+                            <x-input label="Bairro" wire:model="district" required />
                         </div>
                         <div class="sm:col-span-3">
-                            <x-input label="Cidade" wire:model.defer="city" required />
+                            <x-input label="Cidade" wire:model="city" required />
                         </div>
                     </div>
                 </div>

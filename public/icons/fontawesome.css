@@ -4219,7 +4219,7 @@ readers do not read off random characters that represent icons */
 .fa-pencil::before {
   content: "\f303"; }
 
-.fa-pencil-alt::before {
+.fa-pencil::before {
   content: "\f303"; }
 
 .fa-people-arrows-left-right::before {

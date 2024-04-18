@@ -87,7 +87,7 @@
                                 <div class="flex items-center px-2">
                                     <x-dropdown>
                                         <x-dropdown.item href="{{ route('events.edit', $event) }}"
-                                            icon="pencil-alt" label="Editar" />
+                                            icon="pencil" label="Editar" />
                                         <x-dropdown.item wire:click="removeEvent({{ $event }})" icon="trash"
                                             label="Remover" />
                                     </x-dropdown>

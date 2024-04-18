@@ -6,18 +6,18 @@
         </h2>
     </x-slot>
     <div class="sm:max-w-md sm:mx-auto">
-        <form wire:submit.prevent="submit">
+        <form wire:submit="submit">
             <div class="card mb-4">
                 <x-errors class="mb-4" />
                 <div class="card-body p-4 space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <x-datetime-picker wire:model.defer="date" label="Data" without-time />
+                            <x-datetime-picker wire:model="date" label="Data" without-time />
                         </div>
                     </div>
                     <div wire:ignore>
                         <x-label label="Decrição" />
-                        <textarea wire:model.defer="description" class="min-h-fit h-48" name="description" id="description"></textarea>
+                        <textarea wire:model="description" class="min-h-fit h-48" name="description" id="description"></textarea>
                     </div>
                 </div>
                 <div class="card-footer">

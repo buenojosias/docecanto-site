@@ -17,16 +17,16 @@
             <div class="card-header relative" x-data="{ filters: false }">
                 <h3 class="title"></h3>
                 <div class="card-tools py-1">
-                    <x-button flat icon="filter" @click="filters = !filters" />
+                    <x-button flat icon="funnel" @click="filters = !filters" />
                 </div>
                 <div x-show="filters" @click.outside="filters = false" class="filters">
                     <div>
                         @if ($period === 'realizados')
                             <x-datetime-picker without-time label="Filtrar por data" placeholder="Selecione uma data"
-                                wire:model="filterDate" clearable="false" :max="now()" />
+                                wire:model.live="filterDate" clearable="false" :max="now()" />
                         @else
                             <x-datetime-picker without-time label="Filtrar por data" placeholder="Selecione uma data"
-                                wire:model="filterDate" clearable="false" :min="now()" />
+                                wire:model.live="filterDate" clearable="false" :min="now()" />
                         @endif
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                                     @endif
                                 @endif
                                 <td>
-                                    <x-button href="{{ route('encounters.edit', $encounter) }}" sm flat icon="pencil-alt" />
+                                    <x-button href="{{ route('encounters.edit', $encounter) }}" sm flat icon="pencil" />
                                 </td>
                             </tr>
                         @empty

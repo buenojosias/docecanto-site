@@ -7,7 +7,7 @@
         <div x-show="!expand" @close.window="expand=false" class="flex justify-between gap-2">
             <div class="grow">{{ $answer }}</div>
             @if ($question->members->count())
-                <x-button @click="expand=true" xs flat primary icon="pencil-alt" />
+                <x-button @click="expand=true" xs flat primary icon="pencil" />
                 <x-button wire:click="removeAnswer" xs flat negative icon="trash" />
                 {{-- <span wire:click="removeAnswer({{ $question->id }})">REMOVE</span> --}}
             @else
@@ -17,11 +17,11 @@
 
         <div x-show="expand" class="flex">
             <div class="grow">
-                <x-input wire:model="answerInput" class="py-1 px-2 w-full" />
+                <x-input wire:model.live="answerInput" class="py-1 px-2 w-full" />
             </div>
             <div>
                 <x-button wire:click="submitAnswer" sm flat primary icon="check" />
-                <x-button @click="expand=false" wire:click="resetInput" sm flat icon="x" />
+                <x-button @click="expand=false" wire:click="resetInput" sm flat icon="x-mark" />
             </div>
         </div>
 

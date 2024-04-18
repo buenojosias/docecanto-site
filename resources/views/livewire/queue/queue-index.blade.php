@@ -7,11 +7,11 @@
         <div class="card-header relative" x-data="{ filters: false }">
             <h3 class="card-title"></h3>
             <div class="card-tools py-1">
-                <x-button flat icon="filter" @click="filters = !filters" />
+                <x-button flat icon="funnel" @click="filters = !filters" />
             </div>
             <div x-show="filters" @click.outside="filters = false" class="filters">
                 <div>
-                    <x-native-select wire:model="filterStatus" label="Status">
+                    <x-native-select wire:model.live="filterStatus" label="Status">
                         <option value="">Todos</option>
                         @foreach ($status_list as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
@@ -43,7 +43,7 @@
                                 <x-badge sm label="{{ $queue->status }}" />
                             </td>
                             <td>
-                                <x-button href="{{ route('queues.edit', $queue) }}" flat sm icon="pencil-alt" />
+                                <x-button href="{{ route('queues.edit', $queue) }}" flat sm icon="pencil" />
                                 <x-button flat sm negative icon="trash" />
                             </td>
                         </tr>

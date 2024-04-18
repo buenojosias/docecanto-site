@@ -10,27 +10,27 @@
             <x-errors class="mb-4" />
             <div class="card-body display sm:grid sm:grid-cols-4 space-y-4 sm:space-y-0 gap-4">
                 <div class="col-span-3">
-                    <x-input wire:model.defer="data.child_name" label="Nome da criança/adolescente" required />
+                    <x-input wire:model="data.child_name" label="Nome da criança/adolescente" required />
                 </div>
                 <div>
-                    <x-input wire:model.defer="data.age" type="number" min="6" label="Idade" required />
+                    <x-input wire:model="data.age" type="number" min="6" label="Idade" required />
                 </div>
                 <div class="col-span-4">
-                    <x-input wire:model.defer="data.parent_name" label="Nome do responsável" required />
+                    <x-input wire:model="data.parent_name" label="Nome do responsável" required />
                 </div>
                 <div class="col-span-2">
-                    <x-inputs.phone wire:model.defer="data.child_phone" label="WhatsApp da criança"
+                    <x-phone wire:model="data.child_phone" label="WhatsApp da criança"
                         mask="['(##) ####-####', '(##) #####-####']" emitFormatted="true" />
                 </div>
                 <div class="col-span-2">
-                    <x-inputs.phone wire:model.defer="data.parent_phone" label="WhatsApp do responsável"
+                    <x-phone wire:model="data.parent_phone" label="WhatsApp do responsável"
                         mask="['(##) ####-####', '(##) #####-####']" emitFormatted="true" />
                 </div>
                 <div class="col-span-2">
-                    <x-input wire:model.defer="data.church" label="Igreja" />
+                    <x-input wire:model="data.church" label="Igreja" />
                 </div>
                 <div class="col-span-2">
-                    <x-native-select wire:model.defer="data.status" label="Status" required>
+                    <x-native-select wire:model="data.status" label="Status" required>
                         <option value="">Selecione</option>
                         @foreach ($options as $option)
                             <option value="{{ $option }}">{{ $option }}</option>

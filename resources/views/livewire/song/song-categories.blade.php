@@ -21,13 +21,13 @@
         </div>
     </div>
     @if ($showModal)
-        <x-modal wire:model.defer="showModal" max-width="sm">
+        <x-modal wire:model="showModal" max-width="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">Vincular categoria</h3>
                 </div>
                 <div class="card-body display">
-                    <x-native-select wire:model="selectedCategory">
+                    <x-native-select wire:model.live="selectedCategory">
                         <option value="">Selecione</option>
                         @foreach ($categories as $cat)
                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>

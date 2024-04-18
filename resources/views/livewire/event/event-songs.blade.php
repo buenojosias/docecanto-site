@@ -33,26 +33,26 @@
         </div>
     </div>
     @if ($showFormModal)
-        <x-modal wire:model.defer="showFormModal" max-width="sm">
+        <x-modal wire:model="showFormModal" max-width="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">Adicionar música</h3>
                 </div>
                 <div class="card-body display space-y-4">
-                    <x-native-select wire:model="dataCategory" label="Categoria">
+                    <x-native-select wire:model.live="dataCategory" label="Categoria">
                         <option value="">Selecione</option>
                         @foreach ($inputCategories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </x-native-select>
                     @if ($dataCategory)
-                        <x-native-select wire:model="dataSong" label="Música">
+                        <x-native-select wire:model.live="dataSong" label="Música">
                             <option value="">Selecione</option>
                             @foreach ($inputSongs as $song)
                                 <option value="{{ $song->id }}">{{ $song->number }}. {{ $song->title }}</option>
                             @endforeach
                         </x-native-select>
-                        <x-input wire:model.defer="dataComment" label="Comentário" />
+                        <x-input wire:model="dataComment" label="Comentário" />
                     @else
                         <x-native-select label="Música" disabled>
                             <option value="">Selecione uma categoria</option>

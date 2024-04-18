@@ -10,10 +10,9 @@
                     <li>
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" icon="home">Dashboard</x-nav-link>
                         <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')" icon="children">Integrantes</x-nav-link>
-                        @if (request()->routeIs('members.*'))
-                            <x-nav-link :href="route('members.users')" :active="request()->routeIs('members.users')" icon="key">Usuários</x-nav-link>
-                        @endif
-                        <x-nav-link :href="route('ratings.index')" :active="request()->routeIs('ratings.*')" icon="clipboard-user">Fichas técnicas</x-nav-link>
+                        <x-nav-link :href="route('users')" :active="request()->routeIs('users')" icon="key">Usuários</x-nav-link>
+                        <x-nav-link :href="route('ratings.index')" :active="request()->routeIs('ratings.*')" icon="clipboard-user">Fichas
+                            técnicas</x-nav-link>
                         <x-nav-link :href="route('queues.index')" :active="request()->routeIs('queues.*')" icon="clock">Fila de espera</x-nav-link>
                     </li>
                 </ul>

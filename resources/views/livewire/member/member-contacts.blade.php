@@ -21,7 +21,7 @@
                             </div>
                             <div class="flex items-center">
                                 <x-dropdown>
-                                    <x-dropdown.item wire:click="openFormModal({{ $contact }})" icon="pencil-alt"
+                                    <x-dropdown.item wire:click="openFormModal({{ $contact }})" icon="pencil"
                                         label="Editar" />
                                     <x-dropdown.item wire:click="removeContact({{ $contact }})" icon="trash" label="Remover" />
                                 </x-dropdown>
@@ -38,9 +38,9 @@
         @endif
     </div>
 
-    <x-modal wire:model.defer="showFormModal" max-width="sm">
+    <x-modal wire:model="showFormModal" max-width="sm">
         <div class="card w-full">
-            <form wire:submit.prevent="submit">
+            <form wire:submit="submit">
                 <div class="card-header">
                     <h3 class="card-title">{{ $formContact ? 'Editar' : 'Adicionar' }} contato</h3>
                 </div>
@@ -48,7 +48,7 @@
                     <x-errors class="mb-4 shadow" />
                     <div class="grid sm:grid-cols-4 gap-2">
                         <div class="sm:col-span-4">
-                            <x-native-select label="Campo" wire:model="field" required>
+                            <x-native-select label="Campo" wire:model.live="field" required>
                                 <option value="">Selecione</option>
                                 <option value="WhatsApp">WhatsApp</option>
                                 <option value="E-mail">E-mail</option>
@@ -58,13 +58,13 @@
                         </div>
                         <div class="sm:col-span-4">
                             @if ($field === 'WhatsApp')
-                                <x-inputs.phone wire:model.defer="value" label="{{ $field }}"
+                                <x-phone wire:model="value" label="{{ $field }}"
                                     mask="['(##) ####-####', '(##) #####-####']" emitFormatted="true" required />
                             @elseif ($field === 'E-mail')
-                                <x-input type="email" wire:model.defer="value" label="{{ $field }}"
+                                <x-input type="email" wire:model="value" label="{{ $field }}"
                                     required />
                             @elseif ($field === 'Facebook' || $field === 'Instagram')
-                                <x-input wire:model.defer="value" label="{{ $field }}" required />
+                                <x-input wire:model="value" label="{{ $field }}" required />
                             @else
                                 <p>Selecione o campo</p>
                             @endif

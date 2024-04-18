@@ -23,7 +23,7 @@
                             <td>{{ $category->songs_count }} </td>
                             <td class="text-right">
                                 <x-button wire:click="openFormModal({{ $category }})" flat sm
-                                    icon="pencil-alt" />
+                                    icon="pencil" />
                             </td>
                         </tr>
                     @endforeach
@@ -32,16 +32,16 @@
         </div>
     </div>
     @if ($showFormModal)
-        <x-modal wire:model.defer="showFormModal" max-width="sm">
+        <x-modal wire:model="showFormModal" max-width="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">{{ $action === 'create' ? 'Adicionar' : 'Editar' }} categoria</h3>
                 </div>
-                <form wire:submit.prevent="submit">
+                <form wire:submit="submit">
                     <x-errors />
                     <div class="card-body display space-y-2">
-                        <x-input wire:model.defer="data.position" label="Sequência" type="number" />
-                        <x-input wire:model.defer="data.name" label="Nome" />
+                        <x-input wire:model="data.position" label="Sequência" type="number" />
+                        <x-input wire:model="data.name" label="Nome" />
                     </div>
                     <div class="card-footer space-x-2">
                         <x-button type="submit" sm primary label="Salvar" />

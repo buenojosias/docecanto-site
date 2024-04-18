@@ -1,7 +1,7 @@
 <div>
     @if ($membersWithoutAttendence->where('status', 'Ativo')->count() > 0)
         <div class="card mb-4">
-            <form wire:submit.prevent="submitAttendance">
+            <form wire:submit="submitAttendance">
                 <div class="card-header">
                     <h3 class="card-title">Registrar participações</h3>
                 </div>
@@ -13,15 +13,15 @@
                                     <td>{{ $member->name }}</td>
                                     <td class="w-4 px-0">
                                         <x-radio id="right-label" label="P" value="P"
-                                            wire:model.defer="selectedAttendance.{{ $member->id }}" />
+                                            wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
                                         <x-radio id="right-label" label="F" value="F"
-                                            wire:model.defer="selectedAttendance.{{ $member->id }}" />
+                                            wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
                                         <x-radio id="right-label" label="J" value="J"
-                                            wire:model.defer="selectedAttendance.{{ $member->id }}" />
+                                            wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                 </tr>
                             @endforeach
@@ -70,7 +70,7 @@
         </div>
     </div>
     @if ($showChangeModal)
-        <x-modal wire:model.defer="showChangeModal" max-width="md">
+        <x-modal wire:model="showChangeModal" max-width="md">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">Alterar registro</h3>
@@ -81,7 +81,7 @@
                             <x-input label="Membro" value="{{ $changeMember['name'] }}" readonly />
                         </div>
                         <div>
-                            <x-native-select wire:model.defer="newAttendance" label="Novo status" required>
+                            <x-native-select wire:model="newAttendance" label="Novo status" required>
                                 <option value="">Selecione</option>
                                 <option value="P">P</option>
                                 <option value="F">F</option>
@@ -89,7 +89,7 @@
                             </x-native-select>
                         </div>
                         <div>
-                            <x-textarea wire:model="newNote" rows="2" label="Comentário" />
+                            <x-textarea wire:model.live="newNote" rows="2" label="Comentário" />
                         </div>
                     </div>
                 </div>

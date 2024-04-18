@@ -41,7 +41,7 @@
         @endif
     </div>
     @if ($showFormModal)
-        <x-modal wire:model.defer="showFormModal">
+        <x-modal wire:model="showFormModal">
             @livewire('rating.rating-form', ['member' => $member, 'rating' => $rating])
         </x-modal>
     @endif

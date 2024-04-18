@@ -13,7 +13,7 @@
             @endif
         </div>
         <x-dropdown>
-            <x-dropdown.item wire:click="openFormModal('edit')" icon="pencil-alt" label="Alterar" />
+            <x-dropdown.item wire:click="openFormModal('edit')" icon="pencil" label="Alterar" />
             <x-dropdown.item wire:click="removeAnswer" icon="trash" label="Remover" />
         </x-dropdown>
     @else
@@ -21,11 +21,11 @@
             <small class="text-gray-800">Sem resposta</small>
         </div>
         <x-dropdown>
-            <x-dropdown.item wire:click="openFormModal('create')" icon="pencil-alt" label="Adicionar resposta" />
+            <x-dropdown.item wire:click="openFormModal('create')" icon="pencil" label="Adicionar resposta" />
         </x-dropdown>
     @endif
     @if($showFormModal)
-        <x-modal wire:model.defer="showFormModal" max-width="sm">
+        <x-modal wire:model="showFormModal" max-width="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -33,7 +33,7 @@
                     </h3>
                 </div>
                 <div class="card-body display">
-                    <x-native-select wire:model.defer="inputAnswer" label="Resposta" required>
+                    <x-native-select wire:model="inputAnswer" label="Resposta" required>
                         <option value="">Selecione</option>
                         <option value="Sim">Sim</option>
                         <option value="Não">Não</option>

@@ -15,7 +15,7 @@
                             <div>
                                 <x-button x-show="!showPlayer" @click="showPlayer=true" flat sm icon="play"
                                     class="-mr-1.5" />
-                                <x-button x-show="showPlayer" @click="showPlayer=false" flat sm icon="x"
+                                <x-button x-show="showPlayer" @click="showPlayer=false" flat sm icon="x-mark"
                                     class="-mr-1.5" />
                             </div>
                         </div>
@@ -39,15 +39,15 @@
         @livewire('media.media-player', ['media' => $selectedMedia])
     @endif --}}
 
-    <x-modal wire:model.defer="showUploadModal" max-width="md">
+    <x-modal wire:model="showUploadModal" max-width="md">
         <div class="card w-full">
-            <form wire:submit.prevent="submit">
+            <form wire:submit="submit">
                 <div class="card-header">
                     <h3 class="card-title">Adicionar mídia</h3>
                 </div>
                 <x-errors class="p-4" />
                 <div class="card-body display">
-                    <x-native-select wire:model.defer="type" label="Tipo" class="mb-4" required>
+                    <x-native-select wire:model="type" label="Tipo" class="mb-4" required>
                         <option value="">Selecione</option>
                         @foreach ($types as $type)
                             <option>{{ $type }}</option>
@@ -55,7 +55,7 @@
                     </x-native-select>
                     <x-label label="Arquivo" />
                     @if (!$validFile)
-                        {{-- <x-input type="file" accept="audio/mp3" wire:model="file" label="Arquivo" /> --}}
+                        {{-- <x-input type="file" accept="audio/mp3" wire:model.live="file" label="Arquivo" /> --}}
                         <div class="col-span-4" x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
                             x-on:livewire-upload-finish="isUploading = false"
                             x-on:livewire-upload-error="isUploading = false"
@@ -75,7 +75,7 @@
                                             <span class="font-semibold">Clique para selecionar o arquivo</span>
                                         </p>
                                     </div>
-                                    <input id="file" type="file" wire:model.defer="file" accept="audio/mp3"
+                                    <input id="file" type="file" wire:model="file" accept="audio/mp3"
                                         class="hidden">
                                 </label>
                             </div>
