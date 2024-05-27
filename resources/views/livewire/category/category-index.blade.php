@@ -1,9 +1,10 @@
 <div>
-    <x-notifications />
+    <x-ts-toast />
+    <x-ts-dialog />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Categorias</h2>
     </x-slot>
-    <x-ts-button wire:click="openFormModal" label="Adicionar" primary class="mb-3 w-full sm:w-auto" />
+    <x-ts-button wire:click="openFormModal" text="Adicionar" primary class="mb-3 w-full sm:w-auto" />
     <div class="card md:max-w-lg">
         <div class="card-body table-responsive">
             <table class="table table-hover whitespace-nowrap">
@@ -22,8 +23,7 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->songs_count }} </td>
                             <td class="text-right">
-                                <x-ts-button wire:click="openFormModal({{ $category }})" flat sm
-                                    icon="pencil" />
+                                <x-ts-button wire:click="openFormModal({{ $category }})" sm icon="pencil" />
                             </td>
                         </tr>
                     @endforeach
@@ -32,23 +32,19 @@
         </div>
     </div>
     @if ($showFormModal)
-        <x-modal wire:model.live="showFormModal" max-width="sm">
-            <div class="card w-full">
-                <div class="card-header">
-                    <h3 class="card-title">{{ $action === 'create' ? 'Adicionar' : 'Editar' }} categoria</h3>
+        <x-ts-modal wire="showFormModal" size="sm"
+            title="{{ $action === 'create' ? 'Adicionar' : 'Editar' }} categoria" id="category-modal">
+            <form wire:submit="submit" id="category-form">
+                <x-ts-errors />
+                <div class="card-body display space-y-2">
+                    <x-ts-input wire:model="data.position" label="Sequência" type="number" />
+                    <x-ts-input wire:model="data.name" label="Nome" />
                 </div>
-                <form wire:submit="submit">
-                    <x-errors />
-                    <div class="card-body display space-y-2">
-                        <x-input wire:model.live="data.position" label="Sequência" type="number" />
-                        <x-input wire:model.live="data.name" label="Nome" />
-                    </div>
-                    <div class="card-footer space-x-2">
-                        <x-ts-button type="submit" sm primary label="Salvar" />
-                        <x-ts-button sm flat label="Cancelar" x-on:click="close" />
-                    </div>
-                </form>
-            </div>
-        </x-modal>
+            </form>
+            <x-slot:footer>
+                <x-ts-button type="submit" form="category-form" primary text="Salvar" />
+                <x-ts-button text="Cancelar" x-on:click="$modalClose('category-modal')" />
+            </x-slot>
+        </x-ts-modal>
     @endif
 </div>

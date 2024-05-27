@@ -4,11 +4,11 @@ namespace App\Livewire\Category;
 
 use App\Models\Category;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class CategoryIndex extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $categories;
     public $showFormModal = false;
@@ -22,7 +22,7 @@ class CategoryIndex extends Component
             $this->data = $category;
             $this->action = 'edit';
         } else {
-            $this->data = null;
+            $this->data = [];
             $this->action = 'create';
         }
         $this->showFormModal = true;
@@ -37,10 +37,10 @@ class CategoryIndex extends Component
             ]);
             try {
                 Category::query()->find($this->data['id'])->update($this->data);
-                $this->notification()->success($description = 'Categoria atualizada com sucesso.');
+                $this->toast()->success('Categoria atualizada com sucesso.')->send();
                 $this->showFormModal = false;
             } catch (\Throwable $th) {
-                $this->dialog()->error($description = 'Erro ao atualizar categoria.');
+                $this->dialog()->error('Erro ao atualizar categoria.')->send();
                 dd($th);
             }
         } else {
@@ -50,10 +50,10 @@ class CategoryIndex extends Component
             ]);
             try {
                 Category::query()->create($this->data);
-                $this->notification()->success($description = 'Categoria adicionada com sucesso.');
+                $this->toast()->success('Categoria adicionada com sucesso.')->send();
                 $this->showFormModal = false;
             } catch (\Throwable $th) {
-                $this->dialog()->error($description = 'Erro ao adicionar categoria.');
+                $this->dialog()->error('Erro ao adicionar categoria.')->send();
                 dd($th);
             }
         }
