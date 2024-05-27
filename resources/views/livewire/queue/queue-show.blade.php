@@ -1,6 +1,6 @@
 <div>
-    <x-notifications />
-    <x-dialog />
+    <x-ts-toast />
+    <x-ts-dialog />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Fila de espera</h2>
     </x-slot>
@@ -50,9 +50,9 @@
             @endif
         </div>
         <div class="card-footer gap-2">
-            <x-ts-button href="{{ route('queues.edit', $queue) }}" sm flat label="Editar" />
-            <x-ts-button wire:click="openStatusModal" sm flat label="Alterar status" />
-            <x-ts-button wire:click="deleteQueue" sm flat negative label="Excluir" />
+            <x-ts-button href="{{ route('queues.edit', $queue) }}" color="white" text="Editar" />
+            <x-ts-button wire:click="openStatusModal" color="white" text="Alterar status" />
+            <x-ts-button wire:click="deleteQueue" color="white" negative text="Excluir" />
         </div>
     </div>
     @if ($showStatusModal)

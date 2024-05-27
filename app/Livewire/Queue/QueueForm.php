@@ -4,11 +4,11 @@ namespace App\Livewire\Queue;
 
 use App\Models\Queue;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class QueueForm extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $action;
     public $data;
@@ -31,7 +31,6 @@ class QueueForm extends Component
             $this->data['parent_phone'] = '';
             $this->action = 'create';
         }
-
     }
 
     public function submit() {
@@ -51,10 +50,10 @@ class QueueForm extends Component
             } else {
                 Queue::query()->findOrFail($this->data['id'])->update($this->data);
             }
-            $this->notification()->success('Informações salvas com sucesso.');
+            $this->toast()->success('Informações salvas com sucesso.')->send();
             return;
         } catch (\Throwable $th) {
-            $this->notification()->error('Erro ao salvar informações.');
+            $this->toast()->error('Erro ao salvar informações.')->send();
             dump($th);
         }
     }

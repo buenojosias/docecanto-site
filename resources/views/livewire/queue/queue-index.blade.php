@@ -2,12 +2,14 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Fila de espera</h2>
     </x-slot>
-    <x-ts-button href="{{ route('queues.create') }}" primary label="Novo interessado" class="mb-4" />
+    <x-ts-button href="{{ route('queues.create') }}" primary text="Novo interessado" class="mb-4" />
     <div class="card">
         <div class="card-header relative" x-data="{ filters: false }">
             <h3 class="card-title"></h3>
             <div class="card-tools py-1">
-                <x-ts-button flat icon="funnel" @click="filters = !filters" />
+                <x-ts-button @click="filters = !filters" color="white">
+                    <x-ts-icon name="funnel" class="h-5 w-5" />
+                </x-ts-button>
             </div>
             <div x-show="filters" @click.outside="filters = false" class="filters">
                 <div>
@@ -40,11 +42,11 @@
                             </td>
                             <td>{{ $queue->age }}</td>
                             <td>
-                                <x-ts-badge sm label="{{ $queue->status }}" />
+                                <x-ts-badge size="sm" text="{{ $queue->status }}" />
                             </td>
                             <td>
-                                <x-ts-button href="{{ route('queues.edit', $queue) }}" flat sm icon="pencil" />
-                                <x-ts-button flat sm negative icon="trash" />
+                                <x-ts-button href="{{ route('queues.edit', $queue) }}" sm icon="pencil" />
+                                <x-ts-button sm negative icon="trash" />
                             </td>
                         </tr>
                     @endforeach

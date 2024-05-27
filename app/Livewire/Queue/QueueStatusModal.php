@@ -4,11 +4,11 @@ namespace App\Livewire\Queue;
 
 use App\Models\Queue;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class QueueStatusModal extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $statusModal = true;
     public $queue;
@@ -29,9 +29,10 @@ class QueueStatusModal extends Component
 
         try {
             Queue::query()->findOrFail($this->queue->id)->update($data);
-            $this->notification()->success('Status alterado com sucesso.');
+            $this->toast()->success('Status alterado com sucesso.')->send();
+            $this->statusModal = false;
         } catch (\Throwable $th) {
-            $this->notification()->error('Erro ao alterar status.');
+            $this->toast()->error('Erro ao alterar status.')->send();
             dd($th);
         }
     }

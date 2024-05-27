@@ -4,11 +4,11 @@ namespace App\Livewire\Queue;
 
 use App\Models\Queue;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class QueueShow extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $queue;
     public $showStatusModal = false;
@@ -25,26 +25,24 @@ class QueueShow extends Component
 
     public function deleteQueue(): void
     {
-        $this->dialog()->confirm([
-            'title' => 'Deseja este item da fila de espera?',
-            'method' => 'dodeleteQueue',
-            'acceptLabel' => 'Confirmar',
-            'rejectLabel' => 'Cancelar',
-        ]);
+        $this->dialog()
+            ->question('Deseja remover este item da lista de espera?')
+            ->confirm('Confirmar', 'doDeleteQueue')
+            ->cancel('Cancelar')
+            ->send();
     }
 
-    public function dodeleteQueue()
+    public function doDeleteQueue()
     {
         try {
             Queue::query()->findOrFail($this->queue->id)->delete();
-            $this->notification()->success($description = 'Item removido.');
+            $this->dialog()->success('Item removido.')->send();
             return redirect()->route('queues.index');
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao remover item.');
+            $this->dialog()->error('Erro ao remover item.')->send();
             dump($th);
         }
     }
-
 
     public function render()
     {
