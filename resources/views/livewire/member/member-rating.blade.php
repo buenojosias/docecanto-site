@@ -4,9 +4,9 @@
             <h3 class="card-title">Ficha técnica</h3>
             <div class="card-tools">
                 @if ($showRating)
-                    <x-button wire:click="unloadRating" flat icon="chevron-up" class="-mr-2" />
+                    <x-ts-button wire:click="unloadRating" flat icon="chevron-up" class="-mr-2" />
                 @else
-                    <x-button wire:click="loadRating" flat icon="chevron-down" class="-mr-2" />
+                    <x-ts-button wire:click="loadRating" flat icon="chevron-down" class="-mr-2" />
                 @endif
             </div>
         </div>
@@ -36,12 +36,12 @@
                 </table>
             </div>
             <div class="card-footer">
-                <x-button wire:click="openFormModal" sm flat label="Editar" />
+                <x-ts-button wire:click="openFormModal" sm flat label="Editar" />
             </div>
         @endif
     </div>
     @if ($showFormModal)
-        <x-modal wire:model="showFormModal">
+        <x-modal wire:model.live="showFormModal">
             @livewire('rating.rating-form', ['member' => $member, 'rating' => $rating])
         </x-modal>
     @endif

@@ -3,11 +3,11 @@
 namespace App\Livewire\Member;
 
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class MemberRating extends Component
 {
-    use WireUiActions;
+    use Interactions;
 
     public $member;
     public $rating;

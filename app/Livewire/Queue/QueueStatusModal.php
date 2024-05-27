@@ -4,11 +4,11 @@ namespace App\Livewire\Queue;
 
 use App\Models\Queue;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class QueueStatusModal extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $statusModal = true;
     public $queue;

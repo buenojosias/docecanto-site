@@ -50,9 +50,9 @@
             @endif
         </div>
         <div class="card-footer gap-2">
-            <x-button href="{{ route('queues.edit', $queue) }}" sm flat label="Editar" />
-            <x-button wire:click="openStatusModal" sm flat label="Alterar status" />
-            <x-button wire:click="deleteQueue" sm flat negative label="Excluir" />
+            <x-ts-button href="{{ route('queues.edit', $queue) }}" sm flat label="Editar" />
+            <x-ts-button wire:click="openStatusModal" sm flat label="Alterar status" />
+            <x-ts-button wire:click="deleteQueue" sm flat negative label="Excluir" />
         </div>
     </div>
     @if ($showStatusModal)

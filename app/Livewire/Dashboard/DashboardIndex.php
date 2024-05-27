@@ -6,14 +6,13 @@ use App\Models\Event;
 use App\Models\Member;
 use App\Models\Queue;
 use App\Models\Song;
-use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class DashboardIndex extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
     use WithPagination;
 
     public $name;

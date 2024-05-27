@@ -5,11 +5,11 @@ namespace App\Livewire\Encounter;
 use App\Models\Encounter;
 use Livewire\Component;
 use Livewire\WithPagination;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class EncounterIndex extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
     use WithPagination;
 
     public $date;

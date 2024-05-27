@@ -11,24 +11,24 @@
                 <x-errors class="mb-4" />
                 <div class="card-body p-2 sm:flex space-x-2">
                     <div class="w-1/6">
-                        <x-input wire:model="number" type="number" min="1" label="Número" />
+                        <x-input wire:model.live="number" type="number" min="1" label="Número" />
                     </div>
                     <div class="grow">
-                        <x-input wire:model="title" label="Título" />
+                        <x-input wire:model.live="title" label="Título" />
                     </div>
                 </div>
                 <div class="card-body p-2">
-                    <x-input wire:model="resume" label="Versão resumida" />
+                    <x-input wire:model.live="resume" label="Versão resumida" />
                 </div>
                 <div class="card-body p-2">
                     <div wire:ignore>
-                        <textarea wire:model="lyrics" class="min-h-fit h-48 " name="lyrics" id="lyrics"></textarea>
+                        <textarea wire:model.live="lyrics" class="min-h-fit h-48 " name="lyrics" id="lyrics"></textarea>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-button wire:click="submit" primary label="Salvar" />
+                    <x-ts-button wire:click="submit" primary label="Salvar" />
                     @if ($song)
-                        <x-button href="{{ route('songs.show', $song->number) }}" flat label="Ir para música" />
+                        <x-ts-button href="{{ route('songs.show', $song->number) }}" flat label="Ir para música" />
                     @endif
                 </div>
             </div>

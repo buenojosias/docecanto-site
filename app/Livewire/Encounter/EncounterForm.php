@@ -4,11 +4,11 @@ namespace App\Livewire\Encounter;
 
 use App\Models\Encounter;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class EncounterForm extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $action;
     public $encounter;

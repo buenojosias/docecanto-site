@@ -5,11 +5,11 @@ namespace App\Livewire\Song;
 use App\Models\Song;
 use Livewire\Component;
 use Livewire\WithPagination;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class SongShow extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
     use WithPagination;
 
     public $song;

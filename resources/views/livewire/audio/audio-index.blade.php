@@ -3,7 +3,7 @@
         <div class="card-header">
             <h3 class="card-title">Áudios</h3>
             <div class="card-tools">
-                <x-button wire:click="openUploadModal" flat icon="plus" class="-mr-3" />
+                <x-ts-button wire:click="openUploadModal" flat icon="plus" class="-mr-3" />
             </div>
         </div>
         <div class="card-body">
@@ -13,9 +13,9 @@
                         <div class="flex justify-between w-full">
                             <div>{{ $audio->type }}</div>
                             <div>
-                                <x-button x-show="!showPlayer" @click="showPlayer=true" flat sm icon="play"
+                                <x-ts-button x-show="!showPlayer" @click="showPlayer=true" flat sm icon="play"
                                     class="-mr-1.5" />
-                                <x-button x-show="showPlayer" @click="showPlayer=false" flat sm icon="x-mark"
+                                <x-ts-button x-show="showPlayer" @click="showPlayer=false" flat sm icon="x-mark"
                                     class="-mr-1.5" />
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                 </audio>
                             </div>
                             <div>
-                                <x-button wire:click="deleteAudio({{ $audio }})" xs flat negative icon="trash" />
+                                <x-ts-button wire:click="deleteAudio({{ $audio }})" xs flat negative icon="trash" />
                             </div>
                         </div>
                     </li>
@@ -39,7 +39,7 @@
         @livewire('media.media-player', ['media' => $selectedMedia])
     @endif --}}
 
-    <x-modal wire:model="showUploadModal" max-width="md">
+    <x-modal wire:model.live="showUploadModal" max-width="md">
         <div class="card w-full">
             <form wire:submit="submit">
                 <div class="card-header">
@@ -47,12 +47,12 @@
                 </div>
                 <x-errors class="p-4" />
                 <div class="card-body display">
-                    <x-native-select wire:model="type" label="Tipo" class="mb-4" required>
+                    <x-ts-select.native wire:model.live="type" label="Tipo" class="mb-4" required>
                         <option value="">Selecione</option>
                         @foreach ($types as $type)
                             <option>{{ $type }}</option>
                         @endforeach
-                    </x-native-select>
+                    </x-ts-select.native>
                     <x-label label="Arquivo" />
                     @if (!$validFile)
                         {{-- <x-input type="file" accept="audio/mp3" wire:model.live="file" label="Arquivo" /> --}}
@@ -75,7 +75,7 @@
                                             <span class="font-semibold">Clique para selecionar o arquivo</span>
                                         </p>
                                     </div>
-                                    <input id="file" type="file" wire:model="file" accept="audio/mp3"
+                                    <input id="file" type="file" wire:model.live="file" accept="audio/mp3"
                                         class="hidden">
                                 </label>
                             </div>
@@ -94,8 +94,8 @@
                     @endif
                 </div>
                 <div class="card-footer gap-2">
-                    <x-button type="submit" sm primary label="Enviar" />
-                    <x-button x-on:click="close" sm flat label="Cancelar" />
+                    <x-ts-button type="submit" sm primary label="Enviar" />
+                    <x-ts-button x-on:click="close" sm flat label="Cancelar" />
                 </div>
             </form>
         </div>

@@ -6,8 +6,8 @@
     <title>{{ config('app.name', 'Coral Doce Canto') }}</title>
     <link rel="stylesheet" href="{{ asset('icons/all.min.css') }}">
     <style>[x-cloak] { display: none !important; }</style>
+    <tallstackui:script />
     @livewireStyles
-    @wireUiScripts
     @vite(['resources/css/app.css'])
     {{-- <link rel="stylesheet" href="{{ asset('build/assets/app-a6bae78e.css') }}">
     <script src="{{ asset('build/assets/app-6870bb4e.js') }}" defer></script> --}}
@@ -32,6 +32,6 @@
         </div>
     </div>
     @stack('scripts')
-    @livewireScripts
+    {{-- @livewireScripts --}}
 </body>
 </html>

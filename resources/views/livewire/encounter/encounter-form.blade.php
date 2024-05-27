@@ -12,18 +12,18 @@
                 <div class="card-body p-4 space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <x-datetime-picker wire:model="date" label="Data" without-time />
+                            <x-datetime-picker wire:model.live="date" label="Data" without-time />
                         </div>
                     </div>
                     <div wire:ignore>
                         <x-label label="Decrição" />
-                        <textarea wire:model="description" class="min-h-fit h-48" name="description" id="description"></textarea>
+                        <textarea wire:model.live="description" class="min-h-fit h-48" name="description" id="description"></textarea>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-button wire:click="submit" sm primary label="Salvar" />
+                    <x-ts-button wire:click="submit" sm primary label="Salvar" />
                     @if ($encounter)
-                        <x-button href="{{ route('encounters.show', $encounter) }}" flat label="Ir para ensaio" />
+                        <x-ts-button href="{{ route('encounters.show', $encounter) }}" flat label="Ir para ensaio" />
                     @endif
                 </div>
             </div>

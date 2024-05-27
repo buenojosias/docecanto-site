@@ -5,11 +5,11 @@ namespace App\Livewire\Member;
 use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class MemberUser extends Component
 {
-    use WireUiActions;
+    use Interactions;
 
     public $member;
     public $user;
@@ -51,10 +51,10 @@ class MemberUser extends Component
                 try {
                 $data['name'] = $this->member->name;
                 $this->user->update($data);
-                $this->notification()->success($description = 'Usuário atualizado com sucesso.');
+                $this->toast()->success('Usuário atualizado com sucesso.')->send();
                 $this->showFormModal = false;
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao atualizar usuário.');
+                $this->toast()->error('Erro ao atualizar usuário.')->send();
             }
         } else {
             $data = $this->validate([
@@ -66,10 +66,10 @@ class MemberUser extends Component
             try {
                 $this->user = User::query()->create($data);
                 $this->member->update(['user_id' => $this->user['id']]);
-                $this->notification()->success($description = 'Usuário cadastrado com sucesso.');
+                $this->toast()->success('Usuário cadastrado com sucesso.')->send();
                 $this->showFormModal = false;
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao cadastrar usuário.');
+                $this->toast()->error('Erro ao cadastrar usuário.')->send();
                 dump($th);
             }
         }
@@ -77,13 +77,11 @@ class MemberUser extends Component
 
     public function resetPassword(): void
     {
-        $this->dialog()->confirm([
-            'title' => 'Deseja redefinir a senha?',
-            'description' => 'Será criada uma nova senha baseada na data de nascimento do integrante.',
-            'method' => 'doResetPassword',
-            'acceptLabel' => 'Confirmar',
-            'rejectLabel' => 'Cancelar',
-        ]);
+        $this->dialog()
+            ->question('Deseja redefinir a senha?', 'Será criada uma nova senha baseada na data de nascimento do integrante.')
+            ->confirm('Confirmar', 'doResetPassword')
+            ->cancel('Cancelar')
+            ->send();
     }
 
     public function doResetPassword()
@@ -91,10 +89,10 @@ class MemberUser extends Component
         try {
             $newPassword = bcrypt(Carbon::parse($this->member->birth)->format('dmy'));
             $this->user->update(['password' => $newPassword]);
-            $this->notification()->success($description = 'Senha redefinida com sucesso.');
+            $this->toast()->success('Senha redefinida com sucesso.')->send();
             $this->showFormModal = false;
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao redefinir senha.');
+            $this->dialog()->error('Erro ao redefinir senha.')->send();
             dump($th);
         }
     }

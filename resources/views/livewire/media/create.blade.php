@@ -6,7 +6,7 @@
             <x-input type="file" name="image" id="image" label="Arquivo" />
         </div>
         <div class="card-footer">
-            <x-button type="submit" primary label="Enviar" />
+            <x-ts-button type="submit" primary label="Enviar" />
         </div>
     </form>
     </div>

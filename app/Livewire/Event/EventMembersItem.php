@@ -3,11 +3,11 @@
 namespace App\Livewire\Event;
 
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class EventMembersItem extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $event;
     public $member;

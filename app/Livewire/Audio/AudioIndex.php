@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use ProtoneMedia\LaravelFFMpeg\Filesystem\Media;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class AudioIndex extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
     use WithFileUploads;
 
     public $song;

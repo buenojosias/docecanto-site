@@ -27,7 +27,7 @@
                         class="flex mr-3 text-sm bg-gray-100 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 px-2 py-0.5"
                         data-dropdown-placement="bottom">
                         <span class="sr-only">Open user menu</span>
-                        <x-icon name="user" class="w-5 h-7" solid />
+                        <x-ts-icon name="user" class="w-5 h-7" solid />
                     </button>
                     <!-- Dropdown menu -->
                     <div x-show="usermenu" @click.outside="usermenu = false"

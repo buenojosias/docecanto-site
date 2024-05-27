@@ -26,7 +26,7 @@
                             <td>{{ $rating->lowestNote->name ?? '' }}</td>
                             <td>{{ $rating->highestNote->name ?? '' }}</td>
                             {{-- <td class="text-right">
-                                <x-button wire:click="openFormModal" flat sm icon="pencil" />
+                                <x-ts-button wire:click="openFormModal" flat sm icon="pencil" />
                             </td> --}}
                         </tr>
                     @empty

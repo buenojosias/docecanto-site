@@ -2,22 +2,24 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Integrantes</h2>
     </x-slot>
-    <x-button href="{{ route('members.create') }}" label="Cadastrar novo" primary class="mb-3 w-full sm:w-auto" />
+    <x-ts-button href="{{ route('members.create') }}" text="Cadastrar novo" primary class="mb-3 w-full sm:w-auto" />
     <div class="card">
         <div class="card-header relative" x-data="{ filters: false }">
             <div></div>
-            <div class="card-tools">
-                <x-button flat icon="funnel" @click="filters = !filters" />
+            <div class="card-tools py-1">
+                <x-ts-button @click="filters = !filters" color="white">
+                    <x-ts-icon name="funnel" class="h-5 w-5 text-primary-600" />
+                </x-ts-button>
             </div>
             <div x-show="filters" @click.outside="filters = false" class="filters">
                 <div>
-                    <x-native-select label="Status" wire:model.live="status">
+                    <x-ts-select.native label="Status" wire:model.live="status">
                         <option value="">Todos</option>
                         <option value="Ativo">Ativos</option>
                         <option value="Inativo">Inativos</option>
                         <option value="Afastado">Afastados</option>
                         <option value="Desistente">Desistentes</option>
-                    </x-native-select>
+                    </x-ts-select.native>
                 </div>
             </div>
         </div>
@@ -42,12 +44,12 @@
                             <td>{{ $member->age }}</td>
                             <td>
                                 @if ($member->status !== 'Ativo')
-                                    <x-badge outline warning :label="$member->status" />
+                                    <x-ts-badge outline warning :text="$member->status" />
                                 @endif
                             </td>
                             <td class="text-right">
-                                <x-button href="{{ route('members.edit', $member) }}" flat sm icon="pencil" />
-                                <x-button href="#" flat sm icon="phone" />
+                                <x-ts-button href="{{ route('members.edit', $member) }}" outline sm icon="pencil" />
+                                <x-ts-button href="#" outline sm icon="phone" />
                             </td>
                         </tr>
                     @empty

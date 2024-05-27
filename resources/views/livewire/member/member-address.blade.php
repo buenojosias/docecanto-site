@@ -1,13 +1,17 @@
 <div>
-    <x-notifications />
+    <x-ts-toast />
     <div class="card mb-2">
         <div class="card-header">
             <h3 class="card-title">Endereço</h3>
             <div class="card-tools">
                 @if ($showAddress)
-                    <x-button wire:click="unloadAddress" flat icon="chevron-up" class="-mr-2" />
+                    <button type="button" wire:click="unloadAddress">
+                        <x-ts-icon name="chevron-up" class="h-h w-5 text-secondary-500" />
+                    </button>
                 @else
-                    <x-button wire:click="loadAddress" flat icon="chevron-down" class="-mr-2" />
+                    <button type="button" wire:click="loadAddress">
+                        <x-ts-icon name="chevron-down" class="h-h w-5 text-secondary-500" />
+                    </button>
                 @endif
             </div>
         </div>
@@ -37,45 +41,36 @@
                 </ul>
                 <div class="card-footer">
                     @if ($addressData)
-                        <x-button wire:click="openFormModal" flat label="Alterar endereço" sm class="w-full" />
+                        <x-ts-button wire:click="openFormModal" text="Alterar endereço" sm class="w-full" />
                     @else
-                        <x-button wire:click="openFormModal" flat label="Cadastrar endereço" sm class="w-full" />
+                        <x-ts-button wire:click="openFormModal" text="Cadastrar endereço" sm class="w-full" />
                     @endif
                 </div>
             </div>
         @endif
     </div>
 
-    <x-modal wire:model="showFormModal" max-width="md">
-        <div class="card w-full">
-            <form wire:submit="submit">
-                <div class="card-header">
-                    <h3 class="card-title">{{ $addressData ? 'Editar' : 'Adicionar' }} endereço</h3>
+    <x-ts-modal wire="showFormModal" :title="$addressData ? 'Editar endereço' : 'Adicionar endereço'" size="xl" id="address-modal">
+        <form id="address-form" wire:submit="submit">
+            <x-ts-errors class="mb-4 shadow" />
+            <div class="grid sm:grid-cols-6 gap-2">
+                <div class="sm:col-span-4">
+                    <x-ts-input label="Endereço" wire:model="address" required />
                 </div>
-                <div class="card-body display">
-                    <x-errors class="mb-4 shadow" />
-                    <div class="grid sm:grid-cols-6 gap-2">
-                        <div class="sm:col-span-4">
-                            <x-input label="Endereço" wire:model="address" required />
-                        </div>
-                        <div class="sm:col-span-2">
-                            <x-input label="Complemento" wire:model="complement" />
-                        </div>
-                        <div class="sm:col-span-3">
-                            <x-input label="Bairro" wire:model="district" required />
-                        </div>
-                        <div class="sm:col-span-3">
-                            <x-input label="Cidade" wire:model="city" required />
-                        </div>
-                    </div>
+                <div class="sm:col-span-2">
+                    <x-ts-input label="Complemento" wire:model="complement" />
                 </div>
-                <div class="card-footer">
-                    <div class="flex justify-end gap-x-2">
-                        <x-button type="submit" sm primary label="Salvar" />
-                        <x-button label="Cancelar" sm flat x-on:click="close" />
-                    </div>
+                <div class="sm:col-span-3">
+                    <x-ts-input label="Bairro" wire:model="district" required />
                 </div>
-            </form>
-        </div>
-    </x-modal>
+                <div class="sm:col-span-3">
+                    <x-ts-input label="Cidade" wire:model="city" required />
+                </div>
+            </div>
+        </form>
+        <x-slot:footer>
+            <x-ts-button type="submit" form="address-form" text="Salvar" primary />
+            <x-ts-button text="Cancelar" color="white" x-on:click="$modalClose('address-modal')" />
+        </x-slot>
+    </x-ts-modal>
 </div>

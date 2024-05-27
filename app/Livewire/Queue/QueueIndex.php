@@ -5,11 +5,11 @@ namespace App\Livewire\Queue;
 use App\Models\Queue;
 use Livewire\Component;
 use Livewire\WithPagination;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class QueueIndex extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
     use WithPagination;
 
     public $queues;

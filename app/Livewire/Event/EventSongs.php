@@ -5,11 +5,11 @@ namespace App\Livewire\Event;
 use App\Models\Category;
 use App\Models\Song;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class EventSongs extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $event;
     public $songs;

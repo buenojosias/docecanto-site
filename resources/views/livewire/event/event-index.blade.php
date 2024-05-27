@@ -16,12 +16,12 @@
                     <!-- INÍCIO DO CALENDÁRIO -->
                     <div class="mb-3 flex">
                         <div>
-                            <x-button wire:click="goToPreviusMonth" sm flat icon="chevron-left" />
+                            <x-ts-button wire:click="goToPreviusMonth" sm flat icon="chevron-left" />
                         </div>
                         <div class="grow text-center font-semibold text-gray-800">
                             {{ $monthLabels[$currentMonth] }}/{{ $currentYear }}</div>
                         <div>
-                            <x-button wire:click="goToNextMonth" sm flat icon="chevron-right" />
+                            <x-ts-button wire:click="goToNextMonth" sm flat icon="chevron-right" />
                         </div>
                     </div>
                     <div class="flex py-0.5">
@@ -52,7 +52,7 @@
                         @endfor
                     </div>
                     <!-- FIM DO CALENDÁRIO -->
-                    <x-button href="{{ route('events.create') }}" label="Adicionar evento"
+                    <x-ts-button href="{{ route('events.create') }}" label="Adicionar evento"
                         class="w-full mt-6 font-semibold" md primary />
                 </div>
                 <div class="md:col-span-3 px-4 md:pr-6">
@@ -82,7 +82,7 @@
                                     </a>
                                 </div>
                                 <div class="flex items-center">
-                                    <x-badge outline secondary :label="$event->members_count . ' confirmados'" />
+                                    <x-ts-badge outline secondary :label="$event->members_count . ' confirmados'" />
                                 </div>
                                 <div class="flex items-center px-2">
                                     <x-dropdown>

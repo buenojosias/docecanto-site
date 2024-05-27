@@ -13,15 +13,15 @@
                                     <td>{{ $member->name }}</td>
                                     <td class="w-4 px-0">
                                         <x-radio id="right-label" label="P" value="P"
-                                            wire:model="selectedAttendance.{{ $member->id }}" />
+                                            wire:model.live="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
                                         <x-radio id="right-label" label="F" value="F"
-                                            wire:model="selectedAttendance.{{ $member->id }}" />
+                                            wire:model.live="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
                                         <x-radio id="right-label" label="J" value="J"
-                                            wire:model="selectedAttendance.{{ $member->id }}" />
+                                            wire:model.live="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                 </tr>
                             @endforeach
@@ -29,8 +29,8 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <x-button type="submit" primary sm label="Salvar" />
-                    <x-button wire:click="resetAttendance" flat sm label="Resetar" />
+                    <x-ts-button type="submit" primary sm label="Salvar" />
+                    <x-ts-button wire:click="resetAttendance" flat sm label="Resetar" />
                 </div>
             </form>
         </div>
@@ -48,7 +48,7 @@
                             <td x-data="{ showNote: false }">
                                 {{ $member->name }}
                                 @if ($member->pivot->note)
-                                    <x-button @click="showNote = !showNote" xs flat primary icon="annotation" />
+                                    <x-ts-button @click="showNote = !showNote" xs flat primary icon="annotation" />
                                     <div x-show="showNote" class="w-full text-md text-gray-700 border-l-4 border-slate-600 pl-1.5">
                                         {{ $member->pivot->note }}
                                     </div>
@@ -59,7 +59,7 @@
                                 {{ $member->pivot->attendance }}
                             </td>
                             <td class="w-8">
-                                <x-button wire:click="openChangeModal({{ $member }})" outline xs label="Alterar" />
+                                <x-ts-button wire:click="openChangeModal({{ $member }})" outline xs label="Alterar" />
                             </td>
                         </tr>
                     @empty
@@ -70,7 +70,7 @@
         </div>
     </div>
     @if ($showChangeModal)
-        <x-modal wire:model="showChangeModal" max-width="md">
+        <x-modal wire:model.live="showChangeModal" max-width="md">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">Alterar registro</h3>
@@ -81,12 +81,12 @@
                             <x-input label="Membro" value="{{ $changeMember['name'] }}" readonly />
                         </div>
                         <div>
-                            <x-native-select wire:model="newAttendance" label="Novo status" required>
+                            <x-ts-select.native wire:model.live="newAttendance" label="Novo status" required>
                                 <option value="">Selecione</option>
                                 <option value="P">P</option>
                                 <option value="F">F</option>
                                 <option value="J">J</option>
-                            </x-native-select>
+                            </x-ts-select.native>
                         </div>
                         <div>
                             <x-textarea wire:model.live="newNote" rows="2" label="Comentário" />
@@ -94,8 +94,8 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-button wire:click="saveChange" primary label="Salvar" />
-                    <x-button sm flat label="Cancelar" x-on:click="close" />
+                    <x-ts-button wire:click="saveChange" primary label="Salvar" />
+                    <x-ts-button sm flat label="Cancelar" x-on:click="close" />
                 </div>
             </div>
         </x-modal>

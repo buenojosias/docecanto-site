@@ -4,11 +4,11 @@ namespace App\Livewire\Category;
 
 use App\Models\Category;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class CategoryIndex extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $categories;
     public $showFormModal = false;

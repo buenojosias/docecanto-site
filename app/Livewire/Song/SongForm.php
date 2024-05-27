@@ -4,11 +4,11 @@ namespace App\Livewire\Song;
 
 use App\Models\Song;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class SongForm extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $song;
     public $categories;

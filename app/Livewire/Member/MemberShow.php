@@ -5,11 +5,11 @@ namespace App\Livewire\Member;
 use App\Models\Member;
 use Carbon\Carbon;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class MemberShow extends Component
 {
-    use WireUiActions;
+    use Interactions;
 
     public $member;
 

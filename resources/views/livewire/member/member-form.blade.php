@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <form wire:submit="submit">
-        <x-errors class="mb-4 shadow" />
+        <x-ts-errors class="mb-4 shadow" />
         <div class="form-card mb-4">
             <div class="heading">
                 <h3>Informações pessoais</h3>
@@ -13,27 +13,27 @@
             <div class="body">
                 <div class="grid sm:grid-cols-4 gap-4">
                     <div class="sm:col-span-4">
-                        <x-input wire:model="name" label="Nome" placeholder="Informe o nome completo" />
+                        <x-ts-input wire:model="name" label="Nome" placeholder="Informe o nome completo" />
                     </div>
                     <div class="sm:col-span-2">
-                        <x-input type="date" wire:model="birth" label="Data de nascimento" />
+                        <x-ts-input type="date" wire:model="birth" label="Data de nascimento" />
                     </div>
                     <div class="sm:col-span-2">
-                        <x-input type="date" wire:model="registration_date" label="Data de cadastro" />
+                        <x-ts-input type="date" wire:model="registration_date" label="Data de cadastro" />
                     </div>
                     <div class="sm:col-span-2">
-                        <x-native-select wire:model="status" label="Status">
+                        <x-ts-select.native wire:model="status" label="Status">
                             <option value="">Selecione</option>
                             <option value="Ativo">Ativo</option>
                             <option value="Inativo">Inativo</option>
                             <option value="Afastado">Afastado</option>
                             <option value="Desistente">Desistente</option>
-                        </x-native-select>
+                        </x-ts-select.native>
                     </div>
                 </div>
             </div>
             <div class="footer">
-                <x-button sm primary type="submit" primary label="Salvar" />
+                <x-ts-button primary type="submit" primary text="Salvar" />
             </div>
             {{-- <div class="heading border-t">
                 <h3>Informações parentais</h3>

@@ -4,11 +4,11 @@ namespace App\Livewire\Event;
 
 use App\Models\Event;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class EventShow extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $event;
 

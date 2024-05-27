@@ -2,13 +2,12 @@
 
 namespace App\Livewire\Member;
 
-use App\Models\Address;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class MemberAddress extends Component
 {
-    use WireUiActions;
+    use Interactions;
 
     public $member;
     public $addressData;
@@ -53,18 +52,18 @@ class MemberAddress extends Component
         if($this->addressData) {
             try {
                 $this->addressData->update($data);
-                $this->notification()->success($description = 'Endereço atualizado com sucesso.');
+                $this->toast()->success('Endereço atualizado com sucesso.')->send();
                 $this->showFormModal = false;
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao atualizar endereço.');
+                $this->toast()->error('Erro ao atualizar endereço.')->send();
             }
         } else {
             try {
                 $this->addressData = $this->member->address()->create($data);
-                $this->notification()->success($description = 'Endereço cadastrado com sucesso.');
+                $this->toast()->success('Endereço cadastrado com sucesso.')->send();
                 $this->showFormModal = false;
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao cadastrar endereço.');
+                $this->toast()->error('Erro ao cadastrar endereço.')->send();
                 dump($th);
             }
         }

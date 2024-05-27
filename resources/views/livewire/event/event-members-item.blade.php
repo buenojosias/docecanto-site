@@ -5,11 +5,11 @@
     @if ($member->event)
         <div class="mr-1">
             @if ($member->answer === 'Sim')
-                <x-badge outline positive label="Sim" />
+                <x-ts-badge outline positive label="Sim" />
             @elseif ($member->answer === 'Não')
-                <x-badge outline negative label="Não" />
+                <x-ts-badge outline negative label="Não" />
             @else
-                <x-badge outline primary label="Talvez" />
+                <x-ts-badge outline primary label="Talvez" />
             @endif
         </div>
         <x-dropdown>
@@ -25,7 +25,7 @@
         </x-dropdown>
     @endif
     @if($showFormModal)
-        <x-modal wire:model="showFormModal" max-width="sm">
+        <x-modal wire:model.live="showFormModal" max-width="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -33,16 +33,16 @@
                     </h3>
                 </div>
                 <div class="card-body display">
-                    <x-native-select wire:model="inputAnswer" label="Resposta" required>
+                    <x-ts-select.native wire:model.live="inputAnswer" label="Resposta" required>
                         <option value="">Selecione</option>
                         <option value="Sim">Sim</option>
                         <option value="Não">Não</option>
                         <option value="Talvez">Talvez</option>
-                    </x-native-select>
+                    </x-ts-select.native>
                 </div>
                 <div class="card-footer space-x-2">
-                    <x-button wire:click="submit" sm type="submit" primary label="Salvar" />
-                    <x-button sm flat label="Cancelar" x-on:click="close" />
+                    <x-ts-button wire:click="submit" sm type="submit" primary label="Salvar" />
+                    <x-ts-button sm flat label="Cancelar" x-on:click="close" />
                 </div>
             </div>
         </x-modal>

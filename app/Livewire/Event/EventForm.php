@@ -5,11 +5,11 @@ namespace App\Livewire\Event;
 use App\Models\Event;
 use Carbon\Carbon;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class EventForm extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $action;
     public $event;

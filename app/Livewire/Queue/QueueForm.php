@@ -4,11 +4,11 @@ namespace App\Livewire\Queue;
 
 use App\Models\Queue;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class QueueForm extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $action;
     public $data;

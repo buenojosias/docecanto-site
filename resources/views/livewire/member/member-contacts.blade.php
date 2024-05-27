@@ -1,12 +1,16 @@
 <div>
     <div class="card mb-2">
-        <div class="card-header">
+        <div class="card-header" title="Contatos">
             <h3 class="card-title">Contatos</h3>
             <div class="card-tools">
                 @if ($showContacts)
-                    <x-button wire:click="unloadContacts" flat icon="chevron-up" class="-mr-2" />
+                    <x-ts-button wire:click="unloadContacts" class="-mr-2">
+                        <x-ts-icon name="chevron-up" class="h-5 w-5" />
+                    </x-ts-button>
                 @else
-                    <x-button wire:click="loadContacts" flat icon="chevron-down" class="-mr-2" />
+                    <x-ts-button wire:click="loadContacts" class="-mr-2">
+                        <x-ts-icon name="chevron-down" class="h-5 w-5" />
+                    </x-ts-button>
                 @endif
             </div>
         </div>
@@ -20,11 +24,12 @@
                                 <p class="font-medium text-gray-900">{{ $contact->value }}</p>
                             </div>
                             <div class="flex items-center">
-                                <x-dropdown>
-                                    <x-dropdown.item wire:click="openFormModal({{ $contact }})" icon="pencil"
+                                <x-ts-dropdown>
+                                    <x-ts-dropdown.items wire:click="openFormModal({{ $contact }})" icon="pencil"
                                         label="Editar" />
-                                    <x-dropdown.item wire:click="removeContact({{ $contact }})" icon="trash" label="Remover" />
-                                </x-dropdown>
+                                    <x-ts-dropdown.items wire:click="removeContact({{ $contact }})" icon="trash"
+                                        label="Remover" />
+                                </x-ts-dropdown>
                             </div>
                         </li>
                     @empty
@@ -33,38 +38,38 @@
                 </ul>
             </div>
             <div class="card-footer">
-                <x-button wire:click="openFormModal" flat label="Adicionar contato" sm class="w-full" />
+                <x-ts-button x-on:click="$modalOpen('contact-modal')" text="Adicionar contato" sm class="w-full" />
             </div>
         @endif
     </div>
 
-    <x-modal wire:model="showFormModal" max-width="sm">
+    <x-ts-modal id="contact-modal" max-width="sm">
         <div class="card w-full">
             <form wire:submit="submit">
                 <div class="card-header">
                     <h3 class="card-title">{{ $formContact ? 'Editar' : 'Adicionar' }} contato</h3>
                 </div>
                 <div class="card-body display">
-                    <x-errors class="mb-4 shadow" />
+                    <x-ts-errors class="mb-4 shadow" />
                     <div class="grid sm:grid-cols-4 gap-2">
                         <div class="sm:col-span-4">
-                            <x-native-select label="Campo" wire:model.live="field" required>
+                            <x-ts-select.native label="Campo" wire:model.live="field" required>
                                 <option value="">Selecione</option>
                                 <option value="WhatsApp">WhatsApp</option>
                                 <option value="E-mail">E-mail</option>
                                 <option value="Facebook">Facebook</option>
                                 <option value="Instagram">Instagram</option>
-                            </x-native-select>
+                            </x-ts-select.native>
                         </div>
                         <div class="sm:col-span-4">
                             @if ($field === 'WhatsApp')
-                                <x-phone wire:model="value" label="{{ $field }}"
-                                    mask="['(##) ####-####', '(##) #####-####']" emitFormatted="true" required />
+                                <x-ts-input wire:model="value" label="{{ $field }}" x-mask="(99) 99999-9999"
+                                    required />
                             @elseif ($field === 'E-mail')
-                                <x-input type="email" wire:model="value" label="{{ $field }}"
+                                <x-ts-input type="email" wire:model="value" label="{{ $field }}"
                                     required />
                             @elseif ($field === 'Facebook' || $field === 'Instagram')
-                                <x-input wire:model="value" label="{{ $field }}" required />
+                                <x-ts-input wire:model="value" label="{{ $field }}" required />
                             @else
                                 <p>Selecione o campo</p>
                             @endif
@@ -73,11 +78,11 @@
                 </div>
                 <div class="card-footer">
                     <div class="flex justify-end gap-x-2">
-                        <x-button type="submit" sm primary label="Salvar" />
-                        <x-button label="Cancelar" sm flat x-on:click="close" />
+                        <x-ts-button type="submit" sm primary text="Salvar" />
+                        <x-ts-button text="Cancelar" sm x-on:click="close" />
                     </div>
                 </div>
             </form>
         </div>
-    </x-modal>
+    </x-ts-modal>
 </div>

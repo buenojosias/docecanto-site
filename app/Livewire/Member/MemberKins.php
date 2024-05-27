@@ -5,11 +5,11 @@ namespace App\Livewire\Member;
 use App\Models\Kin;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class MemberKins extends Component
 {
-    use WireUiActions;
+    use Interactions;
 
     public $member;
     public $kins = [];
@@ -66,16 +66,16 @@ class MemberKins extends Component
                 'kinship' => $this->kinship,
             ]);
         } catch (\Throwable $th) {
-            $this->dialog(['description'=>'Ocorreu um erro ao cadastrar/vincular familiar.','icon'=>'error']);
+            $this->dialog()->error('Ocorreu um erro ao cadastrar/vincular familiar.')->send();
             dd($th);
         }
         if($kin) {
             DB::commit();
-            $this->notification()->success($description = 'Familiar cadastrado/vinculado com sucesso');
+            $this->toast()->success('Familiar cadastrado/vinculado com sucesso')->send();
             $this->showFormModal = false;
         } else {
             DB::rollback();
-            $this->dialog(['description'=>'Ocorreu um erro ao cadastrar/vincular familiar.','icon'=>'error']);
+            $this->dialog()->error('Ocorreu um erro ao cadastrar/vincular familiar.')->send();
         }
     }
 

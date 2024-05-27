@@ -4,11 +4,11 @@ namespace App\Livewire\Member;
 
 use App\Models\Profile;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class MemberProfile extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $member;
     public $questions;

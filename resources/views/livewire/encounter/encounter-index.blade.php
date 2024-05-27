@@ -12,12 +12,12 @@
         </nav>
     </x-slot>
     <div class="sm:max-w-lg sm:mx-auto">
-        <x-button href="{{ route('encounters.create') }}" primary label="Adicionar" />
+        <x-ts-button href="{{ route('encounters.create') }}" primary label="Adicionar" />
         <div class="card mt-4">
             <div class="card-header relative" x-data="{ filters: false }">
                 <h3 class="title"></h3>
                 <div class="card-tools py-1">
-                    <x-button flat icon="funnel" @click="filters = !filters" />
+                    <x-ts-button flat icon="funnel" @click="filters = !filters" />
                 </div>
                 <div x-show="filters" @click.outside="filters = false" class="filters">
                     <div>
@@ -62,7 +62,7 @@
                                     @endif
                                 @endif
                                 <td>
-                                    <x-button href="{{ route('encounters.edit', $encounter) }}" sm flat icon="pencil" />
+                                    <x-ts-button href="{{ route('encounters.edit', $encounter) }}" sm flat icon="pencil" />
                                 </td>
                             </tr>
                         @empty

@@ -3,7 +3,7 @@
         <div class="card-header">
             <h3 class="card-title">Músicas</h3>
             <div class="card-tools">
-                <x-button wire:click="openFormModal" flat icon="plus" class="-mr-3" />
+                <x-ts-button wire:click="openFormModal" flat icon="plus" class="-mr-3" />
             </div>
         </div>
         <div class="card-body">
@@ -17,13 +17,13 @@
                                 </a>
                             </div>
                             <div class="p-2">
-                                <x-button wire:click="removeSong({{ $song->id }})" negative xs flat
+                                <x-ts-button wire:click="removeSong({{ $song->id }})" negative xs flat
                                     icon="trash" />
                             </div>
                         </div>
                         @if ($song->pivot->comment)
                             <div class="-mt-1 pb-2 pl-1 flex space-x-2 text-gray-700">
-                                <x-icon name="annotation" class="w-3" />
+                                <x-ts-icon name="annotation" class="w-3" />
                                 <small>{{ $song->pivot->comment ?? '' }}</small>
                             </div>
                         @endif
@@ -33,37 +33,37 @@
         </div>
     </div>
     @if ($showFormModal)
-        <x-modal wire:model="showFormModal" max-width="sm">
+        <x-modal wire:model.live="showFormModal" max-width="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">Adicionar música</h3>
                 </div>
                 <div class="card-body display space-y-4">
-                    <x-native-select wire:model.live="dataCategory" label="Categoria">
+                    <x-ts-select.native wire:model.live="dataCategory" label="Categoria">
                         <option value="">Selecione</option>
                         @foreach ($inputCategories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
-                    </x-native-select>
+                    </x-ts-select.native>
                     @if ($dataCategory)
-                        <x-native-select wire:model.live="dataSong" label="Música">
+                        <x-ts-select.native wire:model.live="dataSong" label="Música">
                             <option value="">Selecione</option>
                             @foreach ($inputSongs as $song)
                                 <option value="{{ $song->id }}">{{ $song->number }}. {{ $song->title }}</option>
                             @endforeach
-                        </x-native-select>
-                        <x-input wire:model="dataComment" label="Comentário" />
+                        </x-ts-select.native>
+                        <x-input wire:model.live="dataComment" label="Comentário" />
                     @else
-                        <x-native-select label="Música" disabled>
+                        <x-ts-select.native label="Música" disabled>
                             <option value="">Selecione uma categoria</option>
-                        </x-native-select>
+                        </x-ts-select.native>
                     @endif
                 </div>
                 <div class="card-footer flex space-x-2">
                     {{-- @if ($dataCategory) --}}
-                    <x-button wire:click="submit" sm primary label="Salvar" />
+                    <x-ts-button wire:click="submit" sm primary label="Salvar" />
                     {{-- @endif --}}
-                    <x-button sm flat label="Cancelar" x-on:click="close" />
+                    <x-ts-button sm flat label="Cancelar" x-on:click="close" />
                 </div>
             </div>
         </x-modal>

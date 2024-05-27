@@ -3,11 +3,11 @@
 namespace App\Livewire\Audio;
 
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class AudioPlayer extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $media;
     public $path;

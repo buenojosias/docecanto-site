@@ -5,11 +5,11 @@ namespace App\Livewire\Member;
 use App\Models\Member;
 use Livewire\Component;
 use Livewire\WithPagination;
-use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class MemberForm extends Component
 {
-    use WireUiActions;
+    use Interactions;
     use WithPagination;
 
     public $method;
@@ -42,7 +42,7 @@ class MemberForm extends Component
                 $this->member->update($data);
                 return redirect(route('members.show', $this->member));
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao atualizar integrante.');
+                $this->toast()->error('Erro ao atualizar integrante.')->send();
             }
             $this->member->update($data);
         } elseif ($this->method === 'create') {
@@ -50,7 +50,7 @@ class MemberForm extends Component
                 $this->member = Member::create($data);
                 return redirect(route('members.show', $this->member));
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao cadastrar integrante.');
+                $this->toast()->error('Erro ao cadastrar integrante.')->send();
             }
         }
     }

@@ -6,11 +6,11 @@ use App\Models\Member;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class MemberIndex extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
     use WithPagination;
 
     public $status = 'Ativo';

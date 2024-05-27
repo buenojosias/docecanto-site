@@ -5,11 +5,11 @@ namespace App\Livewire\Rating;
 use App\Models\Note;
 use App\Models\Rating;
 use Livewire\Component;
-use WireUi\Traits\WireUiActions;
+// use WireUi\Traits\WireUiActions;
 
 class RatingForm extends Component
 {
-    use WireUiActions;
+    // use WireUiActions;
 
     public $member;
     public $data;
