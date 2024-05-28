@@ -5,7 +5,7 @@
 
     <div class="sm:grid sm:grid-cols-4 gap-4">
         <div>
-            <x-ts-button href="{{ route('songs.create') }}" primary label="Adicionar nova" class="w-full" />
+            <x-ts-button href="{{ route('songs.create') }}" primary text="Adicionar nova" class="w-full" />
             <div class="card my-4">
                 <div class="card-header">
                     <h3 class="card-title">Categorias</h3>
@@ -14,11 +14,15 @@
                     <ul>
                         @foreach ($categories as $category)
                             <li class="flex py-1.5 px-4 border-b">
-                                <div wire:click="selectCategory({{ $category }})" class="cursor-pointer">
+                                <div wire:click="selectCategory({{ $category->id }})" class="cursor-pointer">
                                     {{ $category->name }}
                                 </div>
                             </li>
                         @endforeach
+                        <li class="flex justify-between py-2 px-4">
+                            <x-ts-label label="Apenas fixadas" />
+                            <x-ts-toggle wire:model.live="detached" sm />
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -27,12 +31,14 @@
         <div class="sm:col-span-3">
             @if ($filter)
                 <div class="card mb-4">
-                    <div class="card-body display flex justify-between text-sm">
+                    <div class="card-body p-2 flex justify-between items-center text-sm">
                         <div>
-                            Filtro de categoria: {{ $filter['name'] }}
+                            Filtro de categoria: {{ $categories->where('id', $filter)->first()->name }}
                         </div>
                         <div>
-                            <x-ts-button wire:click="selectCategory" xs flat icon="x-mark" />
+                            <x-ts-button wire:click="selectCategory" color="white">
+                                <x-ts-icon name="x-mark" class="h-5 w-5" />
+                            </x-ts-button>
                         </div>
                     </div>
                 </div>
@@ -61,11 +67,13 @@
                                     </td>
                                     <td>
                                         @foreach ($song->categories as $category)
-                                            <x-ts-badge xs flat label="{{ $category->name }}" />
+                                            <x-ts-badge xs color="secondary" light text="{{ $category->name }}" />
                                         @endforeach
                                     </td>
                                     <td class="text-right">
-                                        <x-ts-button href="{{ route('songs.edit', $song->number) }}" flat sm icon="pencil" />
+                                        <x-ts-button href="{{ route('songs.edit', $song->number) }}" sm color="white">
+                                            <x-ts-icon name="pencil" class="h-3 w-3" />
+                                        </x-ts-button>
                                     </td>
                                 </tr>
                             @endforeach

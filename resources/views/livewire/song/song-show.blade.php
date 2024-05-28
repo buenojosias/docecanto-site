@@ -1,5 +1,5 @@
 <div>
-    <x-notifications />
+    <x-ts-toast />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Música</h2>
     </x-slot>
@@ -23,12 +23,12 @@
                         {!! $song->lyrics !!}
                     </div>
                 </div>
-                <div class="card-footer">
-                    <x-ts-button href="{{ route('songs.edit', $song->number) }}" flat primary label="Editar" />
+                <div class="card-footer space-x-2">
+                    <x-ts-button href="{{ route('songs.edit', $song->number) }}" flat primary text="Editar" />
                     @if ($song->detached)
-                        <x-ts-button wire:click="removeDetach" flat label="Desafixar" />
+                        <x-ts-button wire:click="removeDetach" text="Desafixar" />
                     @else
-                        <x-ts-button wire:click="addDetach" flat primary label="Fixar" />
+                        <x-ts-button wire:click="addDetach" primary text="Fixar" />
                     @endif
                 </div>
             </div>

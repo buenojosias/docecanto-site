@@ -42,7 +42,7 @@
                             </td>
                             <td>{{ $queue->age }}</td>
                             <td>
-                                <x-ts-badge size="sm" text="{{ $queue->status }}" />
+                                <x-ts-label label="{{ $queue->status }}" />
                             </td>
                             <td>
                                 <x-ts-button href="{{ route('queues.edit', $queue) }}" sm icon="pencil" />

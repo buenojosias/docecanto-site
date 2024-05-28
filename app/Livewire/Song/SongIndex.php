@@ -4,17 +4,23 @@ namespace App\Livewire\Song;
 
 use App\Models\Category;
 use App\Models\Song;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class SongIndex extends Component
 {
-    // use WireUiActions;
+    use Interactions;
     use WithPagination;
 
     public $categories;
-    public $filter;
+
+    #[Url('categoria', except: null)]
+    public $filter = null;
+
+    #[Url('destacadas', except: false)]
+    public $detached = false;
 
     public function mount()
     {
@@ -24,7 +30,7 @@ class SongIndex extends Component
     public function selectCategory($category = null)
     {
         $this->filter = $category;
-        $this->resetPage();
+        // $this->resetPage();
     }
 
     public function render()
@@ -32,10 +38,12 @@ class SongIndex extends Component
         $songs = Song::query()
             ->select(['id','number','title','detached'])
             ->when($this->filter, function($query) {
-                $filter = $this->filter['id'];
-                $query->whereHas('categories', function ($query) use ($filter) {
-                    $query->where('id', $filter);
+                $query->whereHas('categories', function ($query) {
+                    $query->where('id', $this->filter);
                 });
+            })
+            ->when($this->detached, function($query) {
+                $query->where('detached', true);
             })
             ->orderBy('number')
             ->with('categories');

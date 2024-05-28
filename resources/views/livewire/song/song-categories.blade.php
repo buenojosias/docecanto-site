@@ -1,5 +1,5 @@
 <div>
-    <x-dialog />
+    <x-ts-dialog />
     <div class="card mb-4">
         <div class="card-header">
             <h3 class="card-title">Categoria(s)</h3>
@@ -13,7 +13,9 @@
                     <li class="px-4 py-2 border-b flex">
                         <div class="grow">{{ $category->name }}</div>
                         <div>
-                            <x-ts-button wire:click="removeCategory({{ $category }})" xs flat negative icon="trash" class="-mr-1" />
+                            <x-ts-button wire:click="removeCategory({{ $category }})" color="white">
+                                <x-ts-icon name="trash" class="h-4 w-4" color="red" />
+                            </x-ts-button>
                         </div>
                     </li>
                 @endforeach
@@ -21,24 +23,17 @@
         </div>
     </div>
     @if ($showModal)
-        <x-modal wire:model.live="showModal" max-width="sm">
-            <div class="card w-full">
-                <div class="card-header">
-                    <h3 class="card-title">Vincular categoria</h3>
-                </div>
-                <div class="card-body display">
-                    <x-ts-select.native wire:model.live="selectedCategory">
-                        <option value="">Selecione</option>
-                        @foreach ($categories as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                        @endforeach
-                    </x-ts-select.native>
-                </div>
-                <div class="card-footer flex space-x-2">
-                    <x-ts-button wire:click="submit" sm primary label="Salvar" />
-                    <x-ts-button sm flat label="Cancelar" x-on:click="close" />
-                </div>
-            </div>
-        </x-modal>
+        <x-ts-modal wire="showModal" size="sm" title="Vincular categoria" id="category-modal">
+            <x-ts-select.native wire:model.live="selectedCategory">
+                <option value="">Selecione</option>
+                @foreach ($categories as $cat)
+                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                @endforeach
+            </x-ts-select.native>
+            <x-slot:footer>
+                <x-ts-button wire:click="submit" sm primary text="Salvar" />
+                <x-ts-button sm flat text="Cancelar" x-on:click="$modalClose('category-modal')" />
+            </x-slot>
+        </x-ts-modal>
     @endif
 </div>

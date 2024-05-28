@@ -4,11 +4,11 @@ namespace App\Livewire\Song;
 
 use App\Models\Song;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class SongForm extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $song;
     public $categories;
@@ -49,9 +49,9 @@ class SongForm extends Component
                 $this->song = Song::query()->create($data);
                 $this->songId = $this->song->id;
                 $this->action = 'edit';
-                $this->notification()->success($description = 'Música cadastrada com sucesso.');
+                $this->toast()->success('Música cadastrada com sucesso.')->send();
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao cadastrar música');
+                $this->toast()->error('Erro ao cadastrar música')->send();
                 dd($th);
             }
         } else {
@@ -64,9 +64,9 @@ class SongForm extends Component
             ]);
             try {
                 Song::query()->findOrFail($this->songId)->update($data);
-                $this->notification()->success($description = 'Alterações salvas com sucesso.');
+                $this->toast()->success('Alterações salvas com sucesso.')->send();
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao salvar alterações');
+                $this->toast()->error('Erro ao salvar alterações')->send();
                 dd($th);
             }
         }

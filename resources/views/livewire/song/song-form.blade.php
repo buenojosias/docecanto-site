@@ -1,5 +1,5 @@
 <div>
-    <x-notifications />
+    <x-ts-toast />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $song ? 'Editar' : 'Cadastrar' }} música
@@ -8,27 +8,27 @@
     <div class="sm:grid sm:grid-cols-6 gap-6">
         <div class="col-span-4">
             <div class="card mb-4">
-                <x-errors class="mb-4" />
+                <x-ts-errors class="mb-4" />
                 <div class="card-body p-2 sm:flex space-x-2">
                     <div class="w-1/6">
-                        <x-input wire:model.live="number" type="number" min="1" label="Número" />
+                        <x-ts-input wire:model="number" type="number" min="1" label="Número" />
                     </div>
                     <div class="grow">
-                        <x-input wire:model.live="title" label="Título" />
+                        <x-ts-input wire:model="title" label="Título" />
                     </div>
                 </div>
                 <div class="card-body p-2">
-                    <x-input wire:model.live="resume" label="Versão resumida" />
+                    <x-ts-input wire:model="resume" label="Versão resumida" />
                 </div>
                 <div class="card-body p-2">
                     <div wire:ignore>
-                        <textarea wire:model.live="lyrics" class="min-h-fit h-48 " name="lyrics" id="lyrics"></textarea>
+                        <textarea wire:model="lyrics" class="min-h-fit h-48 " name="lyrics" id="lyrics"></textarea>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-ts-button wire:click="submit" primary label="Salvar" />
+                    <x-ts-button wire:click="submit" primary text="Salvar" />
                     @if ($song)
-                        <x-ts-button href="{{ route('songs.show', $song->number) }}" flat label="Ir para música" />
+                        <x-ts-button href="{{ route('songs.show', $song->number) }}" color="white" text="Ir para música" />
                     @endif
                 </div>
             </div>

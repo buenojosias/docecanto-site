@@ -4,13 +4,11 @@ namespace App\Livewire\Song;
 
 use App\Models\Song;
 use Livewire\Component;
-use Livewire\WithPagination;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class SongShow extends Component
 {
-    // use WireUiActions;
-    use WithPagination;
+    use Interactions;
 
     public $song;
     public $audio;
@@ -25,9 +23,9 @@ class SongShow extends Component
     {
         try {
             $this->song->update(['detached' => true]);
-            $this->notification()->success($description = 'Música fixada.');
+            $this->toast()->success('Música fixada.')->send();
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao fixar música.');
+            $this->toast()->error('Erro ao fixar música.')->send();
         }
     }
 
@@ -35,9 +33,9 @@ class SongShow extends Component
     {
         try {
             $this->song->update(['detached' => false]);
-            $this->notification()->success($description = 'Música desafixada.');
+            $this->toast()->success('Música desafixada.')->send();
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao desafixar música.');
+            $this->toast()->error('Erro ao desafixar música.')->send();
         }
     }
 

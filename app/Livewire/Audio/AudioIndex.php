@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use ProtoneMedia\LaravelFFMpeg\Filesystem\Media;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class AudioIndex extends Component
 {
-    // use WireUiActions;
+    use Interactions;
     use WithFileUploads;
 
     public $song;
@@ -22,7 +22,7 @@ class AudioIndex extends Component
     public $type;
     public $validFile;
     private $filename, $path;
-    public $types = [ 'Vocal', 'Playback', 'Guia', 'PB com guia' ];
+    public $types = ['Vocal', 'Playback', 'Guia', 'PB com guia'];
 
     public function mount(Song $song)
     {
@@ -35,7 +35,8 @@ class AudioIndex extends Component
         $this->showUploadModal = true;
     }
 
-    public function updated() {
+    public function updated()
+    {
         $this->validate([
             'file' => 'required',
         ]);
@@ -44,19 +45,20 @@ class AudioIndex extends Component
 
     public function submit()
     {
-        $this->filename = $this->song->number .'-'. \Str::slug($this->song->title, '_').'-'.time();
+        $this->filename = $this->song->number . '-' . \Str::slug($this->song->title, '_') . '-' . time();
         $this->path = $this->file->store('audios', 's3');
 
-        if($this->path) {
+        if ($this->path) {
             try {
                 Song::query()->findOrFail($this->song->id)->audios()->create([
                     'type' => $this->type,
                     'filename' => $this->filename,
                     'path' => $this->path
                 ]);
-                $this->notification()->success('Áudio adicionado com sucesso.');
+                $this->showUploadModal = false;
+                $this->toast()->success('Áudio adicionado com sucesso.')->send();
             } catch (\Throwable $th) {
-                $this->notification()->success('Erro ao adicionar áudio.');
+                $this->toast()->success('Erro ao adicionar áudio.')->send();
                 dd($th);
             }
         }
@@ -64,25 +66,24 @@ class AudioIndex extends Component
 
     public function deleteAudio($audio)
     {
-        $this->dialog()->confirm([
-            'title' => 'Deseja excluir este áudio?',
-            'method' => 'doDeleteAudio',
-            'params' => ['id' => $audio['id']],
-            'acceptLabel' => 'Confirmar',
-            'rejectLabel' => 'Cancelar',
-        ]);
+        $this->dialog()
+            ->question('Deseja excluir este áudio?')
+            ->confirm('Confirmar', 'doDeleteAudio', $audio['id'])
+            ->cancel('Cancelar')
+            ->send();
     }
 
     public function doDeleteAudio($id)
     {
         $audio = Audio::query()->findOrFail($id)->first();
-        Storage::delete($audio->path);
-        try {
-            $audio->delete();
-            $this->notification()->success('Áudio excluído com sucesso.');
-        } catch (\Throwable $th) {
-            $this->notification()->success('Erro ao excluir áudio.');
-            dd($th);
+        if (Storage::delete($audio->path)) {
+            try {
+                $audio->delete();
+                $this->toast()->success('Áudio excluído com sucesso.')->send();
+            } catch (\Throwable $th) {
+                $this->toast()->success('Erro ao excluir áudio.')->send();
+                dd($th);
+            }
         }
     }
 
