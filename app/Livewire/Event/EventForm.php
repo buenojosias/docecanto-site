@@ -5,11 +5,11 @@ namespace App\Livewire\Event;
 use App\Models\Event;
 use Carbon\Carbon;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class EventForm extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $action;
     public $event;
@@ -58,17 +58,17 @@ class EventForm extends Component
                 $this->event = Event::query()->create($data);
                 $this->eventId = $this->event->id;
                 $this->action = 'edit';
-                $this->notification()->success($description = 'Evento cadastrado com sucesso.');
+                $this->toast()->success('Evento cadastrado com sucesso.')->send();
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao cadastrar evento');
+                $this->toast()->error('Erro ao cadastrar evento')->send();
                 dd($th);
             }
         } else {
             try {
                 Event::query()->findOrFail($this->eventId)->update($data);
-                $this->notification()->success($description = 'Alterações salvas com sucesso.');
+                $this->toast()->success('Alterações salvas com sucesso.')->send();
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao salvar alterações');
+                $this->toast()->error('Erro ao salvar alterações')->send();
                 dd($th);
             }
         }

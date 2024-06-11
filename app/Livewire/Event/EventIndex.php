@@ -7,11 +7,11 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class EventIndex extends Component
 {
-    // use WireUiActions;
+    use Interactions;
     use WithPagination;
 
     public $dayLabels = array('DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB');
@@ -106,22 +106,20 @@ class EventIndex extends Component
 
     public function removeEvent($event): void
     {
-        $this->dialog()->confirm([
-            'title' => 'Remover evento',
-            'description' => 'Tem certeza que deseja remover o evento '.$event['title'].', do dia '.\Carbon\Carbon::parse($event['date'])->format('d/m/Y').'?',
-            'method' => 'doRemoveEvent',
-            'params' => ['event' => $event['id']],
-            'acceptLabel' => 'Confirmar',
-            'rejectLabel' => 'Cancelar',
-        ]);
+        $this->dialog()
+            ->question('Remover evento',
+                'Tem certeza que deseja remover o evento '.$event['title'].', do dia '.\Carbon\Carbon::parse($event['date'])->format('d/m/Y').'?')
+            ->confirm(method: 'doRemoveEvent', params: $event['id'])
+            ->cancel()
+            ->send();
     }
 
     public function doRemoveEvent($event) {
         try {
             Event::query()->where('id', $event)->delete();
-            $this->notification()->success($description = 'Evento removido com sucesso.');
+            $this->toast()->success('Evento removido com sucesso.')->send();
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Ocorreu um erro ao remover evento.');
+            $this->toast()->error('Ocorreu um erro ao remover evento.')->send();
             dd($th);
         }
     }

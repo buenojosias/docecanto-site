@@ -3,11 +3,11 @@
 namespace App\Livewire\Event;
 
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class EventMembersItem extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $event;
     public $member;
@@ -41,32 +41,31 @@ class EventMembersItem extends Component
 
         try {
             $this->member->events()->syncWithoutDetaching([$this->event->id => ['answer' => $this->inputAnswer]]);
-            $this->notification()->success($description = 'Resposta adicionada com sucesso.');
+            $this->toast()->success('Resposta adicionada com sucesso.')->send();
             $this->showFormModal = false;
             $this->inputAnswer = null;
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao adicionar resposta.');
+            $this->toast()->error('Erro ao adicionar resposta.')->send();
             dump($th);
         }
     }
 
     public function removeAnswer(): void
     {
-        $this->dialog()->confirm([
-            'title' => 'Deseja remover esta resposta?',
-            'method' => 'doRemoveAnswer',
-            'acceptLabel' => 'Confirmar',
-            'rejectLabel' => 'Cancelar',
-        ]);
+        $this->dialog()
+        ->question('Deseja remover esta resposta?')
+        ->confirm(method: 'doRemoveAnswer')
+        ->cancel()
+        ->send();
     }
 
     public function doRemoveAnswer()
     {
         try {
             $this->member->events()->detach($this->event->id);
-            $this->notification()->success($description = 'Resposta removida.');
+            $this->toast()->success('Resposta removida.')->send();
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao remover resposta.');
+            $this->toast()->error('Erro ao remover resposta.')->send();
             dump($th);
         }
     }

@@ -5,11 +5,11 @@ namespace App\Livewire\Event;
 use App\Models\Category;
 use App\Models\Song;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class EventSongs extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $event;
     public $songs;
@@ -38,9 +38,9 @@ class EventSongs extends Component
         if (is_numeric($this->dataSong) && in_array($this->dataSong, $availableSongs)) {
             try {
                 $this->event->songs()->attach($this->dataSong, ['comment' => $this->dataComment]);
-                $this->notification()->success('Música adicionada com sucesso.');
+                $this->toast()->success('Música adicionada com sucesso.')->send();
             } catch (\Throwable $th) {
-                $this->notification()->error('Erro ao adicionar música.');
+                $this->toast()->error('Erro ao adicionar música.')->send();
                 dd($th);
             }
         }
@@ -48,23 +48,21 @@ class EventSongs extends Component
 
     public function removeSong($song): void
     {
-        $this->dialog()->confirm([
-            'title' => 'Deseja remover esta música do evento?',
-            'method' => 'doRemoveSong',
-            'params' => ['id' => $song],
-            'acceptLabel' => 'Confirmar',
-            'rejectLabel' => 'Cancelar',
-        ]);
+        $this->dialog()
+            ->question('Deseja remover esta música do evento?')
+            ->confirm(method: 'doRemoveSong', params: $song)
+            ->cancel()
+            ->send();
     }
 
     public function doRemoveSong($id)
     {
         try {
             $this->event->songs()->detach($id);
-            $this->notification()->success($description = 'Músicas removida com sucesso.');
+            $this->toast()->success($description = 'Músicas removida com sucesso.')->send();
             $this->showFormModal = false;
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao remover música.');
+            $this->toast()->error($description = 'Erro ao remover música.')->send();
             dump($th);
         }
     }

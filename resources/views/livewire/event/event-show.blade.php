@@ -1,10 +1,10 @@
 <div>
-    <x-notifications />
-    <x-dialog />
+    <x-ts-toast />
+    <x-ts-dialog />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Detalhes do evento</h2>
     </x-slot>
-    <x-ts-button href="{{ route('events.edit', $event) }}" primary label="Editar" />
+    <x-ts-button href="{{ route('events.edit', $event) }}" primary text="Editar" />
     <div class="card my-4">
         <div class="card-body display">
             <div class="grid grid-cols-6 space-y-3 md:space-y-0 gap-4">

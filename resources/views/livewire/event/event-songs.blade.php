@@ -33,7 +33,7 @@
         </div>
     </div>
     @if ($showFormModal)
-        <x-modal wire:model.live="showFormModal" max-width="sm">
+        <x-ts-modal wire="showFormModal" size="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">Adicionar música</h3>
@@ -46,13 +46,13 @@
                         @endforeach
                     </x-ts-select.native>
                     @if ($dataCategory)
-                        <x-ts-select.native wire:model.live="dataSong" label="Música">
+                        <x-ts-select.native wire:model="dataSong" label="Música">
                             <option value="">Selecione</option>
                             @foreach ($inputSongs as $song)
                                 <option value="{{ $song->id }}">{{ $song->number }}. {{ $song->title }}</option>
                             @endforeach
                         </x-ts-select.native>
-                        <x-input wire:model.live="dataComment" label="Comentário" />
+                        <x-ts-input wire:model="dataComment" label="Comentário" />
                     @else
                         <x-ts-select.native label="Música" disabled>
                             <option value="">Selecione uma categoria</option>
@@ -61,11 +61,11 @@
                 </div>
                 <div class="card-footer flex space-x-2">
                     {{-- @if ($dataCategory) --}}
-                    <x-ts-button wire:click="submit" sm primary label="Salvar" />
+                    <x-ts-button wire:click="submit" sm primary text="Salvar" />
                     {{-- @endif --}}
-                    <x-ts-button sm flat label="Cancelar" x-on:click="close" />
+                    <x-ts-button sm flat text="Cancelar" x-on:click="close" />
                 </div>
             </div>
-        </x-modal>
+        </x-ts-modal>
     @endif
 </div>

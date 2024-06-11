@@ -5,27 +5,27 @@
     @if ($member->event)
         <div class="mr-1">
             @if ($member->answer === 'Sim')
-                <x-ts-badge outline positive label="Sim" />
+                <x-ts-badge outline color="green" text="Sim" />
             @elseif ($member->answer === 'Não')
-                <x-ts-badge outline negative label="Não" />
+                <x-ts-badge outline color="orange" text="Não" />
             @else
-                <x-ts-badge outline primary label="Talvez" />
+                <x-ts-badge outline color="secondary" text="Talvez" />
             @endif
         </div>
-        <x-dropdown>
-            <x-dropdown.item wire:click="openFormModal('edit')" icon="pencil" label="Alterar" />
-            <x-dropdown.item wire:click="removeAnswer" icon="trash" label="Remover" />
-        </x-dropdown>
+        <x-ts-dropdown icon="ellipsis-vertical" static>
+            <x-ts-dropdown.items wire:click="openFormModal('edit')" icon="pencil" text="Alterar" />
+            <x-ts-dropdown.items wire:click="removeAnswer" icon="trash" text="Remover" />
+        </x-ts-dropdown>
     @else
         <div class="mr-1">
             <small class="text-gray-800">Sem resposta</small>
         </div>
-        <x-dropdown>
-            <x-dropdown.item wire:click="openFormModal('create')" icon="pencil" label="Adicionar resposta" />
-        </x-dropdown>
+        <x-ts-dropdown icon="ellipsis-vertical" static>
+            <x-ts-dropdown.items wire:click="openFormModal('create')" icon="pencil" text="Adicionar resposta" />
+        </x-ts-dropdown>
     @endif
     @if($showFormModal)
-        <x-modal wire:model.live="showFormModal" max-width="sm">
+        <x-ts-modal wire="showFormModal" size="sm">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">
@@ -33,7 +33,7 @@
                     </h3>
                 </div>
                 <div class="card-body display">
-                    <x-ts-select.native wire:model.live="inputAnswer" label="Resposta" required>
+                    <x-ts-select.native wire:model="inputAnswer" label="Resposta" required>
                         <option value="">Selecione</option>
                         <option value="Sim">Sim</option>
                         <option value="Não">Não</option>
@@ -41,10 +41,10 @@
                     </x-ts-select.native>
                 </div>
                 <div class="card-footer space-x-2">
-                    <x-ts-button wire:click="submit" sm type="submit" primary label="Salvar" />
-                    <x-ts-button sm flat label="Cancelar" x-on:click="close" />
+                    <x-ts-button wire:click="submit" sm type="submit" primary text="Salvar" />
+                    <x-ts-button sm flat text="Cancelar" x-on:click="close" />
                 </div>
             </div>
-        </x-modal>
+        </x-ts-modal>
     @endif
 </div>

@@ -2,14 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Eventos</h2>
     </x-slot>
-
-    <x-notifications />
-    <x-dialog />
+    <x-ts-toast />
+    <x-ts-dialog />
     <div class="card">
-        {{-- @dump($events) --}}
-        {{-- <div class="card-header">
-            <h3 class="card-title">Próximos eventos</h3>
-        </div> --}}
         <div class="card-body">
             <div class="sm:grid sm:grid-cols-2 md:grid-cols-5">
                 <div class="sm:order-last md:col-span-2 p-4">
@@ -52,7 +47,7 @@
                         @endfor
                     </div>
                     <!-- FIM DO CALENDÁRIO -->
-                    <x-ts-button href="{{ route('events.create') }}" label="Adicionar evento"
+                    <x-ts-button href="{{ route('events.create') }}" text="Adicionar evento"
                         class="w-full mt-6 font-semibold" md primary />
                 </div>
                 <div class="md:col-span-3 px-4 md:pr-6">
@@ -82,15 +77,15 @@
                                     </a>
                                 </div>
                                 <div class="flex items-center">
-                                    <x-ts-badge outline secondary :label="$event->members_count . ' confirmados'" />
+                                    <x-ts-badge outline secondary :text="$event->members_count . ' confirmados'" />
                                 </div>
                                 <div class="flex items-center px-2">
-                                    <x-dropdown>
-                                        <x-dropdown.item href="{{ route('events.edit', $event) }}"
-                                            icon="pencil" label="Editar" />
-                                        <x-dropdown.item wire:click="removeEvent({{ $event }})" icon="trash"
-                                            label="Remover" />
-                                    </x-dropdown>
+                                    <x-ts-dropdown icon="ellipsis-vertical" static>
+                                        <x-ts-dropdown.items href="{{ route('events.edit', $event) }}"
+                                            icon="pencil" text="Editar" />
+                                        <x-ts-dropdown.items wire:click="removeEvent({{ $event }})" icon="trash"
+                                            text="Remover" />
+                                    </x-ts-dropdown>
                                 </div>
                             </li>
                         @empty
