@@ -4,11 +4,11 @@ namespace App\Livewire\Encounter;
 
 use App\Models\Encounter;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class EncounterForm extends Component
 {
-    // use WireUiActions;
+    use Interactions;
 
     public $action;
     public $encounter;
@@ -40,18 +40,18 @@ class EncounterForm extends Component
             try {
                 $this->encounter = Encounter::query()->create($data);
                 $this->encounterId = $this->encounter->id;
+                $this->toast()->success('Encontro cadastrado com sucesso.')->send();
                 $this->action = 'edit';
-                $this->notification()->success($description = 'Encontro cadastrado com sucesso.');
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao cadastrar encontro');
+                $this->toast()->error('Erro ao cadastrar encontro.')->send();
                 dd($th);
             }
         } else {
             try {
                 Encounter::query()->findOrFail($this->encounterId)->update($data);
-                $this->notification()->success($description = 'Alterações salvas com sucesso.');
+                $this->toast()->success('Alterações salvas com sucesso.')->send();
             } catch (\Throwable $th) {
-                $this->notification()->error($description = 'Erro ao salvar alterações');
+                $this->toast()->error('Erro ao salvar alterações.')->send();
                 dd($th);
             }
         }

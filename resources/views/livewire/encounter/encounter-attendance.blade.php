@@ -1,4 +1,5 @@
 <div>
+    <x-ts-toast />
     @if ($membersWithoutAttendence->where('status', 'Ativo')->count() > 0)
         <div class="card mb-4">
             <form wire:submit="submitAttendance">
@@ -12,16 +13,16 @@
                                 <tr>
                                     <td>{{ $member->name }}</td>
                                     <td class="w-4 px-0">
-                                        <x-radio id="right-label" label="P" value="P"
-                                            wire:model.live="selectedAttendance.{{ $member->id }}" />
+                                        <x-ts-radio id="right-label" label="P" value="P"
+                                            wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
-                                        <x-radio id="right-label" label="F" value="F"
-                                            wire:model.live="selectedAttendance.{{ $member->id }}" />
+                                        <x-ts-radio id="right-label" label="F" value="F"
+                                            wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
-                                        <x-radio id="right-label" label="J" value="J"
-                                            wire:model.live="selectedAttendance.{{ $member->id }}" />
+                                        <x-ts-radio id="right-label" label="J" value="J"
+                                            wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                 </tr>
                             @endforeach
@@ -29,8 +30,8 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <x-ts-button type="submit" primary sm label="Salvar" />
-                    <x-ts-button wire:click="resetAttendance" flat sm label="Resetar" />
+                    <x-ts-button type="submit" primary sm text="Salvar" />
+                    <x-ts-button wire:click="resetAttendance" flat sm text="Resetar" />
                 </div>
             </form>
         </div>
@@ -48,7 +49,7 @@
                             <td x-data="{ showNote: false }">
                                 {{ $member->name }}
                                 @if ($member->pivot->note)
-                                    <x-ts-button @click="showNote = !showNote" xs flat primary icon="annotation" />
+                                    <x-ts-button @click="showNote = !showNote" xs flat primary icon="chat-bubble-bottom-center-text" />
                                     <div x-show="showNote" class="w-full text-md text-gray-700 border-l-4 border-slate-600 pl-1.5">
                                         {{ $member->pivot->note }}
                                     </div>
@@ -59,7 +60,7 @@
                                 {{ $member->pivot->attendance }}
                             </td>
                             <td class="w-8">
-                                <x-ts-button wire:click="openChangeModal({{ $member }})" outline xs label="Alterar" />
+                                <x-ts-button wire:click="openChangeModal({{ $member }})" outline xs text="Alterar" />
                             </td>
                         </tr>
                     @empty
@@ -70,7 +71,7 @@
         </div>
     </div>
     @if ($showChangeModal)
-        <x-modal wire:model.live="showChangeModal" max-width="md">
+        <x-ts-modal wire="showChangeModal" size="md">
             <div class="card w-full">
                 <div class="card-header">
                     <h3 class="card-title">Alterar registro</h3>
@@ -78,10 +79,10 @@
                 <div class="card-body display">
                     <div class="space-y-2">
                         <div>
-                            <x-input label="Membro" value="{{ $changeMember['name'] }}" readonly />
+                            <x-ts-input label="Membro" value="{{ $changeMember['name'] }}" readonly />
                         </div>
                         <div>
-                            <x-ts-select.native wire:model.live="newAttendance" label="Novo status" required>
+                            <x-ts-select.native wire:model="newAttendance" label="Novo status" required>
                                 <option value="">Selecione</option>
                                 <option value="P">P</option>
                                 <option value="F">F</option>
@@ -89,15 +90,15 @@
                             </x-ts-select.native>
                         </div>
                         <div>
-                            <x-textarea wire:model.live="newNote" rows="2" label="Comentário" />
+                            <x-ts-textarea wire:model="newNote" rows="2" label="Comentário" />
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-ts-button wire:click="saveChange" primary label="Salvar" />
-                    <x-ts-button sm flat label="Cancelar" x-on:click="close" />
+                    <x-ts-button wire:click="saveChange" primary text="Salvar" />
+                    <x-ts-button sm flat text="Cancelar" x-on:click="close" />
                 </div>
             </div>
-        </x-modal>
+        </x-ts-modal>
     @endif
 </div>

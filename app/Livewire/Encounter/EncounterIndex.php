@@ -4,13 +4,11 @@ namespace App\Livewire\Encounter;
 
 use App\Models\Encounter;
 use Livewire\Component;
-use Livewire\WithPagination;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class EncounterIndex extends Component
 {
-    // use WireUiActions;
-    use WithPagination;
+    use Interactions;
 
     public $date;
     public $filterDate;

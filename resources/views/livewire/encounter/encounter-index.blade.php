@@ -1,5 +1,4 @@
 <div>
-    <x-notifications />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Ensaios</h2>
         <nav class="tabs" x-data="{ showtabs: false }">
@@ -12,7 +11,7 @@
         </nav>
     </x-slot>
     <div class="sm:max-w-lg sm:mx-auto">
-        <x-ts-button href="{{ route('encounters.create') }}" primary label="Adicionar" />
+        <x-ts-button href="{{ route('encounters.create') }}" primary text="Adicionar" />
         <div class="card mt-4">
             <div class="card-header relative" x-data="{ filters: false }">
                 <h3 class="title"></h3>
@@ -22,11 +21,11 @@
                 <div x-show="filters" @click.outside="filters = false" class="filters">
                     <div>
                         @if ($period === 'realizados')
-                            <x-datetime-picker without-time label="Filtrar por data" placeholder="Selecione uma data"
-                                wire:model.live="filterDate" clearable="false" :max="now()" />
+                            <x-ts-date label="Filtrar por data" placeholder="Selecione uma data"
+                                wire:model.live="filterDate" :max-date="now()" />
                         @else
-                            <x-datetime-picker without-time label="Filtrar por data" placeholder="Selecione uma data"
-                                wire:model.live="filterDate" clearable="false" :min="now()" />
+                            <x-ts-date label="Filtrar por data" placeholder="Selecione uma data"
+                                wire:model.live="filterDate" :min-date="now()" />
                         @endif
                     </div>
                 </div>

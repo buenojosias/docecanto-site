@@ -1,5 +1,5 @@
 <div>
-    <x-notifications />
+    <x-ts-toast />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ $action === 'create' ? 'Cadastrar' : 'Editar' }} ensaio
@@ -8,22 +8,22 @@
     <div class="sm:max-w-md sm:mx-auto">
         <form wire:submit="submit">
             <div class="card mb-4">
-                <x-errors class="mb-4" />
+                <x-ts-errors class="mb-4" />
                 <div class="card-body p-4 space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <x-datetime-picker wire:model.live="date" label="Data" without-time />
+                            <x-ts-date wire:model="date" label="Data" format="DD/MM/YYYY" without-time />
                         </div>
                     </div>
                     <div wire:ignore>
-                        <x-label label="Decrição" />
-                        <textarea wire:model.live="description" class="min-h-fit h-48" name="description" id="description"></textarea>
+                        <x-ts-label label="Decrição" />
+                        <textarea wire:model="description" class="min-h-fit h-48" name="description" id="description"></textarea>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-ts-button wire:click="submit" sm primary label="Salvar" />
+                    <x-ts-button wire:click="submit" sm primary text="Salvar" />
                     @if ($encounter)
-                        <x-ts-button href="{{ route('encounters.show', $encounter) }}" flat label="Ir para ensaio" />
+                        <x-ts-button href="{{ route('encounters.show', $encounter) }}" flat text="Ir para ensaio" />
                     @endif
                 </div>
             </div>

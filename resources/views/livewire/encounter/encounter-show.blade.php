@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <x-ts-button href="{{ route('encounters.edit', $encounter) }}" sm flat label="Editar" />
+                    <x-ts-button href="{{ route('encounters.edit', $encounter) }}" sm flat text="Editar" />
                 </div>
             </div>
         </div>

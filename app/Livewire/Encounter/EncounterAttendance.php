@@ -5,11 +5,11 @@ namespace App\Livewire\Encounter;
 use App\Models\Member;
 use Livewire\Component;
 use Livewire\WithPagination;
-// use WireUi\Traits\WireUiActions;
+use TallStackUi\Traits\Interactions;
 
 class EncounterAttendance extends Component
 {
-    // use WireUiActions;
+    use Interactions;
     use WithPagination;
 
     public $encounter;
@@ -37,7 +37,7 @@ class EncounterAttendance extends Component
             $attendance = $selected;
             $this->encounter->members()->syncWithoutDetaching([$member_id => ['attendance' => $attendance]]);
         }
-        $this->notification()->success($description = 'Registros salvos com sucesso.');
+        $this->toast()->success('Registros salvos com sucesso.')->send();
         $this->resetAttendance();
     }
 
@@ -61,7 +61,7 @@ class EncounterAttendance extends Component
                     'note' => $this->newNote
                 ]
             ], false);
-            $this->notification()->success($description = 'Registro alterado com sucesso.');
+            $this->toast()->success('Registro alterado com sucesso.')->send();
             $this->newAttendance = $this->newNote = '';
             $this->showChangeModal = false;
         } else {
