@@ -28,7 +28,7 @@
                 <div class="card-footer">
                     <x-ts-button wire:click="submit" primary text="Salvar" />
                     @if ($song)
-                        <x-ts-button href="{{ route('songs.show', $song->number) }}" color="white" text="Ir para música" />
+                        <x-ts-button href="{{ route('songs.show', $song->number) }}" text="Ir para música" flat />
                     @endif
                 </div>
             </div>

@@ -5,13 +5,9 @@
             <h3 class="card-title">Endereço</h3>
             <div class="card-tools">
                 @if ($showAddress)
-                    <button type="button" wire:click="unloadAddress">
-                        <x-ts-icon name="chevron-up" class="h-h w-5 text-secondary-500" />
-                    </button>
+                    <x-ts-button icon="chevron-up" wire:click="unloadAddress" flat />
                 @else
-                    <button type="button" wire:click="loadAddress">
-                        <x-ts-icon name="chevron-down" class="h-h w-5 text-secondary-500" />
-                    </button>
+                    <x-ts-button icon="chevron-down" wire:click="loadAddress" flat />
                 @endif
             </div>
         </div>
@@ -70,7 +66,7 @@
         </form>
         <x-slot:footer>
             <x-ts-button type="submit" form="address-form" text="Salvar" primary />
-            <x-ts-button text="Cancelar" color="white" x-on:click="$modalClose('address-modal')" />
+            <x-ts-button text="Cancelar" x-on:click="$modalClose('address-modal')" flat />
         </x-slot>
     </x-ts-modal>
 </div>

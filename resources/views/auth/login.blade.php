@@ -39,7 +39,7 @@
                     Esqueci minha senha
                 </a>
             @endif
-            <x-ts-button type="submit" label="Entrar" primary />
+            <x-ts-button type="submit" text="Entrar" primary />
         </div>
     </form>
 </x-guest-layout>

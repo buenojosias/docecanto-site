@@ -24,27 +24,18 @@
             <x-ts-dropdown.items wire:click="openFormModal('create')" icon="pencil" text="Adicionar resposta" />
         </x-ts-dropdown>
     @endif
-    @if($showFormModal)
-        <x-ts-modal wire="showFormModal" size="sm">
-            <div class="card w-full">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        {{ $action === 'create' ? 'Adicionar' : 'Alterar' }} resposta
-                    </h3>
-                </div>
-                <div class="card-body display">
-                    <x-ts-select.native wire:model="inputAnswer" label="Resposta" required>
-                        <option value="">Selecione</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                        <option value="Talvez">Talvez</option>
-                    </x-ts-select.native>
-                </div>
-                <div class="card-footer space-x-2">
-                    <x-ts-button wire:click="submit" sm type="submit" primary text="Salvar" />
-                    <x-ts-button sm flat text="Cancelar" x-on:click="close" />
-                </div>
-            </div>
+    @if ($showFormModal)
+        <x-ts-modal wire="showFormModal" :title="$action === 'create' ? 'Adicionar resposta' : 'Alterar respostas'" size="sm">
+            <x-ts-select.native wire:model="inputAnswer" label="Resposta" required>
+                <option value="">Selecione</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+                <option value="Talvez">Talvez</option>
+            </x-ts-select.native>
+            <x-slot:footer>
+                <x-ts-button wire:click="submit" sm type="submit" primary text="Salvar" />
+                <x-ts-button sm flat text="Cancelar" x-on:click="close" />
+            </x-slot:footer>
         </x-ts-modal>
     @endif
 </div>

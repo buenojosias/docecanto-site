@@ -13,15 +13,15 @@
                                 <tr>
                                     <td>{{ $member->name }}</td>
                                     <td class="w-4 px-0">
-                                        <x-ts-radio id="right-label" label="P" value="P"
+                                        <x-ts-radio id="right-label" name="selectAttendance[{{ $member->id }}][attendance]" label="P" value="P"
                                             wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
-                                        <x-ts-radio id="right-label" label="F" value="F"
+                                        <x-ts-radio id="right-label" name="selectAttendance[{{ $member->id }}][attendance]" label="F" value="F"
                                             wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                     <td class="w-4 px-0">
-                                        <x-ts-radio id="right-label" label="J" value="J"
+                                        <x-ts-radio id="right-label" name="selectAttendance[{{ $member->id }}][attendance]" label="J" value="J"
                                             wire:model="selectedAttendance.{{ $member->id }}" />
                                     </td>
                                 </tr>
@@ -60,7 +60,7 @@
                                 {{ $member->pivot->attendance }}
                             </td>
                             <td class="w-8">
-                                <x-ts-button wire:click="openChangeModal({{ $member }})" outline xs text="Alterar" />
+                                <x-ts-button wire:click="openChangeModal({{ $member }})" flat xs text="Alterar" />
                             </td>
                         </tr>
                     @empty

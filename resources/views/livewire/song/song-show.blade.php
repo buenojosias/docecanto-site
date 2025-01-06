@@ -24,11 +24,11 @@
                     </div>
                 </div>
                 <div class="card-footer space-x-2">
-                    <x-ts-button href="{{ route('songs.edit', $song->number) }}" flat primary text="Editar" />
+                    <x-ts-button href="{{ route('songs.edit', $song->number) }}" text="Editar" sm flat  />
                     @if ($song->detached)
-                        <x-ts-button wire:click="removeDetach" text="Desafixar" />
+                        <x-ts-button wire:click="removeDetach" text="Desafixar" sm />
                     @else
-                        <x-ts-button wire:click="addDetach" primary text="Fixar" />
+                        <x-ts-button wire:click="addDetach" text="Fixar" sm primary />
                     @endif
                 </div>
             </div>

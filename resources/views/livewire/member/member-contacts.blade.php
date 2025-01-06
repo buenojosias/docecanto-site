@@ -4,13 +4,9 @@
             <h3 class="card-title">Contatos</h3>
             <div class="card-tools">
                 @if ($showContacts)
-                    <x-ts-button wire:click="unloadContacts" class="-mr-2">
-                        <x-ts-icon name="chevron-up" class="h-5 w-5" />
-                    </x-ts-button>
+                    <x-ts-button icon="chevron-up" wire:click="unloadContacts" flat />
                 @else
-                    <x-ts-button wire:click="loadContacts" class="-mr-2">
-                        <x-ts-icon name="chevron-down" class="h-5 w-5" />
-                    </x-ts-button>
+                    <x-ts-button icon="chevron-down" wire:click="loadContacts" flat />
                 @endif
             </div>
         </div>
@@ -79,7 +75,7 @@
                 <div class="card-footer">
                     <div class="flex justify-end gap-x-2">
                         <x-ts-button type="submit" sm primary text="Salvar" />
-                        <x-ts-button text="Cancelar" sm x-on:click="close" />
+                        <x-ts-button text="Cancelar" sm x-on:click="close" flat />
                     </div>
                 </div>
             </form>

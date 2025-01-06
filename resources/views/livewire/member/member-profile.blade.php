@@ -4,9 +4,9 @@
             <h3 class="card-title">Detalhes do perfil</h3>
             <div class="card-tools">
                 @if ($showProfile)
-                    <x-ts-button wire:click="unloadProfile" flat icon="chevron-up" class="-mr-2" />
+                    <x-ts-button wire:click="unloadProfile" flat icon="chevron-up" />
                 @else
-                    <x-ts-button wire:click="loadProfile" flat icon="chevron-down" class="-mr-2" />
+                    <x-ts-button wire:click="loadProfile" flat icon="chevron-down" />
                 @endif
             </div>
         </div>

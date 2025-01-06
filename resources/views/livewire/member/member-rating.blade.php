@@ -4,9 +4,9 @@
             <h3 class="card-title">Ficha técnica</h3>
             <div class="card-tools">
                 @if ($showRating)
-                    <x-ts-button wire:click="unloadRating" flat icon="chevron-up" class="-mr-2" />
+                    <x-ts-button wire:click="unloadRating" flat icon="chevron-up" />
                 @else
-                    <x-ts-button wire:click="loadRating" flat icon="chevron-down" class="-mr-2" />
+                    <x-ts-button wire:click="loadRating" flat icon="chevron-down" />
                 @endif
             </div>
         </div>

@@ -5,9 +5,9 @@
             <h3 class="card-title">Informações de login</h3>
             <div class="card-tools">
                 @if ($showUser)
-                    <x-ts-button wire:click="unloadUser" icon="chevron-up" class="-mr-2" />
+                    <x-ts-button wire:click="unloadUser" icon="chevron-up" flat />
                 @else
-                    <x-ts-button wire:click="loadUser" icon="chevron-down" class="-mr-2" />
+                    <x-ts-button wire:click="loadUser" icon="chevron-down" flat />
                 @endif
             </div>
         </div>
@@ -62,7 +62,7 @@
         </form>
         <x-slot:footer>
             <x-ts-button type="submit" form="user-form" primary text="Salvar" />
-            <x-ts-button text="Cancelar" x-on:click="$modalClose('user-modal')" color="white" />
+            <x-ts-button text="Cancelar" x-on:click="$modalClose('user-modal')" flat />
         </x-slot>
     </x-ts-modal>
 </div>

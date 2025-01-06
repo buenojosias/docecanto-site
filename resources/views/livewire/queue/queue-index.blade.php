@@ -7,9 +7,7 @@
         <div class="card-header relative" x-data="{ filters: false }">
             <h3 class="card-title"></h3>
             <div class="card-tools py-1">
-                <x-ts-button @click="filters = !filters" color="white">
-                    <x-ts-icon name="funnel" class="h-5 w-5" />
-                </x-ts-button>
+                <x-ts-button icon="funnel" @click="filters = !filters" flat />
             </div>
             <div x-show="filters" @click.outside="filters = false" class="filters">
                 <div>
@@ -45,8 +43,8 @@
                                 <x-ts-label label="{{ $queue->status }}" />
                             </td>
                             <td>
-                                <x-ts-button href="{{ route('queues.edit', $queue) }}" sm icon="pencil" />
-                                <x-ts-button sm negative icon="trash" />
+                                <x-ts-button href="{{ route('queues.edit', $queue) }}" icon="pencil" sm flat />
+                                <x-ts-button icon="trash" sm color="red" flat />
                             </td>
                         </tr>
                     @endforeach

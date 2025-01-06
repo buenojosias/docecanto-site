@@ -4,9 +4,9 @@
             <h3 class="card-title">Familiares</h3>
             <div class="card-tools">
                 @if ($showKins)
-                    <x-ts-button wire:click="unloadKins" flat icon="chevron-up" class="-mr-2" />
+                    <x-ts-button wire:click="unloadKins" flat icon="chevron-up" />
                 @else
-                    <x-ts-button wire:click="loadKins" flat icon="chevron-down" class="-mr-2" />
+                    <x-ts-button wire:click="loadKins" flat icon="chevron-down" />
                 @endif
             </div>
         </div>

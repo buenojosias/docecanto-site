@@ -7,9 +7,7 @@
         <div class="card-header relative" x-data="{ filters: false }">
             <div></div>
             <div class="card-tools py-1">
-                <x-ts-button @click="filters = !filters" color="white">
-                    <x-ts-icon name="funnel" class="h-5 w-5 text-primary-600" />
-                </x-ts-button>
+                <x-ts-button @click="filters = !filters" icon="funnel" flat />
             </div>
             <div x-show="filters" @click.outside="filters = false" class="filters">
                 <div>
@@ -44,12 +42,12 @@
                             <td>{{ $member->age }}</td>
                             <td>
                                 @if ($member->status !== 'Ativo')
-                                    <x-ts-badge outline warning :text="$member->status" />
+                                    <x-ts-badge flat warning :text="$member->status" />
                                 @endif
                             </td>
                             <td class="text-right">
-                                <x-ts-button href="{{ route('members.edit', $member) }}" outline sm icon="pencil" />
-                                <x-ts-button href="#" outline sm icon="phone" />
+                                <x-ts-button href="{{ route('members.edit', $member) }}" flat sm icon="pencil" />
+                                <x-ts-button href="#" flat sm icon="phone" />
                             </td>
                         </tr>
                     @empty

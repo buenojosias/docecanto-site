@@ -36,9 +36,7 @@
                             Filtro de categoria: {{ $categories->where('id', $filter)->first()->name }}
                         </div>
                         <div>
-                            <x-ts-button wire:click="selectCategory" color="white">
-                                <x-ts-icon name="x-mark" class="h-5 w-5" />
-                            </x-ts-button>
+                            <x-ts-button wire:click="selectCategory" name="x-mark" flat sm />
                         </div>
                     </div>
                 </div>
@@ -71,9 +69,7 @@
                                         @endforeach
                                     </td>
                                     <td class="text-right">
-                                        <x-ts-button href="{{ route('songs.edit', $song->number) }}" sm color="white">
-                                            <x-ts-icon name="pencil" class="h-3 w-3" />
-                                        </x-ts-button>
+                                        <x-ts-button icon="pencil" href="{{ route('songs.edit', $song->number) }}" sm flat />
                                     </td>
                                 </tr>
                             @endforeach

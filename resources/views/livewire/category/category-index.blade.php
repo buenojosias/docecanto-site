@@ -23,7 +23,7 @@
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->songs_count }} </td>
                             <td class="text-right">
-                                <x-ts-button wire:click="openFormModal({{ $category }})" sm icon="pencil" />
+                                <x-ts-button wire:click="openFormModal({{ $category }})" sm icon="pencil" flat />
                             </td>
                         </tr>
                     @endforeach
@@ -43,7 +43,7 @@
             </form>
             <x-slot:footer>
                 <x-ts-button type="submit" form="category-form" primary text="Salvar" />
-                <x-ts-button text="Cancelar" x-on:click="$modalClose('category-modal')" />
+                <x-ts-button text="Cancelar" x-on:click="$modalClose('category-modal')" flat />
             </x-slot>
         </x-ts-modal>
     @endif

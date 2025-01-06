@@ -4,7 +4,7 @@
         <div class="card-header">
             <h3 class="card-title">Categoria(s)</h3>
             <div class="card-tools">
-                <x-ts-button wire:click="openModal" flat icon="plus" class="-mr-3" />
+                <x-ts-button wire:click="openModal" flat icon="plus" />
             </div>
         </div>
         <div class="card-body">
@@ -13,9 +13,7 @@
                     <li class="px-4 py-2 border-b flex">
                         <div class="grow">{{ $category->name }}</div>
                         <div>
-                            <x-ts-button wire:click="removeCategory({{ $category }})" color="white">
-                                <x-ts-icon name="trash" class="h-4 w-4" color="red" />
-                            </x-ts-button>
+                            <x-ts-button icon="trash" wire:click="removeCategory({{ $category }})" flat sm color="red" />
                         </div>
                     </li>
                 @endforeach

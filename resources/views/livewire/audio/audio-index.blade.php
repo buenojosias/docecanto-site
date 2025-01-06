@@ -86,7 +86,7 @@
             @endif
             <x-slot:footer>
                 <x-ts-button type="submit" form="audio-form" sm primary text="Enviar" />
-                <x-ts-button x-on:click="$modalClose('audio-modal')" sm color="white" text="Cancelar" />
+                <x-ts-button x-on:click="$modalClose('audio-modal')" sm text="Cancelar" flat />
             </x-slot>
         </form>
     </x-ts-modal>

@@ -22,12 +22,8 @@
                             <td>{{ $member->user->email ?? '---' }}</td>
                             <td>{{ $member->user->username ?? '---' }}</td>
                             <td>
-                                <x-ts-button sm color="white">
-                                    <x-ts-icon name="no-symbol" class="h-4 w-4" />
-                                </x-ts-button>
-                                <x-ts-button sm color="white">
-                                    <x-ts-icon name="trash" class="h-4 w-4" />
-                                </x-ts-button>
+                                <x-ts-button name="no-symbol" sm flat />
+                                <x-ts-button name="trash" sm flat />
                             </td>
                         </tr>
                     @empty
