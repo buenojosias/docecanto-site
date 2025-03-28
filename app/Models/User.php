@@ -26,6 +26,7 @@ class User extends Authenticatable
         'username',
         'password',
         'is_admin',
+        'role',
         'active',
     ];
 
@@ -47,6 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_admin' => 'boolean',
+        'active' => 'boolean',
+        'role' => 'enum',
     ];
 
     public function favorites(): BelongsToMany
