@@ -10,6 +10,7 @@ use App\Livewire\Queue\{ QueueIndex, QueueShow, QueueForm };
 use App\Livewire\Song\{ SongIndex, SongShow, SongForm };
 use App\Http\Controllers\AudioController;
 use App\Http\Controllers\ProfileController;
+use App\Livewire\User\UserIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', DashboardIndex::class)->name('dashboard');
@@ -43,7 +44,12 @@ Route::prefix('integrantes')->name('members.')->group(function () {
     Route::get('/{member}/editar', MemberForm::class)->name('edit');
 });
 
-Route::get('/usuarios', MemberUsers::class)->name('users');
+Route::prefix('usuarios')->name('users.')->group(function () {
+    Route::get('/', UserIndex::class)->name('index');
+    // Route::get('/cadastro', MemberUsers::class)->name('create');
+    // Route::get('/{user}', UserIndex::class)->name('show');
+    // Route::get('/{user}/editar', UserIndex::class)->name('edit');
+});
 
 Route::prefix('fichas-tecnicas')->name('ratings.')->group(function () {
     Route::get('/', RatingIndex::class)->name('index');

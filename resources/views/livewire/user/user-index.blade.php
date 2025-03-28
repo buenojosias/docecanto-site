@@ -8,19 +8,22 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>Nível</th>
                         <th>E-mail</th>
                         <th>Username</th>
                         <th width="1"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($members as $member)
+                    @forelse ($users as $user)
                         <tr>
                             <td>
-                                <a href="{{ route('members.show', $member) }}" class="link">{{ $member->name }}</a>
+                                {{-- <a href="{{ route('users.show', $user) }}" class="link">{{ $user->name }}</a> --}}
+                                {{ $user->name }}
                             </td>
-                            <td>{{ $member->user->email ?? '---' }}</td>
-                            <td>{{ $member->user->username ?? '---' }}</td>
+                            <td>{{ Str::ucfirst($user->role) }}</td>
+                            <td>{{ $user->email ?? '---' }}</td>
+                            <td>{{ $user->username ?? '---' }}</td>
                             <td>
                                 <x-ts-button name="no-symbol" sm flat />
                                 <x-ts-button name="trash" sm flat />
@@ -33,7 +36,7 @@
             </table>
         </div>
         <div class="card-paginate">
-            {{ $members->links() }}
+            {{ $users->links() }}
         </div>
     </div>
 </div>

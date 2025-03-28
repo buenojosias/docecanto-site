@@ -1,5 +1,5 @@
 <div>
-    <div class="md:-mt-4 mb-4 p-4 bg-white shadow rounded">
+    <div class="md:-mt-4 mb-4 p-4 bg-white shadow rounded-lg">
         <div class="flex-1">
             <p class="font-semibold text-gray-700">Bem vindo(a),</p>
             <h2 class="text-2xl font-bold">{{ $name }}</h2>

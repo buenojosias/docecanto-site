@@ -50,7 +50,6 @@ class User extends Authenticatable
         'password' => 'hashed',
         'is_admin' => 'boolean',
         'active' => 'boolean',
-        'role' => 'enum',
     ];
 
     public function favorites(): BelongsToMany
