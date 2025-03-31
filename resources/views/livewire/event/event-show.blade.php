@@ -4,40 +4,26 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Detalhes do evento</h2>
     </x-slot>
-    <x-ts-button href="{{ route('events.edit', $event) }}" primary text="Editar" />
-    <div class="card my-4">
-        <div class="card-body display">
-            <div class="grid grid-cols-6 space-y-3 md:space-y-0 gap-4">
-                <div class="col-span-6 sm:col-span-3">
-                    <h4>Título</h4>
-                    <p>{{ $event->title }}</p>
-                </div>
-                <div class="col-span-2 sm:col-span-1">
-                    <h4>Data</h4>
-                    <p>{{ Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</p>
-                </div>
-                <div class="col-span-2 sm:col-span-1">
-                    <h4>Horário</h4>
-                    <p>
-                        {{ $event->time ? Carbon\Carbon::createFromFormat('H:i:s', $event->time)->format('H:i') : '' }}
-                    </p>
-                </div>
-                <div class="col-span-2 sm:col-span-1">
-                    <h4>É apresentação?</h4>
-                    <p>{{ $event->is_presentation ? 'Sim' : 'Não' }}</p>
-                </div>
-                <div class="col-span-6">
-                    <h4>Local</h4>
-                    <p>{{ $event->local ?? 'Não informado' }}</p>
-                </div>
-                <div class="col-span-6">
-                    <h4>Descrição</h4>
-                    {!! $event->description !!}
-                </div>
-            </div>
+    @can('coordinator')
+        <x-ts-button href="{{ route('events.edit', $event) }}" primary text="Editar" />
+    @endcan
+    <x-ts-card class="detail grid grid-cols-6 space-y-3 md:space-y-0 gap-4">
+        <div class="col-span-6 sm:col-span-3">
+            <x-detail label="Título" :value="$event->title" />
         </div>
-    </div>
-    <div class="sm:grid sm:grid-cols-2 gap-4">
+        <div class="col-span-2 sm:col-span-1">
+            <x-detail label="Data" :value="Carbon\Carbon::parse($event->date)->format('d/m/Y')" />
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+            <x-detail label="Horário" :value="$event->time ? Carbon\Carbon::createFromFormat('H:i:s', $event->time)->format('H:i') : ''" />
+        </div>
+        <x-detail label="É apresentação?" :value="$event->is_presentation ? 'Sim' : 'Não'" />
+        <x-detail label="Local" :value="$event->local ?? 'Não informado'" />
+        <div class="col-span-6">
+            <x-detail label="Descrição" :value="$event->description" :is_html="true"></x-detail>
+        </div>
+    </x-ts-card>
+    <div class="sm:grid sm:grid-cols-2 gap-4 mt-4">
         @livewire('event.event-members', ['event' => $event])
         @if ($event->is_presentation)
             @livewire('event.event-songs', ['event' => $event])

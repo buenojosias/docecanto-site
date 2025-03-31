@@ -1,5 +1,5 @@
 <div>
-    <div class="md:-mt-4 mb-4 p-4 bg-white shadow rounded-lg">
+    <div class="md:-mt-4 mb-4 p-4 bg-white shadow rounded-md">
         <div class="flex-1">
             <p class="font-semibold text-gray-700">Bem vindo(a),</p>
             <h2 class="text-2xl font-bold">{{ $name }}</h2>
@@ -10,26 +10,30 @@
             icon="children" />
         <x-infobox value="{{ $songs_count }}" label="Músicas cadastradas" href="{{ route('songs.index') }}"
             icon="music" />
-        <x-infobox value="{{ $queues_count }}" label="Novos interessados" href="{{ route('queues.index') }}" icon="clock" />
+        <x-infobox value="{{ $queues_count }}" label="Novos interessados" href="{{ route('queues.index') }}"
+            icon="clock" />
     </div>
-    <div class="sm:grid sm:grid-cols-2 md:grid-cols-4 sm:text-center font-semibold bg-gray-50 border-t divide-x divide-y rounded">
-        <div class="p-1">
-            <a href="{{ route('members.create') }}" class="block p-1.5"><i class="fas fa-plus"></i>
-                Integrante</a>
+    @can('coordinator')
+        <div
+            class="sm:grid sm:grid-cols-2 md:grid-cols-4 sm:text-center font-semibold bg-gray-50 border-t divide-x divide-y rounded">
+            <div class="p-1">
+                <a href="{{ route('members.create') }}" class="block p-1.5"><i class="fas fa-plus"></i>
+                    Integrante</a>
+            </div>
+            <div class="p-1">
+                <a href="{{ route('songs.create') }}" class="block p-1.5"><i class="fas fa-plus"></i>
+                    Música</a>
+            </div>
+            <div class="p-1">
+                <a href="{{ route('encounters.create') }}" class="block p-1.5"><i class="fas fa-plus"></i>
+                    Ensaio</a>
+            </div>
+            <div class="p-1">
+                <a href="{{ route('events.index') }}" class="block p-1.5"><i class="fas fa-plus"></i>
+                    Evento</a>
+            </div>
         </div>
-        <div class="p-1">
-            <a href="{{ route('songs.create') }}" class="block p-1.5"><i class="fas fa-plus"></i>
-                Música</a>
-        </div>
-        <div class="p-1">
-            <a href="{{ route('encounters.create') }}" class="block p-1.5"><i class="fas fa-plus"></i>
-                Ensaio</a>
-        </div>
-        <div class="p-1">
-            <a href="{{ route('events.index') }}" class="block p-1.5"><i class="fas fa-plus"></i>
-                Evento</a>
-        </div>
-    </div>
+    @endcan
     <div class="mt-4 grid sm:grid-cols-3 gap-4">
         <div>
             <div class="card">

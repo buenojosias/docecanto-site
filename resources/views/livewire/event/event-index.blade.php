@@ -46,9 +46,10 @@
                             <div class="basis-1/7 "></div>
                         @endfor
                     </div>
-                    <!-- FIM DO CALENDÁRIO -->
+                    @can('coordinator')
                     <x-ts-button href="{{ route('events.create') }}" text="Adicionar evento"
                         class="w-full mt-6 font-semibold" md primary />
+                    @endcan
                 </div>
                 <div class="md:col-span-3 px-4 md:pr-6">
                     @if ($currentDay)
@@ -79,14 +80,16 @@
                                 <div class="flex items-center">
                                     <x-ts-badge outline secondary :text="$event->members_count . ' confirmados'" />
                                 </div>
-                                <div class="flex items-center px-2">
-                                    <x-ts-dropdown icon="ellipsis-vertical" static>
-                                        <x-ts-dropdown.items href="{{ route('events.edit', $event) }}"
-                                            icon="pencil" text="Editar" />
-                                        <x-ts-dropdown.items wire:click="removeEvent({{ $event }})" icon="trash"
-                                            text="Remover" />
-                                    </x-ts-dropdown>
-                                </div>
+                                @can('coordinator')
+                                    <div class="flex items-center px-2">
+                                        <x-ts-dropdown icon="ellipsis-vertical" static>
+                                            <x-ts-dropdown.items href="{{ route('events.edit', $event) }}" icon="pencil"
+                                                text="Editar" />
+                                            <x-ts-dropdown.items wire:click="removeEvent({{ $event }})"
+                                                icon="trash" text="Remover" />
+                                        </x-ts-dropdown>
+                                    </div>
+                                @endcan
                             </li>
                         @empty
                             <x-empty label="Nenhum evento programado para o mês selecionado." />

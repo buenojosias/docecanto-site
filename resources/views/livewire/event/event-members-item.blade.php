@@ -14,7 +14,9 @@
         </div>
         <x-ts-dropdown icon="ellipsis-vertical" static>
             <x-ts-dropdown.items wire:click="openFormModal('edit')" icon="pencil" text="Alterar" />
-            <x-ts-dropdown.items wire:click="removeAnswer" icon="trash" text="Remover" />
+            @can('coordinator')
+                <x-ts-dropdown.items wire:click="removeAnswer" icon="trash" text="Remover" />
+            @endcan
         </x-ts-dropdown>
     @else
         <div class="mr-1">
@@ -25,7 +27,7 @@
         </x-ts-dropdown>
     @endif
     @if ($showFormModal)
-        <x-ts-modal wire="showFormModal" :title="$action === 'create' ? 'Adicionar resposta' : 'Alterar respostas'" size="sm">
+        <x-ts-modal wire="showFormModal" id="response-modal" :title="$action === 'create' ? 'Adicionar resposta' : 'Alterar respostas'" size="sm">
             <x-ts-select.native wire:model="inputAnswer" label="Resposta" required>
                 <option value="">Selecione</option>
                 <option value="Sim">Sim</option>
@@ -34,7 +36,7 @@
             </x-ts-select.native>
             <x-slot:footer>
                 <x-ts-button wire:click="submit" sm type="submit" primary text="Salvar" />
-                <x-ts-button sm flat text="Cancelar" x-on:click="close" />
+                <x-ts-button sm flat text="Cancelar" x-on:click="$modalClose('response-modal')" />
             </x-slot:footer>
         </x-ts-modal>
     @endif

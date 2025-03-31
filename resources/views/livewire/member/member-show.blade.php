@@ -11,40 +11,30 @@
     </x-slot>
     <div class="md:grid md:grid-cols-5 space-y-3 md:space-y-0 gap-4">
         <div class="col-span-3">
-            <div class="card mb-4">
-                <div class="card-body display">
-                    <div>
-                        <h4>Nome completo</h4>
-                        <p>{{ $member->name }}</p>
-                    </div>
-                    <div class="sm:grid sm:grid-cols-2 space-y-3 sm:space-y-0 gap-4 my-4">
-                        <div>
-                            <h4>Data de nascimento</h4>
-                            <p>{{ $member->birth }}</p>
-                        </div>
-                        <div>
-                            <h4>Idade</h4>
-                            <p>{{ $member->age }}</p>
-                        </div>
-                        <div>
-                            <h4>Data do cadastro</h4>
-                            <p>{{ $member->registration_date }}</p>
-                        </div>
-                        <div>
-                            <h4>Status</h4>
-                            <p>{{ $member->status }}</p>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        <x-ts-button href="{{ route('members.edit', $member) }}" text="Editar" />
-                    </div>
+            <x-ts-card>
+                <div class="detail pb-4">
+                    <x-detail label="Nome completo" :value="$member->name" />
                 </div>
+                <div class="sm:grid sm:grid-cols-2 space-y-3 sm:space-y-0 gap-4 detail">
+                    <x-detail label="Data de nascimento" :value="$member->birth->format('d/m/Y')" />
+                    <x-detail label="Idade" :value="$member->age" />
+                    <x-detail label="Data do cadastro" :value="$member->registration_date->format('d/m/Y')" />
+                    <x-detail label="Status" :value="$member->status" />
+                </div>
+                <x-slot:footer>
+                    <x-ts-button href="{{ route('members.edit', $member) }}" text="Editar" flat />
+                </x-slot:footer>
+
+            </x-ts-card>
+            <div class="card mb-4">
             </div>
             {{-- @livewire('member.member-profile', ['member' => $member]) --}}
         </div>
         <div class="col-span-2">
             @livewire('member.member-contacts', ['member' => $member])
-            @livewire('member.member-address', ['member' => $member])
+            @can('coordinator')
+                @livewire('member.member-address', ['member' => $member])
+            @endcan
             @livewire('member.member-kins', ['member' => $member])
             @livewire('member.member-user', ['member' => $member])
             {{-- @livewire('member.member-rating', ['member' => $member]) --}}

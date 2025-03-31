@@ -16,7 +16,7 @@
             <div class="card-header relative" x-data="{ filters: false }">
                 <h3 class="title"></h3>
                 <div class="card-tools py-1">
-                    <x-ts-button flat icon="funnel" @click="filters = !filters" />
+                    <x-ts-button flat icon="funnel" @click="filters = !filters" color="secondary" />
                 </div>
                 <div x-show="filters" @click.outside="filters = false" class="filters">
                     <div>
@@ -47,7 +47,7 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('encounters.show', $encounter) }}">
-                                    {{ $encounter->date->format('d/m/Y') }}
+                                        {{ $encounter->date->format('d/m/Y') }}
                                     </a>
                                 </td>
                                 @if ($period && $period === 'realizados')
@@ -61,7 +61,10 @@
                                     @endif
                                 @endif
                                 <td>
-                                    <x-ts-button href="{{ route('encounters.edit', $encounter) }}" sm flat icon="pencil" />
+                                    @can('coordinator')
+                                        <x-ts-button href="{{ route('encounters.edit', $encounter) }}" sm flat
+                                            icon="pencil" />
+                                    @endcan
                                 </td>
                             </tr>
                         @empty

@@ -14,11 +14,6 @@ class QueueIndex extends Component
     public $filterStatus;
     public $status_list = ['Pendente', 'Visualizado', 'Contactado', 'Participando', 'Desistiu'];
 
-    public function mount()
-    {
-
-    }
-
     public function render()
     {
         $this->queues = Queue::query()

@@ -24,13 +24,16 @@ class SongIndex extends Component
 
     public function mount()
     {
-        $this->categories = Category::orderBy('position')->get();
-    }
-
-    public function selectCategory($category = null)
-    {
-        $this->filter = $category;
-        // $this->resetPage();
+        $this->categories = Category::orderBy('position')->get()->toArray();
+        array_unshift($this->categories, [
+            'id' => null,
+            'name' => 'Filtrar por categoria'
+        ]);
+        // add option 'Sem categoria' to the end of the array
+        $this->categories[] = [
+            'id' => 'sem_categoria',
+            'name' => 'Sem categoria'
+        ];
     }
 
     public function render()
@@ -38,9 +41,13 @@ class SongIndex extends Component
         $songs = Song::query()
             ->select(['id','number','title','detached'])
             ->when($this->filter, function($query) {
-                $query->whereHas('categories', function ($query) {
-                    $query->where('id', $this->filter);
-                });
+                if ($this->filter === 'sem_categoria') {
+                    $query->doesntHave('categories');
+                } else {
+                    $query->whereHas('categories', function ($query) {
+                        $query->where('id', $this->filter);
+                    });
+                }
             })
             ->when($this->detached, function($query) {
                 $query->where('detached', true);

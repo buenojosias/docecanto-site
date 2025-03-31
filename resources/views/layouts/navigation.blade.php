@@ -11,8 +11,8 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" icon="home">Dashboard</x-nav-link>
                         <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.*')" icon="children">Integrantes</x-nav-link>
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')" icon="key">Usuários</x-nav-link>
-                        <x-nav-link :href="route('ratings.index')" :active="request()->routeIs('ratings.*')" icon="clipboard-user">Fichas
-                            técnicas</x-nav-link>
+                        {{-- <x-nav-link :href="route('ratings.index')" :active="request()->routeIs('ratings.*')" icon="clipboard-user">Fichas
+                            técnicas</x-nav-link> --}}
                         <x-nav-link :href="route('queues.index')" :active="request()->routeIs('queues.*')" icon="clock">Fila de espera</x-nav-link>
                     </li>
                 </ul>

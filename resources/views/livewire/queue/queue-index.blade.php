@@ -7,7 +7,7 @@
         <div class="card-header relative" x-data="{ filters: false }">
             <h3 class="card-title"></h3>
             <div class="card-tools py-1">
-                <x-ts-button icon="funnel" @click="filters = !filters" flat />
+                <x-ts-button icon="funnel" @click="filters = !filters" color="secondary" flat />
             </div>
             <div x-show="filters" @click.outside="filters = false" class="filters">
                 <div>

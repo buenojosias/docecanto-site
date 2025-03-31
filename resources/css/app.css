@@ -14,7 +14,7 @@
 }
 
 .card {
-    @apply bg-white rounded-lg shadow;
+    @apply bg-white rounded-md shadow;
 }
 .card .card-header {
     @apply flex justify-between border-b-[1px] px-4 py-0.5;
@@ -59,7 +59,7 @@
     @apply mb-4 grid sm:grid-cols-2 md:grid-cols-3 gap-3;
 }
 .infobox {
-    @apply relative rounded shadow;
+    @apply relative rounded-md shadow;
 }
 .infobox > .inner {
     @apply p-2 mb-2;
@@ -95,7 +95,7 @@
 .table tbody td {
     @apply py-1.5 px-3 first:pl-5 last:pr-5;
 }
-.table tbody td a {
+.table tbody td:first-child, .table tbody td a  {
     @apply font-semibold text-gray-800;
 }
 
@@ -107,6 +107,19 @@
 }
 .card .card-paginate {
     @apply px-5 py-2;
+}
+
+.detail {
+    @apply space-y-4;
+}
+.detail div {
+    @apply flex justify-between items-center;
+}
+.detail dt {
+    @apply font-semibold text-gray-900;
+}
+.detail dd {
+    @apply font-semibold text-gray-600;
 }
 
 .tabs {
@@ -137,8 +150,11 @@
 .form-card .body {
     @apply p-4 md:col-span-3 lg:col-span-2 md:mt-0;
 }
-.card-body .lyrics p {
+.lyrics p {
     @apply mt-5;
+}
+.lyrics p:first-child {
+    @apply mt-0;
 }
 .form-card .footer {
     @apply col-span-full bg-gray-50 px-4 py-3 text-right rounded-b;

@@ -23,21 +23,21 @@ class EncounterIndex extends Component
     public function render()
     {
         $encounters = Encounter::query()
-        ->when($this->filterDate, function ($query) {
-            $query->whereDate('date', $this->filterDate);
-        })
-        ->when($this->period === 'proximos', function ($query) {
-            $query
-                ->whereDate('date', '>=', $this->date)
-                ->orderBy('date', 'asc');
-        })
-        ->when($this->period === 'realizados', function ($query) {
-            $query
-                ->whereDate('date', '<=', $this->date)
-                ->with('members')
-                ->orderBy('date', 'desc');
-        })
-        ->paginate();
+            ->when($this->filterDate, function ($query) {
+                $query->whereDate('date', $this->filterDate);
+            })
+            ->when($this->period === 'proximos', function ($query) {
+                $query
+                    ->whereDate('date', '>=', $this->date)
+                    ->orderBy('date', 'asc');
+            })
+            ->when($this->period === 'realizados', function ($query) {
+                $query
+                    ->whereDate('date', '<=', $this->date)
+                    ->with('members')
+                    ->orderBy('date', 'desc');
+            })
+            ->paginate();
 
         return view('livewire.encounter.encounter-index', [
             'encounters' => $encounters

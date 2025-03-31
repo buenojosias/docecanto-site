@@ -22,7 +22,10 @@ class Member extends Model
         'status',
     ];
 
-    protected $dates = [ 'birth', 'registration_date' ];
+    protected $casts = [
+        'birth' => 'date',
+        'registration_date' => 'date',
+    ];
 
     public function address(): HasOne
     {

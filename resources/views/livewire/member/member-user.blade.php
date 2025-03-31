@@ -28,7 +28,7 @@
                                 <h4 class="text-sm font-medium text-gray-600">Senha</h4>
                             </div>
                             <div>
-                                <x-ts-button wire:click="resetPassword" sm icon="arrow-path" />
+                                <x-ts-button wire:click="resetPassword" flat sm icon="arrow-path" />
                             </div>
                         </li>
                     @else
@@ -37,9 +37,9 @@
                 </ul>
                 <div class="card-footer">
                     @if ($user)
-                        <x-ts-button wire:click="openFormModal" text="Alterar dados de acesso" sm class="w-full" />
+                        <x-ts-button wire:click="openFormModal" text="Alterar dados de acesso" flat sm class="w-full" />
                     @else
-                        <x-ts-button wire:click="openFormModal" text="Cadastrar dados de acesso" sm class="w-full" />
+                        <x-ts-button wire:click="openFormModal" text="Cadastrar dados de acesso" flat sm class="w-full" />
                     @endif
                 </div>
             </div>

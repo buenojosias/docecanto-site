@@ -24,7 +24,7 @@
                 </ul>
             </div>
             <div class="card-footer">
-                <x-ts-button wire:click="openFormModal" text="Adicionar familiar" color="white" sm class="w-full" />
+                <x-ts-button wire:click="openFormModal" text="Adicionar familiar" flat sm class="w-full" />
             </div>
         @endif
     </div>

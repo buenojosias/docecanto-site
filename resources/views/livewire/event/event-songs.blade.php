@@ -2,24 +2,28 @@
     <div class="card mb-4">
         <div class="card-header">
             <h3 class="card-title">Músicas</h3>
-            <div class="card-tools">
-                <x-ts-button wire:click="openFormModal" flat icon="plus" class="-mr-3" />
-            </div>
+            @can('coordinator')
+                <div class="card-tools">
+                    <x-ts-button wire:click="openFormModal" flat icon="plus" class="-mr-3" />
+                </div>
+            @endcan
         </div>
         <div class="card-body">
             <ul>
-                @foreach ($songs as $song)
+                @forelse ($songs as $song)
                     <li class="border-b px-2">
-                        <div class="flex items-center">
-                            <div class="grow">
+                        <div class="flex items-center py-2">
+                            <div class="grow pl-2">
                                 <a href="{{ route('songs.show', $song->number) }}" target="_blank">
                                     {{ $song->number }}. {{ $song->title }}
                                 </a>
                             </div>
-                            <div class="p-2">
-                                <x-ts-button wire:click="removeSong({{ $song->id }})" negative xs flat
-                                    icon="trash" />
-                            </div>
+                            @can('coordinator')
+                                <div>
+                                    <x-ts-button wire:click="removeSong({{ $song->id }})" negative sm flat
+                                        icon="trash" />
+                                </div>
+                            @endcan
                         </div>
                         @if ($song->pivot->comment)
                             <div class="-mt-1 pb-2 pl-1 flex space-x-2 text-gray-700">
@@ -28,17 +32,16 @@
                             </div>
                         @endif
                     </li>
-                @endforeach
+                @empty
+                    <x-empty label="Nenhuma música adicionada." />
+                @endforelse
             </ul>
         </div>
     </div>
-    @if ($showFormModal)
-        <x-ts-modal wire="showFormModal" size="sm">
-            <div class="card w-full">
-                <div class="card-header">
-                    <h3 class="card-title">Adicionar música</h3>
-                </div>
-                <div class="card-body display space-y-4">
+    @can('coordinator')
+        @if ($showFormModal)
+            <x-ts-modal wire="showFormModal" title="Adicionar música" id="song-modal" size="sm">
+                <div class="space-y-4">
                     <x-ts-select.native wire:model.live="dataCategory" label="Categoria">
                         <option value="">Selecione</option>
                         @foreach ($inputCategories as $category)
@@ -59,13 +62,13 @@
                         </x-ts-select.native>
                     @endif
                 </div>
-                <div class="card-footer flex space-x-2">
+                <x-slot:footer>
                     {{-- @if ($dataCategory) --}}
                     <x-ts-button wire:click="submit" sm primary text="Salvar" />
                     {{-- @endif --}}
-                    <x-ts-button sm flat text="Cancelar" x-on:click="close" />
-                </div>
-            </div>
-        </x-ts-modal>
-    @endif
+                    <x-ts-button sm flat text="Cancelar" x-on:click="$modalClose('song-modal')" />
+                </x-slot>
+            </x-ts-modal>
+        @endif
+    @endcan
 </div>

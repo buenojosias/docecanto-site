@@ -5,6 +5,7 @@ namespace App\Livewire\Event;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 use TallStackUi\Traits\Interactions;
@@ -16,8 +17,14 @@ class EventIndex extends Component
 
     public $dayLabels = array('DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB');
     public $monthLabels = array('0', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro');
+
+    #[Url('ano', except: null)]
     public $currentYear;
+
+    #[Url('mes', except: null)]
     public $currentMonth;
+
+    #[Url('dia', except: null)]
     public $currentDay;
     public $daysInMonth;
     public $firstWeekdayOfMonth;

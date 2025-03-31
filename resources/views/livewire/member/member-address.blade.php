@@ -37,9 +37,9 @@
                 </ul>
                 <div class="card-footer">
                     @if ($addressData)
-                        <x-ts-button wire:click="openFormModal" text="Alterar endereço" sm class="w-full" />
+                        <x-ts-button wire:click="openFormModal" text="Alterar endereço" flat sm class="w-full" />
                     @else
-                        <x-ts-button wire:click="openFormModal" text="Cadastrar endereço" sm class="w-full" />
+                        <x-ts-button wire:click="openFormModal" text="Cadastrar endereço" flat sm class="w-full" />
                     @endif
                 </div>
             </div>

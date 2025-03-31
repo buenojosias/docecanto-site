@@ -34,7 +34,7 @@
                 </ul>
             </div>
             <div class="card-footer">
-                <x-ts-button x-on:click="$modalOpen('contact-modal')" text="Adicionar contato" sm class="w-full" />
+                <x-ts-button x-on:click="$modalOpen('contact-modal')" text="Adicionar contato" flat sm class="w-full" />
             </div>
         @endif
     </div>

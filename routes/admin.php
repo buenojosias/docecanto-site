@@ -24,17 +24,17 @@ Route::prefix('categorias')->name('categories.')->group(function () {
 });
 
 Route::prefix('ensaios')->name('encounters.')->group(function () {
-    Route::get('/cadastro', EncounterForm::class)->name('create');
+    Route::get('/cadastro', EncounterForm::class)->name('create')->middleware('coordinator');
     Route::get('/{encounter}/ver', EncounterShow::class)->name('show');
-    Route::get('/{encounter}/editar', EncounterForm::class)->name('edit');
+    Route::get('/{encounter}/editar', EncounterForm::class)->name('edit')->middleware('coordinator');
     Route::get('/{period?}', EncounterIndex::class)->name('index');
 });
 
 Route::prefix('eventos')->name('events.')->group(function () {
     Route::get('/', EventIndex::class)->name('index');
-    Route::get('/cadastro', EventForm::class)->name('create');
+    Route::get('/cadastro', EventForm::class)->name('create')->middleware('coordinator');
     Route::get('/{event}', EventShow::class)->name('show');
-    Route::get('/{event}/editar', EventForm::class)->name('edit');
+    Route::get('/{event}/editar', EventForm::class)->name('edit')->middleware('coordinator');
 });
 
 Route::prefix('integrantes')->name('members.')->group(function () {
@@ -57,9 +57,9 @@ Route::prefix('fichas-tecnicas')->name('ratings.')->group(function () {
 
 Route::prefix('musicas')->name('songs.')->group(function () {
     Route::get('/', SongIndex::class)->name('index');
-    Route::get('/cadastro', SongForm::class)->name('create');
+    Route::get('/cadastro', SongForm::class)->name('create')->middleware('coordinator');
     Route::get('/{number}', SongShow::class)->name('show');
-    Route::get('/{number}/editar', SongForm::class)->name('edit');
+    Route::get('/{number}/editar', SongForm::class)->name('edit')->middleware('coordinator');
 });
 
 Route::prefix('audios')->name('audios.')->group(function () {

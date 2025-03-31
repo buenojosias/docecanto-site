@@ -17,8 +17,6 @@ class MemberShow extends Component
     {
         $this->member = $member;
         $this->member->age = Carbon::parse($member->birth)->age;
-        $this->member->birth = Carbon::parse($member->birth)->format('d/m/Y');
-        $this->member->registration_date = Carbon::parse($member->registration_date)->format('d/m/Y');
     }
 
     public function render()
