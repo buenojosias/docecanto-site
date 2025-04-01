@@ -6,14 +6,7 @@
         <div class="mb-4">
             <x-ts-card class="detail">
                 <x-detail label="Data do ensaio" :value="$encounter->date->format('d/m/Y')" />
-                <div>
-                    <dl>
-                        <dt>Descrição</dt>
-                        <dd>
-                            {!! $encounter->description !!}
-                        </dd>
-                    </dl>
-                </div>
+                <x-detail label="Descrição" :value="$encounter->description" :is_html="true" />
                 @can('coordinator')
                     <x-slot:footer>
                         <x-ts-button href="{{ route('encounters.edit', $encounter) }}" flat text="Editar" />

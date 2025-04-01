@@ -1,4 +1,4 @@
-<div>
+<div class="space-y-4">
     <x-ts-toast />
     <x-ts-dialog />
     <x-slot name="header">
@@ -18,7 +18,9 @@
             <x-detail label="Horário" :value="$event->time ? Carbon\Carbon::createFromFormat('H:i:s', $event->time)->format('H:i') : ''" />
         </div>
         <x-detail label="É apresentação?" :value="$event->is_presentation ? 'Sim' : 'Não'" />
-        <x-detail label="Local" :value="$event->local ?? 'Não informado'" />
+        <div class="col-span-2 sm:col-span-3">
+            <x-detail label="Local" :value="$event->local ?? 'Não informado'" />
+        </div>
         <div class="col-span-6">
             <x-detail label="Descrição" :value="$event->description" :is_html="true"></x-detail>
         </div>
