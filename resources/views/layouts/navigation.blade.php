@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('encounters.index')" :active="request()->routeIs('encounters.*')" icon="users">Ensaios</x-nav-link>
                     <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.*')" icon="calendar">Eventos</x-nav-link>
                 </div>
+                <div class="space-y-2 pt-1.5">
+                    <x-nav-link :href="route('financial.index')" :active="request()->routeIs('financial.*')" icon="wallet">Financeiro</x-nav-link>
+                </div>
             </div>
         </div>
     </div>

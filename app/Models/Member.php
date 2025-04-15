@@ -67,6 +67,11 @@ class Member extends Model
         return $this->hasMany(Sale::class);
     }
 
+    public function contributions(): HasMany
+    {
+        return $this->hasMany(Contribution::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
