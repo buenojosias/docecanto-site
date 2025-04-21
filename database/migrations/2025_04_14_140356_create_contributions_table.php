@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('contributions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('member_id')->nullable()->constrained()->nullOnDelete();
-            $table->enum('type', ['Mensalidade', 'Inscrição', 'Reinscrição'])->index();
+            $table->enum('type', ['Mensalidade', 'Inscrição', 'Reinscrição', 'Doação'])->index();
             $table->string('month', 2)->nullable()->index();
             $table->string('year', 4)->index();
             $table->date('date');

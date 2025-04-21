@@ -18,9 +18,11 @@
             @empty
                 <x-empty label="Nenhuma cateira adicionada" />
             @endforelse
-            <x-slot:footer>
-                <x-ts-button text="Adicionar nova" x-on:click="$wire.dispatch('open-create-wallet-modal')" flat />
-            </x-slot>
+            @can('coordinator')
+                <x-slot:footer>
+                    <x-ts-button text="Adicionar nova" x-on:click="$wire.dispatch('open-create-wallet-modal')" flat />
+                </x-slot>
+            @endcan
         </x-ts-card>
         <div class="col-span-2">
             <x-ts-card header="Últimos lançamentos">
@@ -34,7 +36,7 @@
 
             <div class="grid sm:grid-cols-2 gap-2 mt-4">
                 <x-ts-button text="Adicionar lançamento" />
-                <x-ts-button text="Gerenciar mensalidades" outline />
+                <x-ts-button text="Gerenciar mensalidades" :href="route('financial.mensalities.index')" outline />
                 <x-ts-button text="Adicionar transferência" />
             </div>
         </div>

@@ -15,7 +15,7 @@ class Transaction extends Model
         'amount',
         'balance_before',
         'balance_after',
-        'registred_by',
+        'registered_by',
     ];
 
     protected function casts(): array
