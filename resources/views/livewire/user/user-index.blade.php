@@ -1,7 +1,11 @@
 <div>
+    <x-ts-toast />
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">Usuários</h2>
     </x-slot>
+    @can('coordinator')
+        <x-ts-button text="Cadastrar usuário" wire:click="$dispatch('open-form-modal')" class="mb-3 w-full sm:w-auto" />
+    @endcan
     <div class="card">
         <div class="card-body table-responsive">
             <table class="table table-hover whitespace-nowrap">
@@ -11,7 +15,7 @@
                         <th>Nível</th>
                         <th>E-mail</th>
                         <th>Username</th>
-                        <th width="1"></th>
+                        {{-- <th width="1"></th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -24,10 +28,10 @@
                             <td>{{ Str::ucfirst($user->role) }}</td>
                             <td>{{ $user->email ?? '---' }}</td>
                             <td>{{ $user->username ?? '---' }}</td>
-                            <td>
-                                <x-ts-button name="no-symbol" sm flat />
-                                <x-ts-button name="trash" sm flat />
-                            </td>
+                            {{-- <td>
+                                <x-ts-button text="no-symbol" sm flat />
+                                <x-ts-button text="trash" sm flat />
+                            </td> --}}
                         </tr>
                     @empty
                         <x-empty />
@@ -39,4 +43,7 @@
             {{ $users->links() }}
         </div>
     </div>
+    @can('coordinator')
+        @livewire('user.user-create')
+    @endcan
 </div>
