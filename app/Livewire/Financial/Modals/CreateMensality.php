@@ -2,21 +2,21 @@
 
 namespace App\Livewire\Financial\Modals;
 
+use App\Enums\MonthEnum;
 use App\Models\Contribution;
 use App\Models\Member;
 use App\Models\Wallet;
-use App\Services\CreateTransaction;
+use App\Services\TransactionService;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
-use TallStackUi\Traits\Interactions;
 
 class CreateMensality extends Component
 {
     public $modal = false;
     public $members = [];
     public $wallets = [];
-    public $months = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+    public $months;
 
     #[Validate('required|integer', as: 'Coralista')]
     public $member_id;
@@ -42,6 +42,14 @@ class CreateMensality extends Component
     public function mount()
     {
         $this->type = 'Mensalidade';
+        $months = MonthEnum::cases();
+        foreach ($months as $month) {
+            $this->months[] = [
+                'value' => $month->value,
+                'label' => $month->getName(),
+                'short' => $month->getShortName()
+            ];
+        }
         $this->month = intval(date('m'));
         $this->year = intval(date('Y'));
         $this->date = date('Y-m-d');
@@ -83,22 +91,22 @@ class CreateMensality extends Component
     {
         $data = $this->validate();
         $data['registered_by'] = auth()->user()->id;
-
+        $monthShortName = MonthEnum::from($this->month)->getShortName();
 
         \DB::beginTransaction();
 
         $contribution = Contribution::create($data);
 
-        $transationData = [
+        $transactionData = [
             'wallet_id' => $this->wallet_id,
             'model' => $contribution,
             'category' => 'Mensalidade',
-            'description' => "Mensalidade de {$this->members->find($this->member_id)->name}. Referência: {$this->month}/{$this->year}",
+            'description' => "Mensalidade de {$this->members->find($this->member_id)->name}. Referência: {$monthShortName}/{$this->year}",
             'date' => $this->date,
             'amount' => $this->amount,
         ];
 
-        $transaction = CreateTransaction::increment($transationData);
+        $transaction = TransactionService::create($transactionData);
 
         if ($contribution && $transaction) {
             \DB::commit();

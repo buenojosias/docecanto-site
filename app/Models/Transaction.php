@@ -9,6 +9,7 @@ class Transaction extends Model
 {
     protected $fillable = [
         'wallet_id',
+        'category',
         'description',
         'note',
         'date',
@@ -40,6 +41,6 @@ class Transaction extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'registred_by');
+        return $this->belongsTo(User::class, 'registered_by');
     }
 }

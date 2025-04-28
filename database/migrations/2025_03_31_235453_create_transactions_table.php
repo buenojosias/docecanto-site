@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('wallet_id')->constrained();
-            $table->morphs('transactionable');
+            $table->nullableMorphs('transactionable');
             $table->string('category')->nullable();
             $table->tinyText('description');
             $table->mediumText('note')->nullable();

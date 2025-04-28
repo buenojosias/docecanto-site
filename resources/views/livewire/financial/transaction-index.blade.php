@@ -1,10 +1,9 @@
 <div>
     <x-ts-toast />
-    <x-ts-dialog />
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Mensalidades</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Transações</h2>
     </x-slot>
-    <x-ts-button text="Lançar mensalidade" x-on:click="$dispatch('open-mensality-modal')" class="mb-3 w-full sm:w-auto" />
+    <x-ts-button text="Lançar transação" x-on:click="$dispatch('open-transaction-modal')" class="mb-3 w-full sm:w-auto" />
 
     <div class="card">
         {{-- <div class="card-header relative" x-data="{ filters: false }">
@@ -25,23 +24,25 @@
             </div>
         </div> --}}
         <div class="card-body table-responsive">
-            <table class="table table-hover whitespace-nowrap">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Data</th>
-                        <th>Coralista</th>
-                        <th>Mês de referência</th>
+                        <th>Descrição</th>
+                        <th>Categoria</th>
                         <th width="106">Valor</th>
+                        <th>Lançado por</th>
                         {{-- <th></th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($mensalities as $mensality)
+                    @forelse ($transactions as $transaction)
                         <tr>
-                            <td>{{ $mensality->date->format('d/m/Y') }}</td>
-                            <td>{{ $mensality->member->name }}</td>
-                            <td>{{ App\Enums\MonthEnum::from($mensality->month)->getShortName() }}/{{ $mensality->year }}</td>
-                            <td class="flex justify-between gap-x-1"><span>R$</span> {{ number_format($mensality->amount, 2, ',') }}</td>
+                            <td>{{ $transaction->date->format('d/m/Y') }}</td>
+                            <td class="text-md">{{ $transaction->description }}</td>
+                            <td>{{ $transaction->category }}</td>
+                            <td class="flex justify-between items-center gap-x-1 {{ $transaction->amount < 0 ? 'text-red-700' : '' }}"><span>R$</span> {{ number_format($transaction->amount, 2, ',') }}</td>
+                            <td>{{ strtok($transaction->user->name, " ") }}</td>
                             {{-- <td>Link</td> --}}
                         </tr>
                     @empty
@@ -51,9 +52,9 @@
             </table>
         </div>
         <div class="card-paginate">
-            {{ $mensalities->links() }}
+            {{ $transactions->links() }}
         </div>
     </div>
 
-    @livewire('financial.modals.create-mensality')
+    @livewire('financial.modals.create-transaction')
 </div>

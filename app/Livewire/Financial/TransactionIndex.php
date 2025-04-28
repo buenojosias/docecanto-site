@@ -3,28 +3,25 @@
 namespace App\Livewire\Financial;
 
 use App\Models\Transaction;
-use App\Models\Wallet;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 use TallStackUi\Traits\Interactions;
 
-class FinancialIndex extends Component
+class TransactionIndex extends Component
 {
     use Interactions;
+    use WithPagination;
 
     public function render()
     {
-        $wallets = Wallet::all();
-        $totalBalance = $wallets->sum('balance');
-        $transactions = Transaction::select('date', 'description', 'amount')->limit(6)->orderBy('date', 'desc')->orderBy('id', 'desc')->get();
+        $transactions = Transaction::query()
+            ->with(['user'])
+            ->orderByDesc('date')
+            ->orderByDesc('id')
+            ->paginate();
 
-        return view('livewire.financial.financial-index', compact('wallets', 'totalBalance', 'transactions'));
-    }
-
-    #[On('wallet-created')]
-    public function walletCreated()
-    {
-        $this->toast()->success('Carteira adicionada com sucesso.')->send();
+        return view('livewire.financial.transaction-index', compact('transactions'));
     }
 
     #[On('transaction-created')]

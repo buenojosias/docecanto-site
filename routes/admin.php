@@ -6,6 +6,7 @@ use App\Livewire\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
 use App\Livewire\Event\{ EventIndex, EventShow, EventForm };
 use App\Livewire\Financial\FinancialIndex;
 use App\Livewire\Financial\MensalityIndex;
+use App\Livewire\Financial\TransactionIndex;
 use App\Livewire\Member\{ MemberIndex, MemberShow, MemberForm };
 use App\Livewire\Rating\{ RatingIndex };
 use App\Livewire\Queue\{ QueueIndex, QueueShow, QueueForm };
@@ -81,4 +82,5 @@ Route::prefix('fila')->name('queues.')->group(function () {
 Route::prefix('financeiro')->name('financial.')->group(function () {
     Route::get('/', FinancialIndex::class)->name('index');
     Route::get('/mensalidades', MensalityIndex::class)->name('mensalities.index');
+    Route::get('/transacoes', TransactionIndex::class)->name('transactions.index');
 });
