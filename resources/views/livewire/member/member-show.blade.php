@@ -31,11 +31,11 @@
             {{-- @livewire('member.member-profile', ['member' => $member]) --}}
         </div>
         <div class="col-span-2">
-            @livewire('member.member-contacts', ['member' => $member])
+            @livewire('member.member-kins', ['member' => $member])
             @can('coordinator')
                 @livewire('member.member-address', ['member' => $member])
             @endcan
-            @livewire('member.member-kins', ['member' => $member])
+            @livewire('member.member-contacts', ['member' => $member])
             @livewire('member.member-user', ['member' => $member])
             {{-- @livewire('member.member-rating', ['member' => $member]) --}}
         </div>

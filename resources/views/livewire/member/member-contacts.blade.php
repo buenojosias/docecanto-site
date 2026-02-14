@@ -1,5 +1,5 @@
 <div>
-    <div class="card mb-2">
+    <div class="card mb-4">
         <div class="card-header" title="Contatos">
             <h3 class="card-title">Contatos</h3>
             <div class="card-tools">

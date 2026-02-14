@@ -6,9 +6,12 @@
     </div>
 
     <div class="grid grid-cols-3 gap-4">
-        <x-ts-stats title="Coralistas ativos" icon="fluentui.people-audience-24" :number="$members_count" :href="route('members.index')" wire:navigate />
-        <x-ts-stats title="Músicas cadastradas" icon="fluentui.music-note-2-24" :number="$songs_count" :href="route('songs.index')" wire:navigate />
-        <x-ts-stats title="Novos interessados" icon="fluentui.person-clock-24" :number="$queues_count" :href="route('queues.index')" wire:navigate />
+        <x-ts-stats title="Coralistas ativos" icon="fluentui.people-audience-24" :number="$members_count" :href="route('members.index')"
+            wire:navigate />
+        <x-ts-stats title="Músicas cadastradas" icon="fluentui.music-note-2-24" :number="$songs_count" :href="route('songs.index')"
+            wire:navigate />
+        <x-ts-stats title="Novos interessados" icon="fluentui.person-clock-24" :number="$queues_count" :href="route('queues.index')"
+            wire:navigate />
     </div>
 
     @can('coordinator')
