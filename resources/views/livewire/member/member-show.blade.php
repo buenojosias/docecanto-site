@@ -2,7 +2,8 @@
     <div class="page-header">
         <div class="title">
             <h2>Coralista<br>
-            <small>{{ $member->name }}</small></h2>
+                <small>{{ $member->name }}</small>
+            </h2>
         </div>
     </div>
 
@@ -30,12 +31,10 @@
         </div>
         <div class="col-span-2 space-y-5">
             @livewire('member.member-kins', ['member' => $member])
-            @can('coordinator')
-                @livewire('member.member-address', ['member' => $member])
-            @endcan
+            @livewire('member.member-address', ['member' => $member])
             @livewire('member.member-contacts', ['member' => $member])
             @livewire('member.member-user', ['member' => $member])
-            {{-- @livewire('member.member-rating', ['member' => $member]) --}}
+            @livewire('member.member-rating', ['member' => $member])
         </div>
     </div>
 </div>

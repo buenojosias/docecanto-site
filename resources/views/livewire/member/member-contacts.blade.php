@@ -1,43 +1,29 @@
 <div>
-    <div class="card mb-4">
-        <div class="card-header" title="Contatos">
-            <h3 class="card-title">Contatos</h3>
-            <div class="card-tools">
-                @if ($showContacts)
-                    <x-ts-button icon="chevron-up" wire:click="unloadContacts" flat />
-                @else
-                    <x-ts-button icon="chevron-down" wire:click="loadContacts" flat />
-                @endif
-            </div>
-        </div>
-        @if ($showContacts)
-            <div class="card-body">
-                <ul>
-                    @forelse ($contacts as $contact)
-                        <li class="flex space-x-2 items-center py-2 px-4 border-b">
-                            <div class="grow">
-                                <h4 class="text-sm font-medium text-gray-600">{{ $contact->field }}</h4>
-                                <p class="font-medium text-gray-900">{{ $contact->value }}</p>
-                            </div>
-                            <div class="flex items-center">
-                                <x-ts-dropdown>
-                                    <x-ts-dropdown.items wire:click="openFormModal({{ $contact }})" icon="pencil"
-                                        label="Editar" />
-                                    <x-ts-dropdown.items wire:click="removeContact({{ $contact }})" icon="trash"
-                                        label="Remover" />
-                                </x-ts-dropdown>
-                            </div>
-                        </li>
-                    @empty
-                        <x-empty label="Nenhum contato adicionado" />
-                    @endforelse
-                </ul>
-            </div>
-            <div class="card-footer">
-                <x-ts-button x-on:click="$modalOpen('contact-modal')" text="Adicionar contato" flat sm class="w-full" />
-            </div>
-        @endif
-    </div>
+    <x-ts-card header="Contatos">
+        <ul>
+            @forelse ($contacts as $contact)
+                <li class="flex space-x-2 items-center py-2 px-4 border-b">
+                    <div class="grow">
+                        <h4 class="text-sm font-medium text-gray-600">{{ $contact->field }}</h4>
+                        <p class="font-medium text-gray-900">{{ $contact->value }}</p>
+                    </div>
+                    <div class="flex items-center">
+                        <x-ts-dropdown>
+                            <x-ts-dropdown.items wire:click="openFormModal({{ $contact }})" icon="pencil"
+                                label="Editar" />
+                            <x-ts-dropdown.items wire:click="removeContact({{ $contact }})" icon="trash"
+                                label="Remover" />
+                        </x-ts-dropdown>
+                    </div>
+                </li>
+            @empty
+                <x-empty label="Nenhum contato adicionado" />
+            @endforelse
+        </ul>
+        <x-slot:footer>
+            <x-ts-button wire:click="openFormModal" text="Adicionar contato" flat />
+        </x-slot>
+    </x-ts-card>
 
     <x-ts-modal id="contact-modal" max-width="sm">
         <div class="card w-full">
