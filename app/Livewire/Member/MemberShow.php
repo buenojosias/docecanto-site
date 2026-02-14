@@ -21,6 +21,6 @@ class MemberShow extends Component
 
     public function render()
     {
-        return view('livewire.member.member-show');
+        return view('livewire.member.member-show')->title('Coralista');
     }
 }

@@ -54,5 +54,10 @@ class AppServiceProvider extends ServiceProvider
             ->and()
             ->button()
             ->block('wrapper.sizes.xs', 'text-xs font-medium px-2 py-0.5');
+
+        TallStackUi::personalize()
+            ->card()
+            ->block('footer.wrapper')
+            ->replace('p-4', 'px-4 py-2');
     }
 }

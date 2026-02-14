@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Coral Doce Canto') }}</title>
+    <title>{{ isset($title) ? $title . ' - Coral Doce Canto' : 'Coral Doce Canto' }}</title>
     <link rel="stylesheet" href="{{ asset('icons/all.min.css') }}">
     <tallstackui:script />
     @livewireStyles
@@ -12,6 +12,8 @@
 </head>
 
 <body x-bind:class="{ 'dark bg-gray-700': darkTheme, 'bg-[#f3f2f3]': !darkTheme }">
+    <x-ts-dialog />
+    <x-ts-toast />
     <x-ts-layout>
         <x-slot:header>
             <x-ts-layout.header>
@@ -52,7 +54,8 @@
                 <x-ts-side-bar.item text="Financeiro" icon="fluentui.money-24-o" :route="route('financial.index')" :current="request()->routeIs('financial.*')"
                     wire:navigate />
                 <x-ts-side-bar.item text="Carteiras" icon="fluentui.wallet-24-o" route="#" />
-                <x-ts-side-bar.item text="Extrato financeiro" icon="fluentui.document-text-extract-24-o" route="#" />
+                <x-ts-side-bar.item text="Extrato financeiro" icon="fluentui.document-text-extract-24-o"
+                    route="#" />
                 <x-ts-side-bar.item text="Contribuições mensais" icon="fluentui.person-money-24-o" route="#" />
             </x-ts-side-bar>
         </x-slot:menu>

@@ -33,6 +33,6 @@ class MemberIndex extends Component
 
         return view('livewire.member.member-index', [
             'members' => $members,
-        ]);
+        ])->title('Coralistas');
     }
 }

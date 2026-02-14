@@ -1,8 +1,12 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Integrantes</h2>
-    </x-slot>
-    <x-ts-button href="{{ route('members.create') }}" text="Cadastrar novo" primary class="mb-3 w-full sm:w-auto" />
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Coralistas</h2>
+        </div>
+        <div class="action">
+            <x-ts-button href="{{ route('members.create') }}" text="Cadastrar novo" primary/>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header relative" x-data="{ filters: false }">
             <div></div>

@@ -1,17 +1,18 @@
-<div>
-    <x-ts-dialog />
-    @if ($member->status != 'Ativo')
-        <div class="alert warning">
-            O status atual do integrante é <span class="font-semibold">{{ $member->status }}</span>.
+<div class="space-y-5">
+    <div class="page-header">
+        <div class="title">
+            <h2>Coralista<br>
+            <small>{{ $member->name }}</small></h2>
         </div>
+    </div>
+
+    @if ($member->status != 'Ativo')
+        <x-ts-alert text="O status atual do integrante é {{ $member->status }}." color="amber" />
     @endif
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Informações do integrante</h2>
-    </x-slot>
-    <div class="md:grid md:grid-cols-5 space-y-3 md:space-y-0 gap-4">
-        <div class="col-span-3">
-            <x-ts-card>
+    <div class="md:grid md:grid-cols-5 space-y-3 md:space-y-0 gap-6">
+        <div class="col-span-3 space-y-5">
+            <x-ts-card header="Informações pessoais">
                 <div class="detail pb-4">
                     <x-detail label="Nome completo" :value="$member->name" />
                 </div>
@@ -24,13 +25,10 @@
                 <x-slot:footer>
                     <x-ts-button href="{{ route('members.edit', $member) }}" text="Editar" flat />
                 </x-slot:footer>
-
             </x-ts-card>
-            <div class="card mb-4">
-            </div>
-            {{-- @livewire('member.member-profile', ['member' => $member]) --}}
+            @livewire('member.member-profile', ['member' => $member])
         </div>
-        <div class="col-span-2">
+        <div class="col-span-2 space-y-5">
             @livewire('member.member-kins', ['member' => $member])
             @can('coordinator')
                 @livewire('member.member-address', ['member' => $member])
