@@ -92,7 +92,7 @@ return [
         |----------------------------------
         | Allowed: heroicons or BladeUI (check the docs).
         */
-        'type' => env('TALLSTACKUI_ICON_TYPE', 'heroicons'),
+        'type' => env('TALLSTACKUI_ICON_TYPE', 'codeat3/blade-fluentui-system-icons'),
 
         /*
         |----------------------------------
