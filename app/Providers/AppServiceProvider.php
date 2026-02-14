@@ -37,6 +37,12 @@ class AppServiceProvider extends ServiceProvider
             ->replace('font-semibold', 'font-medium');
 
         TallStackUi::personalize()
+            ->scope('without-padding')
+            ->card()
+            ->block('body')
+            ->replace('px-4 py-5', 'p-0');
+
+        TallStackUi::personalize()
             ->button()
             ->block('wrapper.sizes.lg', 'text-base font-semibold px-6 py-2.5')
             ->and()
