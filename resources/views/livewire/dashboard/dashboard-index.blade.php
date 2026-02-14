@@ -1,18 +1,16 @@
-<div>
-    <div class="md:-mt-4 mb-4 p-4 bg-white shadow rounded-md">
-        <div class="flex-1">
-            <p class="font-semibold text-gray-700">Bem vindo(a),</p>
-            <h2 class="text-2xl font-bold">{{ $name }}</h2>
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Olá, {{ $name }}</h2>
         </div>
     </div>
-    <div class="infobox-wrapper">
-        <x-infobox value="{{ $members_count }}" label="Membros ativos" href="{{ route('members.index') }}"
-            icon="children" />
-        <x-infobox value="{{ $songs_count }}" label="Músicas cadastradas" href="{{ route('songs.index') }}"
-            icon="music" />
-        <x-infobox value="{{ $queues_count }}" label="Novos interessados" href="{{ route('queues.index') }}"
-            icon="clock" />
+
+    <div class="grid grid-cols-3 gap-4">
+        <x-ts-stats title="Coralistas ativos" icon="users" :number="$members_count" :href="route('members.index')" wire:navigate />
+        <x-ts-stats title="Músicas cadastradas" icon="musical-note" :number="$songs_count" :href="route('songs.index')" wire:navigate />
+        <x-ts-stats title="Novos interessados" icon="clock" :number="$queues_count" :href="route('queues.index')" wire:navigate />
     </div>
+
     @can('coordinator')
         <div
             class="sm:grid sm:grid-cols-2 md:grid-cols-4 sm:text-center font-semibold bg-gray-50 border-t divide-x divide-y rounded">
@@ -36,6 +34,14 @@
     @endcan
     <div class="mt-4 grid sm:grid-cols-3 gap-4">
         <div>
+            <x-ts-card header="Próximos eventos">
+                LISTA DE EVENTOS AQUI...
+            </x-ts-card>
+
+            <x-ts-card header="Card sem padding">
+                LISTA DE EVENTOS AQUI...
+            </x-ts-card>
+
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Próximos eventos</h3>

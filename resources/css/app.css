@@ -1,6 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+.page-header {
+    @apply flex flex-col sm:flex-row items-center justify-between px-2 gap-1;
+}
+
+.page-header > .title {
+    @apply text-2xl font-bold text-gray-900 dark:text-gray-100 flex-1;
+}
+
+.page-header > .title > h2 {
+    @apply text-2xl font-bold flex-1;
+}
+
+.page-header > .action {
+    @apply flex gap-1;
+}
+
 
 .alert {
     @apply mb-4 py-3 px-4 border rounded;
@@ -53,31 +72,6 @@
 }
 .card .card-body.display p {
     @apply text-gray-900;
-}
-
-.infobox-wrapper {
-    @apply mb-4 grid sm:grid-cols-2 md:grid-cols-3 gap-3;
-}
-.infobox {
-    @apply relative rounded-md shadow;
-}
-.infobox > .inner {
-    @apply p-2 mb-2;
-}
-.infobox > .inner > h3 {
-    @apply mb-1 text-3xl font-bold;
-}
-.infobox > .inner > p {
-    @apply text-base;
-}
-.infobox > .icon {
-    @apply absolute right-4 top-4 opacity-30;
-}
-.infobox > .icon i {
-    @apply transition duration-150 ease-in-out text-6xl;
-}
-.infobox > .footer {
-    @apply block p-1 text-center rounded-b text-sm;
 }
 
 .table {
