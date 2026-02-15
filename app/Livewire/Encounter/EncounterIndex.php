@@ -3,46 +3,77 @@
 namespace App\Livewire\Encounter;
 
 use App\Models\Encounter;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithPagination;
 use TallStackUi\Traits\Interactions;
 
 class EncounterIndex extends Component
 {
-    use Interactions;
+    use Interactions, WithPagination;
 
-    public $date;
+    public string $activeTab = 'Próximos';
 
-    public $filterDate;
+    public ?string $dateStart = null;
 
-    public $period;
+    public ?string $dateEnd = null;
 
-    public function mount($period = 'proximos')
+    public int $quantity = 15;
+
+    #[On('tab-changed')]
+    public function handleTabChange($tab): void
     {
-        $this->period = $period;
-        $this->date = date('Y-m-d');
+        $this->activeTab = $tab;
+        $this->resetPage();
     }
 
-    public function render()
+    public function updatedDateStart(): void
     {
-        $encounters = Encounter::query()
-            ->when($this->filterDate, function ($query) {
-                $query->whereDate('date', $this->filterDate);
-            })
-            ->when($this->period === 'proximos', function ($query) {
-                $query
-                    ->whereDate('date', '>=', $this->date)
-                    ->orderBy('date', 'asc');
-            })
-            ->when($this->period === 'realizados', function ($query) {
-                $query
-                    ->whereDate('date', '<=', $this->date)
-                    ->with('members')
-                    ->orderBy('date', 'desc');
-            })
-            ->paginate();
+        $this->resetPage();
+    }
 
-        return view('livewire.encounter.encounter-index', [
-            'encounters' => $encounters,
-        ])->title('Ensaios');
+    public function updatedDateEnd(): void
+    {
+        $this->resetPage();
+    }
+
+    #[Computed]
+    public function proximos(): LengthAwarePaginator
+    {
+        return Encounter::query()
+            ->whereDate('date', '>=', now())
+            ->when($this->dateStart, function ($query): void {
+                $query->whereDate('date', '>=', $this->dateStart);
+            })
+            ->when($this->dateEnd, function ($query): void {
+                $query->whereDate('date', '<=', $this->dateEnd);
+            })
+            ->orderBy('date', 'asc')
+            ->paginate($this->quantity);
+    }
+
+    #[Computed]
+    public function realizados(): LengthAwarePaginator
+    {
+        return Encounter::query()
+            ->whereDate('date', '<', now())
+            ->when($this->dateStart, function ($query): void {
+                $query->whereDate('date', '>=', $this->dateStart);
+            })
+            ->when($this->dateEnd, function ($query): void {
+                $query->whereDate('date', '<=', $this->dateEnd);
+            })
+            ->with('members')
+            ->orderBy('date', 'desc')
+            ->paginate($this->quantity);
+    }
+
+    public function render(): View
+    {
+        return view('livewire.encounter.encounter-index')
+            ->title('Ensaios');
     }
 }

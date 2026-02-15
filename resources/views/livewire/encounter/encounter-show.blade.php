@@ -16,10 +16,12 @@
                 @endcan
             </x-ts-card>
         </div>
-        @if ($encounter->date->format('Y-m-d') <= date('Y-m-d'))
-            <div>
-                @livewire('encounter.encounter-attendance', ['encounter' => $encounter])
-            </div>
-        @endif
+        @island(defer: true)
+            @if ($encounter->date->format('Y-m-d') <= date('Y-m-d'))
+                <div>
+                    @livewire('encounter.encounter-attendance', ['encounter' => $encounter])
+                </div>
+            @endif
+        @endisland
     </div>
 </div>

@@ -3,32 +3,53 @@
 namespace App\Livewire\Encounter;
 
 use App\Models\Member;
+use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
 use TallStackUi\Traits\Interactions;
 
 class EncounterAttendance extends Component
 {
-    use Interactions;
-    use WithPagination;
+    use Interactions, WithPagination;
 
     public $encounter;
-    public $members;
-    public $membersWithAttendence;
-    public $membersWithoutAttendence;
+
     public $selectedAttendance = [];
-    public $showChangeModal = false;
 
-    public $changeMember, $changeAttendance;
+    public bool $showChangeModal = false;
 
-    public $newAttendance, $newNote;
+    public $changeMember;
 
-    public function mount($encounter)
+    public ?string $newAttendance = null;
+
+    public ?string $newNote = null;
+
+    public function mount($encounter): void
     {
         $this->encounter = $encounter;
     }
 
-    public function submitAttendance()
+    #[Computed]
+    public function membersWithoutAttendance(): Collection
+    {
+        return Member::where('status', 'Ativo')
+            ->whereDoesntHave('encounters', function ($query): void {
+                $query->where('encounter_id', $this->encounter->id);
+            })
+            ->orderBy('name', 'asc')
+            ->get();
+    }
+
+    #[Computed]
+    public function membersWithAttendance(): Collection
+    {
+        return $this->encounter->members()
+            ->orderBy('name', 'asc')
+            ->get();
+    }
+
+    public function submitAttendance(): void
     {
         foreach ($this->selectedAttendance as $key => $selected) {
             $this->selectedAttendance['member_id'] = $key;
@@ -41,42 +62,37 @@ class EncounterAttendance extends Component
         $this->resetAttendance();
     }
 
-    public function resetAttendance()
+    public function resetAttendance(): void
     {
         $this->selectedAttendance = [];
     }
 
-    public function openChangeModal($member) {
+    public function openChangeModal($member): void
+    {
         $this->changeMember = $member;
         $this->newAttendance = $member['pivot']['attendance'];
         $this->newNote = $member['pivot']['note'];
         $this->showChangeModal = true;
     }
 
-    public function saveChange() {
-        if($this->newAttendance && in_array($this->newAttendance, ['P','F','J'])) {
+    public function saveChange(): void
+    {
+        if ($this->newAttendance && in_array($this->newAttendance, ['P', 'F', 'J'])) {
             $this->encounter->members()->sync([
                 $this->changeMember['id'] => [
                     'attendance' => $this->newAttendance,
-                    'note' => $this->newNote
-                ]
+                    'note' => $this->newNote,
+                ],
             ], false);
             $this->toast()->success('Registro alterado com sucesso.')->send();
-            $this->newAttendance = $this->newNote = '';
+            $this->newAttendance = null;
+            $this->newNote = null;
             $this->showChangeModal = false;
-        } else {
-            return;
         }
     }
 
     public function render()
     {
-        $this->membersWithoutAttendence = Member::where('status', 'Ativo')->whereDoesntHave('encounters', function ($query) {
-            return $query->where('encounter_id', $this->encounter->id);
-        })->orderBy('name', 'asc')->get();
-
-        $this->membersWithAttendence = $this->encounter->members()->orderBy('name', 'asc')->get();
-
         return view('livewire.encounter.encounter-attendance');
     }
 }

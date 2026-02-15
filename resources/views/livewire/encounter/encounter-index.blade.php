@@ -4,13 +4,18 @@
             <h2>Ensaios</h2>
         </div>
         <div class="actions">
+            <x-ts-button href="{{ route('encounters.create') }}" primary text="Adicionar" />
+        </div>
+    </div>
 
-    <x-ts-tab tabs="Próximos|Realizados" wire:change="dispatch('tab-changed', { tab: $event.detail })" :active="$activeTab === 'proximos' ? 0 : 1">
-        <x-slot:tab-proximos>
+    <x-ts-tab x-on:navigate="$dispatch('tab-changed', { tab: $event.detail.select })" selected="Próximos">
+        <x-ts-tab.items tab="Próximos">
             <div class="space-y-4">
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <x-ts-date label="Data Inicial" placeholder="Selecione uma data" wire:model.live="dateStart" :min-date="now()" format="DD/MM/YYYY" helpers />
-                    <x-ts-date label="Data Final" placeholder="Selecione uma data" wire:model.live="dateEnd" :min-date="now()" format="DD/MM/YYYY" helpers />
+                    <x-ts-date label="Data Inicial" placeholder="Selecione uma data" wire:model.live="dateStart"
+                        :min-date="now()" format="DD/MM/YYYY" helpers />
+                    <x-ts-date label="Data Final" placeholder="Selecione uma data" wire:model.live="dateEnd"
+                        :min-date="now()" format="DD/MM/YYYY" helpers />
                 </div>
                 @php
                     $proxHeaders = [
@@ -20,9 +25,7 @@
                 @endphp
                 <x-ts-table :headers="$proxHeaders" :rows="$this->proximos()" striped>
                     @interact('column_date', $row)
-                        <a href="{{ route('encounters.show', $row) }}" class="text-blue-600 hover:text-blue-800">
-                            {{ $row->date->format('d/m/Y') }}
-                        </a>
+                        <x-ts-link :href="route('encounters.show', $row)" :text="$row->date->format('d/m/Y')" />
                     @endinteract
 
                     @interact('column_action', $row)
@@ -30,19 +33,17 @@
                             <x-ts-button href="{{ route('encounters.edit', $row) }}" sm flat icon="pencil" />
                         @endcan
                     @endinteract
-
-                    <x-slot:empty>
-                        <x-empty />
-                    </x-slot:empty>
                 </x-ts-table>
-        </div>
-        </x-slot:tab-proximos>
+            </div>
+        </x-ts-tab.items>
 
-        <x-slot:tab-realizados>
+        <x-ts-tab.items tab="Realizados">
             <div class="space-y-4">
                 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <x-ts-date label="Data Inicial" placeholder="Selecione uma data" wire:model.live="dateStart" :max-date="now()" format="DD/MM/YYYY" helpers />
-                    <x-ts-date label="Data Final" placeholder="Selecione uma data" wire:model.live="dateEnd" :max-date="now()" format="DD/MM/YYYY" helpers />
+                    <x-ts-date label="Data Inicial" placeholder="Selecione uma data" wire:model.live="dateStart"
+                        :max-date="now()" format="DD/MM/YYYY" helpers />
+                    <x-ts-date label="Data Final" placeholder="Selecione uma data" wire:model.live="dateEnd"
+                        :max-date="now()" format="DD/MM/YYYY" helpers />
                 </div>
                 @php
                     $realizadosHeaders = [
@@ -54,9 +55,7 @@
                 @endphp
                 <x-ts-table :headers="$realizadosHeaders" :rows="$this->realizados()" striped>
                     @interact('column_date', $row)
-                        <a href="{{ route('encounters.show', $row) }}" class="text-blue-600 hover:text-blue-800">
-                            {{ $row->date->format('d/m/Y') }}
-                        </a>
+                        <x-ts-link :href="route('encounters.show', $row)" :text="$row->date->format('d/m/Y')" />
                     @endinteract
 
                     @interact('column_presencas', $row)
@@ -70,22 +69,22 @@
                     @interact('column_faltas', $row)
                         @if ($row->members->count() === 0)
                             <span class="text-sm text-gray-500">---</span>
-                                    @else
+                        @else
                             <span class="text-center">{{ $row->members->where('pivot.attendance', 'F')->count() }}</span>
-                                    @endif
+                        @endif
                     @endinteract
 
                     @interact('column_action', $row)
-                                    @can('coordinator')
+                        @can('coordinator')
                             <x-ts-button href="{{ route('encounters.edit', $row) }}" sm flat icon="pencil" />
-                                    @endcan
+                        @endcan
                     @endinteract
 
                     <x-slot:empty>
-                            <x-empty />
+                        <x-empty />
                     </x-slot:empty>
                 </x-ts-table>
             </div>
-        </x-slot:tab-realizados>
+        </x-ts-tab.items>
     </x-ts-tab>
 </div>

@@ -27,7 +27,7 @@ Route::prefix('categorias')->name('categories.')->group(function () {
 });
 
 Route::prefix('ensaios')->name('encounters.')->group(function () {
-    Route::get('/cadastro', EncounterForm::class)->name('create')->middleware('coordinator');
+    Route::get('/cadastro', EncounterForm::class)->name('create');
     Route::get('/{encounter}/ver', EncounterShow::class)->name('show');
     Route::get('/{encounter}/editar', EncounterForm::class)->name('edit')->middleware('coordinator');
     Route::get('/{period?}', EncounterIndex::class)->name('index');
