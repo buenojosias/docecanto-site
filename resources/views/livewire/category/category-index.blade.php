@@ -29,10 +29,6 @@
                 </div>
             @endinteract
         @endcan
-
-        <x-slot:empty>
-            <x-empty />
-        </x-slot:empty>
     </x-ts-table>
     @if ($showFormModal)
         <x-ts-modal wire="showFormModal" size="sm"

@@ -26,7 +26,7 @@
             </x-ts-card>
         </div>
         <div class="col-span-2">
-            <x-ts-card header="Últimos lançamentos">
+            <x-ts-card header="Últimas transações">
                 @php
                     $headers = [
                         ['index' => 'date', 'label' => 'Data', 'sortable' => false],
@@ -45,22 +45,21 @@
                     @endinteract
 
                     @interact('column_amount', $row)
-                        <div class="flex justify-between gap-1">
+                        <div @class([
+                            'flex items-center justify-between gap-1',
+                            'text-red-700' => $row->amount < 0,
+                        ])>
                             <span>R$</span>
                             <span>{{ number_format($row->amount, 2, ',') }}</span>
                         </div>
                     @endinteract
-
-                    <x-slot:empty>
-                        <x-empty />
-                    </x-slot:empty>
                 </x-ts-table>
                 <x-slot:footer>
-                    <x-ts-button text="Ver todos" :href="route('financial.transactions.index')" flat />
+                    <x-ts-button text="Ver todas" :href="route('financial.transactions.index')" flat />
                 </x-slot:footer>
             </x-ts-card>
             <div class="grid sm:grid-cols-2 gap-2 mt-4">
-                <x-ts-button text="Adicionar lançamento" x-on:click="$dispatch('open-transaction-modal')" outline />
+                <x-ts-button text="Adicionar transação" x-on:click="$dispatch('open-transaction-modal')" outline />
                 <x-ts-button text="Gerenciar mensalidades" :href="route('financial.mensalities.index')" outline />
                 @can('coordinator')
                     <x-ts-button text="Adicionar transferência" />
