@@ -3,82 +3,89 @@
         <div class="title">
             <h2>Ensaios</h2>
         </div>
-    </div>
-    <nav class="tabs" x-data="{ showtabs: false }">
-        <div>
-            <x-tab-link href="{{ route('encounters.index') }}" active="{{ $period === 'proximos' }}"
-                label="Próximos" />
-            <x-tab-link href="{{ route('encounters.index', 'realizados') }}" active="{{ $period === 'realizados' }}"
-                label="Realizados" />
-        </div>
-    </nav>
-    <div class="sm:max-w-lg sm:mx-auto">
-        <x-ts-button href="{{ route('encounters.create') }}" primary text="Adicionar" />
-        <div class="card mt-4">
-            <div class="card-header relative" x-data="{ filters: false }">
-                <h3 class="title"></h3>
-                <div class="card-tools py-1">
-                    <x-ts-button flat icon="funnel" @click="filters = !filters" color="secondary" />
-                </div>
-                <div x-show="filters" @click.outside="filters = false" class="filters">
-                    <div>
-                        @if ($period === 'realizados')
-                            <x-ts-date label="Filtrar por data" placeholder="Selecione uma data"
-                                wire:model.live="filterDate" :max-date="now()" />
-                        @else
-                            <x-ts-date label="Filtrar por data" placeholder="Selecione uma data"
-                                wire:model.live="filterDate" :min-date="now()" />
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="card-body table-responsive">
-                <table class="table table-hover whitespace-nowrap">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            @if ($period && $period === 'realizados')
-                                <th width="1%" class="text-center">Presenças</th>
-                                <th width="1%" class="text-center">Faltas</th>
-                            @endif
-                            <th width="1%"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($encounters as $encounter)
-                            <tr>
-                                <td>
-                                    <a href="{{ route('encounters.show', $encounter) }}">
-                                        {{ $encounter->date->format('d/m/Y') }}
-                                    </a>
-                                </td>
-                                @if ($period && $period === 'realizados')
-                                    @if ($encounter->members->count() === 0)
-                                        <td colspan="2" class="text-center text-sm text-gray-500">Sem lançamento</td>
-                                    @else
-                                        <td class="text-center">
-                                            {{ $encounter->members->where('pivot.attendance', 'P')->count() }}</td>
-                                        <td class="text-center">
-                                            {{ $encounter->members->where('pivot.attendance', 'F')->count() }}</td>
-                                    @endif
-                                @endif
-                                <td>
-                                    @can('coordinator')
-                                        <x-ts-button href="{{ route('encounters.edit', $encounter) }}" sm flat
-                                            icon="pencil" />
-                                    @endcan
-                                </td>
-                            </tr>
-                        @empty
-                            <x-empty />
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-            <div class="card-paginate">
-                {{ $encounters->links() }}
-            </div>
-        </div>
-    </div>
+        <div class="actions">
 
+    <x-ts-tab tabs="Próximos|Realizados" wire:change="dispatch('tab-changed', { tab: $event.detail })" :active="$activeTab === 'proximos' ? 0 : 1">
+        <x-slot:tab-proximos>
+            <div class="space-y-4">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <x-ts-date label="Data Inicial" placeholder="Selecione uma data" wire:model.live="dateStart" :min-date="now()" format="DD/MM/YYYY" helpers />
+                    <x-ts-date label="Data Final" placeholder="Selecione uma data" wire:model.live="dateEnd" :min-date="now()" format="DD/MM/YYYY" helpers />
+                </div>
+                @php
+                    $proxHeaders = [
+                        ['index' => 'date', 'label' => 'Data', 'sortable' => false],
+                        ['index' => 'action', 'label' => '', 'sortable' => false],
+                    ];
+                @endphp
+                <x-ts-table :headers="$proxHeaders" :rows="$this->proximos()" striped>
+                    @interact('column_date', $row)
+                        <a href="{{ route('encounters.show', $row) }}" class="text-blue-600 hover:text-blue-800">
+                            {{ $row->date->format('d/m/Y') }}
+                        </a>
+                    @endinteract
+
+                    @interact('column_action', $row)
+                        @can('coordinator')
+                            <x-ts-button href="{{ route('encounters.edit', $row) }}" sm flat icon="pencil" />
+                        @endcan
+                    @endinteract
+
+                    <x-slot:empty>
+                        <x-empty />
+                    </x-slot:empty>
+                </x-ts-table>
+        </div>
+        </x-slot:tab-proximos>
+
+        <x-slot:tab-realizados>
+            <div class="space-y-4">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <x-ts-date label="Data Inicial" placeholder="Selecione uma data" wire:model.live="dateStart" :max-date="now()" format="DD/MM/YYYY" helpers />
+                    <x-ts-date label="Data Final" placeholder="Selecione uma data" wire:model.live="dateEnd" :max-date="now()" format="DD/MM/YYYY" helpers />
+                </div>
+                @php
+                    $realizadosHeaders = [
+                        ['index' => 'date', 'label' => 'Data', 'sortable' => false],
+                        ['index' => 'presencas', 'label' => 'Presenças', 'sortable' => false],
+                        ['index' => 'faltas', 'label' => 'Faltas', 'sortable' => false],
+                        ['index' => 'action', 'label' => '', 'sortable' => false],
+                    ];
+                @endphp
+                <x-ts-table :headers="$realizadosHeaders" :rows="$this->realizados()" striped>
+                    @interact('column_date', $row)
+                        <a href="{{ route('encounters.show', $row) }}" class="text-blue-600 hover:text-blue-800">
+                            {{ $row->date->format('d/m/Y') }}
+                        </a>
+                    @endinteract
+
+                    @interact('column_presencas', $row)
+                        @if ($row->members->count() === 0)
+                            <span class="text-sm text-gray-500">---</span>
+                        @else
+                            <span class="text-center">{{ $row->members->where('pivot.attendance', 'P')->count() }}</span>
+                        @endif
+                    @endinteract
+
+                    @interact('column_faltas', $row)
+                        @if ($row->members->count() === 0)
+                            <span class="text-sm text-gray-500">---</span>
+                                    @else
+                            <span class="text-center">{{ $row->members->where('pivot.attendance', 'F')->count() }}</span>
+                                    @endif
+                    @endinteract
+
+                    @interact('column_action', $row)
+                                    @can('coordinator')
+                            <x-ts-button href="{{ route('encounters.edit', $row) }}" sm flat icon="pencil" />
+                                    @endcan
+                    @endinteract
+
+                    <x-slot:empty>
+                            <x-empty />
+                    </x-slot:empty>
+                </x-ts-table>
+            </div>
+        </x-slot:tab-realizados>
+    </x-ts-tab>
 </div>
