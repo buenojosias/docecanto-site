@@ -1,5 +1,4 @@
 <div class="space-y-6">
-    <x-ts-toast />
     <div class="page-header">
         <div class="title">
             <h2>Transações</h2>
@@ -9,56 +8,61 @@
         </div>
     </div>
 
-    <div class="card">
-        {{-- <div class="card-header relative" x-data="{ filters: false }">
-            <div></div>
-            <div class="card-tools py-1">
-                <x-ts-button @click="filters = !filters" icon="funnel" color="secondary" flat />
-            </div>
-            <div x-show="filters" @click.outside="filters = false" class="filters">
-                <div>
-                    <x-ts-select.native label="Status" wire:model.live="status">
-                        <option value="">Todos</option>
-                        <option value="Ativo">Ativos</option>
-                        <option value="Inativo">Inativos</option>
-                        <option value="Afastado">Afastados</option>
-                        <option value="Desistente">Desistentes</option>
-                    </x-ts-select.native>
-                </div>
-            </div>
-        </div> --}}
-        <div class="card-body table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Descrição</th>
-                        <th>Categoria</th>
-                        <th width="106">Valor</th>
-                        <th>Lançado por</th>
-                        {{-- <th></th> --}}
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($transactions as $transaction)
-                        <tr>
-                            <td>{{ $transaction->date->format('d/m/Y') }}</td>
-                            <td class="text-md">{{ $transaction->description }}</td>
-                            <td>{{ $transaction->category }}</td>
-                            <td class="flex justify-between items-center gap-x-1 {{ $transaction->amount < 0 ? 'text-red-700' : '' }}"><span>R$</span> {{ number_format($transaction->amount, 2, ',') }}</td>
-                            <td>{{ strtok($transaction->user->name, " ") }}</td>
-                            {{-- <td>Link</td> --}}
-                        </tr>
-                    @empty
-                        <x-empty />
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <div class="card-paginate">
-            {{ $transactions->links() }}
-        </div>
+    <div class="grid gap-4 rounded-md bg-white p-4 shadow sm:grid-cols-2 lg:grid-cols-4">
+        <x-ts-select.native wire:model.live="category" label="Categoria">
+            <option value="">Todas</option>
+            @foreach ($this->categories as $categoryOption)
+                <option value="{{ $categoryOption }}">{{ $categoryOption }}</option>
+            @endforeach
+        </x-ts-select.native>
+
+        <x-ts-date wire:model.live="dateStart" :max-date="now()" format="DD/MM/YYYY" label="Data inicial" helpers />
+        <x-ts-date wire:model.live="dateEnd" :max-date="now()" format="DD/MM/YYYY" label="Data final" helpers />
+
+        <x-ts-select.native wire:model.live="flow" label="Fluxo">
+            <option value="">Todos</option>
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+        </x-ts-select.native>
     </div>
+
+    @php
+        $headers = [
+            ['index' => 'date', 'label' => 'Data', 'sortable' => false],
+            ['index' => 'description', 'label' => 'Descrição', 'sortable' => false],
+            ['index' => 'category', 'label' => 'Categoria', 'sortable' => false],
+            ['index' => 'amount', 'label' => 'Valor', 'sortable' => false],
+            ['index' => 'user.name', 'label' => 'Lançado por', 'sortable' => false],
+        ];
+    @endphp
+
+    <x-ts-table :headers="$headers" :rows="$this->transactions" paginate loading striped>
+        @interact('column_date', $row)
+            {{ $row->date->format('d/m/Y') }}
+        @endinteract
+
+        @interact('column_description', $row)
+            <span class="text-md">{{ $row->description }}</span>
+        @endinteract
+
+        @interact('column_amount', $row)
+            <div @class([
+                'flex items-center justify-between gap-1',
+                'text-red-700' => $row->amount < 0,
+            ])>
+                <span>R$</span>
+                <span>{{ number_format($row->amount, 2, ',') }}</span>
+            </div>
+        @endinteract
+
+        @interact('column_user_name', $row)
+            {{ $row->user ? strtok($row->user->name, ' ') : '---' }}
+        @endinteract
+
+        <x-slot:empty>
+            <x-empty />
+        </x-slot:empty>
+    </x-ts-table>
 
     @livewire('financial.modals.create-transaction')
 </div>

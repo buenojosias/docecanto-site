@@ -53,10 +53,9 @@
                 <x-ts-side-bar.separator text="Gestão" line />
                 <x-ts-side-bar.item text="Financeiro" icon="fluentui.money-24-o" :route="route('financial.index')" :current="request()->routeIs('financial.*')"
                     wire:navigate />
-                <x-ts-side-bar.item text="Carteiras" icon="fluentui.wallet-24-o" route="#" />
-                <x-ts-side-bar.item text="Extrato financeiro" icon="fluentui.document-text-extract-24-o"
-                    route="#" />
-                <x-ts-side-bar.item text="Contribuições mensais" icon="fluentui.person-money-24-o" route="#" />
+                <x-ts-side-bar.item text="Carteiras" icon="fluentui.wallet-24-o" />
+                <x-ts-side-bar.item text="Extrato financeiro" icon="fluentui.document-text-extract-24-o" :route="route('financial.transactions.index')" :current="request()->routeIs('financial.transactions.*')" />
+                <x-ts-side-bar.item text="Contribuições mensais" icon="fluentui.person-money-24-o" :route="route('financial.mensalities.index')" :current="request()->routeIs('financial.mensalities.*')" />
             </x-ts-side-bar>
         </x-slot:menu>
 

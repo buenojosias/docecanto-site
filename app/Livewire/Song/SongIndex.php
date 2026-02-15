@@ -4,6 +4,9 @@ namespace App\Livewire\Song;
 
 use App\Models\Category;
 use App\Models\Song;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,15 +17,19 @@ class SongIndex extends Component
     use Interactions;
     use WithPagination;
 
-    public $categories;
+    public array $categories = [];
+
+    public int $quantity = 10;
+
+    public ?string $search = null;
 
     #[Url('categoria', except: null)]
-    public $filter = null;
+    public ?string $filter = null;
 
     #[Url('destacadas', except: false)]
-    public $detached = false;
+    public bool $detached = false;
 
-    public function mount()
+    public function mount(): void
     {
         $this->categories = Category::orderBy('position')->get()->toArray();
         array_unshift($this->categories, [
@@ -36,10 +43,20 @@ class SongIndex extends Component
         ];
     }
 
-    public function render()
+    #[Computed]
+    public function songs(): LengthAwarePaginator
     {
-        $songs = Song::query()
+        return Song::query()
             ->select(['id', 'number', 'title', 'detached'])
+            ->when($this->search, function ($query): void {
+                $term = '%'.$this->search.'%';
+
+                $query->where(function ($subQuery) use ($term): void {
+                    $subQuery
+                        ->where('title', 'like', $term)
+                        ->orWhere('lyrics', 'like', $term);
+                });
+            })
             ->when($this->filter, function ($query) {
                 if ($this->filter === 'sem_categoria') {
                     $query->doesntHave('categories');
@@ -53,16 +70,32 @@ class SongIndex extends Component
                 $query->where('detached', true);
             })
             ->orderBy('number')
-            ->with('categories');
+            ->with('categories')
+            ->paginate($this->quantity);
+    }
 
-        if ($this->filter) {
-            $songs = $songs->get();
-        } else {
-            $songs = $songs->paginate();
-        }
+    public function updatedSearch(): void
+    {
+        $this->resetPage();
+    }
 
-        return view('livewire.song.song-index', [
-            'songs' => $songs,
-        ])->title('Músicas');
+    public function updatedQuantity(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedFilter(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedDetached(): void
+    {
+        $this->resetPage();
+    }
+
+    public function render(): View
+    {
+        return view('livewire.song.song-index')->title('Músicas');
     }
 }

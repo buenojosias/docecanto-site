@@ -1,6 +1,4 @@
 <div class="space-y-6">
-    <x-ts-toast />
-    <x-ts-dialog />
     <div class="page-header">
         <div class="title">
             <h2>Detalhes do evento</h2>

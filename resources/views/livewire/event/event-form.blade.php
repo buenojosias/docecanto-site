@@ -1,5 +1,4 @@
 <div class="space-y-6">
-    <x-ts-toast />
     <div class="page-header">
         <div class="title">
             <h2>{{ $action === 'create' ? 'Adicionar' : 'Editar' }} evento</h2>

@@ -4,8 +4,6 @@
             <h2>Eventos</h2>
         </div>
     </div>
-    <x-ts-toast />
-    <x-ts-dialog />
     <div class="card">
         <div class="card-body">
             <div class="sm:grid sm:grid-cols-2 md:grid-cols-5">

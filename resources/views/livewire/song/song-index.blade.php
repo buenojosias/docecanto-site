@@ -18,51 +18,54 @@
             </div>
             <x-ts-toggle wire:model.live="detached" label="Apenas fixadas" color="primary" />
         </div>
+        @php
+            $headers = [
+                ['index' => 'number', 'label' => 'Núm.', 'sortable' => false],
+                ['index' => 'title', 'label' => 'Título', 'sortable' => false],
+                ['index' => 'categories', 'label' => 'Categoria(s)', 'sortable' => false],
+            ];
+        @endphp
 
-        <div class="card">
-            <div class="card-body table-responsive">
-                <table class="table table-hover whitespace-nowrap">
-                    <thead>
-                        <tr>
-                            <th>Núm.</th>
-                            <th>Título</th>
-                            <th>Categoria(s)</th>
-                            @can('coordinator')
-                                <th></th>
-                            @endcan
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($songs as $song)
-                            <tr>
-                                <td>{{ $song->number }}</td>
-                                <td class="flex items-center">
-                                    @if ($song->detached)
-                                        <x-ts-icon name="bookmark" class="w-4 h-4 mr-1 text-orange-700" solid />
-                                    @endif
-                                    <a href="{{ route('songs.show', $song->number) }}">{{ $song->title }}</a>
-                                </td>
-                                <td>
-                                    @foreach ($song->categories as $category)
-                                        <x-ts-badge xs color="secondary" light text="{{ $category->name }}" />
-                                    @endforeach
-                                </td>
-                                @can('coordinator')
-                                    <td class="text-right">
-                                        <x-ts-button icon="pencil" href="{{ route('songs.edit', $song->number) }}" sm
-                                            flat />
-                                    </td>
-                                @endcan
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            @if (!$filter)
-                <div class="card-paginate">
-                    {{ $songs->links() }}
+        @can('coordinator')
+            @php
+                $headers[] = ['index' => 'action', 'label' => '', 'sortable' => false];
+            @endphp
+        @endcan
+
+        <x-ts-table :headers="$headers"
+                    :rows="$this->songs"
+                    :filter="['quantity' => 'quantity', 'search' => 'search']"
+                    paginate
+                    loading
+                    striped>
+            @interact('column_title', $row)
+                <div class="flex items-center gap-1">
+                    @if ($row->detached)
+                        <x-ts-icon name="bookmark" class="h-4 w-4 text-orange-700" solid />
+                    @endif
+                    <a href="{{ route('songs.show', $row->number) }}">{{ $row->title }}</a>
                 </div>
-            @endif
-        </div>
+            @endinteract
+
+            @interact('column_categories', $row)
+                <div class="flex flex-wrap gap-2">
+                    @foreach ($row->categories as $category)
+                        <x-ts-badge xs color="secondary" light text="{{ $category->name }}" />
+                    @endforeach
+                </div>
+            @endinteract
+
+            @can('coordinator')
+                @interact('column_action', $row)
+                    <div class="flex justify-end">
+                        <x-ts-button icon="pencil" href="{{ route('songs.edit', $row->number) }}" sm flat />
+                    </div>
+                @endinteract
+            @endcan
+
+            <x-slot:empty>
+                <x-empty />
+            </x-slot:empty>
+        </x-ts-table>
     </div>
 </div>

@@ -3,6 +3,9 @@
 namespace App\Livewire\Category;
 
 use App\Models\Category;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use TallStackUi\Traits\Interactions;
 
@@ -10,13 +13,19 @@ class CategoryIndex extends Component
 {
     use Interactions;
 
-    public $categories;
-    public $showFormModal = false;
+    public bool $showFormModal = false;
 
-    public $action;
-    public $data;
+    public ?string $action = null;
 
-    public function openFormModal($category = null)
+    public array $data = [];
+
+    #[Computed]
+    public function categories(): Collection
+    {
+        return Category::withCount('songs')->orderBy('position')->get();
+    }
+
+    public function openFormModal($category = null): void
     {
         if ($category) {
             $this->data = $category;
@@ -28,12 +37,12 @@ class CategoryIndex extends Component
         $this->showFormModal = true;
     }
 
-    public function submit()
+    public function submit(): void
     {
         if ($this->action === 'edit') {
             $data = $this->validate([
                 'data.position' => 'required|integer',
-                'data.name' => 'required|string|unique:categories,name,'.$this->data['id']
+                'data.name' => 'required|string|unique:categories,name,'.$this->data['id'],
             ]);
             try {
                 Category::query()->find($this->data['id'])->update($this->data);
@@ -46,7 +55,7 @@ class CategoryIndex extends Component
         } else {
             $data = $this->validate([
                 'data.position' => 'required|integer',
-                'data.name' => 'required|string|unique:categories,name'
+                'data.name' => 'required|string|unique:categories,name',
             ]);
             try {
                 Category::query()->create($this->data);
@@ -59,10 +68,8 @@ class CategoryIndex extends Component
         }
     }
 
-    public function render()
+    public function render(): View
     {
-        $this->categories = Category::withCount('songs')->orderBy('position')->get();
-
-        return view('livewire.category.category-index');
+        return view('livewire.category.category-index')->title('Categorias');
     }
 }

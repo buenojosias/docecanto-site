@@ -1,5 +1,4 @@
 <div>
-    <x-ts-toast />
     @if ($membersWithoutAttendence->where('status', 'Ativo')->count() > 0)
         <div class="card mb-4">
             <form wire:submit="submitAttendance">
