@@ -7,11 +7,9 @@ use Carbon\Carbon;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
-// use WireUi\Traits\WireUiActions;
 
 class MemberIndex extends Component
 {
-    // use WireUiActions;
     use WithPagination;
 
     #[Url('status')]

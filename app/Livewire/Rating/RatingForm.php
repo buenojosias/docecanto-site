@@ -5,12 +5,9 @@ namespace App\Livewire\Rating;
 use App\Models\Note;
 use App\Models\Rating;
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
 
 class RatingForm extends Component
 {
-    // use WireUiActions;
-
     public $member;
     public $data;
     public $options = [1, 2, 3, 4, 5];

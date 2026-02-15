@@ -3,12 +3,9 @@
 namespace App\Livewire\Member;
 
 use Livewire\Component;
-// use WireUi\Traits\WireUiActions;
 
 class MemberProfileItem extends Component
 {
-    // use WireUiActions;
-
     public $member;
     public $question;
     public $answer;

@@ -6,11 +6,9 @@ use App\Models\Rating;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-// use WireUi\Traits\WireUiActions;
 
 class RatingIndex extends Component
 {
-    // use WireUiActions;
     use WithPagination;
 
     public $ratings;

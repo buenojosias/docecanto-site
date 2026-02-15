@@ -8,11 +8,9 @@ use App\Models\Queue;
 use App\Models\Song;
 use Livewire\Component;
 use Livewire\WithPagination;
-// use WireUi\Traits\WireUiActions;
 
 class DashboardIndex extends Component
 {
-    // use WireUiActions;
     use WithPagination;
 
     public $name;
