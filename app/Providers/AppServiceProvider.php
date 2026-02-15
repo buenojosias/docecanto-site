@@ -59,5 +59,10 @@ class AppServiceProvider extends ServiceProvider
             ->card()
             ->block('footer.wrapper')
             ->replace('p-4', 'px-4 py-2');
+
+        TallStackUi::personalize()
+            ->table()
+            ->block('table.td')
+            ->replace('py-4', 'py-3');
     }
 }

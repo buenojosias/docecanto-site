@@ -1,5 +1,4 @@
 <div class="space-y-6">
-    <x-ts-toast />
     <div class="page-header">
         <div class="title">
             <h2>Usuários</h2>
@@ -10,43 +9,32 @@
             @endcan
         </div>
     </div>
-    <div class="card">
-        <div class="card-body table-responsive">
-            <table class="table table-hover whitespace-nowrap">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Nível</th>
-                        <th>E-mail</th>
-                        <th>Username</th>
-                        {{-- <th width="1"></th> --}}
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($users as $user)
-                        <tr>
-                            <td>
-                                {{-- <a href="{{ route('users.show', $user) }}" class="link">{{ $user->name }}</a> --}}
-                                {{ $user->name }}
-                            </td>
-                            <td>{{ Str::ucfirst($user->role) }}</td>
-                            <td>{{ $user->email ?? '---' }}</td>
-                            <td>{{ $user->username ?? '---' }}</td>
-                            {{-- <td>
-                                <x-ts-button text="no-symbol" sm flat />
-                                <x-ts-button text="trash" sm flat />
-                            </td> --}}
-                        </tr>
-                    @empty
-                        <x-empty />
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <div class="card-paginate">
-            {{ $users->links() }}
-        </div>
-    </div>
+    @php
+        $headers = [
+            ['index' => 'name', 'label' => 'Nome', 'sortable' => false],
+            ['index' => 'role', 'label' => 'Nível', 'sortable' => false],
+            ['index' => 'email', 'label' => 'E-mail', 'sortable' => false],
+            ['index' => 'username', 'label' => 'Username', 'sortable' => false],
+        ];
+    @endphp
+
+    <x-ts-table :headers="$headers" :rows="$this->users" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading striped>
+        @interact('column_role', $row)
+            {{ $row->role ? Str::ucfirst($row->role) : '---' }}
+        @endinteract
+
+        @interact('column_email', $row)
+            {{ $row->email ?? '---' }}
+        @endinteract
+
+        @interact('column_username', $row)
+            {{ $row->username ?? '---' }}
+        @endinteract
+
+        <x-slot:empty>
+            <x-empty />
+        </x-slot:empty>
+    </x-ts-table>
     @can('coordinator')
         @livewire('user.user-create')
     @endcan

@@ -3,33 +3,31 @@
 namespace App\Livewire\Rating;
 
 use App\Models\Rating;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
-use Livewire\WithPagination;
-
 
 class RatingIndex extends Component
 {
-    use WithPagination;
+    public bool $showFormModal = false;
 
-    public $ratings;
-
-    public $showFormModal;
-
-    public function mount()
+    #[Computed]
+    public function ratings(): Collection
     {
-        $this->ratings = Rating::query()
+        return Rating::query()
             ->with(['member', 'lowestNote', 'highestNote'])
             ->whereRelation('member', 'status', 'Ativo')
             ->get()
             ->sortBy('member.name');
     }
 
-    public function openFormModal()
+    public function openFormModal(): void
     {
         $this->showFormModal = true;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.rating.rating-index')->title('Fichas técnicas');
     }
