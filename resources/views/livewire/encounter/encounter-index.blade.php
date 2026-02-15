@@ -1,15 +1,17 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Ensaios</h2>
-        <nav class="tabs" x-data="{ showtabs: false }">
-            <div>
-                <x-tab-link href="{{ route('encounters.index') }}" active="{{ $period === 'proximos' }}"
-                    label="Próximos" />
-                <x-tab-link href="{{ route('encounters.index', 'realizados') }}" active="{{ $period === 'realizados' }}"
-                    label="Realizados" />
-            </div>
-        </nav>
-    </x-slot>
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Ensaios</h2>
+        </div>
+    </div>
+    <nav class="tabs" x-data="{ showtabs: false }">
+        <div>
+            <x-tab-link href="{{ route('encounters.index') }}" active="{{ $period === 'proximos' }}"
+                label="Próximos" />
+            <x-tab-link href="{{ route('encounters.index', 'realizados') }}" active="{{ $period === 'realizados' }}"
+                label="Realizados" />
+        </div>
+    </nav>
     <div class="sm:max-w-lg sm:mx-auto">
         <x-ts-button href="{{ route('encounters.create') }}" primary text="Adicionar" />
         <div class="card mt-4">

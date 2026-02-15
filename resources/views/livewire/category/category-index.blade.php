@@ -1,4 +1,4 @@
-<div class="space-y-4">
+<div class="space-y-6">
     <div class="page-header">
         <div class="title">
             <h2>Categorias musicais</h2>

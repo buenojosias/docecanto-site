@@ -1,8 +1,12 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Fila de espera</h2>
-    </x-slot>
-    <x-ts-button href="{{ route('queues.create') }}" primary text="Novo interessado" class="mb-4" />
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Fila de espera</h2>
+        </div>
+        <div class="action">
+            <x-ts-button href="{{ route('queues.create') }}" primary text="Novo interessado" />
+        </div>
+    </div>
     <div class="card">
         <div class="card-header relative" x-data="{ filters: false }">
             <h3 class="card-title"></h3>

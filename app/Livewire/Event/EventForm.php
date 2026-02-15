@@ -12,13 +12,21 @@ class EventForm extends Component
     use Interactions;
 
     public $action;
+
     public $event;
+
     public $eventId;
+
     public $title;
+
     public $local;
+
     public $date;
+
     public $time;
+
     public $is_presentation = false;
+
     public $description;
 
     public function mount($event = null)
@@ -50,7 +58,7 @@ class EventForm extends Component
             'date' => 'required|date|after:now',
             'time' => 'nullable|date_format:H:i',
             'is_presentation' => 'required|boolean',
-            'description' => 'required|string|'
+            'description' => 'required|string|',
         ]);
 
         if ($this->action === 'create') {
@@ -76,6 +84,6 @@ class EventForm extends Component
 
     public function render()
     {
-        return view('livewire.event.event-form');
+        return view('livewire.event.event-form')->title($this->action === 'create' ? 'Adicionar evento' : 'Editar evento');
     }
 }

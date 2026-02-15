@@ -16,6 +16,6 @@ class EncounterShow extends Component
 
     public function render()
     {
-        return view('livewire.encounter.encounter-show');
+        return view('livewire.encounter.encounter-show')->title('Ensaio');
     }
 }

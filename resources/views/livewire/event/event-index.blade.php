@@ -1,7 +1,9 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Eventos</h2>
-    </x-slot>
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Eventos</h2>
+        </div>
+    </div>
     <x-ts-toast />
     <x-ts-dialog />
     <div class="card">

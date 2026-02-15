@@ -1,8 +1,10 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Financeiro</h2>
-    </x-slot>
+    <div class="page-header">
+        <div class="title">
+            <h2>Financeiro</h2>
+        </div>
+    </div>
 
     <div class="mb-4 p-4 flex justify-between items-center bg-white shadow rounded-md">
         <p class="font-semibold text-gray-700">Saldo atual</p>

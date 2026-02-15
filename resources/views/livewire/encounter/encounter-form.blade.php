@@ -1,10 +1,10 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $action === 'create' ? 'Cadastrar' : 'Editar' }} ensaio
-        </h2>
-    </x-slot>
+    <div class="page-header">
+        <div class="title">
+            <h2>{{ $action === 'create' ? 'Cadastrar' : 'Editar' }} ensaio</h2>
+        </div>
+    </div>
     <div class="sm:max-w-md sm:mx-auto">
         <form wire:submit="submit">
             <div class="card mb-4">

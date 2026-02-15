@@ -18,7 +18,7 @@ class FinancialIndex extends Component
         $totalBalance = $wallets->sum('balance');
         $transactions = Transaction::select('date', 'description', 'amount')->limit(6)->orderBy('date', 'desc')->orderBy('id', 'desc')->get();
 
-        return view('livewire.financial.financial-index', compact('wallets', 'totalBalance', 'transactions'));
+        return view('livewire.financial.financial-index', compact('wallets', 'totalBalance', 'transactions'))->title('Financeiro');
     }
 
     #[On('wallet-created')]

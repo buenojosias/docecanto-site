@@ -1,12 +1,16 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Músicas</h2>
-    </x-slot>
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Músicas</h2>
+        </div>
+        <div class="action">
+            @can('coordinator')
+                <x-ts-button href="{{ route('songs.create') }}" primary text="Adicionar nova" />
+            @endcan
+        </div>
+    </div>
 
     <div class="space-y-4">
-        @can('coordinator')
-            <x-ts-button href="{{ route('songs.create') }}" primary text="Adicionar nova" class="w-full sm:w-auto" />
-        @endcan
         <div
             class="flex sm:justify-between flex-col sm:flex-row items-center gap-4 bg-white py-2 px-3 rounded-md shadow">
             <div class="w-full sm:w-1/2 lg:w-1/3">

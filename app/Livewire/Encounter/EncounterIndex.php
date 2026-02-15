@@ -11,7 +11,9 @@ class EncounterIndex extends Component
     use Interactions;
 
     public $date;
+
     public $filterDate;
+
     public $period;
 
     public function mount($period = 'proximos')
@@ -40,7 +42,7 @@ class EncounterIndex extends Component
             ->paginate();
 
         return view('livewire.encounter.encounter-index', [
-            'encounters' => $encounters
-        ]);
+            'encounters' => $encounters,
+        ])->title('Ensaios');
     }
 }

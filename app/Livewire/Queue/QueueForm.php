@@ -11,7 +11,9 @@ class QueueForm extends Component
     use Interactions;
 
     public $action;
+
     public $data;
+
     // public $child_name;
     // public $child_phone;
     // public $parent_name;
@@ -33,7 +35,8 @@ class QueueForm extends Component
         }
     }
 
-    public function submit() {
+    public function submit()
+    {
         $data = $this->validate([
             'data.child_name' => 'required|string|max:160',
             'data.age' => 'required|integer|min:6|max:16',
@@ -41,7 +44,7 @@ class QueueForm extends Component
             'data.child_phone' => 'nullable|string|max:15',
             'data.parent_phone' => 'nullable|required_if:child_phone,null|max:15',
             'data.church' => 'nullable|string|max:160',
-            'data.status' => 'required|string|in:' . implode(',', $this->options),
+            'data.status' => 'required|string|in:'.implode(',', $this->options),
         ]);
         try {
             if ($this->action === 'create') {
@@ -51,6 +54,7 @@ class QueueForm extends Component
                 Queue::query()->findOrFail($this->data['id'])->update($this->data);
             }
             $this->toast()->success('Informações salvas com sucesso.')->send();
+
             return;
         } catch (\Throwable $th) {
             $this->toast()->error('Erro ao salvar informações.')->send();
@@ -60,6 +64,6 @@ class QueueForm extends Component
 
     public function render()
     {
-        return view('livewire.queue.queue-form');
+        return view('livewire.queue.queue-form')->title($this->action === 'create' ? 'Cadastrar interessado' : 'Editar interessado');
     }
 }

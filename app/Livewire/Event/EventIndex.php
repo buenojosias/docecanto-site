@@ -15,8 +15,9 @@ class EventIndex extends Component
     use Interactions;
     use WithPagination;
 
-    public $dayLabels = array('DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB');
-    public $monthLabels = array('0', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro');
+    public $dayLabels = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
+
+    public $monthLabels = ['0', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
 
     #[Url('ano', except: null)]
     public $currentYear;
@@ -26,20 +27,31 @@ class EventIndex extends Component
 
     #[Url('dia', except: null)]
     public $currentDay;
+
     public $daysInMonth;
+
     public $firstWeekdayOfMonth;
+
     public $lastWeekdayOfMonth;
+
     public $remainder;
 
     public $nextMonth;
+
     public $nextYear;
+
     public $previusMonth;
+
     public $previusYear;
 
     public $events;
+
     public $periodEvents;
+
     public $form;
+
     public $method;
+
     public $showFormModal;
 
     public function mount($currentMonth = null, $currentYear = null)
@@ -53,7 +65,7 @@ class EventIndex extends Component
         $this->currentMonth = $currentMonth ?? intval(date('m'));
         $this->currentYear = $currentYear ?? intval(date('Y'));
 
-        $date = strtotime($currentYear . '-' . $this->currentMonth);
+        $date = strtotime($currentYear.'-'.$this->currentMonth);
         $this->daysInMonth = intval(date('t', $date));
 
         $firstDayOfMonth = date('Y-m-01', $date);
@@ -86,8 +98,9 @@ class EventIndex extends Component
         $this->load($this->currentMonth, $this->currentYear);
     }
 
-    public function selectDay($day = null) {
-        if($this->currentDay != $day) {
+    public function selectDay($day = null)
+    {
+        if ($this->currentDay != $day) {
             $this->currentDay = $day;
         } else {
             $this->currentDay = null;
@@ -99,13 +112,13 @@ class EventIndex extends Component
         $events = Event::query()
             ->whereMonth('date', $this->currentMonth)
             ->whereYear('date', $this->currentYear)
-            ->withCount(['members' => function (Builder $query)  {
+            ->withCount(['members' => function (Builder $query) {
                 $query->where('answer', 'Sim');
             }])
             ->orderBy('date', 'asc')->orderBy('time', 'asc')
             ->get();
 
-        foreach($events as $event) {
+        foreach ($events as $event) {
             $event['day'] = intval(Carbon::parse($event->date)->format('d'));
         }
         $this->events = $events;
@@ -121,7 +134,8 @@ class EventIndex extends Component
             ->send();
     }
 
-    public function doRemoveEvent($event) {
+    public function doRemoveEvent($event)
+    {
         try {
             Event::query()->where('id', $event)->delete();
             $this->toast()->success('Evento removido com sucesso.')->send();
@@ -134,6 +148,7 @@ class EventIndex extends Component
     public function render()
     {
         $this->load($this->currentMonth, $this->currentYear);
-        return view('livewire.event.event-index');
+
+        return view('livewire.event.event-index')->title('Eventos');
     }
 }

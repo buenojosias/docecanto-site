@@ -11,7 +11,9 @@ class QueueIndex extends Component
     use WithPagination;
 
     public $queues;
+
     public $filterStatus;
+
     public $status_list = ['Pendente', 'Visualizado', 'Contactado', 'Participando', 'Desistiu'];
 
     public function render()
@@ -22,6 +24,6 @@ class QueueIndex extends Component
             })
             ->get();
 
-        return view('livewire.queue.queue-index');
+        return view('livewire.queue.queue-index')->title('Fila de espera');
     }
 }

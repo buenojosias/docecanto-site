@@ -1,9 +1,13 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Transações</h2>
-    </x-slot>
-    <x-ts-button text="Lançar transação" x-on:click="$dispatch('open-transaction-modal')" class="mb-3 w-full sm:w-auto" />
+    <div class="page-header">
+        <div class="title">
+            <h2>Transações</h2>
+        </div>
+        <div class="action">
+            <x-ts-button text="Lançar transação" x-on:click="$dispatch('open-transaction-modal')" />
+        </div>
+    </div>
 
     <div class="card">
         {{-- <div class="card-header relative" x-data="{ filters: false }">

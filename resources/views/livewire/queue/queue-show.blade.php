@@ -1,9 +1,11 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
     <x-ts-dialog />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Fila de espera</h2>
-    </x-slot>
+    <div class="page-header">
+        <div class="title">
+            <h2>Fila de espera</h2>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body display sm:grid sm:grid-cols-4 gap-4 space-y-3 sm:space-y-0">
             <div class="col-span-2">

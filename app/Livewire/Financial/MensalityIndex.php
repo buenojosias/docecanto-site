@@ -21,7 +21,7 @@ class MensalityIndex extends Component
             ->orderBy('date', 'desc')
             ->paginate(15);
 
-        return view('livewire.financial.mensality-index', compact('mensalities'));
+        return view('livewire.financial.mensality-index', compact('mensalities'))->title('Mensalidades');
     }
 
     #[On('mensality-created')]

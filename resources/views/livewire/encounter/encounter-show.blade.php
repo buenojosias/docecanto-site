@@ -1,7 +1,9 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Ensaio</h2>
-    </x-slot>
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Ensaio</h2>
+        </div>
+    </div>
     <div class="md:grid md:grid-cols-2 gap-4">
         <div class="mb-4">
             <x-ts-card class="detail">

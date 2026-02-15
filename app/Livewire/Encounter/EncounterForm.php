@@ -11,9 +11,13 @@ class EncounterForm extends Component
     use Interactions;
 
     public $action;
+
     public $encounter;
+
     public $encounterId;
+
     public $date;
+
     public $description;
 
     public function mount($encounter = null)
@@ -33,7 +37,7 @@ class EncounterForm extends Component
     {
         $data = $this->validate([
             'date' => 'required|date',
-            'description' => 'nullable|string'
+            'description' => 'nullable|string',
         ]);
 
         if ($this->action === 'create') {
@@ -59,6 +63,6 @@ class EncounterForm extends Component
 
     public function render()
     {
-        return view('livewire.encounter.encounter-form');
+        return view('livewire.encounter.encounter-form')->title($this->action === 'create' ? 'Cadastrar ensaio' : 'Editar ensaio');
     }
 }

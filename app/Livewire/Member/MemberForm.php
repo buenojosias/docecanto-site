@@ -14,9 +14,18 @@ class MemberForm extends Component
 
     public $method;
 
-    public $member, $name, $birth, $registration_date, $status;
+    public $member;
 
-    public function mount($member = null) {
+    public $name;
+
+    public $birth;
+
+    public $registration_date;
+
+    public $status;
+
+    public function mount($member = null)
+    {
         if ($member) {
             $this->method = 'edit';
             $this->member = Member::findOrFail($member);
@@ -29,28 +38,31 @@ class MemberForm extends Component
         }
     }
 
-    public function submit() {
+    public function submit()
+    {
         $data = $this->validate([
             'name' => 'required|string|min:6|max:255',
             'birth' => 'required|date|before:now',
             'registration_date' => 'nullable|date|before:tomorrow',
-            'status' => 'required|string'
+            'status' => 'required|string',
         ]);
 
         if ($this->method === 'edit') {
             try {
                 $this->member->update($data);
+
                 return redirect(route('members.show', $this->member));
             } catch (\Throwable $th) {
-                $this->toast()->error('Erro ao atualizar integrante.')->send();
+                $this->toast()->error('Erro ao atualizar coralista.')->send();
             }
             $this->member->update($data);
         } elseif ($this->method === 'create') {
             try {
                 $this->member = Member::create($data);
+
                 return redirect(route('members.show', $this->member));
             } catch (\Throwable $th) {
-                $this->toast()->error('Erro ao cadastrar integrante.')->send();
+                $this->toast()->error('Erro ao cadastrar coralista.')->send();
             }
         }
     }
@@ -60,6 +72,6 @@ class MemberForm extends Component
         return view('livewire.member.member-form', [
             'method' => $this->method,
             'member' => $this->member ?? null,
-        ]);
+        ])->title($this->method === 'create' ? 'Novo coralista' : 'Editar coralista');
     }
 }

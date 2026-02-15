@@ -27,20 +27,20 @@ class SongIndex extends Component
         $this->categories = Category::orderBy('position')->get()->toArray();
         array_unshift($this->categories, [
             'id' => null,
-            'name' => 'Filtrar por categoria'
+            'name' => 'Filtrar por categoria',
         ]);
         // add option 'Sem categoria' to the end of the array
         $this->categories[] = [
             'id' => 'sem_categoria',
-            'name' => 'Sem categoria'
+            'name' => 'Sem categoria',
         ];
     }
 
     public function render()
     {
         $songs = Song::query()
-            ->select(['id','number','title','detached'])
-            ->when($this->filter, function($query) {
+            ->select(['id', 'number', 'title', 'detached'])
+            ->when($this->filter, function ($query) {
                 if ($this->filter === 'sem_categoria') {
                     $query->doesntHave('categories');
                 } else {
@@ -49,20 +49,20 @@ class SongIndex extends Component
                     });
                 }
             })
-            ->when($this->detached, function($query) {
+            ->when($this->detached, function ($query) {
                 $query->where('detached', true);
             })
             ->orderBy('number')
             ->with('categories');
 
-            if ($this->filter) {
-                $songs = $songs->get();
-            } else {
-                $songs = $songs->paginate();
-            }
+        if ($this->filter) {
+            $songs = $songs->get();
+        } else {
+            $songs = $songs->paginate();
+        }
 
         return view('livewire.song.song-index', [
-            'songs' => $songs
-        ]);
+            'songs' => $songs,
+        ])->title('Músicas');
     }
 }

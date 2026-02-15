@@ -19,6 +19,6 @@ class EventShow extends Component
 
     public function render()
     {
-        return view('livewire.event.event-show');
+        return view('livewire.event.event-show')->title('Detalhes do evento');
     }
 }

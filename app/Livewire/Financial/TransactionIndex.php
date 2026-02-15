@@ -21,7 +21,7 @@ class TransactionIndex extends Component
             ->orderByDesc('id')
             ->paginate();
 
-        return view('livewire.financial.transaction-index', compact('transactions'));
+        return view('livewire.financial.transaction-index', compact('transactions'))->title('Transações');
     }
 
     #[On('transaction-created')]

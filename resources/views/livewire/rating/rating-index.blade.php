@@ -1,7 +1,9 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Fichas técnicas</h2>
-    </x-slot>
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>Fichas técnicas</h2>
+        </div>
+    </div>
     <div class="card">
         <div class="card-body table-responsive">
             <table class="table table-hover whitespace-nowrap">

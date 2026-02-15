@@ -11,6 +11,7 @@ class SongShow extends Component
     use Interactions;
 
     public $song;
+
     public $audio;
 
     public function mount($number)
@@ -41,6 +42,6 @@ class SongShow extends Component
 
     public function render()
     {
-        return view('livewire.song.song-show');
+        return view('livewire.song.song-show')->title('Música');
     }
 }

@@ -11,8 +11,23 @@ class SongForm extends Component
     use Interactions;
 
     public $song;
+
     public $categories;
-    public $songId, $number, $title, $resume, $lyrics, $fulltext, $detached;
+
+    public $songId;
+
+    public $number;
+
+    public $title;
+
+    public $resume;
+
+    public $lyrics;
+
+    public $fulltext;
+
+    public $detached;
+
     public $action;
 
     public function mount($number = null)
@@ -74,18 +89,18 @@ class SongForm extends Component
 
     public function parseLoadLyrics()
     {
-        $removeDoubleP = str_replace("</p><p>", '</p><p></p><p>', $this->song->lyrics);
-        $convertBr2P = str_replace("<br>", '</p><p>', $removeDoubleP);
+        $removeDoubleP = str_replace('</p><p>', '</p><p></p><p>', $this->song->lyrics);
+        $convertBr2P = str_replace('<br>', '</p><p>', $removeDoubleP);
         $this->lyrics = $convertBr2P;
     }
 
     public function parseSaveLyrics()
     {
-        $removeClass = str_replace(array(' class="LetrasCxSpFirst"', ' class="LetrasCxSpMiddle"', ' class="LetrasCxSpLast"'), '', $this->lyrics);
+        $removeClass = str_replace([' class="LetrasCxSpFirst"', ' class="LetrasCxSpMiddle"', ' class="LetrasCxSpLast"'], '', $this->lyrics);
         $removeN = str_replace("</p>\n<p>", '<br>', $removeClass);
-        $removeDoubleBr = str_replace("<br>&nbsp;<br>", '</p><p></p><p>', $removeN);
-        $convertP2Br = str_replace("</p><p>", '<br>', $removeDoubleBr);
-        $convertDoubleBrToP = str_replace("<br><br>", '</p><p>', $convertP2Br);
+        $removeDoubleBr = str_replace('<br>&nbsp;<br>', '</p><p></p><p>', $removeN);
+        $convertP2Br = str_replace('</p><p>', '<br>', $removeDoubleBr);
+        $convertDoubleBrToP = str_replace('<br><br>', '</p><p>', $convertP2Br);
         $this->lyrics = $convertDoubleBrToP;
     }
 
@@ -93,7 +108,7 @@ class SongForm extends Component
     {
         $removeTags = preg_replace('#<[^>]+>#', ' ', $this->lyrics);
         $removeWhiteSpaces = preg_replace('#\s+#', ' ', $removeTags);
-        $removeSpecialCharacters = preg_replace(array("/(&aacute;|&agrave;|&atilde;|&acirc;|&auml;|&Aacute;|&Agrave;|&Atilde;|&Acirc;|&Auml;)/","/(&eacute;|&egrave;|&ecirc;|&euml;|&Eacute;|&Egrave;|&Ecirc;|&Euml;)/","/(&iacute;|&igrave;|&icirc;|&iuml;|&Iacute;|&Igrave;|&Icirc;|&Iuml;)/","/(&oacute;|&ograve;|&otilde;|&ocirc;|&ouml;|&Oacute;|&Ograve;|&Otilde;|&Ocirc;|&Ouml;)/","/(&uacute;|&ugrave;|&ucirc;|&uuml;|&Uacute;|&Ugrave;|&Ucirc;|&Uuml;)/","/(ç|Ç)/","/(&ntilde;|&Ntilde;)/","/(1. |2. |3. |4. |5. |6. |(2x)|(bis))/"),explode(" ","a e i o u c n "), $removeWhiteSpaces);
+        $removeSpecialCharacters = preg_replace(['/(&aacute;|&agrave;|&atilde;|&acirc;|&auml;|&Aacute;|&Agrave;|&Atilde;|&Acirc;|&Auml;)/', '/(&eacute;|&egrave;|&ecirc;|&euml;|&Eacute;|&Egrave;|&Ecirc;|&Euml;)/', '/(&iacute;|&igrave;|&icirc;|&iuml;|&Iacute;|&Igrave;|&Icirc;|&Iuml;)/', '/(&oacute;|&ograve;|&otilde;|&ocirc;|&ouml;|&Oacute;|&Ograve;|&Otilde;|&Ocirc;|&Ouml;)/', '/(&uacute;|&ugrave;|&ucirc;|&uuml;|&Uacute;|&Ugrave;|&Ucirc;|&Uuml;)/', '/(ç|Ç)/', '/(&ntilde;|&Ntilde;)/', '/(1. |2. |3. |4. |5. |6. |(2x)|(bis))/'], explode(' ', 'a e i o u c n '), $removeWhiteSpaces);
         $trim = trim($removeSpecialCharacters);
         $this->fulltext = \Str::slug($trim, ' ');
     }
@@ -101,15 +116,16 @@ class SongForm extends Component
     public function render()
     {
         $this->correctFullText();
-        return view('livewire.song.song-form');
+
+        return view('livewire.song.song-form')->title($this->song ? 'Editar música' : 'Cadastrar música');
     }
 
     public function correctFullText()
     {
-        foreach(Song::all() as $song) {
+        foreach (Song::all() as $song) {
             $removeTags = preg_replace('#<[^>]+>#', ' ', $song->lyrics);
             $removeWhiteSpaces = preg_replace('#\s+#', ' ', $removeTags);
-            $removeSpecialCharacters = preg_replace(array("/(&aacute;|&agrave;|&atilde;|&acirc;|&auml;|&Aacute;|&Agrave;|&Atilde;|&Acirc;|&Auml;)/","/(&eacute;|&egrave;|&ecirc;|&euml;|&Eacute;|&Egrave;|&Ecirc;|&Euml;)/","/(&iacute;|&igrave;|&icirc;|&iuml;|&Iacute;|&Igrave;|&Icirc;|&Iuml;)/","/(&oacute;|&ograve;|&otilde;|&ocirc;|&ouml;|&Oacute;|&Ograve;|&Otilde;|&Ocirc;|&Ouml;)/","/(&uacute;|&ugrave;|&ucirc;|&uuml;|&Uacute;|&Ugrave;|&Ucirc;|&Uuml;)/","/(ç|Ç)/","/(&ntilde;|&Ntilde;)/","/(1. |2. |3. |4. |5. |6. |(2x)|(bis))/"),explode(" ","a e i o u c n "), $removeWhiteSpaces);
+            $removeSpecialCharacters = preg_replace(['/(&aacute;|&agrave;|&atilde;|&acirc;|&auml;|&Aacute;|&Agrave;|&Atilde;|&Acirc;|&Auml;)/', '/(&eacute;|&egrave;|&ecirc;|&euml;|&Eacute;|&Egrave;|&Ecirc;|&Euml;)/', '/(&iacute;|&igrave;|&icirc;|&iuml;|&Iacute;|&Igrave;|&Icirc;|&Iuml;)/', '/(&oacute;|&ograve;|&otilde;|&ocirc;|&ouml;|&Oacute;|&Ograve;|&Otilde;|&Ocirc;|&Ouml;)/', '/(&uacute;|&ugrave;|&ucirc;|&uuml;|&Uacute;|&Ugrave;|&Ucirc;|&Uuml;)/', '/(ç|Ç)/', '/(&ntilde;|&Ntilde;)/', '/(1. |2. |3. |4. |5. |6. |(2x)|(bis))/'], explode(' ', 'a e i o u c n '), $removeWhiteSpaces);
             $trim = trim($removeSpecialCharacters);
             $fulltext = \Str::slug($trim, ' ');
             $song->update(['fulltext' => $fulltext]);

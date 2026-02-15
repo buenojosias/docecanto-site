@@ -21,7 +21,7 @@ class UserIndex extends Component
 
         return view('livewire.user.user-index', [
             'users' => $users,
-        ]);
+        ])->title('Usuários');
     }
 
     #[On('user-created')]

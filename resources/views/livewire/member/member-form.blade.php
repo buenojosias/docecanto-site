@@ -1,9 +1,9 @@
-<div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $method === 'create' ? 'Novo' : 'Editar' }} integrante
-        </h2>
-    </x-slot>
+<div class="space-y-6">
+    <div class="page-header">
+        <div class="title">
+            <h2>{{ $method === 'create' ? 'Novo' : 'Editar' }} coralista</h2>
+        </div>
+    </div>
     <form wire:submit="submit">
         <x-ts-errors class="mb-4 shadow" />
         <div class="form-card mb-4">

@@ -1,12 +1,16 @@
-<div class="space-y-4">
+<div class="space-y-6">
     <x-ts-toast />
     <x-ts-dialog />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Detalhes do evento</h2>
-    </x-slot>
-    @can('coordinator')
-        <x-ts-button href="{{ route('events.edit', $event) }}" primary text="Editar" />
-    @endcan
+    <div class="page-header">
+        <div class="title">
+            <h2>Detalhes do evento</h2>
+        </div>
+        <div class="action">
+            @can('coordinator')
+                <x-ts-button href="{{ route('events.edit', $event) }}" primary text="Editar" />
+            @endcan
+        </div>
+    </div>
     <x-ts-card class="detail grid grid-cols-6 space-y-3 md:space-y-0 gap-4">
         <div class="col-span-6 sm:col-span-3">
             <x-detail label="Título" :value="$event->title" />

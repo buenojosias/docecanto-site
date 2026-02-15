@@ -1,10 +1,14 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
     <x-ts-dialog />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Mensalidades</h2>
-    </x-slot>
-    <x-ts-button text="Lançar mensalidade" x-on:click="$dispatch('open-mensality-modal')" class="mb-3 w-full sm:w-auto" />
+    <div class="page-header">
+        <div class="title">
+            <h2>Mensalidades</h2>
+        </div>
+        <div class="action">
+            <x-ts-button text="Lançar mensalidade" x-on:click="$dispatch('open-mensality-modal')" />
+        </div>
+    </div>
 
     <div class="card">
         {{-- <div class="card-header relative" x-data="{ filters: false }">

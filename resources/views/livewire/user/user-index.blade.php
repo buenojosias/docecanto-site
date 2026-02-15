@@ -1,11 +1,15 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Usuários</h2>
-    </x-slot>
-    @can('coordinator')
-        <x-ts-button text="Cadastrar usuário" wire:click="$dispatch('open-form-modal')" class="mb-3 w-full sm:w-auto" />
-    @endcan
+    <div class="page-header">
+        <div class="title">
+            <h2>Usuários</h2>
+        </div>
+        <div class="action">
+            @can('coordinator')
+                <x-ts-button text="Cadastrar usuário" wire:click="$dispatch('open-form-modal')" />
+            @endcan
+        </div>
+    </div>
     <div class="card">
         <div class="card-body table-responsive">
             <table class="table table-hover whitespace-nowrap">

@@ -1,10 +1,10 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $action === 'create' ? 'Cadastrar interessado' : 'Editar interessado' }}
-        </h2>
-    </x-slot>
+    <div class="page-header">
+        <div class="title">
+            <h2>{{ $action === 'create' ? 'Cadastrar interessado' : 'Editar interessado' }}</h2>
+        </div>
+    </div>
     <div class="sm:w-2/3 md:w-1/2 sm:mx-auto">
         <div class="card mb-4">
             <x-ts-errors class="mb-4" />

@@ -1,10 +1,10 @@
-<div>
+<div class="space-y-6">
     <x-ts-toast />
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ $song ? 'Editar' : 'Cadastrar' }} música
-        </h2>
-    </x-slot>
+    <div class="page-header">
+        <div class="title">
+            <h2>{{ $song ? 'Editar' : 'Cadastrar' }} música</h2>
+        </div>
+    </div>
     <div class="sm:grid sm:grid-cols-6 gap-6">
         <div class="col-span-4">
             <div class="card mb-4">
