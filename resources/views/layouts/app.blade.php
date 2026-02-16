@@ -56,9 +56,9 @@
                         :current="request()->routeIs('financial.index')" wire:navigate />
                     <x-ts-side-bar.item text="Carteiras" icon="fluentui.wallet-24-o" />
                     <x-ts-side-bar.item text="Transações" icon="fluentui.document-text-extract-24-o"
-                        :route="route('financial.transactions.index')" :current="request()->routeIs('financial.transactions.*')" />
+                        :route="route('financial.transactions.index')" :current="request()->routeIs('financial.transactions.*')" wire:navigate />
                     <x-ts-side-bar.item text="Contribuições mensais" icon="fluentui.person-money-24-o"
-                        :route="route('financial.mensalities.index')" :current="request()->routeIs('financial.mensalities.*')" />
+                        :route="route('financial.mensalities.index')" :current="request()->routeIs('financial.mensalities.*')" wire:navigate />
                 </x-ts-side-bar.item>
             </x-ts-side-bar>
         </x-slot:menu>

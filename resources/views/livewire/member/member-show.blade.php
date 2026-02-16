@@ -20,7 +20,7 @@
                 <div class="sm:grid sm:grid-cols-2 space-y-3 sm:space-y-0 gap-4 detail">
                     <x-detail label="Data de nascimento" :value="$member->birth->format('d/m/Y')" />
                     <x-detail label="Idade" :value="$member->age" />
-                    <x-detail label="Data do cadastro" :value="$member->registration_date->format('d/m/Y')" />
+                    <x-detail label="Data do cadastro" :value="$member->registration_date ? $member->registration_date->format('d/m/Y') : ''" />
                     <x-detail label="Status" :value="$member->status" />
                 </div>
                 <x-slot:footer>

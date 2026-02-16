@@ -7,9 +7,9 @@
             </div>
         </div>
         <form wire:submit="submit">
-            <x-errors />
+            <x-ts-errors />
             <div class="card-body display grid grid-cols-2 gap-4">
-                <x-input wire:model.live="data.height" label="Altura" />
+                <x-ts-input wire:model.live="data.height" label="Altura" />
                 <div></div>
                 <x-ts-select.native wire:model.live="data.tuning" label="Segurança vocal">
                     <option value="">Selecione</option>
