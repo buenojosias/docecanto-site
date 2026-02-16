@@ -14,7 +14,7 @@
             <x-detail label="Título" :value="$event->title" />
         </div>
         <div class="col-span-2 sm:col-span-1">
-            <x-detail label="Data" :value="Carbon\Carbon::parse($event->date)->format('d/m/Y')" />
+            <x-detail label="Data" :value="$event->date->format('d/m/Y')" />
         </div>
         <div class="col-span-2 sm:col-span-1">
             <x-detail label="Horário" :value="$event->time ? Carbon\Carbon::createFromFormat('H:i:s', $event->time)->format('H:i') : ''" />
