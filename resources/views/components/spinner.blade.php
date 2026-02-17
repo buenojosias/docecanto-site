@@ -1,0 +1,1 @@
+@svg('fluentui-spinner-ios-20', 'justify-self-center w-10 h-10 animate-spin text-gray-400')
