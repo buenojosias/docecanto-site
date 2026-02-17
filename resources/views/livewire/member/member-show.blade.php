@@ -25,15 +25,23 @@
                 </x-slot:footer>
             </x-ts-card>
             @livewire('member.member-profile', ['member' => $member])
+            <div class="grid lg:grid-cols-2 gap-4">
+                @island()
+                    @livewire('member.member-kins', ['member' => $member])
+                @endisland
+                @livewire('member.member-address', ['member' => $member])
+            </div>
         </div>
         <div class="space-y-4">
             @island()
-                @livewire('member.member-kins', ['member' => $member])
+                @livewire('member.member-rating', ['member' => $member])
             @endisland
-            @livewire('member.member-address', ['member' => $member])
-            @livewire('member.member-contacts', ['member' => $member])
-            @livewire('member.member-user', ['member' => $member])
-            @livewire('member.member-rating', ['member' => $member])
+            @island()
+                @livewire('member.member-user', ['member' => $member])
+            @endisland
+            @island
+                @livewire('member.member-contacts', ['member' => $member])
+            @endisland
         </div>
     </div>
 </div>

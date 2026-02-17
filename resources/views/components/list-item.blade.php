@@ -1,0 +1,47 @@
+@props([
+    'title' => null,
+    'subtitle' => null,
+    'description' => null,
+    'href' => null,
+    'navigate' => true,
+    'footer' => null,
+])
+
+<div
+    class="flex flex-col p-3 gap-2 rounded-lg border border-gray-200 dark:border-gray-600 shadow-sm hover:bg-gray-200/30 dark:hover:bg-gray-600/30 transition-colors">
+    <div class="flex justify-between gap-3">
+        @if (isset($left))
+            <div class="flex flex-col justify-center gap-2">
+                {{ $left }}
+            </div>
+        @endif
+        <div class="flex-1">
+            @if ($href)
+                <a href="{{ $href }}" class="flex-1" {{ $navigate ? 'wire:navigate' : '' }}>
+            @endif
+            @if ($title)
+                <p class="font-semibold dark:text-gray-200 leading-6">{{ $title }}</p>
+            @endif
+            @if ($subtitle)
+                <p class="text-sm dark:text-gray-400 text-gray-500">{{ $subtitle }}</p>
+            @endif
+            @if ($description)
+                <p class="text-xs dark:text-gray-400 text-gray-400">{{ $description }}</p>
+            @endif
+            @if ($href)
+                </a>
+            @endif
+        </div>
+        @if (isset($right))
+            <div class="flex flex-col justify-center gap-2">
+                {{ $right }}
+            </div>
+        @endif
+    </div>
+
+    @if ($footer)
+        <div>
+            {{ $footer }}
+        </div>
+    @endif
+</div>

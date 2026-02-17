@@ -20,6 +20,10 @@
     @apply flex gap-1;
 }
 
+.infolist {
+    @apply space-y-2;
+}
+
 .infoblock {
     @apply grid gap-4;
 }

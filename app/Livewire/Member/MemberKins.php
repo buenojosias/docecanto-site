@@ -4,6 +4,7 @@ namespace App\Livewire\Member;
 
 use App\Models\Kin;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use TallStackUi\Traits\Interactions;
 
@@ -12,33 +13,20 @@ class MemberKins extends Component
     use Interactions;
 
     public $member;
-    public $kins = [];
-    public $showKins = false;
-    public $showFormModal = false;
     public $action;
     public $kinForm;
+    public $showFormModal = false;
+
     public $idk, $name, $birth, $profession, $kinship;
 
-    public function mount($member)
+    #[Computed]
+    public function kins()
     {
-        $this->member = $member;
-    }
-
-    public function loadKins()
-    {
-        $this->kins = $this->member->kins;
-        $this->showKins = true;
-    }
-
-    public function unloadKins()
-    {
-        $this->showKins = false;
-        $this->kins = [];
+        return $this->member->kins()->withPivot('kinship')->get();
     }
 
     public function openFormModal()
     {
-        $this->kins = [];
         $this->showFormModal = true;
     }
 
@@ -71,7 +59,7 @@ class MemberKins extends Component
         }
         if($kin) {
             DB::commit();
-            $this->toast()->success('Familiar cadastrado/vinculado com sucesso')->send();
+            $this->toast()->success('Familiar cadastrado/vinculado com sucesso.')->send();
             $this->showFormModal = false;
         } else {
             DB::rollback();
