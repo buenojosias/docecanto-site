@@ -11,26 +11,25 @@
         <x-ts-alert text="O status atual do integrante é {{ $member->status }}." color="amber" />
     @endif
 
-    <div class="md:grid md:grid-cols-5 space-y-3 md:space-y-0 gap-6">
-        <div class="col-span-3 space-y-5">
-            <x-ts-card header="Informações pessoais">
-                <div class="detail pb-4">
-                    <x-detail label="Nome completo" :value="$member->name" />
-                </div>
-                <div class="sm:grid sm:grid-cols-2 space-y-3 sm:space-y-0 gap-4 detail">
-                    <x-detail label="Data de nascimento" :value="$member->birth->format('d/m/Y')" />
-                    <x-detail label="Idade" :value="$member->age" />
-                    <x-detail label="Data do cadastro" :value="$member->registration_date ? $member->registration_date->format('d/m/Y') : ''" />
-                    <x-detail label="Status" :value="$member->status" />
-                </div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div class="col-span-2 space-y-4">
+            <x-ts-card header="Informações pessoais" class="infoblock g-2">
+                <x-info label="Nome completo" :value="$member->name" />
+                <x-info label="Data de nascimento" :value="$member->birth->format('d/m/Y')" />
+                <x-info label="Idade" :value="$member->age" />
+                <x-info label="Data do cadastro" :value="$member->registration_date ? $member->registration_date->format('d/m/Y') : '-'" />
+                <x-info label="Status" :value="$member->status" href="#" />
+                <x-info label="Ativo" bool="N" />
                 <x-slot:footer>
                     <x-ts-button href="{{ route('members.edit', $member) }}" text="Editar" flat />
                 </x-slot:footer>
             </x-ts-card>
             @livewire('member.member-profile', ['member' => $member])
         </div>
-        <div class="col-span-2 space-y-5">
-            @livewire('member.member-kins', ['member' => $member])
+        <div class="space-y-4">
+            @island()
+                @livewire('member.member-kins', ['member' => $member])
+            @endisland
             @livewire('member.member-address', ['member' => $member])
             @livewire('member.member-contacts', ['member' => $member])
             @livewire('member.member-user', ['member' => $member])

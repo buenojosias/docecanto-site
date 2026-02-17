@@ -26,7 +26,7 @@
                 @if ($row->status !== 'Ativo')
                     <x-ts-badge flat warning :text="$row->status" outline />
                 @endif
-                <x-ts-button href="{{ route('members.edit', $row) }}" flat sm icon="fluentui.edit-16" />
+                <x-ts-button href="{{ route('members.edit', $row) }}" flat icon="fluentui.edit-16" />
             </div>
         @endinteract
     </x-ts-table>
