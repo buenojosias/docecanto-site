@@ -4,7 +4,7 @@
             <h2>Ensaios</h2>
         </div>
         <div class="actions">
-            <x-ts-button href="{{ route('encounters.create') }}" primary text="Adicionar" />
+            <x-ts-button text="Adicionar" href="{{ route('encounters.create') }}" primary wire:navigate />
         </div>
     </div>
 

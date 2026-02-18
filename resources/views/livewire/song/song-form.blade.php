@@ -6,9 +6,9 @@
     </div>
     <div class="sm:grid sm:grid-cols-6 gap-6">
         <div class="col-span-4">
-            <div class="card mb-4">
+            <x-ts-card class="space-y-4">
                 <x-ts-errors class="mb-4" />
-                <div class="card-body p-2 sm:flex space-x-2">
+                <div class="sm:flex space-x-4">
                     <div class="w-1/6">
                         <x-ts-input wire:model="number" type="number" min="1" label="Número" />
                     </div>
@@ -16,10 +16,10 @@
                         <x-ts-input wire:model="title" label="Título" />
                     </div>
                 </div>
-                <div class="card-body p-2">
+                <div class="">
                     <x-ts-input wire:model="resume" label="Versão resumida" />
                 </div>
-                <div class="card-body p-2">
+                <div class="">
                     <div wire:ignore>
                         <textarea wire:model="lyrics" class="min-h-fit h-48 " name="lyrics" id="lyrics"></textarea>
                     </div>
@@ -27,10 +27,10 @@
                 <div class="card-footer">
                     <x-ts-button wire:click="submit" primary text="Salvar" />
                     @if ($song)
-                        <x-ts-button href="{{ route('songs.show', $song->number) }}" text="Ir para música" flat />
+                        <x-ts-button text="Ir para música" href="{{ route('songs.show', $song->number) }}" wire:navigate flat />
                     @endif
                 </div>
-            </div>
+            </x-ts-card>
         </div>
         <div class="col-span-2">
             @if ($song)
@@ -48,27 +48,22 @@
     </div>
 </div>
 
-@push('styles')
-@endpush
-
-@push('scripts')
-    <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-            selector: '#lyrics',
-            // forced_root_block: false,
-            menubar: false,
-            statusbar: false,
-            toolbar: 'undo redo | bold italic',
-            content_style: "p { margin: 0; }",
-            setup: function(editor) {
-                editor.on('init change', function() {
-                    editor.save();
-                });
-                editor.on('change', function(e) {
-                    @this.set('lyrics', editor.getContent());
-                });
-            }
-        });
-    </script>
-@endpush
+<script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#lyrics',
+        // forced_root_block: false,
+        menubar: false,
+        statusbar: false,
+        toolbar: 'undo redo | bold italic',
+        content_style: "p { margin: 0; }",
+        setup: function(editor) {
+            editor.on('init change', function() {
+                editor.save();
+            });
+            editor.on('change', function(e) {
+                @this.set('lyrics', editor.getContent());
+            });
+        }
+    });
+</script>

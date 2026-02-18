@@ -4,9 +4,7 @@
             <h2>Músicas</h2>
         </div>
         <div class="action">
-            @can('coordinator')
-                <x-ts-button href="{{ route('songs.create') }}" primary text="Adicionar nova" />
-            @endcan
+            <x-ts-button href="{{ route('songs.create') }}" primary text="Adicionar nova" wire:navigate />
         </div>
     </div>
 
@@ -26,24 +24,17 @@
             ];
         @endphp
 
-        @can('coordinator')
-            @php
-                $headers[] = ['index' => 'action', 'label' => '', 'sortable' => false];
-            @endphp
-        @endcan
+        @php
+            $headers[] = ['index' => 'action', 'label' => '', 'sortable' => false];
+        @endphp
 
-        <x-ts-table :headers="$headers"
-                    :rows="$this->songs"
-                    :filter="['quantity' => 'quantity', 'search' => 'search']"
-                    paginate
-                    loading
-                    striped>
+        <x-ts-table :headers="$headers" :rows="$this->songs" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading striped>
             @interact('column_title', $row)
                 <div class="flex items-center gap-1">
                     @if ($row->detached)
                         <x-ts-icon name="bookmark" class="h-4 w-4 text-orange-700" solid />
                     @endif
-                    <a href="{{ route('songs.show', $row->number) }}">{{ $row->title }}</a>
+                    <a href="{{ route('songs.show', $row->number) }}" wire:navigate>{{ $row->title }}</a>
                 </div>
             @endinteract
 

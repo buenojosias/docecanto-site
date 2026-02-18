@@ -8,35 +8,27 @@
     <div class="sm:grid sm:grid-cols-6 gap-6">
         <div class="col-span-4">
             <x-ts-card>
-                <x-slot:header>
-                    <h2 class="text-2xl font-semibold text-gray-700">
-                        <small>{{ $song->number }}.</small>
-                        {{ $song->title }}
-                    </h2>
-                    @if ($song->detached)
-                        <div>
+                <x-card-header :title="$song->number . '. ' . $song->title">
+                    <x-slot:action>
+                        @if ($song->detached)
                             <x-ts-badge sm icon="bookmark" color="orange" text="Fixada" outline />
-                        </div>
-                    @endif
-                </x-slot>
-
+                        @endif
+                    </x-slot:action>
+                </x-card-header>
                 <div class="lyrics">
                     {!! $song->lyrics !!}
                 </div>
                 <x-slot:footer>
-                    @can('coordinator')
-                        <x-ts-button href="{{ route('songs.edit', $song->number) }}" text="Editar" sm flat />
-                    @endcan
+                    <x-ts-button text="Editar" href="{{ route('songs.edit', $song->number) }}" wire:navigate flat />
                     @if ($song->detached)
-                        <x-ts-button wire:click="removeDetach" text="Desafixar" flat sm />
+                        <x-ts-button wire:click="removeDetach" text="Desafixar" flat />
                     @else
-                        <x-ts-button wire:click="addDetach" text="Fixar" flat sm />
+                        <x-ts-button wire:click="addDetach" text="Fixar" flat />
                     @endif
                 </x-slot>
-                {{-- </div> --}}
             </x-ts-card>
         </div>
-        <div class="col-span-2">
+        <div class="col-span-2 space-y-6">
             @livewire('song.song-categories', ['song' => $song])
             @livewire('audio.audio-index', ['song' => $song])
         </div>

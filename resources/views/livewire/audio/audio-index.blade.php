@@ -2,9 +2,7 @@
     <x-ts-card>
         <x-card-header title="Áudios">
             <x-slot:action>
-                {{-- @can('coordinator') --}}
-                    <x-ts-button wire:click="openUploadModal" flat icon="plus" class="-mr-3" />
-                {{-- @endcan --}}
+                <x-ts-button wire:click="openUploadModal" flat icon="fluentui.add-12-o" scope="without-padding" />
             </x-slot:action>
         </x-card-header>
         <ul>
@@ -86,8 +84,8 @@
                 </audio>
             @endif
             <x-slot:footer>
-                <x-ts-button type="submit" form="audio-form" sm primary text="Enviar" />
-                <x-ts-button x-on:click="$modalClose('audio-modal')" sm text="Cancelar" flat />
+                <x-ts-button type="submit" form="audio-form" primary text="Enviar" />
+                <x-ts-button x-on:click="$modalClose('audio-modal')" text="Cancelar" flat />
             </x-slot>
         </form>
     </x-ts-modal>

@@ -15,11 +15,9 @@
         ];
     @endphp
 
-    @can('coordinator')
-        @php
-            $headers[] = ['index' => 'action', 'label' => '', 'sortable' => false];
-        @endphp
-    @endcan
+    @php
+        $headers[] = ['index' => 'action', 'label' => '', 'sortable' => false];
+    @endphp
 
     <x-ts-table :headers="$headers" :rows="$this->categories" striped>
         @can('coordinator')
