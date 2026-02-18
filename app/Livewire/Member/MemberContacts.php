@@ -15,10 +15,12 @@ class MemberContacts extends Component
     public $formContact;
     public $field, $value;
     public $showContacts = false;
+    public bool $showFormModal = false;
 
     public function mount($member)
     {
         $this->member = $member;
+        $this->loadContacts();
     }
 
     public function loadContacts()
@@ -79,14 +81,12 @@ class MemberContacts extends Component
 
     public function doRemoveContact($id)
     {
-        dd($id);
         try {
             $this->member->contacts()->where('id', $id)->first()->delete();
-            $this->notification()->success($description = 'Contato removido com sucesso.');
+            $this->toast()->success('Contato removido com sucesso.')->send();
             $this->showFormModal = false;
         } catch (\Throwable $th) {
-            $this->notification()->error($description = 'Erro ao remover contato.');
-            dump($th);
+            $this->dialog()->error('Erro ao remover contato.')->send();
         }
     }
 

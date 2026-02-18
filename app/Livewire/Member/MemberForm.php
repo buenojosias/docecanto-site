@@ -30,8 +30,8 @@ class MemberForm extends Component
             $this->method = 'edit';
             $this->member = Member::findOrFail($member);
             $this->name = $this->member->name;
-            $this->birth = $this->member->birth;
-            $this->registration_date = $this->member->registration_date;
+            $this->birth = $this->member->birth->format('Y-m-d');
+            $this->registration_date = $this->member->registration_date ? $this->member->registration_date->format('Y-m-d') : null;
             $this->status = $this->member->status;
         } else {
             $this->method = 'create';
@@ -51,6 +51,7 @@ class MemberForm extends Component
             try {
                 $this->member->update($data);
 
+                $this->toast()->success('Coralista atualizado com sucesso!')->flash()->send();
                 return redirect(route('members.show', $this->member));
             } catch (\Throwable $th) {
                 $this->toast()->error('Erro ao atualizar coralista.')->send();
@@ -60,6 +61,7 @@ class MemberForm extends Component
             try {
                 $this->member = Member::create($data);
 
+                $this->toast()->success('Coralista cadastrado com sucesso!')->flash()->send();
                 return redirect(route('members.show', $this->member));
             } catch (\Throwable $th) {
                 $this->toast()->error('Erro ao cadastrar coralista.')->send();

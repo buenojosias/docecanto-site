@@ -1,6 +1,6 @@
 @props(['label' => null, 'value' => null, 'note' => null, 'href' => null, 'bool' => null])
 
-<div>
+<div {{ $attributes }}>
     <dl class="flex-1" href="#">
         @if ($label)
             <dt>{{ $label }}</dt>

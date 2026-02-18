@@ -1,27 +1,13 @@
 <div>
-    <x-ts-card header="Endereço">
-        <ul>
-            @if ($addressData)
-                <li class="py-2 px-4 border-b">
-                    <h4 class="text-sm font-medium text-gray-600">Endereço</h4>
-                    <p class="font-medium text-gray-900">{{ $addressData->address }}</p>
-                </li>
-                <li class="py-2 px-4 border-b">
-                    <h4 class="text-sm font-medium text-gray-600">Complemento</h4>
-                    <p class="font-medium text-gray-900">{{ $addressData->complement ?? '' }}</p>
-                </li>
-                <li class="py-2 px-4 border-b">
-                    <h4 class="text-sm font-medium text-gray-600">Bairro</h4>
-                    <p class="font-medium text-gray-900">{{ $addressData->district }}</p>
-                </li>
-                <li class="py-2 px-4 border-b">
-                    <h4 class="text-sm font-medium text-gray-600">Cidade</h4>
-                    <p class="font-medium text-gray-900">{{ $addressData->city ?? '' }}</p>
-                </li>
-            @else
-                <x-empty label="Endereço não informado." />
-            @endif
-        </ul>
+    <x-ts-card header="Endereço" minimize="mount" class="infoblock g-2">
+        @if ($addressData)
+            <x-info label="Endereço" :value="$addressData->address" />
+            <x-info label="Complemento" :value="$addressData->complement ?? '-'" />
+            <x-info label="Bairro" :value="$addressData->district" />
+            <x-info label="Cidade" :value="$addressData->city ?? ''" />
+        @else
+            <x-empty label="Endereço não informado." />
+        @endif
         <x-slot:footer>
             @if ($addressData)
                 <x-ts-button wire:click="openFormModal" text="Alterar endereço" flat />
@@ -33,7 +19,7 @@
     <x-ts-modal wire="showFormModal" :title="$addressData ? 'Editar endereço' : 'Adicionar endereço'" size="xl" id="address-modal">
         <form id="address-form" wire:submit="submit">
             <x-ts-errors class="mb-4 shadow" />
-            <div class="grid sm:grid-cols-6 gap-2">
+            <div class="grid sm:grid-cols-6 gap-4">
                 <div class="sm:col-span-4">
                     <x-ts-input label="Endereço" wire:model="address" required />
                 </div>

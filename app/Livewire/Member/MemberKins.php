@@ -16,12 +16,6 @@ class MemberKins extends Component
     public $kinForm;
     // public $showFormModal = false;
 
-    // #[On('added')]
-    // public function refresh()
-    // {
-    //     $this->forget($this->kins);
-    // }
-
     #[Computed]
     public function kins()
     {

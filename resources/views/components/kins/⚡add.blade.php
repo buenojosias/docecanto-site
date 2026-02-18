@@ -48,12 +48,11 @@ new class extends Component {
             ]);
         } catch (\Throwable $th) {
             $this->dialog()->error('Ocorreu um erro ao cadastrar/vincular familiar.')->send();
-            dd($th);
         }
         if($kin) {
             DB::commit();
             $this->toast()->success('Familiar cadastrado/vinculado com sucesso.')->send();
-            $this->dispatch('added');
+            $this->dispatch('kin-added');
             // $this->showFormModal = false;
         } else {
             DB::rollback();
@@ -110,3 +109,9 @@ new class extends Component {
         </x-slot>
     </form>
 </x-ts-modal>
+
+<script>
+    this.$on('kin-added', () => {
+        $modalClose('kinship-modal');
+    })
+</script>

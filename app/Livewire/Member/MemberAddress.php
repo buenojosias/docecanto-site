@@ -18,6 +18,7 @@ class MemberAddress extends Component
     public function mount($member)
     {
         $this->member = $member;
+        $this->loadAddress();
     }
 
     public function loadAddress()

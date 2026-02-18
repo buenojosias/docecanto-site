@@ -18,27 +18,24 @@
                 <x-info label="Data de nascimento" :value="$member->birth->format('d/m/Y')" />
                 <x-info label="Idade" :value="$member->age" />
                 <x-info label="Data do cadastro" :value="$member->registration_date ? $member->registration_date->format('d/m/Y') : '-'" />
-                <x-info label="Status" :value="$member->status" href="#" />
-                <x-info label="Ativo" bool="N" />
+                <x-info label="Status" :value="$member->status" />
                 <x-slot:footer>
-                    <x-ts-button href="{{ route('members.edit', $member) }}" text="Editar" flat />
+                    <x-ts-button href="{{ route('members.edit', $member) }}" text="Editar" wire:navigate flat />
                 </x-slot:footer>
             </x-ts-card>
-            @livewire('member.member-profile', ['member' => $member])
-            <div class="grid lg:grid-cols-2 gap-4">
-                <livewire:member.member-kins lazy :member="$member" />
-                @livewire('member.member-address', ['member' => $member])
-            </div>
+            <livewire:member.member-kins :member="$member" />
+            @livewire('member.member-address', ['member' => $member])
+            @island
+                @livewire('member.member-contacts', ['member' => $member])
+            @endisland
         </div>
         <div class="space-y-4">
             @island()
                 @livewire('member.member-rating', ['member' => $member])
             @endisland
+            @livewire('member.member-profile', ['member' => $member])
             @island()
-                @livewire('member.member-user', ['member' => $member])
-            @endisland
-            @island
-                @livewire('member.member-contacts', ['member' => $member])
+                <livewire:member.member-user :member="$member" />
             @endisland
         </div>
     </div>

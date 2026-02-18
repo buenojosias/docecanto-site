@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Member;
 
+use App\Models\Member;
 use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -20,6 +21,7 @@ class MemberUser extends Component
     public function mount($member)
     {
         $this->member = $member;
+        $this->loadUser();
     }
 
     public function loadUser()

@@ -1,5 +1,5 @@
 <div>
-    <x-ts-card header="Detalhes do perfil">
+    <x-ts-card header="Detalhes do perfil" minimize="mount">
         <ul class="text-sm text-gray-900">
             @foreach ($questions = [] as $question)
                 @livewire(

@@ -1,28 +1,14 @@
 <div>
-
-    <x-ts-card header="Informações de login">
-        <ul>
-            @if ($user)
-                <li class="py-2 px-4 border-b">
-                    <h4 class="text-sm font-medium text-gray-600">E-mail</h4>
-                    <p class="font-medium text-gray-900">{{ $user->email }}</p>
-                </li>
-                <li class="py-2 px-4 border-b">
-                    <h4 class="text-sm font-medium text-gray-600">Username</h4>
-                    <p class="font-medium text-gray-900">{{ $user->username }}</p>
-                </li>
-                <li class="flex space-x-2 items-center py-2 px-4 border-b">
-                    <div class="grow">
-                        <h4 class="text-sm font-medium text-gray-600">Senha</h4>
-                    </div>
-                    <div>
-                        <x-ts-button wire:click="resetPassword" flat sm icon="arrow-path" />
-                    </div>
-                </li>
-            @else
-                <x-empty label="Nenhuma informação de login adicionada." />
-            @endif
-        </ul>
+    <x-ts-card header="Informações de login" class="infoblock" minimize="mount">
+        @if ($user)
+            <x-info label="E-mail" :value="$user->email" />
+            <x-info label="Username" :value="$user->username" />
+            <x-info label="Senha" value="******">
+                <x-ts-button wire:click="resetPassword" flat icon="arrow-path" scope="without-padding" />
+            </x-info>
+        @else
+            <x-empty label="Nenhuma informação de login adicionada." />
+        @endif
         <x-slot:footer>
             @if ($user)
                 <x-ts-button wire:click="openFormModal" text="Alterar dados de acesso" flat />

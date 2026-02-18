@@ -1,70 +1,45 @@
 <div>
-    <x-ts-card header="Contatos">
-        <ul>
-            @forelse ($contacts as $contact)
-                <li class="flex space-x-2 items-center py-2 px-4 border-b">
-                    <div class="grow">
-                        <h4 class="text-sm font-medium text-gray-600">{{ $contact->field }}</h4>
-                        <p class="font-medium text-gray-900">{{ $contact->value }}</p>
-                    </div>
-                    <div class="flex items-center">
-                        <x-ts-dropdown>
-                            <x-ts-dropdown.items wire:click="openFormModal({{ $contact }})" icon="pencil"
-                                label="Editar" />
-                            <x-ts-dropdown.items wire:click="removeContact({{ $contact }})" icon="trash"
-                                label="Remover" />
-                        </x-ts-dropdown>
-                    </div>
-                </li>
-            @empty
-                <x-empty label="Nenhum contato adicionado" />
-            @endforelse
-        </ul>
+    <x-ts-card header="Contatos" minimize="mount" class="infoblock">
+        @forelse ($contacts as $contact)
+            <x-info :label="$contact->field" :value="$contact->value">
+                <x-ts-dropdown icon="fluentui.chevron-down-28" position="bottom-end">
+                    <x-ts-dropdown.items wire:click="openFormModal({{ $contact }})" icon="pencil" text="Editar" />
+                    <x-ts-dropdown.items wire:click="removeContact({{ $contact }})" icon="trash" text="Remover" />
+                </x-ts-dropdown>
+            </x-info>
+        @empty
+            <x-empty label="Nenhum contato adicionado" />
+        @endforelse
         <x-slot:footer>
             <x-ts-button wire:click="openFormModal" text="Adicionar contato" flat />
         </x-slot>
     </x-ts-card>
 
-    <x-ts-modal id="contact-modal" max-width="sm">
-        <div class="card w-full">
-            <form wire:submit="submit">
-                <div class="card-header">
-                    <h3 class="card-title">{{ $formContact ? 'Editar' : 'Adicionar' }} contato</h3>
-                </div>
-                <div class="card-body display">
-                    <x-ts-errors class="mb-4 shadow" />
-                    <div class="grid sm:grid-cols-4 gap-2">
-                        <div class="sm:col-span-4">
-                            <x-ts-select.native label="Campo" wire:model.live="field" required>
-                                <option value="">Selecione</option>
-                                <option value="WhatsApp">WhatsApp</option>
-                                <option value="E-mail">E-mail</option>
-                                <option value="Facebook">Facebook</option>
-                                <option value="Instagram">Instagram</option>
-                            </x-ts-select.native>
-                        </div>
-                        <div class="sm:col-span-4">
-                            @if ($field === 'WhatsApp')
-                                <x-ts-input wire:model="value" label="{{ $field }}" x-mask="(99) 99999-9999"
-                                    required />
-                            @elseif ($field === 'E-mail')
-                                <x-ts-input type="email" wire:model="value" label="{{ $field }}"
-                                    required />
-                            @elseif ($field === 'Facebook' || $field === 'Instagram')
-                                <x-ts-input wire:model="value" label="{{ $field }}" required />
-                            @else
-                                <p>Selecione o campo</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="flex justify-end gap-x-2">
-                        <x-ts-button type="submit" sm primary text="Salvar" />
-                        <x-ts-button text="Cancelar" sm x-on:click="close" flat />
-                    </div>
-                </div>
-            </form>
-        </div>
+    <x-ts-modal title="{{ $formContact ? 'Editar' : 'Adicionar' }} contato" id="contact-modal" wire="showFormModal"
+        size="sm">
+        <form wire:submit="submit" class="space-y-4">
+            <x-ts-errors class="mb-4 shadow" />
+            <x-ts-select.native label="Campo" wire:model.live="field" required>
+                <option value="">Selecione</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="E-mail">E-mail</option>
+                <option value="Facebook">Facebook</option>
+                <option value="Instagram">Instagram</option>
+            </x-ts-select.native>
+            @if ($field === 'WhatsApp')
+                <x-ts-input wire:model="value" label="{{ $field }}" x-mask="(99) 99999-9999" required />
+            @elseif ($field === 'E-mail')
+                <x-ts-input type="email" wire:model="value" label="{{ $field }}" required />
+            @elseif ($field === 'Facebook' || $field === 'Instagram')
+                <x-ts-input wire:model="value" label="{{ $field }}" required />
+            @else
+                <x-ts-input value="Selecione um campo" disabled />
+            @endif
+
+            <x-slot:footer>
+                <x-ts-button type="submit" primary text="Salvar" />
+                <x-ts-button text="Cancelar" x-on:click="$modalClose('contact-modal')" flat />
+            </x-slot:footer>
+        </form>
     </x-ts-modal>
 </div>
