@@ -30,6 +30,7 @@ class QueueStatusModal extends Component
         try {
             Queue::query()->findOrFail($this->queue->id)->update($data);
             $this->toast()->success('Status alterado com sucesso.')->send();
+            $this->dispatch('status-updated');
             $this->statusModal = false;
         } catch (\Throwable $th) {
             $this->toast()->error('Erro ao alterar status.')->send();

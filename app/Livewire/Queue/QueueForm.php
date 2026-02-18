@@ -48,6 +48,7 @@ class QueueForm extends Component
         ]);
         try {
             if ($this->action === 'create') {
+                $this->data['user_id'] = auth()->id();
                 $this->data = Queue::create($this->data)->toArray();
                 $this->action = 'edit';
             } else {
