@@ -28,7 +28,7 @@ class CreateGlobal extends Component
             [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
-                'username' => 'required|string|min:6|max:32|unique:users,username',
+                'username' => 'required|string|alpha_dash|min:6|max:32|unique:users,username',
                 'password' => 'required|string|min:6|max:32',
                 'role' => 'required|string|in:coordenador,conselheiro,responsável',
             ],

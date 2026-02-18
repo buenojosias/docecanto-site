@@ -31,9 +31,9 @@
         @endinteract
 
         @interact('column_action', $row)
-            <x-ts-button icon="pencil" color="secondary" @click="$dispatch('edit-user', { user: {{ $row->id }} })"
+            <x-ts-button icon="fluentui.edit-20-o" color="secondary" @click="$dispatch('edit-user', { user: {{ $row->id }} })"
                 scope="without-padding" flat />
-            <x-ts-button icon="trash" color="red" @click="$dispatch('delete-user', { user: {{ $row->id }} })"
+            <x-ts-button icon="fluentui.delete-12-o" color="red" @click="$dispatch('delete-user', { user: {{ $row->id }} })"
                 scope="without-padding" flat />
         @endinteract
 
