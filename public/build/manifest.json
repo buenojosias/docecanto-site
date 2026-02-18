@@ -1,11 +1,11 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-2d49cc0a.css",
+    "file": "assets/app-c7bbb44c.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/css/landing.css": {
-    "file": "assets/landing-7c6ec0a2.css",
+    "file": "assets/landing-e8713892.css",
     "isEntry": true,
     "src": "resources/css/landing.css"
   },

@@ -4,9 +4,7 @@
             <h2>Usuários</h2>
         </div>
         <div class="action">
-            @can('coordinator')
-                <x-ts-button text="Cadastrar usuário" wire:click="$dispatch('open-form-modal')" />
-            @endcan
+            <x-ts-button text="Cadastrar usuário" @click="$modalOpen('create-user-modal')" />
         </div>
     </div>
     @php
@@ -15,6 +13,7 @@
             ['index' => 'role', 'label' => 'Nível', 'sortable' => false],
             ['index' => 'email', 'label' => 'E-mail', 'sortable' => false],
             ['index' => 'username', 'label' => 'Username', 'sortable' => false],
+            ['index' => 'action', 'label' => '', 'sortable' => false],
         ];
     @endphp
 
@@ -31,11 +30,18 @@
             {{ $row->username ?? '---' }}
         @endinteract
 
+        @interact('column_action', $row)
+            <x-ts-button icon="pencil" color="secondary" @click="$dispatch('edit-user', { user: {{ $row->id }} })"
+                scope="without-padding" flat />
+            <x-ts-button icon="trash" color="red" @click="$dispatch('delete-user', { user: {{ $row->id }} })"
+                scope="without-padding" flat />
+        @endinteract
+
         <x-slot:empty>
             <x-empty />
         </x-slot:empty>
     </x-ts-table>
-    @can('coordinator')
-        @livewire('user.user-create')
-    @endcan
+    <livewire:user.create-global @created="$refresh" />
+    <livewire:user.user-delete @deleted="$refresh" />
+    <livewire:user.user-edit @saved="$refresh" />
 </div>

@@ -31,4 +31,3 @@
         @endinteract
     </x-ts-table>
 </div>
-</div>
