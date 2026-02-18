@@ -17,6 +17,7 @@ class MemberRating extends Component
     public function mount($member)
     {
         $this->member = $member;
+        $this->loadRating();
     }
 
     public function loadRating()

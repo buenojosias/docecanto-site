@@ -1,4 +1,5 @@
 <div class="space-y-6">
+    <x-ts-banner text="Em desenvolvimento" color="red" />
     <div class="page-header">
         <div class="title">
             <h2>Fichas técnicas</h2>
@@ -6,20 +7,15 @@
     </div>
     @php
         $headers = [
-            ['index' => 'member.name', 'label' => 'Integrante', 'sortable' => false],
-            ['index' => 'height', 'label' => 'Altura', 'sortable' => false],
-            ['index' => 'tuning', 'label' => 'Segurança<br />vocal', 'sortable' => false, 'unescaped' => true],
-            ['index' => 'vocal_power', 'label' => 'Potência<br />vocal', 'sortable' => false, 'unescaped' => true],
-            ['index' => 'lowestNote.name', 'label' => 'Nota mais<br />grave', 'sortable' => false, 'unescaped' => true],
-            [
-                'index' => 'highestNote.name',
-                'label' => 'Nota mais<br />aguda',
-                'sortable' => false,
-                'unescaped' => true,
-            ],
+            ['index' => 'member.name', 'label' => 'Integrante'],
+            ['index' => 'height', 'label' => 'Altura'],
+            ['index' => 'tuning', 'label' => 'Segurança vocal'],
+            ['index' => 'vocal_power', 'label' => 'Potência vocal'],
+            ['index' => 'lowestNote.name', 'label' => 'Nota mais grave'],
+            ['index' => 'highestNote.name', 'label' => 'Nota mais aguda'],
         ];
     @endphp
-    <x-ts-table :headers="$headers" :rows="$this->ratings" striped>
+    <x-ts-table :headers="$headers" :rows="$this->ratings" :sort>
         <x-slot:empty>
             <x-empty />
         </x-slot:empty>
