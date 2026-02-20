@@ -4,12 +4,10 @@
             <h2>Detalhes do evento</h2>
         </div>
         <div class="action">
-            @can('coordinator')
-                <x-ts-button href="{{ route('events.edit', $event) }}" primary text="Editar" />
-            @endcan
+            <x-ts-button href="{{ route('events.edit', $event) }}" primary text="Editar" />
         </div>
     </div>
-    <x-ts-card class="detail grid grid-cols-6 space-y-3 md:space-y-0 gap-4">
+    <x-ts-card class="infoblock grid grid-cols-6 space-y-3 md:space-y-0 gap-4">
         <div class="col-span-6 sm:col-span-3">
             <x-detail label="Título" :value="$event->title" />
         </div>

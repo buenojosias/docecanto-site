@@ -19,8 +19,9 @@
                 </div>
                 @php
                     $proxHeaders = [
-                        ['index' => 'date', 'label' => 'Data', 'sortable' => false],
-                        ['index' => 'action', 'label' => '', 'sortable' => false],
+                        ['index' => 'date', 'label' => 'Data'],
+                        ['index' => 'theme', 'label' => 'Tema'],
+                        ['index' => 'action', 'label' => ''],
                     ];
                 @endphp
                 <x-ts-table :headers="$proxHeaders" :rows="$this->proximos()" striped>
@@ -29,9 +30,7 @@
                     @endinteract
 
                     @interact('column_action', $row)
-                        @can('coordinator')
-                            <x-ts-button href="{{ route('encounters.edit', $row) }}" sm flat icon="pencil" />
-                        @endcan
+                        <x-ts-button href="{{ route('encounters.edit', $row) }}" scope="without-padding" flat icon="fluentui.edit-20-o" />
                     @endinteract
                 </x-ts-table>
             </div>
@@ -47,10 +46,11 @@
                 </div>
                 @php
                     $realizadosHeaders = [
-                        ['index' => 'date', 'label' => 'Data', 'sortable' => false],
-                        ['index' => 'presencas', 'label' => 'Presenças', 'sortable' => false],
-                        ['index' => 'faltas', 'label' => 'Faltas', 'sortable' => false],
-                        ['index' => 'action', 'label' => '', 'sortable' => false],
+                        ['index' => 'date', 'label' => 'Data'],
+                        ['index' => 'theme', 'label' => 'Tema'],
+                        ['index' => 'presencas', 'label' => 'Presenças'],
+                        ['index' => 'faltas', 'label' => 'Faltas'],
+                        ['index' => 'action', 'label' => ''],
                     ];
                 @endphp
                 <x-ts-table :headers="$realizadosHeaders" :rows="$this->realizados()" striped>
@@ -75,9 +75,7 @@
                     @endinteract
 
                     @interact('column_action', $row)
-                        @can('coordinator')
-                            <x-ts-button href="{{ route('encounters.edit', $row) }}" sm flat icon="pencil" />
-                        @endcan
+                        <x-ts-button href="{{ route('encounters.edit', $row) }}" scope="without-padding" flat icon="fluentui.edit-20-o" />
                     @endinteract
 
                     <x-slot:empty>

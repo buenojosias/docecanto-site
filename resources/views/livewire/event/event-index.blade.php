@@ -10,12 +10,12 @@
                 <!-- INÍCIO DO CALENDÁRIO -->
                 <div class="mb-3 flex">
                     <div>
-                        <x-ts-button wire:click="goToPreviusMonth" sm flat icon="chevron-left" />
+                        <x-ts-button wire:click="goToPreviusMonth" icon="fluentui.chevron-left-20" scope="without-padding" flat />
                     </div>
                     <div class="grow text-center font-semibold text-gray-800">
                         {{ $monthLabels[$currentMonth] }}/{{ $currentYear }}</div>
                     <div>
-                        <x-ts-button wire:click="goToNextMonth" sm flat icon="chevron-right" />
+                        <x-ts-button wire:click="goToNextMonth" icon="fluentui.chevron-right-20" scope="without-padding" flat />
                     </div>
                 </div>
                 <div class="flex py-0.5">
