@@ -27,10 +27,10 @@ Route::prefix('categorias')->name('categories.')->group(function () {
 });
 
 Route::prefix('ensaios')->name('encounters.')->group(function () {
+    Route::get('/', EncounterIndex::class)->name('index');
     Route::get('/cadastro', EncounterForm::class)->name('create');
-    Route::get('/{encounter}/ver', EncounterShow::class)->name('show');
+    Route::get('/{encounter}', EncounterShow::class)->name('show');
     Route::get('/{encounter}/editar', EncounterForm::class)->name('edit');
-    Route::get('/{period?}', EncounterIndex::class)->name('index');
 });
 
 Route::prefix('eventos')->name('events.')->group(function () {

@@ -18,6 +18,8 @@ class EncounterForm extends Component
 
     public $date;
 
+    public $theme;
+
     public $description;
 
     public function mount($encounter = null)
@@ -26,6 +28,7 @@ class EncounterForm extends Component
             $this->encounter = Encounter::findOrFail($encounter);
             $this->encounterId = $this->encounter->id;
             $this->date = $this->encounter->date;
+            $this->theme = $this->encounter->theme;
             $this->description = $this->encounter->description;
             $this->action = 'edit';
         } else {
@@ -37,6 +40,7 @@ class EncounterForm extends Component
     {
         $data = $this->validate([
             'date' => 'required|date',
+            'theme' => 'nullable|string',
             'description' => 'nullable|string',
         ]);
 
@@ -44,7 +48,8 @@ class EncounterForm extends Component
             try {
                 $this->encounter = Encounter::query()->create($data);
                 $this->encounterId = $this->encounter->id;
-                $this->toast()->success('Encontro cadastrado com sucesso.')->send();
+                $this->toast()->flash()->success('Encontro cadastrado com sucesso.')->send();
+                $this->redirectRoute('encounters.show', $this->encounter, navigate: true);
                 $this->action = 'edit';
             } catch (\Throwable $th) {
                 $this->toast()->error('Erro ao cadastrar encontro.')->send();

@@ -15,18 +15,18 @@
                 @endinteract
 
                 @interact('column_p', $row)
-                    <x-ts-radio :id="'attendance_' . $row->id . '_P'" name="selectAttendance[{{ $row->id }}][attendance]"
-                        label="" value="P" wire:model="selectedAttendance.{{ $row->id }}" />
+                    <x-ts-radio :id="'attendance_' . $row->id . '_P'" name="selectAttendance[{{ $row->id }}][attendance]" label=""
+                        value="P" wire:model="selectedAttendance.{{ $row->id }}" />
                 @endinteract
 
                 @interact('column_f', $row)
-                    <x-ts-radio :id="'attendance_' . $row->id . '_F'" name="selectAttendance[{{ $row->id }}][attendance]"
-                        label="" value="F" wire:model="selectedAttendance.{{ $row->id }}" />
+                    <x-ts-radio :id="'attendance_' . $row->id . '_F'" name="selectAttendance[{{ $row->id }}][attendance]" label=""
+                        value="F" wire:model="selectedAttendance.{{ $row->id }}" />
                 @endinteract
 
                 @interact('column_j', $row)
-                    <x-ts-radio :id="'attendance_' . $row->id . '_J'" name="selectAttendance[{{ $row->id }}][attendance]"
-                        label="" value="J" wire:model="selectedAttendance.{{ $row->id }}" />
+                    <x-ts-radio :id="'attendance_' . $row->id . '_J'" name="selectAttendance[{{ $row->id }}][attendance]" label=""
+                        value="J" wire:model="selectedAttendance.{{ $row->id }}" />
                 @endinteract
 
                 <x-slot:empty>
@@ -53,10 +53,9 @@
                 <div x-data="{ showNote: false }">
                     {{ $row->name }}
                     @if ($row->pivot->note)
-                        <x-ts-button @click="showNote = !showNote" sm flat primary
-                            icon="fluentui.comment-24-o" />
+                        <x-ts-button @click="showNote = !showNote" sm flat primary icon="fluentui.comment-24-o" />
                         <div x-show="showNote" x-collapse
-                            class="w-full text-md text-gray-700 border-l-4 border-slate-600 pl-1.5">
+                            class="w-full text-sm text-gray-700 border-l-4 border-slate-600 pl-1.5">
                             {{ $row->pivot->note }}
                         </div>
                     @endif
@@ -80,34 +79,20 @@
     </x-ts-card>
 
     @if ($showChangeModal)
-        <x-ts-modal wire="showChangeModal" size="md">
-            <div class="card w-full">
-                <div class="card-header">
-                    <h3 class="card-title">Alterar registro</h3>
-                </div>
-                <div class="card-body display">
-                    <div class="space-y-2">
-                        <div>
-                            <x-ts-input label="Membro" value="{{ $changeMember['name'] }}" readonly />
-                        </div>
-                        <div>
-                            <x-ts-select.native wire:model="newAttendance" label="Novo status" required>
-                                <option value="">Selecione</option>
-                                <option value="P">P</option>
-                                <option value="F">F</option>
-                                <option value="J">J</option>
-                            </x-ts-select.native>
-                        </div>
-                        <div>
-                            <x-ts-textarea wire:model="newNote" rows="2" label="Comentário" />
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <x-ts-button wire:click="saveChange" primary text="Salvar" />
-                    <x-ts-button sm flat text="Cancelar" x-on:click="close" />
-                </div>
-            </div>
+        <x-ts-modal title="Alterar registro" wire="showChangeModal" size="md">
+            <form class="space-y-4">
+                <x-ts-input label="Membro" value="{{ $changeMember['name'] }}" readonly />
+                <x-ts-select.native wire:model="newAttendance" label="Novo status" required>
+                    <option value="">Selecione</option>
+                    <option value="P">P</option>
+                    <option value="F">F</option>
+                    <option value="J">J</option>
+                </x-ts-select.native>
+                <x-ts-textarea wire:model="newNote" rows="2" label="Comentário" />
+            </form>
+            <x-slot:footer>
+                <x-ts-button wire:click="saveChange" primary text="Salvar" />
+            </x-slot:footer>
         </x-ts-modal>
     @endif
 </div>

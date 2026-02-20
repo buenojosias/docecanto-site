@@ -12,6 +12,7 @@ class Encounter extends Model
 
     protected $fillable = [
         'date',
+        'theme',
         'description',
     ];
 
