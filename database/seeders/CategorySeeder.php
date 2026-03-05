@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -13,13 +12,15 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            [ 'position' => 1, 'name' => 'Entrada' ],
-            [ 'position' => 2, 'name' => 'Ato penitencial'],
-            [ 'position' => 3, 'name' => 'Glória' ],
-            [ 'position' => 4, 'name' => 'Aclamação ao evangelho' ],
-            [ 'position' => 5, 'name' => 'Ofertório' ],
+            ['position' => 1, 'name' => 'Entrada'],
+            ['position' => 2, 'name' => 'Ato penitencial'],
+            ['position' => 3, 'name' => 'Glória'],
+            ['position' => 4, 'name' => 'Aclamação ao evangelho'],
+            ['position' => 5, 'name' => 'Ofertório'],
         ];
 
-        \App\Models\Category::insert($categories);
+        foreach ($categories as $categoryData) {
+            \App\Models\Category::firstOrCreate(['name' => $categoryData['name']], $categoryData);
+        }
     }
 }

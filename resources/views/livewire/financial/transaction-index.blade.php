@@ -19,11 +19,7 @@
         <x-ts-date wire:model.live="dateStart" :max-date="now()" format="DD/MM/YYYY" label="Data inicial" helpers />
         <x-ts-date wire:model.live="dateEnd" :max-date="now()" format="DD/MM/YYYY" label="Data final" helpers />
 
-        <x-ts-select.native wire:model.live="flow" label="Fluxo">
-            <option value="">Todos</option>
-            <option value="entrada">Entrada</option>
-            <option value="saida">Saída</option>
-        </x-ts-select.native>
+        <x-ts-select.native wire:model.live="type" label="Tipo" :options="$this->types" />
     </div>
 
     @php
@@ -31,6 +27,7 @@
             ['index' => 'date', 'label' => 'Data', 'sortable' => false],
             ['index' => 'description', 'label' => 'Descrição', 'sortable' => false],
             ['index' => 'category', 'label' => 'Categoria', 'sortable' => false],
+            ['index' => 'type', 'label' => 'Tipo', 'sortable' => false],
             ['index' => 'amount', 'label' => 'Valor', 'sortable' => false],
             ['index' => 'user.name', 'label' => 'Lançado por', 'sortable' => false],
         ];

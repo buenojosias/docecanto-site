@@ -16,11 +16,13 @@ class KinSeeder extends Seeder
     {
         Kin::factory(6)->create();
 
-        $members_count = Member::count();
         foreach (Kin::all() as $kin) {
-            $kin->members()->attach(rand(1, $members_count), [
-                'kinship' => Arr::random(['Pai', 'Mãe']),
-            ]);
+            $member = Member::inRandomOrder()->first();
+            if ($member) {
+                $kin->members()->attach($member->id, [
+                    'kinship' => Arr::random(['Pai', 'Mãe']),
+                ]);
+            }
         }
     }
 }

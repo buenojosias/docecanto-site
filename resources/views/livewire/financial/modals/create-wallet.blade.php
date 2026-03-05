@@ -4,7 +4,7 @@
     </x-slot>
     <form wire:submit="createWallet" id="wallet-form" class="space-y-4">
         <x-ts-input label="Nome da carteira" wire:model="name" />
-        <x-money-input label="Saldo inicial" model="balance" prefix="R$" placeholder="0,00" />
+        <x-ts-currency label="Saldo inicial" wire:model="initial_balance" locale="pt-BR" symbol placeholder="0,00" />
     </form>
     <x-slot:footer>
         <x-ts-button type="submit" form="wallet-form" text="Salvar" />

@@ -17,7 +17,9 @@ class DailyMessageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'day' => $this->faker->numberBetween(1, 28),
+            'month' => $this->faker->numberBetween(1, 12),
+            'message' => $this->faker->text(100),
         ];
     }
 }

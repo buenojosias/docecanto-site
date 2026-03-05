@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class NoteSeeder extends Seeder
@@ -18,8 +17,8 @@ class NoteSeeder extends Seeder
             'Dó4', 'Dó#4', 'Ré4', 'Ré#4', 'Mi4', 'Fá4', 'Fá#4', 'Sol4', 'Sol#4', 'Lá4', 'Lá#4', 'Si4',
         ];
         foreach ($notes as $note) {
-            \App\Models\Note::query()->create([
-                'name' => $note
+            \App\Models\Note::firstOrCreate([
+                'name' => $note,
             ]);
         }
     }

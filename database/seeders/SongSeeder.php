@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Song;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class SongSeeder extends Seeder
@@ -15,12 +14,18 @@ class SongSeeder extends Seeder
     {
         Song::factory(15)->create();
 
-        foreach (Song::all() as $song) {
-            $song->categories()->syncWithoutDetaching([rand(1, 5)]);
+        $categories = \App\Models\Category::pluck('id');
+
+        if ($categories->isNotEmpty()) {
+            foreach (Song::all() as $song) {
+                $song->categories()->syncWithoutDetaching([$categories->random()]);
+            }
         }
 
-        // foreach (\App\Models\Category::all() as $key => $category) {
-        //     $category->songs()->syncWithoutDetaching([rand(1, 10)]);
+        // if ($songs->isNotEmpty()) {
+        //     foreach (\App\Models\Category::all() as $key => $category) {
+        //         $category->songs()->syncWithoutDetaching([$songs->random()]);
+        //     }
         // }
     }
 }

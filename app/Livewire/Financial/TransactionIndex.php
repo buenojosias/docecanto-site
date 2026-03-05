@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Financial;
 
+use App\Enums\TransactionTypeEnum;
 use App\Models\Transaction;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\View\View;
@@ -19,11 +20,29 @@ class TransactionIndex extends Component
 
     public ?string $category = null;
 
-    public ?string $flow = null;
+    public ?string $type = null;
 
     public ?string $dateStart = null;
 
     public ?string $dateEnd = null;
+
+    #[Computed]
+    public function types()
+    {
+        $types = collect(TransactionTypeEnum::cases())->map(function (TransactionTypeEnum $type) {
+            return [
+                'label' => $type->label(),
+                'value' => $type->value,
+            ];
+        });
+
+        $types->prepend([
+            'label' => 'Todos os tipos',
+            'value' => null,
+        ]);
+
+        return $types;
+    }
 
     #[Computed]
     public function categories(): Collection
@@ -39,7 +58,7 @@ class TransactionIndex extends Component
     public function transactions(): LengthAwarePaginator
     {
         return Transaction::query()
-            ->select(['id', 'date', 'description', 'category', 'amount', 'registered_by'])
+//            ->select(['id', 'date', 'description', 'category', 'amount', 'registered_by'])
             ->with('user:id,name')
             ->when($this->category, function ($query): void {
                 $query->where('category', $this->category);
@@ -50,14 +69,8 @@ class TransactionIndex extends Component
             ->when($this->dateEnd, function ($query): void {
                 $query->whereDate('date', '<=', $this->dateEnd);
             })
-            ->when($this->flow, function ($query): void {
-                if ($this->flow === 'entrada') {
-                    $query->where('amount', '>=', 0);
-                }
-
-                if ($this->flow === 'saida') {
-                    $query->where('amount', '<', 0);
-                }
+            ->when($this->type, function ($query): void {
+                $query->where('type', $this->type);
             })
             ->orderByDesc('date')
             ->orderByDesc('id')

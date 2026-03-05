@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Event;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
@@ -16,24 +15,28 @@ class EventSeeder extends Seeder
     {
         Event::factory(8)->create();
 
-        $songsCount = \App\Models\Song::count();
-        $membersCount = \App\Models\Member::count();
+        $songs = \App\Models\Song::pluck('id');
+        $members = \App\Models\Member::pluck('id');
         $events = Event::all();
 
-        foreach($events->where('is_presentation', true) as $event) {
-            $event->songs()->syncWithoutDetaching([
-                rand(1, $songsCount) => ['comment' => 'Lorem ipsum'],
-                rand(1, $songsCount),
-                rand(1, $songsCount),
-            ]);
+        if ($songs->isNotEmpty()) {
+            foreach ($events->where('is_presentation', true) as $event) {
+                $event->songs()->syncWithoutDetaching([
+                    $songs->random() => ['comment' => 'Lorem ipsum'],
+                    $songs->random(),
+                    $songs->random(),
+                ]);
+            }
         }
 
-        foreach($events as $event) {
-            $event->members()->syncWithoutDetaching([
-                rand(1, $membersCount) => ['answer' => Arr::random(['Sim', 'Não', 'Talvez'])],
-                rand(1, $membersCount) => ['answer' => Arr::random(['Sim', 'Não', 'Talvez'])],
-                rand(1, $membersCount) => ['answer' => Arr::random(['Sim', 'Não', 'Talvez'])],
-            ]);
+        if ($members->isNotEmpty()) {
+            foreach ($events as $event) {
+                $event->members()->syncWithoutDetaching([
+                    $members->random() => ['answer' => Arr::random(['Sim', 'Não', 'Talvez'])],
+                    $members->random() => ['answer' => Arr::random(['Sim', 'Não', 'Talvez'])],
+                    $members->random() => ['answer' => Arr::random(['Sim', 'Não', 'Talvez'])],
+                ]);
+            }
         }
     }
 }

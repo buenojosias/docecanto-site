@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Financial\Modals;
 
+use App\Enums\TransactionMethodEnum;
+use App\Enums\TransactionTypeEnum;
 use App\Models\Wallet;
 use App\Services\TransactionService;
 use Livewire\Attributes\On;
@@ -11,7 +13,12 @@ use Livewire\Component;
 class CreateTransaction extends Component
 {
     public $modal = false;
+
     public $wallets = [];
+
+    public $types = [];
+
+    public $mothods = [];
 
     #[Validate('required|string', as: 'Categoria')]
     public $category;
@@ -22,7 +29,7 @@ class CreateTransaction extends Component
     #[Validate('nullable|string', as: 'Observação')]
     public $note;
 
-    #[Validate('required|date_format:Y-m-d', as: 'Data de pagamento')]
+    #[Validate('required|date_format:Y-m-d', as: 'Data do pagamento')]
     public $date;
 
     #[Validate('required|string', as: 'Valor')]
@@ -34,8 +41,11 @@ class CreateTransaction extends Component
     #[Validate('required|integer', as: 'Carteira')]
     public $wallet_id;
 
-    #[Validate('required|string', as: 'Fluxo')]
-    public $flow = 'Entrada';
+    #[Validate('required|string', as: 'Método')]
+    public $method;
+
+    #[Validate('required|string', as: 'Tipo')]
+    public $type;
 
     public function mount()
     {
@@ -47,6 +57,7 @@ class CreateTransaction extends Component
     {
         if (empty($this->wallets)) {
             $this->loadWallets();
+            $this->loadMethodsTypes();
         }
         $this->modal = true;
     }
@@ -64,9 +75,25 @@ class CreateTransaction extends Component
         array_unshift($this->wallets, ['id' => null, 'name' => 'Selecione']);
     }
 
+    public function loadMethodsTypes()
+    {
+        $this->mothods = collect(TransactionMethodEnum::cases())
+            ->map(fn ($method) => ['value' => $method->value, 'label' => $method->label()])
+            ->values()
+            ->toArray();
+        array_unshift($this->mothods, ['value' => null, 'label' => 'Selecione']);
+
+        $this->types = collect(TransactionTypeEnum::cases())
+            ->filter(fn ($type) => $type != TransactionTypeEnum::TRANSFER)
+            ->map(fn ($type) => ['value' => $type->value, 'label' => $type->label()])
+            ->values()
+            ->toArray();
+        array_unshift($this->types, ['value' => null, 'label' => 'Selecione']);
+    }
+
     public function addTransaction()
     {
-        $this->amount = str_replace(',', '.', str_replace('.', '', $this->displayAmount));
+        $this->amount = $this->displayAmount / 100;
         $data = $this->validate();
 
         $transactionData = [
@@ -75,7 +102,9 @@ class CreateTransaction extends Component
             'description' => $this->description,
             'note' => $this->note,
             'date' => $this->date,
-            'amount' => $this->flow === 'Entrada' ? +$this->amount : -$this->amount,
+            'amount' => $this->type === 'income' ? +$this->amount : -$this->amount,
+            'type' => $this->type,
+            'method' => $this->method,
         ];
 
         $transaction = TransactionService::create($transactionData);
@@ -90,7 +119,7 @@ class CreateTransaction extends Component
                 'date',
                 'displayAmount',
                 'amount',
-                'wallet_id'
+                'wallet_id',
             ]);
         } else {
             \DB::rollBack();

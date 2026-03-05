@@ -16,12 +16,20 @@ class RatingFactory extends Factory
      */
     public function definition(): array
     {
-        $lowest_note_id = $this->faker->randomElement([null, rand(1, 10)]);
-        if ($lowest_note_id) {
-            $highest_note_id = rand($lowest_note_id + 5, 30);
-        } else {
+        $notes = \App\Models\Note::pluck('id')->toArray();
+        if (empty($notes)) {
+            $lowest_note_id = null;
             $highest_note_id = null;
+        } else {
+            $lowest_note_id = $this->faker->randomElement([null, $this->faker->randomElement($notes)]);
+            if ($lowest_note_id) {
+                $filtered_notes = array_filter($notes, fn ($id) => $id > $lowest_note_id);
+                $highest_note_id = empty($filtered_notes) ? $lowest_note_id : $this->faker->randomElement($filtered_notes);
+            } else {
+                $highest_note_id = null;
+            }
         }
+
         return [
             'height' => $this->faker->randomElement([null, rand(140, 170)]),
             'tuning' => $this->faker->randomElement([null, rand(1, 5)]),

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\TransactionMethodEnum;
+use App\Enums\TransactionTypeEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -14,7 +16,8 @@ class Transaction extends Model
         'note',
         'date',
         'amount',
-        'balance_before',
+        'type',
+        'method',
         'balance_after',
         'registered_by',
     ];
@@ -24,8 +27,9 @@ class Transaction extends Model
         return [
             'date' => 'date',
             'amount' => 'float',
-            'balance_before' => 'float',
-            'balance_after' => 'float'
+            'balance_after' => 'float',
+            'type' => TransactionTypeEnum::class,
+            'method' => TransactionMethodEnum::class,
         ];
     }
 

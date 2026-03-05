@@ -14,8 +14,11 @@ use Livewire\Component;
 class CreateMensality extends Component
 {
     public $modal = false;
+
     public $members = [];
+
     public $wallets = [];
+
     public $months;
 
     #[Validate('required|integer', as: 'Coralista')]
@@ -47,7 +50,7 @@ class CreateMensality extends Component
             $this->months[] = [
                 'value' => $month->value,
                 'label' => $month->getName(),
-                'short' => $month->getShortName()
+                'short' => $month->getShortName(),
             ];
         }
         $this->month = intval(date('m'));
@@ -104,6 +107,8 @@ class CreateMensality extends Component
             'description' => "Mensalidade de {$this->members->find($this->member_id)->name}. Referência: {$monthShortName}/{$this->year}",
             'date' => $this->date,
             'amount' => $this->amount,
+            'type' => \App\Enums\TransactionTypeEnum::INCOME->value,
+            'method' => \App\Enums\TransactionMethodEnum::CASH->value,
         ];
 
         $transaction = TransactionService::create($transactionData);

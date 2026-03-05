@@ -15,7 +15,7 @@ class CreateWallet extends Component
     public $name;
 
     #[Validate('required|numeric', as: 'Saldo inicial')]
-    public $balance;
+    public $initial_balance;
 
     #[On('open-create-wallet-modal')]
     public function openModal()
@@ -36,13 +36,14 @@ class CreateWallet extends Component
 
     public function createWallet()
     {
-        $this->balance = $this->convertToFloat($this->balance);
+        $this->initial_balance = $this->convertToFloat($this->initial_balance);
         $data = $this->validate();
+        $data['balance'] = $this->initial_balance;
 
         if (Wallet::create($data)) {
             $this->modal = false;
             $this->dispatch('wallet-created');
-            $this->reset(['name', 'balance']);
+            $this->reset(['name', 'initial_balance']);
         };
     }
 }
