@@ -12,21 +12,20 @@
 
     <div class="mt-4 sm:grid sm:grid-cols-3 gap-6">
         <div class="mb-4 sm:mb-0">
-            <x-ts-card header="Carteiras" class="detail">
+            <x-ts-card header="Carteiras" class="infolist">
                 @forelse ($this->wallets as $wallet)
-                    <x-detail :label="$wallet->name" :value="'R$ ' . number_format($wallet->balance, 2, ',', '.')">
-                        <x-ts-button icon="pencil" flat sm />
-                    </x-detail>
+                    <x-list-item :title="$wallet->name" :subtitle="'R$ ' . number_format($wallet->balance, 2, ',', '.')">
+                    </x-list-item>
                 @empty
                     <x-empty label="Nenhuma cateira adicionada" />
                 @endforelse
                 <x-slot:footer>
-                    <x-ts-button text="Adicionar nova" x-on:click="$wire.dispatch('open-create-wallet-modal')" flat />
+                    <x-ts-button text="Adicionar/Gerenciar carteiras" :href="route('financial.wallets.index')" flat />
                 </x-slot>
-            </x-ts-card>
-        </div>
-        <div class="col-span-2">
-            <x-ts-card header="Últimas transações">
+                </x-ts-card>
+                </div>
+                <div class="col-span-2">
+                <x-ts-card header="Últimas transações">
                 @php
                     $headers = [
                         ['index' => 'date', 'label' => 'Data', 'sortable' => false],
@@ -41,13 +40,13 @@
                     @endinteract
 
                     @interact('column_description', $row)
-                        <span class="text-wrap">{{ $row->description }}</span>
+                        <span class="text-md">{{ $row->description }}</span>
                     @endinteract
 
                     @interact('column_amount', $row)
                         <div @class([
                             'flex items-center justify-between gap-1',
-                            'text-red-700' => $row->amount < 0,
+                            'text-red-700' => $row->type->value === 'expense',
                         ])>
                             <span>R$</span>
                             <span>{{ number_format($row->amount, 2, ',', '.') }}</span>
@@ -57,8 +56,8 @@
                 <x-slot:footer>
                     <x-ts-button text="Ver todas" :href="route('financial.transactions.index')" flat />
                 </x-slot:footer>
-            </x-ts-card>
-            <div class="grid sm:grid-cols-2 gap-2 mt-4">
+                </x-ts-card>
+                <div class="grid sm:grid-cols-2 gap-2 mt-4">
                 <x-ts-button text="Adicionar transação" x-on:click="$dispatch('open-transaction-modal')" outline />
                 <x-ts-button text="Gerenciar mensalidades" :href="route('financial.mensalities.index')" outline />
                 @can('coordinator')
@@ -68,6 +67,5 @@
         </div>
     </div>
 
-    @livewire('financial.modals.create-wallet')
     @livewire('financial.modals.create-transaction')
 </div>

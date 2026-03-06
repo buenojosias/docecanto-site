@@ -47,7 +47,7 @@
         @interact('column_amount', $row)
             <div @class([
                 'flex items-center justify-between gap-1',
-                'text-red-700' => $row->amount < 0,
+                'text-red-700' => $row->type->value === 'expense',
             ])>
                 <span>R$</span>
                 <span>{{ number_format($row->amount, 2, ',', '.') }}</span>

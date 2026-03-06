@@ -22,7 +22,7 @@ class FinancialIndex extends Component
     #[Computed]
     public function transactions()
     {
-        return Transaction::select('date', 'description', 'amount')->limit(6)->orderBy('date', 'desc')->orderBy('id', 'desc')->get();
+        return Transaction::select('date', 'description', 'amount', 'type')->limit(6)->orderBy('date', 'desc')->orderBy('id', 'desc')->get();
     }
 
     public function render()

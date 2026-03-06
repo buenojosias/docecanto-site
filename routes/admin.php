@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Financial\WalletIndex;
 use App\Livewire\Category\{ CategoryIndex };
 use App\Livewire\Dashboard\DashboardIndex;
 use App\Livewire\Encounter\{ EncounterIndex, EncounterShow, EncounterForm };
@@ -81,6 +82,7 @@ Route::prefix('fila')->name('queues.')->group(function () {
 
 Route::prefix('financeiro')->name('financial.')->group(function () {
     Route::get('/', FinancialIndex::class)->name('index');
+    Route::get('/carteiras', WalletIndex::class)->name('wallets.index');
     Route::get('/mensalidades', MensalityIndex::class)->name('mensalities.index');
     Route::get('/transacoes', TransactionIndex::class)->name('transactions.index');
 });
