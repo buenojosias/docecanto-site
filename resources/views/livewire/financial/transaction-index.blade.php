@@ -8,19 +8,17 @@
         </div>
     </div>
 
-    <div class="grid gap-4 rounded-md bg-white p-4 shadow sm:grid-cols-2 lg:grid-cols-4">
+    <x-ts-card class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <x-ts-date wire:model.live="dateStart" :max-date="now()" format="DD/MM/YYYY" label="Data inicial" helpers />
+        <x-ts-date wire:model.live="dateEnd" :max-date="now()" format="DD/MM/YYYY" label="Data final" helpers />
+        <x-ts-select.native wire:model.live="type" label="Tipo" :options="$this->types" />
         <x-ts-select.native wire:model.live="category" label="Categoria">
             <option value="">Todas</option>
             @foreach ($this->categories as $categoryOption)
                 <option value="{{ $categoryOption }}">{{ $categoryOption }}</option>
             @endforeach
         </x-ts-select.native>
-
-        <x-ts-date wire:model.live="dateStart" :max-date="now()" format="DD/MM/YYYY" label="Data inicial" helpers />
-        <x-ts-date wire:model.live="dateEnd" :max-date="now()" format="DD/MM/YYYY" label="Data final" helpers />
-
-        <x-ts-select.native wire:model.live="type" label="Tipo" :options="$this->types" />
-    </div>
+    </x-ts-card>
 
     @php
         $headers = [
@@ -42,13 +40,17 @@
             <span class="text-md">{{ $row->description }}</span>
         @endinteract
 
+        @interact('column_type', $row)
+            {{ $row->type->label() }}
+        @endinteract
+
         @interact('column_amount', $row)
             <div @class([
                 'flex items-center justify-between gap-1',
                 'text-red-700' => $row->amount < 0,
             ])>
                 <span>R$</span>
-                <span>{{ number_format($row->amount, 2, ',') }}</span>
+                <span>{{ number_format($row->amount, 2, ',', '.') }}</span>
             </div>
         @endinteract
 

@@ -50,7 +50,7 @@
                             'text-red-700' => $row->amount < 0,
                         ])>
                             <span>R$</span>
-                            <span>{{ number_format($row->amount, 2, ',') }}</span>
+                            <span>{{ number_format($row->amount, 2, ',', '.') }}</span>
                         </div>
                     @endinteract
                 </x-ts-table>

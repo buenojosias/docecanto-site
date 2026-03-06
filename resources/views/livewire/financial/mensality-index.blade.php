@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="grid gap-4 rounded-md bg-white p-4 shadow sm:grid-cols-2 lg:grid-cols-4">
+    <x-ts-card class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <x-ts-date wire:model.live="dateStart" :max-date="now()" format="DD/MM/YYYY" label="Data inicial" helpers />
         <x-ts-date wire:model.live="dateEnd" :max-date="now()" format="DD/MM/YYYY" label="Data final" helpers />
 
@@ -25,7 +25,7 @@
                 <option value="{{ $month['value'] }}">{{ $month['label'] }}</option>
             @endforeach
         </x-ts-select.native>
-    </div>
+    </x-ts-card>
 
     @php
         $headers = [
