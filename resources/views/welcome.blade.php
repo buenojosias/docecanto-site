@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coral Doce Canto</title>
+    <title>Coral Doce Canto - Paróquia São Marcos - Curitiba/PR</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -33,7 +33,7 @@
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="#">Faça parte</a>
+                        <a href="https://wa.me/5541996881818?text=Ol%C3%A1.%20Vi%20coral%20cantando%20na%20missa%20e%20fiquei%20interessado(a)%20em%20inscrever%20meu%20filho(a).%20%F0%9F%8E%B6" target="_blank">Faça parte</a>
                     </li>
                     <li>
                         <a href="https://app.coraldocecanto.com.br" class="nav-material"
