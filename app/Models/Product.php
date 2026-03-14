@@ -12,23 +12,26 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'variation',
-        'default_price',
-        'stock',
+        'description',
+        'is_active',
     ];
 
     protected $casts = [
-        'default_price' => 'integer',
-        'stock' => 'integer',
+        'is_active' => 'boolean',
     ];
 
-    public function purchases(): HasMany
+    public function variants(): HasMany
     {
-        return $this->hasMany(PurchaseItem::class);
+        return $this->hasMany(ProductVariant::class);
     }
 
-    public function sales(): HasMany
-    {
-        return $this->hasMany(Sale::class);
-    }
+    //    public function purchases(): HasMany
+    //    {
+    //        return $this->hasMany(PurchaseItem::class);
+    //    }
+    //
+    //    public function sales(): HasMany
+    //    {
+    //        return $this->hasMany(Sale::class);
+    //    }
 }

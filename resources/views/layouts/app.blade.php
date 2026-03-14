@@ -61,6 +61,11 @@
                     <x-ts-side-bar.item text="Contribuições mensais" icon="fluentui.person-money-24-o"
                         :route="route('financial.mensalities.index')" :current="request()->routeIs('financial.mensalities.*')" wire:navigate />
                 </x-ts-side-bar.item>
+                <x-ts-side-bar.item text="Materiais" :opened="request()->routeIs('materials.*')" icon="fluentui.shopping-bag-24-o">
+                    <x-ts-side-bar.item text="Produtos" icon="fluentui.shopping-bag-24-o" :route="route('materials.index')"
+                        :current="request()->routeIs('materials.index')" wire:navigate />
+                </x-ts-side-bar.item>
+
             </x-ts-side-bar>
         </x-slot:menu>
 
