@@ -18,7 +18,7 @@
         <x-slot:header>
             <x-ts-layout.header>
                 <x-slot:right>
-                    <x-ts-theme-switch only-icons />
+                    {{-- <x-ts-theme-switch only-icons /> --}}
                 </x-slot:right>
             </x-ts-layout.header>
         </x-slot:header>
