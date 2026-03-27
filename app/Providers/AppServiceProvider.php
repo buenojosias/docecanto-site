@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        /*
         TallStackUi::personalize()
             ->layout()
             ->block('main')
@@ -70,5 +71,6 @@ class AppServiceProvider extends ServiceProvider
             ->table()
             ->block('table.td')
             ->replace('py-4', 'py-3');
+        */
     }
 }
