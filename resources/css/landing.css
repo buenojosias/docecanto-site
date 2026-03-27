@@ -4,12 +4,23 @@
 @source "../**/*.blade.php";
 @source "../**/*.js";
 
+@theme {
+  --color-purple-primary: #8C126B;
+  --color-purple-secondary: #6C147B;
+  --color-yellow-500: #eab308;
+  --color-yellow-400: #facc15;
+  --color-purple-600: #9333ea;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-white: #ffffff;
+}
+
 body {
     @apply antialiased min-h-screen flex flex-col justify-between bg-[#8C126B] bg-gradient-to-br from-[#8C126B] to-[#6C147B] sm:pt-10;
 }
 
 nav {
-    @apply mb-8 sm:mb-12 sm:w-11/12 md:w-10/12 sm:mx-auto sm:bg-white sm:bg-opacity-10 sm:rounded-lg sm:shadow-lg;
+    @apply mb-8 sm:mb-12 sm:w-11/11 md:w-10/12 sm:mx-auto sm:bg-white/10 sm:rounded-lg sm:shadow-lg;
 }
 
 nav > div {
@@ -26,7 +37,7 @@ nav .navbar {
 }
 
 nav .navbar > ul {
-    @apply font-medium flex flex-col py-1 pl-0 pr-3 bg-white bg-opacity-50 sm:p-0 mt-4 sm:bg-transparent rounded sm:flex-row sm:space-x-6 md:space-x-8 sm:mt-0 sm:border-0;
+    @apply font-medium flex flex-col py-1 pl-0 pr-3 bg-white/50 sm:p-0 mt-4 sm:bg-transparent rounded sm:flex-row sm:space-x-6 md:space-x-8 sm:mt-0 sm:border-0;
 }
 
 nav .navbar a {
