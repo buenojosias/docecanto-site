@@ -1,6 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+@source "../**/*.blade.php";
+@source "../**/*.js";
 
 body {
     @apply antialiased min-h-screen flex flex-col justify-between bg-[#8C126B] bg-gradient-to-br from-[#8C126B] to-[#6C147B] sm:pt-10;
