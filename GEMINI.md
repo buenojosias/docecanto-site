@@ -22,6 +22,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - phpunit/phpunit (PHPUNIT) - v12
 - alpinejs (ALPINEJS) - v3
 - tailwindcss (TAILWINDCSS) - v4
+- tallstackui/tallstackui (TALLSTACKUI) - v3
 
 ## Skills Activation
 
