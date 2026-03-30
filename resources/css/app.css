@@ -1,11 +1,10 @@
-@import "tailwindcss";
-@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
-@source "../../storage/framework/views/*.php";
-@source "../**/*.blade.php";
-@source "../**/*.js";
-@source "./app/View/Components/**/*.php";
-@source "./app/Livewire/**/*.php";
-@source "../../vendor/tallstackui/tallstackui/resources/views/**/*.blade.php";
+@import 'tailwindcss';
+@import '../../vendor/tallstackui/tallstackui/css/v4.css';
+
+@source '../views';
+@source '../../vendor/tallstackui/tallstackui/src/**/*.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
 
 .page-header {
     @apply flex flex-col sm:flex-row items-center justify-between gap-1;

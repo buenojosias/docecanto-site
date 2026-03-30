@@ -12,13 +12,13 @@
 </head>
 
 <body x-bind:class="{ 'dark bg-gray-700': darkTheme, 'bg-[#f3f2f3]': !darkTheme }">
-    <x-ts-dialog />
-    <x-ts-toast />
+    {{-- <x-ts-dialog /> --}}
+    {{-- <x-ts-toast /> --}}
     <x-ts-layout>
         <x-slot:header>
             <x-ts-layout.header>
                 <x-slot:right>
-                    {{-- <x-ts-theme-switch only-icons /> --}}
+                    <x-ts-theme-switch />
                 </x-slot:right>
             </x-ts-layout.header>
         </x-slot:header>
