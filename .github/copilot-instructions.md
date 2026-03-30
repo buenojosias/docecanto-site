@@ -330,6 +330,15 @@ document.addEventListener('livewire:init', function () {
 - Always use Tailwind CSS v3 - verify you're using only classes supported by this version.
 
 
+=== tallstackui/core rules ===
+
+## TallStackUI Development
+
+- When creating or modifying TallStackUI Blade components, ALWAYS use the official documentation provided locally.
+- Read `vendor/tallstackui/tallstackui/.ai/index.md` as an entry point for AI development to understand all available components.
+- Refer to the individual markdown files in `vendor/tallstackui/tallstackui/.ai/components/` for specific attributes, slots, and usage examples.
+- Alternatively, search the components using the TallStackUI MCP server if connected.
+
 === tests rules ===
 
 ## Test Enforcement

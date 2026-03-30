@@ -160,6 +160,15 @@ This project has domain-specific skills available. You MUST activate the relevan
 - If you have modified any PHP files, you must run `vendor/bin/pint --dirty --format agent` before finalizing changes to ensure your code matches the project's expected style.
 - Do not run `vendor/bin/pint --test --format agent`, simply run `vendor/bin/pint --format agent` to fix any formatting issues.
 
+=== tallstackui/core rules ===
+
+# TallStackUI Development
+
+- When creating or modifying TallStackUI Blade components, ALWAYS use the official documentation provided locally.
+- Read `vendor/tallstackui/tallstackui/.ai/index.md` as an entry point for AI development to understand all available components.
+- Refer to the individual markdown files in `vendor/tallstackui/tallstackui/.ai/components/` for specific attributes, slots, and usage examples.
+- Alternatively, search the components using the TallStackUI MCP server if connected.
+
 === phpunit/core rules ===
 
 # PHPUnit
