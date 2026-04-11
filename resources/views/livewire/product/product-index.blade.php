@@ -4,7 +4,7 @@
             <h2>Produtos</h2>
         </div>
         <div class="action">
-            <x-ts-button text="Cadastrar produto" @click="$modalOpen('create-product-modal')" />
+            <x-ts-button text="Cadastrar produto" @click="$tsui.open.modal('create-product-modal')" />
         </div>
     </div>
     @php

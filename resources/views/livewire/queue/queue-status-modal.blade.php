@@ -8,6 +8,6 @@
     </form>
     <x-slot:footer>
         <x-ts-button type="submit" form="status-form" primary text="Salvar" />
-        <x-ts-button x-on:click="$modalClose('status-modal')" color="white" text="Cancelar" />
+        <x-ts-button x-on:click="$tsui.close.modal('status-modal')" color="white" text="Cancelar" />
     </x-slot>
 </x-ts-modal>

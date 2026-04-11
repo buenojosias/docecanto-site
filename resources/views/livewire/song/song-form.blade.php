@@ -48,7 +48,11 @@
     </div>
 </div>
 
+@assets
 <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+@endassets
+
+@script
 <script>
     tinymce.init({
         selector: '#lyrics',
@@ -62,8 +66,9 @@
                 editor.save();
             });
             editor.on('change', function(e) {
-                @this.set('lyrics', editor.getContent());
+                $wire.set('lyrics', editor.getContent());
             });
         }
     });
 </script>
+@endscript

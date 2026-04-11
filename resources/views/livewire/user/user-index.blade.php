@@ -4,7 +4,7 @@
             <h2>Usuários</h2>
         </div>
         <div class="action">
-            <x-ts-button text="Cadastrar usuário" @click="$modalOpen('create-user-modal')" />
+            <x-ts-button text="Cadastrar usuário" @click="$tsui.open.modal('create-user-modal')" />
         </div>
     </div>
     @php

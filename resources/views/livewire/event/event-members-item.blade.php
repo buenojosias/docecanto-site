@@ -36,7 +36,7 @@
             </x-ts-select.native>
             <x-slot:footer>
                 <x-ts-button wire:click="submit" sm type="submit" primary text="Salvar" />
-                <x-ts-button sm flat text="Cancelar" x-on:click="$modalClose('response-modal')" />
+                <x-ts-button sm flat text="Cancelar" x-on:click="$tsui.close.modal('response-modal')" />
             </x-slot:footer>
         </x-ts-modal>
     @endif

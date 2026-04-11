@@ -6,6 +6,9 @@
                 "artisan",
                 "boost:mcp"
             ]
+        },
+        "tallstackui": {
+            "httpUrl": "https://tallstackui.com/mcp/tallstackui"
         }
     }
 }

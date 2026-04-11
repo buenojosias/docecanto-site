@@ -13,14 +13,14 @@
     </form>
     <x-slot:footer>     
         <x-ts-button type="submit" form="create-user-form" text="Salvar" />
-        <x-ts-button text="Cancelar" flat x-on:click="$modalClose('create-user-modal')" />
+        <x-ts-button text="Cancelar" flat x-on:click="$tsui.close.modal('create-user-modal')" />
     </x-slot:footer>
 </x-ts-modal>
 
 <script>
     document.addEventListener('livewire:init', () => {
        Livewire.on('created', (event) => {
-           $modalClose('create-user-modal');
+           $tsui.close.modal('create-user-modal');
        });
     });
 </script>

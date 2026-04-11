@@ -59,7 +59,7 @@
                 {{-- @if ($dataCategory) --}}
                 <x-ts-button wire:click="submit" sm primary text="Salvar" />
                 {{-- @endif --}}
-                <x-ts-button sm flat text="Cancelar" x-on:click="$modalClose('song-modal')" />
+                <x-ts-button sm flat text="Cancelar" x-on:click="$tsui.close.modal('song-modal')" />
             </x-slot>
         </x-ts-modal>
     @endif

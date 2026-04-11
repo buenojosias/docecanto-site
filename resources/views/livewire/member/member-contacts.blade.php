@@ -38,7 +38,7 @@
 
             <x-slot:footer>
                 <x-ts-button type="submit" primary text="Salvar" />
-                <x-ts-button text="Cancelar" x-on:click="$modalClose('contact-modal')" flat />
+                <x-ts-button text="Cancelar" x-on:click="$tsui.close.modal('contact-modal')" flat />
             </x-slot:footer>
         </form>
     </x-ts-modal>

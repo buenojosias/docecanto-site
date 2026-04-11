@@ -72,7 +72,7 @@
         </form>
 
         <x-slot:footer>
-            <x-ts-button text="Cancelar" x-on:click="$modalClose('create-product-modal')" flat />
+            <x-ts-button text="Cancelar" x-on:click="$tsui.close.modal('create-product-modal')" flat />
             <x-ts-button type="submit" form="create-product-form" text="Salvar" />
         </x-slot:footer>
     </x-ts-modal>

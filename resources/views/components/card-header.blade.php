@@ -2,7 +2,7 @@
 
 <x-slot:header>
     <div
-        class="flex justify-between items-start gap-4 p-4">
+        class="w-full flex justify-between items-start gap-4">
         <div class="text-md font-medium flex-1">
             {{ $title }}
             @if ($subtitle)

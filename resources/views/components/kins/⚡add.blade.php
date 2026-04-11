@@ -105,13 +105,13 @@ new class extends Component {
             @if ($action)
                 <x-ts-button type="submit" form="kinship-form" text="Salvar" primary loading="submit" />
             @endif
-            <x-ts-button text="Cancelar" x-on:click="$modalClose('kinship-modal')" color="white" loading="submit" />
+            <x-ts-button text="Cancelar" x-on:click="$tsui.close.modal('kinship-modal')" color="white" loading="submit" />
         </x-slot>
     </form>
 </x-ts-modal>
 
 <script>
     this.$on('kin-added', () => {
-        $modalClose('kinship-modal');
+        $tsui.close.modal('kinship-modal');
     })
 </script>

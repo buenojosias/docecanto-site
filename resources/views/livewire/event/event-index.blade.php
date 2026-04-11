@@ -62,7 +62,7 @@
                 @endif
                 <ul>
                     @forelse ($currentDay != null ? $events->where('day', $currentDay) : $events as $event)
-                        <li class="flex py-4 border-b last:border-b-0 hover:bg-gray-50">
+                        <li class="flex py-4 border-b border-gray-300 last:border-b-0 hover:bg-gray-50">
                             <div class="grow cursor-pointer">
                                 <a href="{{ route('events.show', $event) }}">
                                     <p class="font-semibold text-gray-900">{{ $event->title }}</p>

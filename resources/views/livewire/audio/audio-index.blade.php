@@ -85,7 +85,7 @@
             @endif
             <x-slot:footer>
                 <x-ts-button type="submit" form="audio-form" primary text="Enviar" />
-                <x-ts-button x-on:click="$modalClose('audio-modal')" text="Cancelar" flat />
+                <x-ts-button x-on:click="$tsui.close.modal('audio-modal')" text="Cancelar" flat />
             </x-slot>
         </form>
     </x-ts-modal>

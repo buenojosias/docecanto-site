@@ -6,7 +6,7 @@
             <x-empty label="Nenhum familiar adicionado." />
         @endforelse
         <x-slot:footer>
-            <x-ts-button @click="$modalOpen('kinship-modal')" text="Adicionar familiar" loading="openFormModal" flat />
+            <x-ts-button @click="$tsui.open.modal('kinship-modal')" text="Adicionar familiar" loading="openFormModal" flat />
         </x-slot>
     </x-ts-card>
     <livewire:kins.add :$member @kinAdded="$refresh" />

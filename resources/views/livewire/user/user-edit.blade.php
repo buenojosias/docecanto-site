@@ -13,19 +13,19 @@
     </form>
     <x-slot:footer>
         <x-ts-button type="submit" form="edit-user-form" primary text="Salvar" />
-        <x-ts-button text="Cancelar" x-on:click="$modalClose('edit-user-modal')" flat />
+        <x-ts-button text="Cancelar" x-on:click="$tsui.close.modal('edit-user-modal')" flat />
     </x-slot:footer>
 </x-ts-modal>
 
 <script>
     document.addEventListener('livewire:init', () => {
         Livewire.on('open-edit-modal', (event) => {
-            $modalOpen('edit-user-modal');
+            $tsui.open.modal('edit-user-modal');
         });
     });
     document.addEventListener('livewire:init', () => {
         Livewire.on('saved', (event) => {
-            $modalClose('edit-user-modal');
+            $tsui.close.modal('edit-user-modal');
         });
     });
 </script>
