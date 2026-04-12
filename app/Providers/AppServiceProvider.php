@@ -20,27 +20,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        TallStackUi::customize()
-            ->layout()
-            ->block('main')
-            ->replace('p-10', 'p-6');
+        // TallStackUi::customize()
+        //     ->layout()
+        //     ->block('main')
+        //     ->replace('p-10', 'p-6');
 
-        TallStackUi::customize()
-            ->sideBar('item')
-            ->block('item.icon')
-            ->replace('h-6 w-6', 'h-5 w-5');
+        // TallStackUi::customize()
+        //     ->sideBar('item')
+        //     ->block('item.icon')
+        //     ->replace('h-6 w-6', 'h-5 w-5');
 
-        TallStackUi::customize()
-            ->sideBar('separator')
-            ->block('line.base')
-            ->replace('text-base', 'text-xs')
-            ->replace('font-semibold', 'font-medium');
+        // TallStackUi::customize()
+        //     ->sideBar('separator')
+        //     ->block('line.base')
+        //     ->replace('text-base', 'text-xs')
+        //     ->replace('font-semibold', 'font-medium');
 
-        TallStackUi::customize()
-            ->scope('without-padding')
-            ->card()
-            ->block('body')
-            ->replace('px-4 py-5', 'p-0');
+        // TallStackUi::customize()
+        //     ->scope('without-padding')
+        //     ->card()
+        //     ->block('body')
+        //     ->replace('px-4 py-5', 'p-0');
 
         TallStackUi::customize()
             ->button()
@@ -55,20 +55,20 @@ class AppServiceProvider extends ServiceProvider
             ->button()
             ->block('wrapper.sizes.xs', 'text-xs font-medium px-2 py-0.5');
 
-        TallStackUi::customize()
-            ->scope('without-padding')
-            ->button()
-            ->block('wrapper.sizes.md')
-            ->replace('px-4 py-2', 'px-2 py-1');
+        // TallStackUi::customize()
+        //     ->scope('without-padding')
+        //     ->button()
+        //     ->block('wrapper.sizes.md')
+        //     ->replace('px-4 py-2', 'px-2 py-1');
 
-        TallStackUi::customize()
-            ->card()
-            ->block('footer.wrapper')
-            ->replace('p-4', 'px-4 py-2');
+        // TallStackUi::customize()
+        //     ->card()
+        //     ->block('footer.wrapper')
+        //     ->replace('p-4', 'px-4 py-2');
 
         TallStackUi::customize()
             ->table()
             ->block('table.td')
-            ->replace('py-4', 'py-3');
+            ->replace('py-4', 'py-2');
     }
 }
