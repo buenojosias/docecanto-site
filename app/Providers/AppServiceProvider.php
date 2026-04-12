@@ -55,11 +55,11 @@ class AppServiceProvider extends ServiceProvider
             ->button()
             ->block('wrapper.sizes.xs', 'text-xs font-medium px-2 py-0.5');
 
-        // TallStackUi::customize()
-        //     ->scope('without-padding')
-        //     ->button()
-        //     ->block('wrapper.sizes.md')
-        //     ->replace('px-4 py-2', 'px-2 py-1');
+        TallStackUi::customize()
+            ->scope('without-padding')
+            ->button()
+            ->block('wrapper.sizes.md')
+            ->replace('px-4 py-2', 'px-2 py-1');
 
         // TallStackUi::customize()
         //     ->card()
@@ -69,6 +69,6 @@ class AppServiceProvider extends ServiceProvider
         TallStackUi::customize()
             ->table()
             ->block('table.td')
-            ->replace('py-4', 'py-2');
+            ->replace('py-4', 'py-3');
     }
 }
