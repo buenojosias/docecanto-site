@@ -34,7 +34,7 @@ class SongIndex extends Component
         $this->categories = Category::orderBy('position')->get()->toArray();
         array_unshift($this->categories, [
             'id' => null,
-            'name' => 'Filtrar por categoria',
+            'name' => 'Todas',
         ]);
         // add option 'Sem categoria' to the end of the array
         $this->categories[] = [
@@ -84,7 +84,7 @@ class SongIndex extends Component
         $this->resetPage();
     }
 
-    public function updatedFilter(): void
+    public function updatedCategory(): void
     {
         $this->resetPage();
     }

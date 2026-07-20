@@ -16,7 +16,14 @@
             ['index' => 'action', 'label' => '', 'sortable' => false],
         ];
     @endphp
-    <x-ts-table :$headers :rows="$this->members" filter paginate>
+
+    <x-filters
+        quantity="quantity"
+        search="search"
+        status="status"
+        :statuses="$this->statuses" />
+
+    <x-ts-table :$headers :rows="$this->members" paginate>
         @interact('column_name', $row)
             <a href="{{ route('members.show', $row) }}">{{ $row->name }}</a>
         @endinteract

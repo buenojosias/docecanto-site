@@ -13,6 +13,8 @@ class MemberIndex extends Component
 {
     use WithPagination;
 
+    public array $statuses = ['Ativo', 'Inativo', 'Afastado', 'Desistente'];
+
     #[Url('status')]
     public string $status = 'Ativo';
 
