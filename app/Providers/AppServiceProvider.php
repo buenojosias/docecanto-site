@@ -20,10 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // TallStackUi::customize()
-        //     ->layout()
-        //     ->block('main')
-        //     ->replace('p-10', 'p-6');
+        TallStackUi::customize()
+            ->layout()
+            ->block('main')
+            ->replace('p-10', 'p-6 md:p-8 lg:p-10');
 
         // TallStackUi::customize()
         //     ->sideBar('item')
