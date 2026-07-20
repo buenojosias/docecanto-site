@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/forms';
 @import '../../vendor/tallstackui/tallstackui/css/v4.css';
 
 @source '../views';
