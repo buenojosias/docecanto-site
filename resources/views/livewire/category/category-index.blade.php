@@ -19,7 +19,7 @@
         $headers[] = ['index' => 'action', 'label' => '', 'sortable' => false];
     @endphp
 
-    <x-ts-table :headers="$headers" :rows="$this->categories" striped>
+    <x-ts-table :headers="$headers" :rows="$this->categories">
         @can('coordinator')
             @interact('column_action', $row)
                 <div class="flex justify-end">

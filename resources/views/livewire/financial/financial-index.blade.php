@@ -34,7 +34,7 @@
                     ];
                 @endphp
 
-                <x-ts-table :headers="$headers" :rows="$this->transactions" striped>
+                <x-ts-table :headers="$headers" :rows="$this->transactions">
                     @interact('column_date', $row)
                         {{ $row->date->format('d/m/Y') }}
                     @endinteract

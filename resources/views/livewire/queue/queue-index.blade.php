@@ -23,7 +23,7 @@
         ];
     @endphp
 
-    <x-ts-table :headers="$headers" :rows="$this->queues" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading striped>
+    <x-ts-table :headers="$headers" :rows="$this->queues" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading>
         @interact('column_created_at', $row)
             {{ $row->created_at?->format('d/m/Y') ?? '---' }}
         @endinteract

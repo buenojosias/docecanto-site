@@ -28,7 +28,7 @@
             $headers[] = ['index' => 'action', 'label' => '', 'sortable' => false];
         @endphp
 
-        <x-ts-table :headers="$headers" :rows="$this->songs" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading striped>
+        <x-ts-table :headers="$headers" :rows="$this->songs" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading>
             @interact('column_title', $row)
                 <div class="flex items-center gap-1">
                     @if ($row->detached)

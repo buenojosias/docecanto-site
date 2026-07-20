@@ -17,7 +17,7 @@
         ];
     @endphp
 
-    <x-ts-table :headers="$headers" :rows="$this->users" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading striped>
+    <x-ts-table :headers="$headers" :rows="$this->users" :filter="['quantity' => 'quantity', 'search' => 'search']" paginate loading>
         @interact('column_role', $row)
             {{ $row->role ? Str::ucfirst($row->role) : '---' }}
         @endinteract

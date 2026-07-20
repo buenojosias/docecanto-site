@@ -9,7 +9,7 @@
                     ['index' => 'j', 'label' => 'J', 'sortable' => false],
                 ];
             @endphp
-            <x-ts-table :headers="$registrarHeaders" :rows="$this->membersWithoutAttendance->where('status', 'Ativo')" striped>
+            <x-ts-table :headers="$registrarHeaders" :rows="$this->membersWithoutAttendance->where('status', 'Ativo')">
                 @interact('column_name', $row)
                     {{ $row->name }}
                 @endinteract
@@ -48,7 +48,7 @@
                 ['index' => 'action', 'label' => '', 'sortable' => false],
             ];
         @endphp
-        <x-ts-table :headers="$registroHeaders" :rows="$this->membersWithAttendance->where('status', 'Ativo')" striped>
+        <x-ts-table :headers="$registroHeaders" :rows="$this->membersWithAttendance->where('status', 'Ativo')">
             @interact('column_name', $row)
                 <div x-data="{ showNote: false }">
                     {{ $row->name }}

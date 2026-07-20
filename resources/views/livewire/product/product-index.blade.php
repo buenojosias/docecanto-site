@@ -16,7 +16,7 @@
         ];
     @endphp
 
-    <x-ts-table :headers="$headers" :rows="$this->products" loading striped>
+    <x-ts-table :headers="$headers" :rows="$this->products" loading>
         @interact('column_is_active', $row)
             <x-ts-badge :color="$row->is_active ? 'green' : 'red'" :text="$row->is_active ? 'Ativo' : 'Inativo'" />
         @endinteract

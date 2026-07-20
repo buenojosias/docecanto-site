@@ -31,7 +31,7 @@
         ];
     @endphp
 
-    <x-ts-table :headers="$headers" :rows="$this->transactions" paginate loading striped>
+    <x-ts-table :headers="$headers" :rows="$this->transactions" paginate loading>
         @interact('column_date', $row)
             {{ $row->date->format('d/m/Y') }}
         @endinteract

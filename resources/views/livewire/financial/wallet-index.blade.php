@@ -17,7 +17,7 @@
         ];
     @endphp
 
-    <x-ts-table :headers="$headers" :rows="$this->wallets" striped>
+    <x-ts-table :headers="$headers" :rows="$this->wallets">
         @interact('column_initial_balance', $row)
             <div class="flex items-center gap-1">
                 <span>R$</span>

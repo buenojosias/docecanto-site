@@ -24,7 +24,7 @@
                         ['index' => 'action', 'label' => ''],
                     ];
                 @endphp
-                <x-ts-table :headers="$proxHeaders" :rows="$this->proximos()" striped>
+                <x-ts-table :headers="$proxHeaders" :rows="$this->proximos()">
                     @interact('column_date', $row)
                         <x-ts-link :href="route('encounters.show', $row)" :text="$row->date->format('d/m/Y')" />
                     @endinteract
@@ -53,7 +53,7 @@
                         ['index' => 'action', 'label' => ''],
                     ];
                 @endphp
-                <x-ts-table :headers="$realizadosHeaders" :rows="$this->realizados()" striped>
+                <x-ts-table :headers="$realizadosHeaders" :rows="$this->realizados()">
                     @interact('column_date', $row)
                         <x-ts-link :href="route('encounters.show', $row)" :text="$row->date->format('d/m/Y')" />
                     @endinteract
