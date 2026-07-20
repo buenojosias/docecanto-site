@@ -12,7 +12,7 @@
         <div
             class="flex sm:justify-between flex-col sm:flex-row items-center gap-4 bg-white py-2 px-3 rounded-md shadow">
             <div class="w-full sm:w-1/2 lg:w-1/3">
-                <x-ts-select.native wire:model.live="filter" :options="$categories" select="label:name|value:id" />
+                <x-ts-select.native wire:model.live="category" :options="$categories" select="label:name|value:id" />
             </div>
             <x-ts-toggle wire:model.live="detached" label="Apenas fixadas" color="primary" />
         </div>

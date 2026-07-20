@@ -24,7 +24,7 @@ class SongIndex extends Component
     public ?string $search = null;
 
     #[Url('categoria', except: null)]
-    public ?string $filter = null;
+    public ?string $category = null;
 
     #[Url('destacadas', except: false)]
     public bool $detached = false;
@@ -57,12 +57,12 @@ class SongIndex extends Component
                         ->orWhere('lyrics', 'like', $term);
                 });
             })
-            ->when($this->filter, function ($query) {
-                if ($this->filter === 'sem_categoria') {
+            ->when($this->category, function ($query) {
+                if ($this->category === 'sem_categoria') {
                     $query->doesntHave('categories');
                 } else {
                     $query->whereHas('categories', function ($query) {
-                        $query->where('id', $this->filter);
+                        $query->where('id', $this->category);
                     });
                 }
             })
