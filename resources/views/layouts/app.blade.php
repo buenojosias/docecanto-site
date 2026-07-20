@@ -25,8 +25,8 @@
         <x-slot:menu>
             <x-ts-side-bar>
                 <x-slot:brand>
-                    <div class="mt-6">
-                        <img src="{{ asset('img/logotipo.png') }}" class="h-8" />
+                    <div class="my-4 flex items-center justify-center">
+                        <img src="{{ asset('/img/symbol.png') }}" width="40" height="40" />
                     </div>
                 </x-slot:brand>
                 <x-ts-side-bar.item text="Home" icon="fluentui.home-24-o" :route="route('dashboard')" :current="request()->routeIs('dashboard')"
